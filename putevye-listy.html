@@ -891,13 +891,13 @@ table.pd th{font-weight:bold}
 
   function renderAll(){
     renderVehSelects(); renderPresets(); renderDatalist();
-    renderVehHint(); renderJournal(); renderCard(); renderRef();
+    renderVehHint(); renderJournal(); renderCard(); renderRef(); renderHelp();
     refresh();
   }
 
   function bind(){
     $$('.tab-btn').forEach(function(b){ b.addEventListener('click', function(){ setTab(b.dataset.tab); }); });
-    $('#f-vehicle').addEventListener('change', onVehicleChange);
+    $('#f-vehicle').addEventListener('change', onVehicleChange); $('#h-search').addEventListener('input', renderHelp);
     $('#f-preset').addEventListener('change', onPreset);
     $('#wb-form').addEventListener('input', refresh);
     $('#wb-form').addEventListener('change', refresh);
