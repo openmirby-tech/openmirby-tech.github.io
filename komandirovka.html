@@ -796,12 +796,27 @@ function recalc(){
   }
   renderReport(); renderForm();
   S.updated = Date.now(); saveDB();
+  autoRates();
+}
+var tried = {};
+function missingFor(ph){
+  var rates = ph === 'I' ? S.rI : S.rR;
+  return neededCodes(ph).some(function(c){ return !(rates[c] > 0); });
+}
+function autoRates(){
+  ['I', 'R'].forEach(function(ph){
+    var date = ph === 'I' ? S.dIssue : S.dReport;
+    if(!date || !missingFor(ph)) return;
+    var key = S.id + ph + date + neededCodes(ph).join(',');
+    if(tried[key]) return;
+    tried[key] = 1; loadRates(ph);
+  });
 }
 function renderReport(){
   var A = S.advCur, rep = calcReport(S, S.rI, S.rR); REP = rep;
   var box = $('#repKpi'), msgs = '';
   if(rep.error){ $('#repMsgs').innerHTML = '<div class="msg e">' + esc(rep.error) + '</div>'; box.innerHTML = ''; $('#repTable').innerHTML = ''; return; }
-  if(rep.missing.length) msgs += '<div class="msg w">Нет курса НБРБ для: ' + rep.missing.join(', ') + '. Итоги посчитаны не полностью.</div>';
+  if(rep.missing.length) msgs += '<div class="msg e">Нет курса НБРБ для: ' + rep.missing.join(', ') + '. Эти суммы не пересчитаны, итог неполный. ' + esc(S.rRinfo || S.rIinfo || '') + ' Курсы можно ввести вручную в блоке «Дата отчёта и курсы» выше.</div>';
   if(!S.dReport) msgs += '<div class="msg w">Укажите дату отчёта: по ней берутся курсы для расходов по документам.</div>';
   if(S.dReport && S.dReturn && S.dReport < S.dReturn) msgs += '<div class="msg w">Дата отчёта раньше даты возвращения.</div>';
   if(S.dReport && rep.dueDate && S.dReport > rep.dueDate) msgs += '<div class="msg e">Срок сдачи отчёта (15 рабочих дней, до ' + ruDate(rep.dueDate) + ') нарушен.</div>';
@@ -821,7 +836,7 @@ function renderReport(){
     '<div class="kpi big"><div class="l">' + due + '</div><div class="v">' + (rep.kind === 'zero' ? curW(0, A) : curW(rep.amountDue, A)) + '</div>' + (A !== 'BYN' && rep.kind !== 'zero' && !isNaN(rR) ? '<div class="w">справочно по курсу на дату отчёта: ' + curW(rep.amountDue * rR, 'BYN') + '</div>' : '') + '</div>' +
     '<div class="kpi big"><div class="l">Расходы к учёту, BYN</div><div class="v">' + curW(rep.bynTotal, 'BYN') + '</div><div class="w">в пределах аванса по курсу на дату выдачи, сверх аванса по курсу на дату отчёта</div></div>';
   var rows = rep.lines.map(function(l, i){
-    return '<tr><td>' + (i + 1) + '</td><td>' + esc(l.label) + '</td><td class="n">' + curW(l.amount, l.cur) + '</td><td class="n">' + curW(l.advAmount, A) + '</td><td class="n">' + fmt(l.byn) + '</td></tr>';
+    return '<tr><td>' + (i + 1) + '</td><td>' + esc(l.label) + '</td><td class="n">' + curW(l.amount, l.cur) + '</td><td class="n">' + (isNaN(l.advAmount) ? '<span style="color:var(--err)">нет курса ' + (isNaN(rateOf(l.cur, S.rR)) ? l.cur : A) + '</span>' : curW(l.advAmount, A)) + '</td><td class="n">' + fmt(l.byn) + '</td></tr>';
   }).join('');
   $('#repTable').innerHTML = '<thead><tr><th>№</th><th>Расход</th><th class="n">По документу / норме</th><th class="n">В ' + A + '</th><th class="n">В BYN</th></tr></thead><tbody>' + rows + '</tbody><tfoot><tr><td></td><td>Всего</td><td></td><td class="n">' + curW(rep.accepted, A) + '</td><td class="n">' + fmt(rep.bynTotal) + '</td></tr></tfoot>';
 }
@@ -989,7 +1004,7 @@ document.addEventListener('click', function(e){
   if(!S && (b.dataset.del || b.id === 'addEst' || b.id === 'addDoc')) return;
   if(b.dataset.del){ S[b.dataset.del].splice(Number(b.dataset.i), 1); renderLists(); recalc(); return; }
   if(b.id === 'addEst'){ S.estimates.push({ label: 'Топливо', amount: '', currency: S.advCur }); renderLists(); recalc(); }
-  if(b.id === 'addDoc'){ S.docs.push({ date: '', supplier: '', doc: '', category: CATEGORIES[2], desc: '', amount: '', currency: 'BYN', hasDoc: true, rate: '', account: '' }); renderLists(); recalc(); }
+  if(b.id === 'addDoc'){ if(!S.dReport){ S.dReport = todayISO(); syncInputs(); } S.docs.push({ date: '', supplier: '', doc: '', category: CATEGORIES[2], desc: '', amount: '', currency: 'BYN', hasDoc: true, rate: '', account: '' }); renderLists(); recalc(); }
   if(b.id === 'btnRI') loadRates('I');
   if(b.id === 'btnRR') loadRates('R');
   if(b.id === 'btnPrint') window.print();
