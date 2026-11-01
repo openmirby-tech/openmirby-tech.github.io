@@ -1,0 +1,1033 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Авансовые отчёты по командировкам</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F1EA;--card:#FFFFFF;--ink:#111111;--mut:#5d625a;--line:#DCCFC0;--soft:#E4E4E0;--sage:#AEB8AD;--sage-d:#4f5d4a;--sage-bg:#E9EDE8;
+  --warn:#6b4a10;--warnbg:#F3E6CF;--err:#7a2a22;--errbg:#F1DAD6;--ok:#3a4a35;--okbg:#E1E8DF}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 "Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;padding:0 16px 40px}
+[hidden]{display:none!important}
+.wrap{max-width:1040px;margin:0 auto}
+.display,h1,h2{font-family:"Bebas Neue","Arial Narrow",Impact,sans-serif;font-weight:400;letter-spacing:.04em;text-transform:uppercase}
+header.top{padding:22px 0 8px}
+.brand{font:400 15px "Bebas Neue","Arial Narrow",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-d)}
+h1{font-size:40px;line-height:1.05;margin:4px 0 6px}
+.sub{color:var(--mut);font-size:14px;max-width:660px}
+nav.tabs{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}
+nav.tabs button,.tabs2 button{border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 16px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer}
+nav.tabs button.on,.tabs2 button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.tabs2{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:0 0 14px}
+.card h2{font-size:24px;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mut)}
+.f span{font-weight:700}
+.f small{color:var(--mut);font-size:12px}
+.f input,.f select,.mini input,.mini select,.flt input,.flt select{font:inherit;color:var(--ink);padding:9px 11px;border:1px solid #cfc4b4;border-radius:10px;background:#fff;min-width:0;width:100%}
+.f input:focus,.f select:focus,.mini input:focus,.mini select:focus,.flt input:focus,.flt select:focus{outline:2px solid var(--sage-d);border-color:var(--sage-d)}
+.f.chk{flex-direction:row;align-items:center;gap:8px;color:var(--ink)}
+.f.chk input{width:auto}
+.btn{border:1px solid var(--ink);background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer}
+.btn.sec{background:#fff;color:var(--ink)}
+.btn.gray{background:#fff;color:var(--ink);border-color:#cfc4b4}
+.btn.dng{background:#fff;color:var(--err);border-color:#d9b9b4}
+.btn.sm{padding:6px 11px;font-size:13px;border-radius:10px}
+.row-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.item{border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 10px;background:#FBF9F5}
+.item .grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.item .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:700;font-size:13px}
+.note{background:var(--sage-bg);border-radius:12px;padding:10px 12px;font-size:13px;margin:10px 0}
+.msg{border-radius:12px;padding:9px 12px;font-size:13px;margin:6px 0}
+.msg.w{background:var(--warnbg);color:var(--warn)}
+.msg.e{background:var(--errbg);color:var(--err)}
+.msg.o{background:var(--okbg);color:var(--ok)}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.t{border-collapse:collapse;width:100%;font-size:13px}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+table.t th{background:var(--soft);font-weight:700}
+table.t td.n,table.t th.n{text-align:right;white-space:nowrap}
+table.t tfoot td{font-weight:800;border-top:2px solid #9a9486}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:12px 0}
+.kpi{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}
+.kpi .l{font-size:12px;color:var(--mut)}
+.kpi .v{font-size:19px;font-weight:800;margin-top:2px;word-break:break-word}
+.kpi.big{background:var(--sage-bg);border-color:var(--sage)}
+.kpi .w{font-size:12px;color:var(--mut);margin-top:3px}
+.rates{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
+.stat{font-size:13px;color:var(--mut);margin-top:6px}
+.disc{font-size:12px;color:var(--mut);margin-top:18px;padding-left:18px}
+.disc li{margin:3px 0}
+.pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700;background:var(--soft)}
+.pill.issued{background:#F3E6CF;color:var(--warn)}.pill.reported{background:#DDE5F0;color:#2c4160}.pill.closed{background:var(--okbg);color:var(--ok)}.pill.late{background:var(--errbg);color:var(--err)}
+.flt{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:10px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:12px}
+.barline{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.barline .ttl{font:400 26px "Bebas Neue","Arial Narrow",sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.emp{display:block}
+.emp .sumline{font-size:13px;color:var(--mut);margin-top:8px}
+table.reg tr[data-open]{cursor:pointer}
+table.reg tr[data-open]:hover td{background:#FBF9F5}
+
+/* форма № 286 (печатная форма остаётся нейтральной) */
+.formbox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;overflow-x:auto}
+.paper{min-width:640px;color:#000;font:12px/1.35 Arial,Helvetica,sans-serif}
+.paper table{border-collapse:collapse;width:100%}
+.paper td,.paper th{padding:3px 5px;vertical-align:top}
+.paper .bd td,.paper .bd th{border:1px solid #000}
+.paper .c{text-align:center}.paper .r{text-align:right;white-space:nowrap}
+.paper .u{border-bottom:1px solid #000}
+.paper .ttl{font-size:15px;font-weight:700;text-align:center;margin:10px 0}
+.paper .two{display:grid;grid-template-columns:1.15fr 1fr;gap:14px;align-items:start}
+.paper .sec{margin:8px 0 3px;font-weight:700}
+
+@media (max-width:720px){
+  h1{font-size:32px}
+  table.reg thead{display:none}
+  table.reg,table.reg tbody,table.reg tr,table.reg td{display:block;width:100%}
+  table.reg tr{border:1px solid var(--line);border-radius:14px;margin:0 0 10px;padding:8px 12px;background:#fff}
+  table.reg td{border:0;padding:3px 0;display:flex;justify-content:space-between;gap:12px;text-align:right}
+  table.reg td::before{content:attr(data-l);color:var(--mut);font-weight:700;text-align:left;flex:0 0 42%}
+  table.reg td.n{white-space:normal}
+}
+@media (max-width:520px){
+  body{padding:0 12px 32px}
+  .card{padding:13px}
+}
+@page{size:A4 portrait;margin:10mm}
+@media print{
+  body{background:#fff;padding:0}
+  header.top,nav.tabs,.tabs2,.noprint,.panel:not(#p-form),#v-reg,#v-emp,#editTop,.disc{display:none!important}
+  #p-form{display:block!important}
+  .formbox{border:0;padding:0;overflow:visible}
+  .paper{min-width:0;font-size:11px}
+  .card{border:0;padding:0;margin:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="brand">Бухгалтер нового времени</div>
+  <h1>Авансовые отчёты по командировкам</h1>
+  <div class="sub">Реестр отчётов, сотрудники, расчёт аванса и пересчёт по курсам НБРБ, форма № 286. Водители и обычные командировки, по Беларуси и за границу.</div>
+</header>
+
+<datalist id="accList">
+<option value="20" label="Основное производство"></option>
+<option value="23" label="Вспомогательные производства"></option>
+<option value="25" label="Общепроизводственные затраты"></option>
+<option value="26" label="Общехозяйственные затраты"></option>
+<option value="29" label="Обслуживающие производства и хозяйства"></option>
+<option value="44" label="Издержки обращения"></option>
+<option value="44.2.1" label="Издержки обращения, командировки (как в вашей форме из 1С)"></option>
+<option value="08" label="Вложения во внеоборотные активы"></option>
+<option value="10.3" label="Топливо"></option>
+<option value="10.5" label="Запасные части"></option>
+<option value="90" label="Доходы и расходы по текущей деятельности"></option>
+<option value="91" label="Прочие доходы и расходы"></option>
+<option value="97" label="Расходы будущих периодов"></option>
+</datalist>
+<div class="msg w noprint" id="storWarn" hidden>Браузер не даёт сохранять данные (приватный режим или запрет сайтов). Отчёты пропадут после закрытия страницы: делайте резервную копию.</div>
+
+<nav class="tabs noprint" id="nav">
+  <button data-view="reg" class="on">Реестр отчётов</button>
+  <button data-view="emp">Сотрудники</button>
+</nav>
+
+<!-- ============ РЕЕСТР ============ -->
+<section id="v-reg">
+  <div class="toolbar">
+    <div class="display" style="font-size:26px">Реестр авансовых отчётов</div>
+    <button class="btn" id="btnNew">+ Новый авансовый отчёт</button>
+  </div>
+  <div class="card">
+    <div class="flt">
+      <label class="f"><span>Сотрудник</span><select id="fltEmp"></select></label>
+      <label class="f"><span>Статус</span><select id="fltStatus"></select></label>
+      <label class="f"><span>Выезд с</span><input type="date" id="fltFrom"></label>
+      <label class="f"><span>Выезд по</span><input type="date" id="fltTo"></label>
+      <label class="f"><span>Поиск</span><input id="fltQ" placeholder="маршрут, номер, ФИО"></label>
+    </div>
+    <div class="kpis" id="regKpi"></div>
+    <div id="regList"></div>
+  </div>
+  <div class="card noprint"><h2>Резервная копия и выгрузка</h2>
+    <div class="stat" style="margin:0 0 8px">Отчёты хранятся только в этом браузере на этом устройстве. Скачайте копию, чтобы перенести данные на другой компьютер или не потерять их при очистке браузера.</div>
+    <div class="row-btns">
+      <button class="btn sec sm" id="btnBackup">Скачать резервную копию (JSON)</button>
+      <button class="btn sec sm" id="btnRestore">Загрузить копию</button>
+      <button class="btn sec sm" id="btnCsvReg">Реестр в Excel (CSV)</button>
+      <button class="btn sec sm" id="btnCsvLines">Строки расходов в Excel (CSV)</button>
+      <button class="btn gray sm" id="btnSample">Добавить демо-отчёт</button>
+      <input type="file" id="fileRestore" accept="application/json,.json" hidden>
+    </div>
+  </div>
+</section>
+
+<!-- ============ СОТРУДНИКИ ============ -->
+<section id="v-emp" hidden>
+  <div class="toolbar">
+    <div class="display" style="font-size:26px">Сотрудники</div>
+    <button class="btn" id="btnNewEmp">+ Добавить сотрудника</button>
+  </div>
+  <div id="empList"></div>
+</section>
+
+<!-- ============ РЕДАКТОР ОТЧЁТА ============ -->
+<section id="v-edit" hidden>
+  <div class="card noprint" id="editTop">
+    <div class="barline">
+      <button class="btn sec sm" id="btnBack">← К реестру</button>
+      <div class="ttl" id="editTitle"></div>
+      <div class="row-btns" style="margin:0">
+        <button class="btn gray sm" id="btnDup">Создать копию</button>
+        <button class="btn dng sm" id="btnDel">Удалить</button>
+      </div>
+    </div>
+    <div class="grid" style="margin-top:12px" id="fTop"></div>
+    <div id="editWarn"></div>
+  </div>
+
+  <div class="tabs2 noprint" id="tabs">
+    <button data-tab="adv" class="on">1. Аванс</button>
+    <button data-tab="rep">2. Отчёт</button>
+    <button data-tab="form">3. Форма № 286</button>
+  </div>
+
+  <section class="panel" id="p-adv">
+    <div class="card"><h2>Командировка</h2><div class="grid" id="fWorker"></div></div>
+    <div class="card"><h2>Даты и условия</h2><div class="grid" id="fDates"></div>
+      <div class="note" id="daysInfo"></div>
+    </div>
+    <div class="card"><h2>Аванс: валюта, выдача, курсы</h2><div class="grid" id="fAdv"></div>
+      <div class="stat" id="rIinfo"></div>
+      <div class="rates" id="rIbox"></div>
+      <div class="row-btns"><button class="btn sec sm" id="btnRI">Загрузить курсы НБРБ на дату выдачи</button></div>
+    </div>
+    <div class="card"><h2>Прочие расходы (оценка)</h2>
+      <div style="font-size:13px;color:var(--mut);margin-bottom:8px">Топливо, запчасти, дороги, стоянки и другое, что водитель оплатит по документам. Эти суммы войдут в аванс, а в отчёт попадут только по фактическим документам.</div>
+      <div id="estList"></div>
+      <div class="row-btns"><button class="btn sec sm" id="addEst">Добавить расход</button></div>
+    </div>
+    <div class="card"><h2>Расчёт аванса</h2>
+      <div id="advMsgs"></div>
+      <div class="tw"><table class="t" id="advTable"></table></div>
+      <div class="kpis" id="advKpi"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-rep" hidden>
+    <div class="card"><h2>Дата отчёта и курсы</h2><div class="grid" id="fRep"></div>
+      <div class="stat" id="rRinfo"></div>
+      <div class="rates" id="rRbox"></div>
+      <div class="row-btns"><button class="btn sec sm" id="btnRR">Загрузить курсы НБРБ на дату отчёта</button></div>
+    </div>
+    <div class="card"><h2>Документы работника</h2>
+      <div style="font-size:13px;color:var(--mut);margin-bottom:8px">Вносите по одному документу: чек, квитанция, талон, счёт. Если сумма в валюте, оставьте курс пустым: он возьмётся по НБРБ на дату отчёта. Если курс указан в документе (выписка банка, чек обмена), впишите его в поле «Курс из документа».</div>
+      <div id="docList"></div>
+      <div class="row-btns"><button class="btn sec sm" id="addDoc">Добавить документ</button></div>
+    </div>
+    <div class="card"><h2>Итог по отчёту</h2>
+      <div id="repMsgs"></div>
+      <div class="kpis" id="repKpi"></div>
+      <div class="tw"><table class="t" id="repTable"></table></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-form" hidden>
+    <div class="card noprint"><h2>Форма</h2>
+      <div class="grid" id="fFormExtra"></div>
+      <div class="row-btns"><button class="btn" id="btnPrint">Печать / сохранить в PDF</button></div>
+    </div>
+    <div class="formbox"><div class="paper" id="paper"></div></div>
+  </section>
+</section>
+
+<ul class="disc noprint">
+  <li>Основа расчёта: Положение о порядке и размерах возмещения расходов при служебных командировках (постановление Совмина № 176, в редакции по ПСМ № 228 от 06.05.2026) и Инструкция Нацбанка № 472. Перед применением сверьте нормы и редакцию на pravo.by.</li>
+  <li>Что обязательно проверить вручную: размер суточных (13 BYN с 04.04.2026, до этой даты 12 BYN), нормы проживания, переносы выходных при расчёте срока сдачи отчёта, налогообложение сумм сверх норм, НДС по документам, проводки в вашей конфигурации 1С.</li>
+  <li>Курсы подгружаются с api.nbrb.by; если загрузка не удалась, введите курсы вручную.</li>
+</ul>
+</div>
+
+<script>
+const COUNTRIES = [["Австралия", "USD", 90.0, 175.0], ["Австрия", "EUR", 85.0, 110.0], ["Азербайджан", "USD", 40.0, 115.0], ["Албания", "USD", 35.0, 80.0], ["Алжир", "USD", 70.0, 155.0], ["Ангола", "USD", 65.0, 140.0], ["Андорра", "EUR", 50.0, 90.0], ["Антигуа и Барбуда", "USD", 85.0, 155.0], ["Аргентина", "USD", 55.0, 190.0], ["Армения", "USD", 40.0, 90.0], ["Афганистан", "USD", 45.0, 100.0], ["Багамы", "USD", 120.0, 250.0], ["Бангладеш", "USD", 45.0, 150.0], ["Барбадос", "USD", 130.0, 245.0], ["Бахрейн", "USD", 80.0, 170.0], ["Белиз", "USD", 45.0, 170.0], ["Бельгия", "EUR", 90.0, 205.0], ["Бенин", "USD", 55.0, 120.0], ["Бермуды", "USD", 95.0, 355.0], ["Болгария", "EUR", 45.0, 110.0], ["Боливия", "USD", 50.0, 100.0], ["Босния и Герцеговина", "EUR", 50.0, 70.0], ["Ботсвана", "USD", 55.0, 130.0], ["Бразилия", "EUR", 40.0, 120.0], ["Бруней", "USD", 40.0, 115.0], ["Буркина-Фасо", "USD", 60.0, 170.0], ["Бурунди", "USD", 70.0, 130.0], ["Вануату", "USD", 90.0, 205.0], ["Великобритания", "USD", 90.0, 270.0], ["Венгрия", "EUR", 60.0, 145.0], ["Венесуэла", "USD", 40.0, 120.0], ["Вьетнам", "USD", 45.0, 110.0], ["Габон", "USD", 110.0, 175.0], ["Гаити", "USD", 70.0, 150.0], ["Гайана", "USD", 75.0, 155.0], ["Гамбия", "USD", 40.0, 135.0], ["Гана", "USD", 55.0, 155.0], ["Гватемала", "USD", 70.0, 100.0], ["Гвинея", "USD", 55.0, 120.0], ["Гвинея-Бисау", "USD", 55.0, 70.0], ["Германия", "EUR", 80.0, 145.0], ["Гибралтар", "USD", 70.0, 255.0], ["Гондурас", "USD", 55.0, 130.0], ["Гонконг", "USD", 65.0, 185.0], ["Гренада", "USD", 90.0, 195.0], ["Греция", "EUR", 75.0, 145.0], ["Грузия", "USD", 50.0, 110.0], ["Дания", "EUR", 95.0, 160.0], ["Демократическая Республика Конго", "USD", 75.0, 180.0], ["Джибути", "USD", 70.0, 120.0], ["Доминиканская Республика", "USD", 60.0, 150.0], ["Египет", "USD", 80.0, 160.0], ["Замбия", "USD", 65.0, 175.0], ["Зимбабве", "USD", 55.0, 160.0], ["Израиль", "USD", 95.0, 260.0], ["Индия", "USD", 65.0, 175.0], ["Индонезия", "USD", 70.0, 120.0], ["Иордания", "USD", 75.0, 135.0], ["Ирак", "USD", 70.0, 135.0], ["Иран", "USD", 40.0, 150.0], ["Ирландия", "EUR", 85.0, 185.0], ["Исландия", "USD", 90.0, 190.0], ["Испания", "EUR", 85.0, 145.0], ["Италия", "EUR", 85.0, 135.0], ["Йемен", "USD", 55.0, 75.0], ["Кабо-Верде", "USD", 75.0, 105.0], ["Казахстан", "USD", 40.0, 120.0], ["Острова Кайман", "USD", 95.0, 235.0], ["Камбоджа", "USD", 45.0, 85.0], ["Камерун", "USD", 55.0, 175.0], ["Канада", "USD", 100.0, 205.0], ["Катар", "USD", 90.0, 205.0], ["Кения", "USD", 65.0, 180.0], ["Кипр", "EUR", 65.0, 95.0], ["Китай", "USD", 65.0, 145.0], ["Корейская Народно-Демократическая Республика", "USD", 50.0, 165.0], ["Республика Корея", "USD", 70.0, 200.0], ["Колумбия", "USD", 30.0, 110.0], ["Коморы", "USD", 70.0, 120.0], ["Конго", "USD", 60.0, 170.0], ["Коста-Рика", "USD", 70.0, 125.0], ["Кот-д'Ивуар", "USD", 55.0, 110.0], ["Куба", "EUR", 50.0, 155.0], ["Кувейт", "USD", 95.0, 170.0], ["Кыргызстан", "USD", 35.0, 100.0], ["Лаос", "USD", 60.0, 100.0], ["Латвия", "EUR", 60.0, 110.0], ["Лесото", "USD", 45.0, 75.0], ["Либерия", "USD", 90.0, 175.0], ["Ливан", "USD", 55.0, 155.0], ["Ливия", "USD", 55.0, 140.0], ["Литва", "EUR", 55.0, 115.0], ["Лихтенштейн", "EUR", 90.0, 215.0], ["Люксембург", "EUR", 90.0, 225.0], ["Маврикий", "USD", 65.0, 175.0], ["Мавритания", "USD", 50.0, 110.0], ["Мадагаскар", "USD", 45.0, 120.0], ["Макао", "USD", 55.0, 130.0], ["Северная Македония", "EUR", 40.0, 65.0], ["Малави", "USD", 45.0, 120.0], ["Малайзия", "USD", 55.0, 110.0], ["Мали", "USD", 80.0, 110.0], ["Мальдивы", "USD", 55.0, 160.0], ["Мальта", "EUR", 80.0, 165.0], ["Марокко", "USD", 65.0, 130.0], ["Мексика", "USD", 90.0, 225.0], ["Мозамбик", "USD", 75.0, 160.0], ["Молдова", "USD", 50.0, 90.0], ["Монако", "EUR", 70.0, 200.0], ["Монголия", "USD", 55.0, 135.0], ["Мьянма", "USD", 35.0, 75.0], ["Намибия", "USD", 45.0, 140.0], ["Непал", "USD", 45.0, 160.0], ["Нигер", "USD", 50.0, 115.0], ["Нигерия", "USD", 40.0, 95.0], ["Нидерланды", "EUR", 80.0, 155.0], ["Никарагуа", "USD", 50.0, 110.0], ["Новая Зеландия", "USD", 95.0, 170.0], ["Норвегия", "USD", 105.0, 150.0], ["Объединенные Арабские Эмираты", "USD", 110.0, 200.0], ["Оман", "USD", 80.0, 200.0], ["Пакистан", "USD", 45.0, 205.0], ["Палау", "USD", 80.0, 185.0], ["Панама", "USD", 75.0, 140.0], ["Папуа - Новая Гвинея", "USD", 70.0, 210.0], ["Парагвай", "USD", 65.0, 100.0], ["Перу", "USD", 75.0, 180.0], ["Польша", "USD", 65.0, 140.0], ["Португалия", "EUR", 75.0, 155.0], ["Пуэрто-Рико", "USD", 90.0, 215.0], ["Российская Федерация", "USD", 25.0, 80.0], ["Москва, Санкт-Петербург", "USD", 40.0, 145.0], ["Астрахань", "USD", 35.0, 85.0], ["Калининград", "USD", 35.0, 105.0], ["Мурманск", "USD", 25.0, 105.0], ["Новосибирск", "USD", 30.0, 95.0], ["Самара", "USD", 40.0, 90.0], ["Сочи", "USD", 25.0, 135.0], ["Тверь", "USD", 40.0, 80.0], ["Владивосток", "USD", 30.0, 120.0], ["Руанда", "USD", 50.0, 110.0], ["Румыния", "EUR", 55.0, 140.0], ["Эль-Сальвадор", "USD", 65.0, 130.0], ["Самоа", "USD", 50.0, 85.0], ["Сан-Марино", "EUR", 85.0, 135.0], ["Сан-Томе и Принсипи", "USD", 55.0, 90.0], ["Саудовская Аравия", "USD", 90.0, 205.0], ["Эсватини", "USD", 45.0, 135.0], ["Сейшелы", "USD", 95.0, 165.0], ["Сенегал", "USD", 80.0, 150.0], ["Сент-Люсия", "USD", 95.0, 265.0], ["Сербия", "EUR", 55.0, 100.0], ["Сингапур", "USD", 100.0, 245.0], ["Сирия", "USD", 65.0, 130.0], ["Словакия", "EUR", 55.0, 130.0], ["Словения", "EUR", 65.0, 120.0], ["Сомали", "USD", 45.0, 160.0], ["Судан", "USD", 55.0, 135.0], ["Суринам", "USD", 55.0, 125.0], ["Соединенные Штаты Америки", "USD", 95.0, 230.0], ["Сьерра-Леоне", "USD", 65.0, 160.0], ["Таджикистан", "USD", 40.0, 100.0], ["Таиланд", "USD", 80.0, 135.0], ["Танзания", "USD", 60.0, 140.0], ["Того", "USD", 60.0, 125.0], ["Тонга", "USD", 50.0, 150.0], ["Тринидад и Тобаго", "USD", 100.0, 195.0], ["Тунис", "USD", 45.0, 90.0], ["Туркменистан", "USD", 55.0, 130.0], ["Турция", "USD", 45.0, 150.0], ["Уганда", "USD", 55.0, 160.0], ["Узбекистан", "USD", 40.0, 100.0], ["Украина", "USD", 55.0, 105.0], ["Уругвай", "USD", 65.0, 125.0], ["Фиджи", "USD", 70.0, 135.0], ["Филиппины", "USD", 85.0, 145.0], ["Финляндия", "EUR", 85.0, 175.0], ["Франция", "EUR", 95.0, 170.0], ["Хорватия", "EUR", 65.0, 125.0], ["Центральноафриканская Республика", "USD", 70.0, 110.0], ["Чад", "USD", 45.0, 95.0], ["Черногория", "EUR", 30.0, 65.0], ["Чехия", "EUR", 45.0, 135.0], ["Чили", "USD", 85.0, 210.0], ["Швейцария", "EUR", 90.0, 215.0], ["Швеция", "USD", 85.0, 250.0], ["Шри-Ланка", "USD", 50.0, 155.0], ["Эквадор", "USD", 55.0, 120.0], ["Экваториальная Гвинея", "USD", 55.0, 155.0], ["Эритрея", "USD", 60.0, 95.0], ["Эстония", "EUR", 95.0, 105.0], ["Эфиопия", "USD", 60.0, 135.0], ["Южно-Африканская Республика", "USD", 40.0, 140.0], ["Южный Судан", "USD", 30.0, 85.0], ["Ямайка", "USD", 75.0, 220.0], ["Япония", "USD", 80.0, 175.0]];
+
+</script>
+<script>
+/* ===== Ядро расчёта (без интерфейса). Нормы: Положение № 176 (в ред. по 06.05.2026 № 228), Инструкция Нацбанка № 472 ===== */
+const RB_NORM = {
+  sutOld: 12, sutNew: 13, changeDate: '2026-04-04',
+  lodging: { center: 50, district: 25, other: 20 }
+};
+const HOLIDAYS = ['2026-01-01','2026-01-07','2026-03-08','2026-04-21','2026-05-01','2026-05-09','2026-07-03','2026-11-07','2026-12-25',
+                  '2027-01-01','2027-01-07','2027-03-08','2027-05-01','2027-05-09','2027-05-11','2027-07-03','2027-11-07','2027-12-25'];
+const DAY_MS = 86400000;
+const CURRENCIES = ['BYN','USD','EUR','RUB','PLN','CNY','GBP','CZK','KZT','UAH'];
+const CATEGORIES = ['Проезд (билеты)','Проживание','Топливо и ГСМ','Платные дороги и дорожные сборы','Стоянка','Ремонт и запчасти','Мойка',
+  'Таможенные, пограничные, разрешительные сборы','Паромы и ж/д платформы','Связь и интернет','Визы, страховки, сборы','Прочее'];
+const DEFAULT_ACCOUNTS = { 'Топливо и ГСМ': '10.3', 'Ремонт и запчасти': '10.5', '_default': '44.2.1' };
+
+function pd(s){ const p = s.split('-').map(Number); return Date.UTC(p[0], p[1]-1, p[2]); }
+function isoOf(ms){ return new Date(ms).toISOString().slice(0,10); }
+function datesBetween(a, b){ const r = []; for(let t = pd(a); t <= pd(b); t += DAY_MS) r.push(isoOf(t)); return r; }
+function round2(x){ return Math.round((x + Number.EPSILON) * 100) / 100; }
+function rbSut(date){ return date < RB_NORM.changeDate ? RB_NORM.sutOld : RB_NORM.sutNew; }
+function findCountry(name){ return COUNTRIES.find(c => c[0] === name) || null; }
+function ruDate(s){ if(!s) return ''; const p = s.split('-'); return p[2] + '.' + p[1] + '.' + p[0]; }
+function isWorkday(ms){ const wd = new Date(ms).getUTCDay(); return wd !== 0 && wd !== 6 && HOLIDAYS.indexOf(isoOf(ms)) < 0; }
+function addWorkdays(startISO, n){ let t = pd(startISO), k = 0; while(k < n){ t += DAY_MS; if(isWorkday(t)) k++; } return isoOf(t); }
+
+/* Курс BYN за 1 единицу валюты */
+function rateOf(code, rates){ if(code === 'BYN') return 1; const r = rates && rates[code]; return r > 0 ? r : NaN; }
+/* Конвертация между валютами через BYN. missing — множество валют без курса */
+function conv(amount, from, to, rates, missing){
+  if(from === to) return amount;
+  const a = rateOf(from, rates), b = rateOf(to, rates);
+  if(isNaN(a)){ if(missing) missing.add(from); return NaN; }
+  if(isNaN(b)){ if(missing) missing.add(to); return NaN; }
+  return amount * a / b;
+}
+
+/* Разбивка дней поездки */
+function tripDays(s){
+  if(!s.dDepart || !s.dReturn) return { error: 'Укажите даты выезда и возвращения.' };
+  if(pd(s.dReturn) < pd(s.dDepart)) return { error: 'Дата возвращения раньше даты выезда.' };
+  if(s.trip !== 'abroad'){
+    return { by: datesBetween(s.dDepart, s.dReturn), abroad: [], total: datesBetween(s.dDepart, s.dReturn).length };
+  }
+  const co = s.dCrossOut || s.dDepart, ci = s.dCrossIn || s.dReturn;
+  if(pd(co) < pd(s.dDepart)) return { error: 'Дата выезда из РБ раньше даты выезда с места работы.' };
+  if(pd(ci) < pd(co)) return { error: 'Дата въезда в РБ раньше даты выезда из РБ.' };
+  if(pd(s.dReturn) < pd(ci)) return { error: 'Дата возвращения раньше даты въезда в РБ.' };
+  const before = pd(co) > pd(s.dDepart) ? datesBetween(s.dDepart, isoOf(pd(co) - DAY_MS)) : [];
+  const abroad = datesBetween(co, ci);
+  const after = pd(ci) < pd(s.dReturn) ? datesBetween(isoOf(pd(ci) + DAY_MS), s.dReturn) : [];
+  return { by: before.concat(after), abroad: abroad, total: before.length + abroad.length + after.length };
+}
+
+function defaultNights(s, td){
+  if(s.dailyReturn) return 0;
+  if(s.trip === 'abroad') return Math.max(0, td.abroad.length - 1);
+  return Math.max(0, td.by.length - 1);
+}
+
+/* Нормативные строки (суточные, проживание, общая выплата) в валюте нормы */
+function normLines(s, td){
+  const L = [];
+  const mult = Number(s.driverMult) || 0, eur = Number(s.driverEur) || 0;
+  const skip = Math.max(0, Number(s.skipDays) || 0);
+  const country = s.trip === 'abroad' ? findCountry(s.country) : null;
+  if(s.trip === 'abroad' && !country) return { error: 'Выберите страну командировки.' };
+  if(s.mode === 'driver'){
+    if(td.by.length){
+      const sum = td.by.reduce((a, d) => a + rbSut(d), 0) * mult;
+      L.push({ id: 'drv_by', cat: 'Общая выплата водителю', label: 'Общая выплата водителю по РБ: ' + td.by.length + ' дн. × ' + mult + ' суточных', cur: 'BYN', amount: round2(sum) });
+    }
+    if(td.abroad.length){
+      L.push({ id: 'drv_ab', cat: 'Общая выплата водителю', label: 'Общая выплата водителю за границей: ' + td.abroad.length + ' дн. × ' + eur + ' EUR', cur: 'EUR', amount: round2(eur * td.abroad.length) });
+    }
+    return { lines: L };
+  }
+  if(td.by.length){
+    let sum = td.by.reduce((a, d) => a + rbSut(d), 0);
+    let skipBy = s.trip === 'abroad' ? 0 : skip;
+    if(skipBy) sum -= skipBy * rbSut(s.dReturn);
+    L.push({ id: 'sut_by', cat: 'Суточные', label: 'Суточные по РБ: ' + Math.max(0, td.by.length - skipBy) + ' дн.', cur: 'BYN', amount: round2(Math.max(0, sum)) });
+  }
+  if(td.abroad.length){
+    const paid = Math.max(0, td.abroad.length - skip);
+    L.push({ id: 'sut_ab', cat: 'Суточные', label: 'Суточные за границей (' + country[0] + '): ' + paid + ' дн. × ' + country[2] + ' ' + country[1], cur: country[1], amount: round2(paid * country[2]) });
+  }
+  if(s.lodgingMode !== 'docs'){
+    const nights = (s.nights === null || s.nights === undefined || s.nights === '') ? defaultNights(s, td) : Math.max(0, Number(s.nights) || 0);
+    const pct = s.lodgingMode === 'lpa' ? (Number(s.lodgingPct) || 0) / 100 : 1;
+    if(nights > 0){
+      if(s.trip === 'abroad'){
+        L.push({ id: 'lod_ab', cat: 'Проживание', label: 'Проживание за границей без документов (' + country[0] + '): ' + nights + ' ноч. × ' + country[3] + ' ' + country[1] + (pct < 1 ? ' × ' + Math.round(pct * 100) + '%' : ''), cur: country[1], amount: round2(nights * country[3] * pct) });
+      } else {
+        const norm = RB_NORM.lodging[s.settlement] || RB_NORM.lodging.center;
+        L.push({ id: 'lod_by', cat: 'Проживание', label: 'Проживание по РБ без документов: ' + nights + ' ноч. × ' + norm + ' BYN' + (pct < 1 ? ' × ' + Math.round(pct * 100) + '%' : ''), cur: 'BYN', amount: round2(nights * norm * pct) });
+      }
+    }
+  }
+  return { lines: L };
+}
+
+/* Расчёт аванса к выдаче. rates — курсы на дату выдачи */
+function calcAdvance(s, rates){
+  const td = tripDays(s);
+  if(td.error) return { error: td.error };
+  const nl = normLines(s, td);
+  if(nl.error) return { error: nl.error };
+  const adv = s.advCur, missing = new Set();
+  const lines = [];
+  nl.lines.forEach(l => {
+    const a = conv(l.amount, l.cur, adv, rates, missing);
+    lines.push(Object.assign({}, l, { advAmount: isNaN(a) ? NaN : round2(a) }));
+  });
+  (s.estimates || []).forEach((e, i) => {
+    const amt = Number(e.amount) || 0;
+    if(amt <= 0) return;
+    const cur = e.currency || adv;
+    const a = conv(amt, cur, adv, rates, missing);
+    lines.push({ id: 'est_' + i, cat: 'Прочие расходы (оценка)', label: (e.label || 'Расход') + ' (оценка)', cur: cur, amount: amt, advAmount: isNaN(a) ? NaN : round2(a) });
+  });
+  const total = lines.reduce((a, l) => a + (isNaN(l.advAmount) ? 0 : l.advAmount), 0);
+  const step = Number(s.roundStep) || 0;
+  let rounded = round2(total);
+  if(step > 0) rounded = Math.ceil(round2(total) / step - 1e-9) * step;
+  return { td: td, lines: lines, total: round2(total), rounded: rounded, missing: Array.from(missing), days: td };
+}
+
+/* Авансовый отчёт. ratesIssue / ratesReport — курсы на даты выдачи и составления отчёта */
+function calcReport(s, ratesIssue, ratesReport){
+  const adv = calcAdvance(s, ratesIssue);
+  if(adv.error) return { error: adv.error };
+  const A = s.advCur, missing = new Set(adv.missing);
+  const lines = adv.lines.filter(l => l.id.indexOf('est_') !== 0).map(l => Object.assign({ source: 'norm', date: '' }, l));
+  const notAccepted = [];
+  (s.docs || []).forEach((d, i) => {
+    const amt = Number(d.amount) || 0;
+    if(amt <= 0) return;
+    const cur = d.currency || 'BYN';
+    if(!d.hasDoc){ notAccepted.push(Object.assign({}, d, { idx: i })); return; }
+    let a;
+    if(Number(d.advOverride) > 0){ a = Number(d.advOverride); }
+    else if(Number(d.rate) > 0 && cur !== A){
+      const rr = rateOf(A, ratesReport);
+      if(isNaN(rr)){ missing.add(A); a = NaN; } else a = amt * Number(d.rate) / rr;
+    } else a = conv(amt, cur, A, ratesReport, missing);
+    lines.push({ id: 'doc_' + i, source: 'doc', date: d.date || '', cat: d.category || 'Прочее', cur: cur, amount: amt,
+      label: [d.supplier, 'за ' + (d.desc || d.category || 'расходы'), d.doc ? 'по ' + d.doc : ''].filter(Boolean).join(', ').replace(', за', ', за'),
+      advAmount: isNaN(a) ? NaN : round2(a), account: d.account || '' });
+  });
+  const accepted = round2(lines.reduce((a, l) => a + (isNaN(l.advAmount) ? 0 : l.advAmount), 0));
+  const issued = Number(s.issued) > 0 ? Number(s.issued) : adv.rounded;
+  const diff = round2(issued - accepted);
+  /* Расходы в BYN для учёта: в пределах аванса по курсу на дату выдачи, сверх аванса по курсу на дату отчёта (Закон № 57-З, НСБУ № 61) */
+  const rIssue = rateOf(A, ratesIssue), rReport = rateOf(A, ratesReport);
+  let cum = 0, bynTotal = 0;
+  lines.forEach(l => {
+    if(isNaN(l.advAmount)){ l.byn = NaN; return; }
+    if(A === 'BYN'){ l.byn = l.advAmount; }
+    else if(isNaN(rIssue) || isNaN(rReport)){ if(isNaN(rIssue)) missing.add(A); if(isNaN(rReport)) missing.add(A); l.byn = NaN; }
+    else {
+      const within = Math.max(0, Math.min(l.advAmount, issued - cum));
+      const beyond = l.advAmount - within;
+      l.byn = round2(within * rIssue + beyond * rReport);
+    }
+    cum += l.advAmount;
+    if(!isNaN(l.byn)) bynTotal += l.byn;
+  });
+  const dueDate = s.dReturn ? addWorkdays(s.dReturn, 15) : '';
+  return { td: adv.td, lines: lines, notAccepted: notAccepted, accepted: accepted, issued: issued, diff: diff,
+           kind: diff > 0 ? 'return' : (diff < 0 ? 'pay' : 'zero'), amountDue: Math.abs(diff),
+           bynTotal: round2(bynTotal), missing: Array.from(missing), dueDate: dueDate, advTotal: adv.total, advRounded: adv.rounded };
+}
+
+/* Сумма прописью */
+const W = {
+  hund: ['сто','двести','триста','четыреста','пятьсот','шестьсот','семьсот','восемьсот','девятьсот'],
+  tens: ['двадцать','тридцать','сорок','пятьдесят','шестьдесят','семьдесят','восемьдесят','девяносто'],
+  teens: ['десять','одиннадцать','двенадцать','тринадцать','четырнадцать','пятнадцать','шестнадцать','семнадцать','восемнадцать','девятнадцать'],
+  um: ['один','два','три','четыре','пять','шесть','семь','восемь','девять'],
+  uf: ['одна','две','три','четыре','пять','шесть','семь','восемь','девять']
+};
+const CUR_WORDS = {
+  BYN: ['рубль','рубля','рублей','копейка','копейки','копеек'],
+  RUB: ['рубль','рубля','рублей','копейка','копейки','копеек'],
+  USD: ['доллар США','доллара США','долларов США','цент','цента','центов'],
+  EUR: ['евро','евро','евро','цент','цента','центов'],
+  PLN: ['злотый','злотых','злотых','грош','гроша','грошей'],
+  CNY: ['юань','юаня','юаней','фэнь','фэня','фэней']
+};
+function decl(n){ const m100 = n % 100, m10 = n % 10; if(m100 >= 11 && m100 <= 14) return 2; if(m10 === 1) return 0; if(m10 >= 2 && m10 <= 4) return 1; return 2; }
+function words3(g, fem){
+  const h = Math.floor(g / 100), r = g % 100, t = Math.floor(r / 10), u = r % 10, out = [];
+  if(h) out.push(W.hund[h - 1]);
+  if(r >= 10 && r <= 19) out.push(W.teens[r - 10]);
+  else { if(t >= 2) out.push(W.tens[t - 2]); if(u) out.push((fem ? W.uf : W.um)[u - 1]); }
+  return out.join(' ');
+}
+function amountInWords(x, cur){
+  const f = CUR_WORDS[cur] || CUR_WORDS.BYN;
+  const v = Math.round((Math.abs(x) + Number.EPSILON) * 100) / 100;
+  const whole = Math.floor(v + 1e-9), cents = Math.round((v - whole) * 100);
+  const g0 = whole % 1000, g1 = Math.floor(whole / 1000) % 1000, g2 = Math.floor(whole / 1000000) % 1000;
+  const parts = [];
+  if(g2) parts.push(words3(g2, false), ['миллион','миллиона','миллионов'][decl(g2)]);
+  if(g1) parts.push(words3(g1, true), ['тысяча','тысячи','тысяч'][decl(g1)]);
+  if(g0) parts.push(words3(g0, false));
+  if(!whole) parts.push('ноль');
+  parts.push(f[decl(whole)]);
+  const s = parts.join(' ') + ' ' + String(cents).padStart(2, '0') + ' ' + f[3 + decl(cents)];
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+
+</script>
+<script>
+(function(){
+'use strict';
+var DBKEY = 'bnv_komandirovka_v2', OLDKEY = 'bnv_komandirovka_v1';
+var STATUS = [['draft', 'Черновик'], ['issued', 'Аванс выдан, отчёта нет'], ['reported', 'Отчёт составлен, расчёт не закрыт'], ['closed', 'Закрыт']];
+var STATUS_NAME = {}; STATUS.forEach(function(s){ STATUS_NAME[s[0]] = s[1]; });
+var $ = function(s, r){ return (r || document).querySelector(s); };
+var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function fmt(x, d){ if(x === null || x === undefined || x === '' || isNaN(x)) return '—'; d = d === undefined ? 2 : d; return Number(x).toLocaleString('ru-RU', { minimumFractionDigits: d, maximumFractionDigits: d }); }
+function fmtRate(x){ return isNaN(x) ? '—' : Number(x).toFixed(4).replace('.', ','); }
+function todayISO(){ var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+function uid(){ return 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+function curW(x, c){ return fmt(x) + ' ' + c; }
+
+/* ---------- Данные ---------- */
+function defaults(){
+  return { id: uid(), empId: '', status: 'draft', created: Date.now(), updated: Date.now(),
+    org: '', dept: '', fio: '', position: 'Водитель автомобиля', purpose: 'Командировочные расходы', dest: '', advNo: '', rko: '',
+    trip: 'by', mode: 'driver', dDepart: '', dCrossOut: '', dCrossIn: '', dReturn: '', country: 'Польша', settlement: 'center', nights: '', dailyReturn: false, skipDays: 0,
+    lodgingMode: 'norm', lodgingPct: 10, driverMult: 2, driverEur: 50, advCur: 'BYN', roundStep: 10, issued: '', dIssue: '', dReport: '',
+    acc71: '71.11', accNorm: '44.2.1', rI: {}, rR: {}, rIinfo: '', rRinfo: '', estimates: [], docs: [] };
+}
+var storageOk = true;
+function loadDB(){
+  try{
+    var j = localStorage.getItem(DBKEY);
+    if(j){ var d = JSON.parse(j); d.employees = d.employees || []; d.reports = (d.reports || []).map(function(r){ return Object.assign(defaults(), r); }); return d; }
+  }catch(e){ storageOk = false; }
+  var db = { employees: [], reports: [] };
+  try{
+    var o = localStorage.getItem(OLDKEY);
+    if(o){
+      var r = Object.assign(defaults(), JSON.parse(o));
+      if(r.fio){ var emp = { id: uid(), fio: r.fio, position: r.position, org: r.org, dept: r.dept }; db.employees.push(emp); r.empId = emp.id; }
+      r.status = 'issued'; db.reports.push(r);
+    }
+  }catch(e){}
+  return db;
+}
+var DB = loadDB(), S = null;
+function saveDB(){
+  try{ localStorage.setItem(DBKEY, JSON.stringify(DB)); storageOk = true; }catch(e){ storageOk = false; }
+  $('#storWarn').hidden = storageOk;
+}
+function empById(id){ return DB.employees.filter(function(e){ return e.id === id; })[0] || null; }
+function repById(id){ return DB.reports.filter(function(r){ return r.id === id; })[0] || null; }
+function nextNo(){
+  var y = new Date().getFullYear(), m = 0;
+  DB.reports.forEach(function(r){ if(new Date(r.created).getFullYear() === y){ var n = parseInt(r.advNo, 10); if(n > m) m = n; } });
+  return String(m + 1);
+}
+var INHERIT = ['trip', 'mode', 'country', 'settlement', 'lodgingMode', 'lodgingPct', 'driverMult', 'driverEur', 'advCur', 'roundStep', 'purpose', 'acc71', 'accNorm', 'dest'];
+function lastReportOf(empId, exceptId){
+  var l = DB.reports.filter(function(r){ return r.empId === empId && r.id !== exceptId; });
+  l.sort(function(a, b){ return b.created - a.created; });
+  return l[0] || null;
+}
+function copyParams(to, from){ INHERIT.forEach(function(k){ to[k] = from[k]; }); }
+function snap(r){ var e = empById(r.empId); if(e){ r.fio = e.fio; r.position = e.position; r.org = e.org; r.dept = e.dept; } }
+function newReport(empId, src){
+  var r = defaults(); r.empId = empId || ''; r.advNo = nextNo();
+  var from = src || (empId ? lastReportOf(empId) : null);
+  if(from){ copyParams(r, from); if(src){ r.estimates = JSON.parse(JSON.stringify(src.estimates || [])); } }
+  snap(r); DB.reports.push(r); saveDB(); return r;
+}
+
+/* ---------- Сводка по отчёту ---------- */
+function summary(r){
+  var c = calcReport(r, r.rI || {}, r.rR || {});
+  var due = r.dReturn ? addWorkdays(r.dReturn, 15) : '';
+  var late = r.status === 'issued' && due && todayISO() > due;
+  return { calc: c, ok: !c.error, due: due, late: late };
+}
+function signedText(c){ if(!c || c.error) return '—'; if(c.kind === 'return') return 'остаток ' + curW(c.amountDue, '').trim(); if(c.kind === 'pay') return 'перерасход ' + curW(c.amountDue, '').trim(); return '0,00'; }
+function addTo(map, cur, v){ map[cur] = (map[cur] || 0) + v; }
+function mapText(m){ var k = Object.keys(m).filter(function(x){ return Math.abs(m[x]) > 0.004; }); return k.length ? k.map(function(c){ return curW(m[c], c); }).join('; ') : '—'; }
+
+/* ---------- Реестр ---------- */
+var FL = { emp: '', status: '', from: '', to: '', q: '' };
+function fillFilters(){
+  var se = $('#fltEmp'), ss = $('#fltStatus');
+  se.innerHTML = '<option value="">Все сотрудники</option>' + DB.employees.map(function(e){ return '<option value="' + e.id + '">' + esc(e.fio || 'Без имени') + '</option>'; }).join('');
+  ss.innerHTML = '<option value="">Все статусы</option>' + STATUS.map(function(s){ return '<option value="' + s[0] + '">' + s[1] + '</option>'; }).join('');
+  se.value = FL.emp; ss.value = FL.status;
+}
+function filtered(){
+  var q = FL.q.trim().toLowerCase();
+  return DB.reports.filter(function(r){
+    if(FL.emp && r.empId !== FL.emp) return false;
+    if(FL.status && r.status !== FL.status) return false;
+    if(FL.from && (!r.dDepart || r.dDepart < FL.from)) return false;
+    if(FL.to && (!r.dDepart || r.dDepart > FL.to)) return false;
+    if(q && (r.fio + ' ' + r.dest + ' ' + r.advNo).toLowerCase().indexOf(q) < 0) return false;
+    return true;
+  }).sort(function(a, b){ return (b.dDepart || '').localeCompare(a.dDepart || '') || b.created - a.created; });
+}
+function renderReg(){
+  fillFilters();
+  var list = filtered(), issuedM = {}, accM = {}, retM = {}, payM = {}, hand = {}, byn = 0, late = 0;
+  var rows = list.map(function(r){
+    var s = summary(r), c = s.calc, done = r.status === 'reported' || r.status === 'closed';
+    if(s.ok){
+      addTo(issuedM, r.advCur, c.issued); if(done){ addTo(accM, r.advCur, c.accepted); byn += c.bynTotal || 0; }
+      if(r.status === 'reported'){ if(c.kind === 'return') addTo(retM, r.advCur, c.amountDue); if(c.kind === 'pay') addTo(payM, r.advCur, c.amountDue); }
+      if(r.status === 'issued') addTo(hand, r.advCur, c.issued);
+    }
+    if(s.late) late++;
+    var st = '<span class="pill ' + r.status + '">' + esc(STATUS_NAME[r.status]) + '</span>' + (s.late ? ' <span class="pill late">просрочен</span>' : '');
+    return '<tr data-open="' + r.id + '"><td data-l="№">' + esc(r.advNo || '—') + '</td>' +
+      '<td data-l="Сотрудник"><b>' + esc(r.fio || 'Не выбран') + '</b></td>' +
+      '<td data-l="Маршрут">' + esc(r.dest || '—') + '</td>' +
+      '<td data-l="Период">' + (r.dDepart ? ruDate(r.dDepart) : '—') + (r.dReturn ? ' – ' + ruDate(r.dReturn) : '') + '</td>' +
+      '<td class="n" data-l="Выдано">' + (s.ok ? curW(c.issued, r.advCur) : '—') + '</td>' +
+      '<td class="n" data-l="Израсходовано">' + (s.ok && done ? curW(c.accepted, r.advCur) : '—') + '</td>' +
+      '<td class="n" data-l="Остаток / перерасход">' + (s.ok && done ? (c.kind === 'return' ? 'остаток ' + curW(c.amountDue, r.advCur) : (c.kind === 'pay' ? 'перерасход ' + curW(c.amountDue, r.advCur) : '0,00')) : '—') + '</td>' +
+      '<td class="n" data-l="К учёту, BYN">' + (s.ok && done ? fmt(c.bynTotal) : '—') + '</td>' +
+      '<td data-l="Статус"><span>' + st + '</span></td>' +
+      '<td data-l="Срок отчёта">' + (s.due ? ruDate(s.due) : '—') + '</td>' +
+      '<td data-l=""><button class="btn sec sm" data-open-btn="' + r.id + '">Открыть</button> <button class="btn gray sm" data-dup="' + r.id + '">Копия</button></td></tr>';
+  }).join('');
+  $('#regKpi').innerHTML =
+    '<div class="kpi"><div class="l">Отчётов в списке</div><div class="v">' + list.length + '</div><div class="w">' + (late ? 'просрочено: ' + late : 'просроченных нет') + '</div></div>' +
+    '<div class="kpi"><div class="l">Выдано авансов</div><div class="v">' + mapText(issuedM) + '</div></div>' +
+    '<div class="kpi"><div class="l">Израсходовано (составленные и закрытые отчёты)</div><div class="v">' + mapText(accM) + '</div></div>' +
+    '<div class="kpi big"><div class="l">Расходы к учёту, BYN</div><div class="v">' + fmt(byn) + ' BYN</div></div>' +
+    '<div class="kpi"><div class="l">Аванс на руках (отчёта нет)</div><div class="v">' + mapText(hand) + '</div></div>' +
+    '<div class="kpi"><div class="l">К возврату / к доплате (расчёт не закрыт)</div><div class="v" style="font-size:15px">вернуть: ' + mapText(retM) + '<br>доплатить: ' + mapText(payM) + '</div></div>';
+  $('#regList').innerHTML = list.length ?
+    '<div class="tw"><table class="t reg"><thead><tr><th>№</th><th>Сотрудник</th><th>Маршрут</th><th>Период</th><th class="n">Выдано</th><th class="n">Израсходовано</th><th class="n">Остаток / перерасход</th><th class="n">К учёту, BYN</th><th>Статус</th><th>Срок отчёта</th><th></th></tr></thead><tbody>' + rows + '</tbody></table></div>' :
+    '<div class="stat">' + (DB.reports.length ? 'По выбранным условиям отчётов нет.' : 'Отчётов пока нет. Сначала добавьте сотрудника на вкладке «Сотрудники», затем нажмите «Новый авансовый отчёт».') + '</div>';
+}
+
+/* ---------- Сотрудники ---------- */
+function renderEmp(){
+  var html = DB.employees.map(function(e){
+    var reps = DB.reports.filter(function(r){ return r.empId === e.id; });
+    var hand = {}, ret = {}, pay = {}, late = 0;
+    reps.forEach(function(r){
+      var s = summary(r); if(!s.ok) return;
+      if(r.status === 'issued') addTo(hand, r.advCur, s.calc.issued);
+      if(s.late) late++;
+      if(r.status === 'reported'){ if(s.calc.kind === 'return') addTo(ret, r.advCur, s.calc.amountDue); if(s.calc.kind === 'pay') addTo(pay, r.advCur, s.calc.amountDue); }
+    });
+    var L = function(f, lab){ return '<label class="f"><span>' + lab + '</span><input data-emp="' + e.id + '" data-ef="' + f + '" value="' + esc(e[f]) + '"></label>'; };
+    return '<div class="card emp mini"><div class="grid">' + L('fio', 'Фамилия И.О.') + L('position', 'Должность') + L('org', 'Организация') + L('dept', 'Подразделение') + '</div>' +
+      '<div class="sumline">Отчётов: ' + reps.length + '. Аванс на руках: ' + mapText(hand) + (late ? ' (просрочен отчёт: ' + late + ')' : '') + '. К возврату: ' + mapText(ret) + '. К доплате: ' + mapText(pay) + '.</div>' +
+      '<div class="row-btns"><button class="btn sm" data-emp-new="' + e.id + '">Новый отчёт для сотрудника</button> <button class="btn sec sm" data-emp-reps="' + e.id + '">Показать отчёты</button> <button class="btn dng sm" data-emp-del="' + e.id + '">Удалить</button></div></div>';
+  }).join('');
+  $('#empList').innerHTML = html || '<div class="card"><div class="stat" style="margin:0">Сотрудников пока нет. Нажмите «Добавить сотрудника»: достаточно фамилии и должности.</div></div>';
+}
+
+/* ---------- Редактор ---------- */
+function F(label, k, type, x){
+  x = x || {};
+  var when = x.when ? ' data-when="' + x.when + '"' : '';
+  var hint = x.hint ? '<small>' + x.hint + '</small>' : '';
+  if(type === 'select') return '<label class="f"' + when + '><span>' + label + '</span><select data-k="' + k + '">' + (x.opts || []).map(function(o){ return '<option value="' + esc(o[0]) + '">' + esc(o[1]) + '</option>'; }).join('') + '</select>' + hint + '</label>';
+  if(type === 'checkbox') return '<label class="f chk"' + when + '><input type="checkbox" data-k="' + k + '"><span>' + label + '</span></label>';
+  return '<label class="f"' + when + '><span>' + label + '</span><input type="' + type + '" data-k="' + k + '"' + (x.attrs || '') + '>' + hint + '</label>';
+}
+var curOpts = CURRENCIES.map(function(c){ return [c, c]; });
+$('#fTop').innerHTML = F('Подотчётное лицо', 'empId', 'select', { opts: [] }) + F('Номер авансового отчёта', 'advNo', 'text') + F('Статус', 'status', 'select', { opts: STATUS.map(function(s){ return [s[0], s[1]]; }) });
+$('#fWorker').innerHTML =
+  F('Маршрут / пункт назначения', 'dest', 'text', { hint: 'Например: Витебск — Варшава — Витебск' }) + F('Назначение аванса', 'purpose', 'text') +
+  F('Вид командировки', 'trip', 'select', { opts: [['by', 'По Республике Беларусь'], ['abroad', 'За границу']] }) +
+  F('Как оплачивается', 'mode', 'select', { opts: [['driver', 'Водитель: общая выплата (гл. 7 Положения № 176)'], ['general', 'Суточные и проживание по нормам']] }) +
+  F('Счёт затрат на командировку (дебет)', 'accNorm', 'text', { attrs: ' list="accList" placeholder="20, 26, 44.2.1 ..."', hint: '20 или 25: затраты производства, 26: управленческий и общехозяйственный персонал, 44: торговля. Топливо и запчасти по умолчанию идут на 10.3 и 10.5. Сверьте с учётной политикой и планом счетов в вашей 1С.' });
+$('#fDates').innerHTML =
+  F('Дата выезда с места работы', 'dDepart', 'date') + F('Дата выезда из Беларуси (по штампу)', 'dCrossOut', 'date', { when: 'trip:abroad' }) +
+  F('Дата въезда в Беларусь (по штампу)', 'dCrossIn', 'date', { when: 'trip:abroad' }) + F('Дата возвращения на место работы', 'dReturn', 'date') +
+  F('Страна командировки', 'country', 'select', { when: 'trip:abroad', opts: COUNTRIES.map(function(c){ return [c[0], c[0] + ' (' + c[1] + ', ' + c[2] + ' сут. / ' + c[3] + ' ночь)']; }) }) +
+  F('Общая выплата по РБ, суточных в день', 'driverMult', 'number', { when: 'mode:driver', attrs: ' min="1" max="5" step="0.5"', hint: 'От 1 до 5 суточных, размер задаёт наниматель' }) +
+  F('Общая выплата за границей, EUR в день', 'driverEur', 'number', { when: 'mode:driver,trip:abroad', attrs: ' min="25" max="150" step="1"', hint: 'От 25 до 150 EUR, размер задаёт наниматель' }) +
+  F('Населённый пункт (для проживания по РБ)', 'settlement', 'select', { when: 'mode:general,trip:by', opts: [['center', 'Область. центры и Минск: 50 BYN'], ['district', 'Районные центры: 25 BYN'], ['other', 'Остальные: 20 BYN']] }) +
+  F('Как считать проживание', 'lodgingMode', 'select', { when: 'mode:general', opts: [['norm', 'По норме, без документов'], ['lpa', 'Процент нормы по ЛПА'], ['docs', 'По документам (ниже, в отчёте)']] }) +
+  F('Процент нормы по ЛПА', 'lodgingPct', 'number', { when: 'mode:general,lodgingMode:lpa', attrs: ' min="0" max="100" step="1"', hint: 'Обычно 5–20 %, проверьте ваш ЛПА' }) +
+  F('Количество ночей', 'nights', 'number', { when: 'mode:general', attrs: ' min="0" step="1" placeholder="авто"', hint: 'Пусто: посчитается автоматически' }) +
+  F('Суточные не платятся, дней', 'skipDays', 'number', { when: 'mode:general', attrs: ' min="0" step="1"', hint: 'Например, при ежедневном возвращении или бесплатном питании' }) +
+  F('Ежедневное возвращение (ночей нет)', 'dailyReturn', 'checkbox', { when: 'mode:general' });
+$('#fAdv').innerHTML =
+  F('Валюта аванса', 'advCur', 'select', { opts: curOpts }) + F('Дата выдачи аванса', 'dIssue', 'date', { hint: 'По этой дате берутся курсы НБРБ' }) +
+  F('Округлить аванс до, ед.', 'roundStep', 'number', { attrs: ' min="0" step="1"', hint: '0 — не округлять' }) +
+  F('Фактически выдано (если отличается)', 'issued', 'number', { attrs: ' min="0" step="0.01" placeholder="по расчёту"' }) +
+  F('РКО №', 'rko', 'text');
+$('#fRep').innerHTML = F('Дата отчёта', 'dReport', 'date', { hint: 'По этой дате берутся курсы для расходов по документам' });
+$('#fFormExtra').innerHTML = F('Счёт расчётов с подотчётными лицами (кредит)', 'acc71', 'text');
+
+function fillEmpSelect(){
+  var sel = $('[data-k=empId]');
+  sel.innerHTML = '<option value="">— выберите сотрудника —</option>' + DB.employees.map(function(e){ return '<option value="' + e.id + '">' + esc(e.fio || 'Без имени') + '</option>'; }).join('');
+}
+function syncInputs(){
+  $$('#v-edit [data-k]').forEach(function(el){
+    var v = S[el.dataset.k];
+    if(el.type === 'checkbox') el.checked = !!v; else if(document.activeElement !== el) el.value = (v === null || v === undefined) ? '' : v;
+  });
+}
+function applyWhen(){
+  $$('#v-edit [data-when]').forEach(function(el){
+    el.hidden = !el.dataset.when.split(',').every(function(c){ var p = c.split(':'); return String(S[p[0]]) === p[1]; });
+  });
+}
+function defAcc(cat, rep){ rep = rep || S; return DEFAULT_ACCOUNTS[cat] || rep.accNorm || DEFAULT_ACCOUNTS._default; }
+function estHTML(){
+  return S.estimates.map(function(e, i){
+    return '<div class="item mini"><div class="hd"><span>Расход ' + (i + 1) + '</span><button class="btn gray sm" data-del="estimates" data-i="' + i + '">Удалить</button></div><div class="grid">' +
+      '<label class="f"><span>Что</span><input data-list="estimates" data-i="' + i + '" data-f="label" value="' + esc(e.label) + '"></label>' +
+      '<label class="f"><span>Сумма</span><input type="number" step="0.01" min="0" data-list="estimates" data-i="' + i + '" data-f="amount" value="' + esc(e.amount) + '"></label>' +
+      '<label class="f"><span>Валюта</span><select data-list="estimates" data-i="' + i + '" data-f="currency">' + CURRENCIES.map(function(c){ return '<option' + (c === e.currency ? ' selected' : '') + '>' + c + '</option>'; }).join('') + '</select></label>' +
+      '</div></div>';
+  }).join('') || '<div class="stat">Пока ничего не добавлено.</div>';
+}
+function docHTML(){
+  return S.docs.map(function(d, i){
+    var L = function(f, lab, type, extra){ return '<label class="f"><span>' + lab + '</span><input type="' + (type || 'text') + '" data-list="docs" data-i="' + i + '" data-f="' + f + '" value="' + esc(d[f]) + '"' + (extra || '') + '></label>'; };
+    return '<div class="item mini"><div class="hd"><span>Документ ' + (i + 1) + '</span><button class="btn gray sm" data-del="docs" data-i="' + i + '">Удалить</button></div><div class="grid">' +
+      L('date', 'Дата', 'date') + L('supplier', 'Кому уплачено (поставщик)') + L('doc', 'Документ и номер', 'text', ' placeholder="Чек № 123 от 11.09.2026"') +
+      '<label class="f"><span>Вид расхода</span><select data-list="docs" data-i="' + i + '" data-f="category">' + CATEGORIES.map(function(c){ return '<option' + (c === d.category ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join('') + '</select></label>' +
+      L('desc', 'За что (например, ДТ, радиатор)') + L('amount', 'Сумма по документу', 'number', ' step="0.01" min="0"') +
+      '<label class="f"><span>Валюта документа</span><select data-list="docs" data-i="' + i + '" data-f="currency">' + CURRENCIES.map(function(c){ return '<option' + (c === d.currency ? ' selected' : '') + '>' + c + '</option>'; }).join('') + '</select></label>' +
+      L('rate', 'Курс из документа (BYN за 1 ед.)', 'number', ' step="0.0001" min="0" placeholder="по НБРБ"') +
+      L('account', 'Счёт (дебет)', 'text', ' list="accList" placeholder="' + esc(defAcc(d.category)) + '"') +
+      '<label class="f chk"><input type="checkbox" data-list="docs" data-i="' + i + '" data-f="hasDoc"' + (d.hasDoc ? ' checked' : '') + '><span>Есть подтверждающий документ</span></label>' +
+      '</div></div>';
+  }).join('') || '<div class="stat">Документы ещё не добавлены.</div>';
+}
+function renderLists(){ $('#estList').innerHTML = estHTML(); $('#docList').innerHTML = docHTML(); }
+
+/* ---------- Курсы НБРБ ---------- */
+var cache = {};
+function getRates(date){
+  if(cache[date]) return Promise.resolve(cache[date]);
+  return fetch('https://api.nbrb.by/exrates/rates?ondate=' + date + '&periodicity=0').then(function(r){
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  }).then(function(j){
+    var m = {};
+    j.forEach(function(x){ m[x.Cur_Abbreviation] = x.Cur_OfficialRate / x.Cur_Scale; });
+    if(!Object.keys(m).length) throw new Error('empty');
+    cache[date] = m; return m;
+  });
+}
+function loadRates(ph){
+  var rep = S; if(!rep) return;
+  var date = ph === 'I' ? rep.dIssue : rep.dReport;
+  var infoK = 'r' + ph + 'info';
+  if(!date){ rep[infoK] = 'Укажите дату, чтобы загрузить курсы.'; renderRates(true); return; }
+  rep[infoK] = 'Загружаю курсы НБРБ...'; renderRates(true);
+  getRates(date).then(function(m){
+    if((ph === 'I' ? rep.dIssue : rep.dReport) !== date) return;
+    var out = {}; CURRENCIES.forEach(function(c){ if(m[c]) out[c] = m[c]; });
+    rep['r' + ph] = out;
+    rep[infoK] = 'Курсы НБРБ на ' + ruDate(date) + ' загружены. При необходимости поправьте вручную.';
+    if(S === rep){ renderRates(true); recalc(); } else saveDB();
+  }).catch(function(){
+    rep[infoK] = 'Не удалось получить курсы с сайта НБРБ (нет связи или доступ закрыт). Введите курсы вручную по официальным курсам на ' + ruDate(date) + '.';
+    if(S === rep) renderRates(true);
+    saveDB();
+  });
+}
+function neededCodes(ph){
+  var set = {}; set[S.advCur] = 1;
+  if(ph === 'I'){ var r = calcAdvance(S, {}); (r.lines || []).forEach(function(l){ set[l.cur] = 1; }); }
+  else { S.docs.forEach(function(d){ if(Number(d.amount) > 0) set[d.currency || 'BYN'] = 1; }); }
+  delete set.BYN; return Object.keys(set);
+}
+var rateKeys = { I: '', R: '' };
+function renderRates(force){
+  ['I', 'R'].forEach(function(ph){
+    var codes = neededCodes(ph), key = codes.join(',');
+    var box = $('#r' + ph + 'box');
+    if(force || key !== rateKeys[ph]){
+      rateKeys[ph] = key;
+      box.innerHTML = codes.length ? codes.map(function(c){
+        return '<label class="f"><span>' + c + ', BYN за 1 ед.</span><input type="number" step="0.0001" min="0" data-rate="' + ph + '" data-code="' + c + '" value="' + (S['r' + ph][c] ? Number(S['r' + ph][c]).toFixed(6).replace(/0+$/, '') : '') + '"></label>';
+      }).join('') : '<div class="stat">Все суммы в белорусских рублях, курсы не нужны.</div>';
+    }
+    $('#r' + ph + 'info').textContent = S['r' + ph + 'info'];
+  });
+}
+
+/* ---------- Расчёт и вывод в редакторе ---------- */
+var REP = null;
+function recalc(){
+  if(!S) return;
+  applyWhen(); renderRates(false);
+  snap(S);
+  var A = S.advCur, msgs = '';
+  $('#editTitle').textContent = 'Отчёт № ' + (S.advNo || '—') + (S.fio ? ' · ' + S.fio : '');
+  var warn = '';
+  if(!S.empId) warn += '<div class="msg w">Выберите подотчётное лицо. Если сотрудника нет в списке, добавьте его на вкладке «Сотрудники».</div>';
+  DB.reports.forEach(function(o){
+    if(o.id !== S.id && S.empId && o.empId === S.empId && o.status === 'issued'){
+      var s = summary(o);
+      warn += '<div class="msg w">У сотрудника есть отчёт № ' + esc(o.advNo) + (o.dest ? ' (' + esc(o.dest) + ')' : '') + ': аванс выдан, отчёт не закрыт' + (s.late ? ' и просрочен' : '') + '. Перед выдачей нового аванса проверьте порядок расчётов по кассовой дисциплине.</div>';
+    }
+  });
+  $('#editWarn').innerHTML = warn;
+  var adv = calcAdvance(S, S.rI);
+  var tbl = $('#advTable');
+  if(adv.error){
+    $('#daysInfo').textContent = adv.error; tbl.innerHTML = ''; $('#advKpi').innerHTML = '';
+    $('#advMsgs').innerHTML = '<div class="msg e">' + esc(adv.error) + '</div>';
+  } else {
+    var td = adv.td;
+    $('#daysInfo').textContent = 'Дней командировки: ' + td.total + (S.trip === 'abroad' ? ' (в Беларуси: ' + td.by.length + ', за границей: ' + td.abroad.length + ')' : '') + '. Срок сдачи отчёта: 15 рабочих дней после возвращения' + (S.dReturn ? ', то есть до ' + ruDate(addWorkdays(S.dReturn, 15)) : '') + '.';
+    if(adv.missing.length) msgs += '<div class="msg w">Нет курса НБРБ для: ' + adv.missing.join(', ') + '. Загрузите курсы или введите вручную.</div>';
+    if(!S.dIssue) msgs += '<div class="msg w">Укажите дату выдачи аванса: по ней берутся курсы.</div>';
+    $('#advMsgs').innerHTML = msgs;
+    var rows = adv.lines.map(function(l){
+      return '<tr><td>' + esc(l.label) + '</td><td class="n">' + curW(l.amount, l.cur) + '</td><td class="n">' + (l.cur === A ? '—' : curW(l.advAmount, A)) + '</td></tr>';
+    }).join('');
+    tbl.innerHTML = '<thead><tr><th>Статья</th><th class="n">В валюте нормы</th><th class="n">В валюте аванса (' + A + ')</th></tr></thead><tbody>' + rows + '</tbody><tfoot><tr><td>Итого по расчёту</td><td></td><td class="n">' + curW(adv.total, A) + '</td></tr></tfoot>';
+    var given = Number(S.issued) > 0 ? Number(S.issued) : adv.rounded;
+    $('#advKpi').innerHTML =
+      '<div class="kpi big"><div class="l">Аванс к выдаче</div><div class="v">' + curW(given, A) + '</div><div class="w">' + amountInWords(given, A) + '</div></div>' +
+      '<div class="kpi"><div class="l">Расчётная сумма</div><div class="v">' + curW(adv.total, A) + '</div><div class="w">до округления</div></div>' +
+      (A !== 'BYN' && !isNaN(rateOf(A, S.rI)) ? '<div class="kpi"><div class="l">Эквивалент в BYN на дату выдачи</div><div class="v">' + curW(given * rateOf(A, S.rI), 'BYN') + '</div><div class="w">курс ' + fmtRate(rateOf(A, S.rI)) + '</div></div>' : '');
+  }
+  renderReport(); renderForm();
+  S.updated = Date.now(); saveDB();
+}
+function renderReport(){
+  var A = S.advCur, rep = calcReport(S, S.rI, S.rR); REP = rep;
+  var box = $('#repKpi'), msgs = '';
+  if(rep.error){ $('#repMsgs').innerHTML = '<div class="msg e">' + esc(rep.error) + '</div>'; box.innerHTML = ''; $('#repTable').innerHTML = ''; return; }
+  if(rep.missing.length) msgs += '<div class="msg w">Нет курса НБРБ для: ' + rep.missing.join(', ') + '. Итоги посчитаны не полностью.</div>';
+  if(!S.dReport) msgs += '<div class="msg w">Укажите дату отчёта: по ней берутся курсы для расходов по документам.</div>';
+  if(S.dReport && S.dReturn && S.dReport < S.dReturn) msgs += '<div class="msg w">Дата отчёта раньше даты возвращения.</div>';
+  if(S.dReport && rep.dueDate && S.dReport > rep.dueDate) msgs += '<div class="msg e">Срок сдачи отчёта (15 рабочих дней, до ' + ruDate(rep.dueDate) + ') нарушен.</div>';
+  else if(rep.dueDate) msgs += '<div class="msg o">Отчёт нужно сдать до ' + ruDate(rep.dueDate) + ' включительно (проверьте переносы выходных).</div>';
+  S.docs.forEach(function(d, i){
+    if(!(Number(d.amount) > 0)) return;
+    if(d.date && S.dDepart && S.dReturn && (d.date < S.dDepart || d.date > S.dReturn)) msgs += '<div class="msg w">Документ ' + (i + 1) + ': дата вне периода командировки.</div>';
+    if(S.mode === 'driver' && d.category === 'Проживание' && d.hasDoc) msgs += '<div class="msg w">Документ ' + (i + 1) + ': при общей выплате водителю проживание по документам сверх выплаты принимается только в части превышения (п. 39 Положения). Проверьте вручную.</div>';
+  });
+  if(rep.notAccepted.length) msgs += '<div class="msg w">Не приняты к учёту (нет подтверждающего документа): ' + rep.notAccepted.length + ' шт. на сумму ' + rep.notAccepted.map(function(n){ return fmt(n.amount) + ' ' + (n.currency || 'BYN'); }).join(', ') + '.</div>';
+  $('#repMsgs').innerHTML = msgs;
+  var due = rep.kind === 'return' ? 'Остаток, вернуть в кассу' : (rep.kind === 'pay' ? 'Перерасход, доплатить работнику' : 'Расчёты закрыты');
+  var rR = rateOf(A, S.rR);
+  box.innerHTML =
+    '<div class="kpi"><div class="l">Получено (аванс)</div><div class="v">' + curW(rep.issued, A) + '</div></div>' +
+    '<div class="kpi"><div class="l">Принято расходов</div><div class="v">' + curW(rep.accepted, A) + '</div><div class="w">' + amountInWords(rep.accepted, A) + '</div></div>' +
+    '<div class="kpi big"><div class="l">' + due + '</div><div class="v">' + (rep.kind === 'zero' ? curW(0, A) : curW(rep.amountDue, A)) + '</div>' + (A !== 'BYN' && rep.kind !== 'zero' && !isNaN(rR) ? '<div class="w">справочно по курсу на дату отчёта: ' + curW(rep.amountDue * rR, 'BYN') + '</div>' : '') + '</div>' +
+    '<div class="kpi big"><div class="l">Расходы к учёту, BYN</div><div class="v">' + curW(rep.bynTotal, 'BYN') + '</div><div class="w">в пределах аванса по курсу на дату выдачи, сверх аванса по курсу на дату отчёта</div></div>';
+  var rows = rep.lines.map(function(l, i){
+    return '<tr><td>' + (i + 1) + '</td><td>' + esc(l.label) + '</td><td class="n">' + curW(l.amount, l.cur) + '</td><td class="n">' + curW(l.advAmount, A) + '</td><td class="n">' + fmt(l.byn) + '</td></tr>';
+  }).join('');
+  $('#repTable').innerHTML = '<thead><tr><th>№</th><th>Расход</th><th class="n">По документу / норме</th><th class="n">В ' + A + '</th><th class="n">В BYN</th></tr></thead><tbody>' + rows + '</tbody><tfoot><tr><td></td><td>Всего</td><td></td><td class="n">' + curW(rep.accepted, A) + '</td><td class="n">' + fmt(rep.bynTotal) + '</td></tr></tfoot>';
+}
+function lineAcc(l, rep){
+  if(l.source === 'doc'){ var d = rep.docs[Number(l.id.split('_')[1])]; return (d && d.account) || defAcc(d && d.category, rep); }
+  return rep.accNorm;
+}
+function renderForm(){
+  var A = S.advCur, rep = REP;
+  if(!rep || rep.error){ $('#paper').innerHTML = '<p>Заполните данные на первых двух вкладках.</p>'; return; }
+  var debit = {}, order = [];
+  rep.lines.forEach(function(l){ if(isNaN(l.byn)) return; var a = lineAcc(l, S); if(!(a in debit)){ debit[a] = 0; order.push(a); } debit[a] += l.byn; });
+  var tot = rep.bynTotal;
+  var dRows = order.map(function(a){ return '<tr><td>' + esc(a) + '</td><td></td><td class="r">' + fmt(debit[a]) + '</td></tr>'; }).join('');
+  var rows = rep.lines.map(function(l, i){
+    var d = l.source === 'doc' ? S.docs[Number(l.id.split('_')[1])] : null;
+    return '<tr><td class="c">' + (d && d.date ? ruDate(d.date) : '') + '</td><td class="c">' + (i + 1) + '</td><td>' + esc(l.label) + '</td><td class="r">' + curW(l.amount, l.cur) + '</td><td class="r">' + fmt(l.byn) + '</td><td class="c">' + esc(lineAcc(l, S)) + '</td><td class="r">' + curW(l.advAmount, A) + '</td></tr>';
+  }).join('');
+  var ostPerer = rep.kind === 'return' ? [curW(rep.amountDue, A), ''] : (rep.kind === 'pay' ? ['', curW(rep.amountDue, A)] : ['', '']);
+  $('#paper').innerHTML =
+    '<div class="two"><div>' +
+      '<table><tr><td style="width:90px">Организация</td><td class="u">' + esc(S.org) + '</td></tr><tr><td>Отдел</td><td class="u">' + esc(S.dept) + '</td></tr>' +
+      '<tr><td>Фамилия И.О.</td><td class="u">' + esc(S.fio) + '</td></tr><tr><td>Должность</td><td class="u">' + esc(S.position) + '</td></tr></table>' +
+    '</div><div>' +
+      '<table class="bd"><tr><td colspan="3" class="c"><b>Типовая форма № 286</b></td></tr><tr><td colspan="3">Проводка № &nbsp; от ' + ruDate(S.dReport) + '</td></tr>' +
+      '<tr><th colspan="3" class="c">Дебет</th></tr><tr><th>счёт</th><th>карт.</th><th>Сумма, BYN</th></tr>' + dRows +
+      '<tr><th colspan="3" class="c">Кредит</th></tr><tr><th>счёт</th><th>карт.</th><th>Сумма, BYN</th></tr><tr><td>' + esc(S.acc71) + '</td><td></td><td class="r">' + fmt(tot) + '</td></tr></table>' +
+    '</div></div>' +
+    '<div class="ttl">АВАНСОВЫЙ ОТЧЁТ № ' + esc(S.advNo) + ' &nbsp;от ' + ruDate(S.dReport) + '</div>' +
+    '<table><tr><td style="width:130px">Назначение аванса</td><td class="u">' + esc(S.purpose) + (S.dest ? ', ' + esc(S.dest) : '') + '</td></tr></table>' +
+    '<div class="two" style="margin-top:8px"><div><table class="bd">' +
+      '<tr><td>Остаток предыдущего аванса</td><td class="r">—</td></tr>' +
+      '<tr><td>Получено' + (S.rko ? ' (РКО № ' + esc(S.rko) + (S.dIssue ? ' от ' + ruDate(S.dIssue) : '') + ')' : '') + '</td><td class="r">' + curW(rep.issued, A) + '</td></tr>' +
+      '<tr><td><b>Итого получено</b></td><td class="r"><b>' + curW(rep.issued, A) + '</b></td></tr>' +
+      '<tr><td>Израсходовано</td><td class="r">' + curW(rep.accepted, A) + '</td></tr>' +
+      '<tr><td>Остаток</td><td class="r">' + (ostPerer[0] || '') + '</td></tr><tr><td>Перерасход</td><td class="r">' + (ostPerer[1] || '') + '</td></tr></table>' +
+      '<p>Приложение: документов на ______ листах</p></div>' +
+    '<div><table class="bd"><tr><td>Отчёт проверен. К утверждению</td></tr><tr><td>Бухгалтер ____________ &nbsp; «___» __________ 20__ г.</td></tr>' +
+      '<tr><td>Отчёт утверждаю в сумме:<br><b>' + amountInWords(rep.accepted, A) + '</b><br><br>Руководитель ____________ &nbsp; «___» __________ 20__ г.</td></tr></table></div></div>' +
+    '<div class="sec">Оборотная сторона</div>' +
+    '<table class="bd"><thead><tr><th>Дата</th><th>Пор. № док.</th><th>Кому, за что и по какому документу уплачено</th><th>Сумма по квитанции</th><th>Сумма, BYN</th><th>Счёт</th><th>Вал. сумма</th></tr></thead><tbody>' + rows +
+    '<tr><td colspan="4" class="r"><b>ВСЕГО</b></td><td class="r"><b>' + fmt(tot) + '</b></td><td></td><td class="r"><b>' + curW(rep.accepted, A) + '</b></td></tr></tbody></table>' +
+    '<p style="margin-top:14px">Подпись подотчётного лица ____________________</p>';
+}
+
+/* ---------- Навигация ---------- */
+function show(v){
+  ['reg', 'emp', 'edit'].forEach(function(n){ $('#v-' + n).hidden = n !== v; });
+  $$('#nav button').forEach(function(b){ b.classList.toggle('on', b.dataset.view === v); });
+  $('#nav').hidden = v === 'edit';
+  if(v === 'reg') renderReg();
+  if(v === 'emp') renderEmp();
+  window.scrollTo(0, 0);
+}
+function setTab(t){
+  $$('#tabs button').forEach(function(x){ x.classList.toggle('on', x.dataset.tab === t); });
+  ['adv', 'rep', 'form'].forEach(function(n){ $('#p-' + n).hidden = n !== t; });
+}
+function openReport(id, tab){
+  var r = repById(id); if(!r) return;
+  S = r; fillEmpSelect(); rateKeys = { I: '', R: '' };
+  syncInputs(); renderLists(); renderRates(true); setTab(tab || 'adv'); show('edit'); recalc();
+  if(S.dIssue && !Object.keys(S.rI).length) loadRates('I');
+  if(S.dReport && !Object.keys(S.rR).length) loadRates('R');
+}
+function applyEmp(){
+  var e = empById(S.empId);
+  if(!e) return;
+  var fresh = !S.dDepart && !S.docs.length && !S.estimates.length && !S.dIssue;
+  var last = lastReportOf(S.empId, S.id);
+  if(fresh && last){ copyParams(S, last); }
+  snap(S); syncInputs(); renderLists(); renderRates(true);
+}
+
+/* ---------- Выгрузки ---------- */
+function download(name, text, mime){
+  var blob = new Blob([text], { type: mime }), a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+function csv(rows){ return '﻿' + rows.map(function(r){ return r.map(function(c){ c = c == null ? '' : String(c); return /[;"\n]/.test(c) ? '"' + c.replace(/"/g, '""') + '"' : c; }).join(';'); }).join('\r\n'); }
+function num(x){ return (x === null || x === undefined || isNaN(x)) ? '' : (Math.round(x * 100) / 100).toFixed(2).replace('.', ','); }
+function csvReg(){
+  var rows = [['№', 'Сотрудник', 'Маршрут', 'Выезд', 'Возвращение', 'Дата отчёта', 'Валюта аванса', 'Выдано', 'Израсходовано', 'Остаток', 'Перерасход', 'Расходы к учёту, BYN', 'Статус', 'Срок отчёта']];
+  filtered().forEach(function(r){
+    var s = summary(r), c = s.calc, done = r.status === 'reported' || r.status === 'closed';
+    rows.push([r.advNo, r.fio, r.dest, ruDate(r.dDepart), ruDate(r.dReturn), ruDate(r.dReport), r.advCur,
+      s.ok ? num(c.issued) : '', s.ok && done ? num(c.accepted) : '', s.ok && done && c.kind === 'return' ? num(c.amountDue) : '', s.ok && done && c.kind === 'pay' ? num(c.amountDue) : '', s.ok && done ? num(c.bynTotal) : '', STATUS_NAME[r.status], ruDate(s.due)]);
+  });
+  download('reestr_avansovyh_otchetov.csv', csv(rows), 'text/csv;charset=utf-8');
+}
+function csvLines(){
+  var rows = [['№ отчёта', 'Сотрудник', 'Дата документа', 'Расход', 'Сумма', 'Валюта', 'В валюте аванса', 'Валюта аванса', 'BYN', 'Счёт дебета']];
+  filtered().forEach(function(r){
+    var c = calcReport(r, r.rI || {}, r.rR || {}); if(c.error) return;
+    c.lines.forEach(function(l){ var d = l.source === 'doc' ? r.docs[Number(l.id.split('_')[1])] : null; rows.push([r.advNo, r.fio, d ? ruDate(d.date) : '', l.label, num(l.amount), l.cur, num(l.advAmount), r.advCur, num(l.byn), lineAcc(l, r)]); });
+  });
+  download('stroki_raskhodov.csv', csv(rows), 'text/csv;charset=utf-8');
+}
+
+/* ---------- События ---------- */
+var timers = {};
+function later(ph){ clearTimeout(timers[ph]); timers[ph] = setTimeout(function(){ loadRates(ph); }, 500); }
+document.addEventListener('input', function(e){
+  var t = e.target;
+  if(t.id === 'fltEmp') { FL.emp = t.value; renderReg(); return; }
+  if(t.id === 'fltStatus') { FL.status = t.value; renderReg(); return; }
+  if(t.id === 'fltFrom') { FL.from = t.value; renderReg(); return; }
+  if(t.id === 'fltTo') { FL.to = t.value; renderReg(); return; }
+  if(t.id === 'fltQ') { FL.q = t.value; var pos = t.selectionStart; renderReg(); var q = $('#fltQ'); q.focus(); try{ q.setSelectionRange(pos, pos); }catch(x){} return; }
+  if(t.dataset.emp){
+    var em = empById(t.dataset.emp); if(!em) return;
+    em[t.dataset.ef] = t.value;
+    DB.reports.forEach(function(r){ if(r.empId === em.id) snap(r); });
+    saveDB(); return;
+  }
+  if(!S) return;
+  if(t.dataset.k){
+    var k = t.dataset.k, v;
+    if(t.type === 'checkbox') v = t.checked; else if(t.type === 'number') v = t.value === '' ? '' : Number(t.value); else v = t.value;
+    S[k] = v;
+    if(k === 'empId') applyEmp();
+    if(k === 'dIssue' && v) later('I');
+    if(k === 'dReport' && v){ later('R'); if(S.status === 'issued' || S.status === 'draft'){ /* статус меняет пользователь */ } }
+    if(k === 'advCur') renderRates(true);
+    recalc();
+  } else if(t.dataset.list){
+    var it = S[t.dataset.list][Number(t.dataset.i)], f = t.dataset.f;
+    it[f] = t.type === 'checkbox' ? t.checked : t.value;
+    recalc();
+  } else if(t.dataset.rate){
+    var m = S['r' + t.dataset.rate], n = Number(t.value); if(n > 0) m[t.dataset.code] = n; else delete m[t.dataset.code];
+    recalc();
+  }
+});
+document.addEventListener('click', function(e){
+  var b = e.target.closest('button');
+  if(!b){
+    var tr = e.target.closest('tr[data-open]'); if(tr) openReport(tr.dataset.open);
+    return;
+  }
+  if(b.dataset.view){ show(b.dataset.view); return; }
+  if(b.dataset.tab){ setTab(b.dataset.tab); window.scrollTo(0, 0); return; }
+  if(b.dataset.openBtn){ e.stopPropagation(); openReport(b.dataset.openBtn); return; }
+  if(b.dataset.dup){ e.stopPropagation(); var src = repById(b.dataset.dup); if(src){ var c = newReport(src.empId, src); openReport(c.id); } return; }
+  if(b.dataset.empNew){ var r1 = newReport(b.dataset.empNew); openReport(r1.id); return; }
+  if(b.dataset.empReps){ FL = { emp: b.dataset.empReps, status: '', from: '', to: '', q: '' }; show('reg'); return; }
+  if(b.dataset.empDel){
+    var id = b.dataset.empDel;
+    if(DB.reports.some(function(r){ return r.empId === id; })){ alert('У сотрудника есть авансовые отчёты. Сначала удалите их из реестра.'); return; }
+    if(confirm('Удалить сотрудника?')){ DB.employees = DB.employees.filter(function(x){ return x.id !== id; }); saveDB(); renderEmp(); }
+    return;
+  }
+  if(b.id === 'btnNewEmp'){ DB.employees.push({ id: uid(), fio: '', position: 'Водитель автомобиля', org: DB.employees.length ? DB.employees[0].org : '', dept: '' }); saveDB(); renderEmp(); var ins = $$('#empList input[data-ef=fio]'); if(ins.length) ins[ins.length - 1].focus(); return; }
+  if(b.id === 'btnNew'){
+    if(!DB.employees.length){ alert('Сначала добавьте сотрудника.'); show('emp'); return; }
+    var r2 = newReport(FL.emp || ''); openReport(r2.id); return;
+  }
+  if(b.id === 'btnBack'){ show('reg'); return; }
+  if(b.id === 'btnDup'){ var c2 = newReport(S.empId, S); openReport(c2.id); return; }
+  if(b.id === 'btnDel'){
+    if(confirm('Удалить этот авансовый отчёт без возможности восстановления?')){ DB.reports = DB.reports.filter(function(r){ return r.id !== S.id; }); S = null; saveDB(); show('reg'); }
+    return;
+  }
+  if(!S && (b.dataset.del || b.id === 'addEst' || b.id === 'addDoc')) return;
+  if(b.dataset.del){ S[b.dataset.del].splice(Number(b.dataset.i), 1); renderLists(); recalc(); return; }
+  if(b.id === 'addEst'){ S.estimates.push({ label: 'Топливо', amount: '', currency: S.advCur }); renderLists(); recalc(); }
+  if(b.id === 'addDoc'){ S.docs.push({ date: '', supplier: '', doc: '', category: CATEGORIES[2], desc: '', amount: '', currency: 'BYN', hasDoc: true, rate: '', account: '' }); renderLists(); recalc(); }
+  if(b.id === 'btnRI') loadRates('I');
+  if(b.id === 'btnRR') loadRates('R');
+  if(b.id === 'btnPrint') window.print();
+  if(b.id === 'btnCsvReg') csvReg();
+  if(b.id === 'btnCsvLines') csvLines();
+  if(b.id === 'btnBackup') download('avansovye_otchety_kopiya_' + todayISO() + '.json', JSON.stringify(DB), 'application/json');
+  if(b.id === 'btnRestore') $('#fileRestore').click();
+  if(b.id === 'btnSample'){
+    var emp = DB.employees.filter(function(x){ return x.fio === 'Иванов И.И. (демо)'; })[0];
+    if(!emp){ emp = { id: uid(), fio: 'Иванов И.И. (демо)', position: 'Водитель автомобиля', org: 'ООО «Пример»', dept: '' }; DB.employees.push(emp); }
+    var r = defaults(); r.empId = emp.id; r.advNo = nextNo();
+    Object.assign(r, { dest: 'Витебск — Варшава — Витебск', trip: 'abroad', mode: 'driver', country: 'Польша', dDepart: '2026-10-05', dCrossOut: '2026-10-06', dCrossIn: '2026-10-09', dReturn: '2026-10-10',
+      driverMult: 2, driverEur: 50, advCur: 'EUR', roundStep: 10, dIssue: '2026-10-02', dReport: '2026-10-14', rko: '15', status: 'reported',
+      estimates: [{ label: 'Топливо', amount: 200, currency: 'EUR' }, { label: 'Платные дороги', amount: 40, currency: 'EUR' }],
+      docs: [{ date: '2026-10-06', supplier: 'Orlen', doc: 'Чек № 4471', category: 'Топливо и ГСМ', desc: 'ДТ', amount: 180, currency: 'EUR', hasDoc: true, rate: '', account: '' },
+             { date: '2026-10-07', supplier: 'Autostrada', doc: 'Чек № 88', category: 'Платные дороги и дорожные сборы', desc: 'проезд по платной дороге', amount: 35, currency: 'EUR', hasDoc: true, rate: '', account: '' },
+             { date: '2026-10-05', supplier: 'АЗС Белнефть', doc: 'Чек № 213', category: 'Топливо и ГСМ', desc: 'ДТ', amount: 90, currency: 'BYN', hasDoc: true, rate: '', account: '' }] });
+    snap(r); DB.reports.push(r); saveDB(); openReport(r.id); loadRates('I'); loadRates('R');
+  }
+});
+$('#fileRestore').addEventListener('change', function(e){
+  var f = e.target.files[0]; if(!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try{
+      var d = JSON.parse(rd.result);
+      if(!d || !Array.isArray(d.reports) || !Array.isArray(d.employees)) throw new Error('format');
+      if(!confirm('Заменить все текущие данные содержимым копии (' + d.reports.length + ' отчётов, ' + d.employees.length + ' сотрудников)?')) return;
+      DB = { employees: d.employees, reports: d.reports.map(function(r){ return Object.assign(defaults(), r); }) }; S = null; saveDB(); show('reg');
+    }catch(x){ alert('Файл не похож на резервную копию этого калькулятора.'); }
+    e.target.value = '';
+  };
+  rd.readAsText(f);
+});
+
+saveDB();
+show('reg');
+})();
+</script>
+</body>
+</html>
