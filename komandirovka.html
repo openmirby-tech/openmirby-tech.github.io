@@ -551,8 +551,8 @@ var BRAND = {
   role: 'Преподаватель 1С 8.3, практикующий бухгалтер',
   site: 'https://online-kurs.by',
   instagram: 'olgafroshina',
-  telegramBot: 'openmirai_bot',
-  telegramChannel: '',
+  telegramChannel: 'https://t.me/olga_froshina',
+  telegramBot: '',
   email: '',
   phone: '',
   requisites: '',
@@ -1126,8 +1126,8 @@ $('#fileRestore').addEventListener('change', function(e){
   var B = BRAND, a = function(href, txt, cls){ return '<a href="' + esc(href) + '" target="_blank" rel="noopener"' + (cls ? ' class="' + cls + '"' : '') + '>' + esc(txt) + '</a>'; };
   var lk = [];
   if(B.site) lk.push(a(B.site, B.site.replace(/^https?:\/\//, '')));
-  if(B.telegramBot) lk.push(a('https://t.me/' + B.telegramBot, 'Telegram', 'cta'));
-  if(B.telegramChannel) lk.push(a(B.telegramChannel, 'Telegram-канал'));
+  if(B.telegramChannel) lk.push(a(B.telegramChannel, 'Telegram', 'cta'));
+  if(B.telegramBot) lk.push(a('https://t.me/' + B.telegramBot, 'Бот в Telegram'));
   if(B.instagram) lk.push(a('https://instagram.com/' + B.instagram, 'Instagram'));
   if(B.email) lk.push(a('mailto:' + B.email, B.email));
   if(B.phone) lk.push(a('tel:' + B.phone.replace(/[^+\d]/g, ''), B.phone));
