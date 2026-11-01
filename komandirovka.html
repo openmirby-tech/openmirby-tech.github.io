@@ -230,10 +230,12 @@ table.t th{background:#F0F0F0}
     <div class="stat" style="margin:0 0 8px">Отчёты хранятся только в этом браузере на этом устройстве. Скачайте копию, чтобы перенести данные на другой компьютер или не потерять их при очистке браузера.</div>
     <div class="row-btns">
       <button class="btn sec sm" id="btnBackup">Скачать резервную копию (JSON)</button>
-      <button class="btn sec sm" id="btnRestore">Загрузить копию</button>
+      <button class="btn sec sm" id="btnRestore">Загрузить копию (заменить данные)</button>
+      <button class="btn sec sm" id="btnMerge">Добавить из копии (без замены)</button>
       <button class="btn sec sm" id="btnCsvReg">Реестр в Excel (CSV)</button>
       <button class="btn sec sm" id="btnCsvLines">Строки расходов в Excel (CSV)</button>
       <button class="btn gray sm" id="btnSample">Добавить демо-отчёт</button>
+      <button class="btn dng sm" id="btnClear">Очистить все данные</button>
       <input type="file" id="fileRestore" accept="application/json,.json" hidden>
     </div>
   </div>
@@ -1103,7 +1105,16 @@ document.addEventListener('click', function(e){
   if(b.id === 'btnCsvReg') csvReg();
   if(b.id === 'btnCsvLines') csvLines();
   if(b.id === 'btnBackup') download('avansovye_otchety_kopiya_' + todayISO() + '.json', JSON.stringify(DB), 'application/json');
-  if(b.id === 'btnRestore') $('#fileRestore').click();
+  if(b.id === 'btnRestore'){ restoreMode = 'replace'; $('#fileRestore').click(); }
+  if(b.id === 'btnMerge'){ restoreMode = 'merge'; $('#fileRestore').click(); }
+  if(b.id === 'btnClear'){
+    if(!confirm('Удалить все отчёты и всех сотрудников из этого браузера? Восстановить их будет нельзя, если вы не скачали резервную копию.')) return;
+    if(!confirm('Точно очистить? Сейчас: ' + DB.reports.length + ' отчётов, ' + DB.employees.length + ' сотрудников.')) return;
+    DB = { employees: [], reports: [] }; S = null;
+    try{ localStorage.removeItem(DBKEY); localStorage.removeItem(OLDKEY); }catch(x){}
+    FL = { emp: '', status: '', from: '', to: '', q: '' };
+    show('reg'); alert('Данные удалены. Калькулятор пуст.');
+  }
   if(b.id === 'btnSample'){
     var emp = DB.employees.filter(function(x){ return x.fio === 'Иванов И.И. (демо)'; })[0];
     if(!emp){ emp = { id: uid(), fio: 'Иванов И.И. (демо)', position: 'Водитель автомобиля', org: 'ООО «Пример»', dept: '' }; DB.employees.push(emp); }
@@ -1117,6 +1128,7 @@ document.addEventListener('click', function(e){
     snap(r); DB.reports.push(r); saveDB(); openReport(r.id); loadRates('I'); loadRates('R');
   }
 });
+var restoreMode = 'replace';
 $('#fileRestore').addEventListener('change', function(e){
   var f = e.target.files[0]; if(!f) return;
   var rd = new FileReader();
@@ -1124,8 +1136,17 @@ $('#fileRestore').addEventListener('change', function(e){
     try{
       var d = JSON.parse(rd.result);
       if(!d || !Array.isArray(d.reports) || !Array.isArray(d.employees)) throw new Error('format');
-      if(!confirm('Заменить все текущие данные содержимым копии (' + d.reports.length + ' отчётов, ' + d.employees.length + ' сотрудников)?')) return;
-      DB = { employees: d.employees, reports: d.reports.map(function(r){ return Object.assign(defaults(), r); }) }; S = null; saveDB(); show('reg');
+      var rep = restoreMode !== 'merge';
+      if(rep){
+        if(!confirm('Заменить все текущие данные содержимым копии (' + d.reports.length + ' отчётов, ' + d.employees.length + ' сотрудников)?')){ e.target.value = ''; return; }
+        DB = { employees: d.employees, reports: d.reports.map(function(r){ return Object.assign(defaults(), r); }) };
+      } else {
+        var ids = {}; DB.employees.forEach(function(x){ ids['e' + x.id] = 1; }); DB.reports.forEach(function(x){ ids['r' + x.id] = 1; });
+        var ne = d.employees.filter(function(x){ return !ids['e' + x.id]; }), nr = d.reports.filter(function(x){ return !ids['r' + x.id]; });
+        if(!confirm('Добавить из копии ' + nr.length + ' новых отчётов и ' + ne.length + ' сотрудников? Уже имеющиеся записи не изменятся.')){ e.target.value = ''; return; }
+        DB.employees = DB.employees.concat(ne); DB.reports = DB.reports.concat(nr.map(function(r){ return Object.assign(defaults(), r); }));
+      }
+      S = null; saveDB(); show('reg');
     }catch(x){ alert('Файл не похож на резервную копию этого калькулятора.'); }
     e.target.value = '';
   };
