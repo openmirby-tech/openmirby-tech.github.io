@@ -211,10 +211,10 @@ header.top .wrap.hd{display:flex;flex-direction:column;align-items:stretch;gap:1
 .qa a svg{width:22px;height:22px;stroke:#3d3210;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .qa a.red span{background:linear-gradient(180deg,#ff5a4f,#d10a00)}.qa a.red svg{stroke:#fff}
 /* навигация по книгам */
-.bknav{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;padding:12px;background:#fff;border:1px solid rgba(20,16,4,.07);border-radius:var(--r);box-shadow:var(--shadow)}
+.bkdet{margin-bottom:10px}.bkdet>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 14px;background:#fff;border:1px solid rgba(20,16,4,.07);border-radius:var(--r);box-shadow:var(--shadow);font-size:15px}.bkdet>summary::-webkit-details-marker{display:none}.bkdet .bkch{font-size:12.5px;color:#8a7424;font-weight:600;white-space:nowrap}.bkdet[open]>summary{margin-bottom:8px}.bknav{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;padding:12px;background:#fff;border:1px solid rgba(20,16,4,.07);border-radius:var(--r);box-shadow:var(--shadow)}
 .bkg{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .bkg>i{font-style:normal;flex:0 0 100%;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9a8a55;font-weight:700}
-.bkg button.sm{background:#faf7ec;border:1px solid #e8e0c2;color:#3a3319;box-shadow:none}
+.bkg{gap:6px 4px}.bkg button.sm{padding:8px 6px;font-size:12.5px;background:#faf7ec;border:1px solid #e8e0c2;color:#3a3319;box-shadow:none}
 .bkg button.sm:not(.ghost){background:linear-gradient(180deg,#1b1b1b,#000);color:#fff;border-color:#000}
 .bkg button.sm.ghost:hover{background:#fff3c4}
 @media(max-width:380px){.qa{grid-template-columns:repeat(3,1fr)}}
@@ -270,7 +270,7 @@ body.prnOn>*:not(#prnRoot){display:none!important}
   </div>
   <div class="hd2">
     <label class="ipsel2"><span class="av" id="hdAv">ИП</span><select id="ipSel" aria-label="Индивидуальный предприниматель"></select></label>
-    <div class="chips"><span class="chip" id="hdYear">2026</span><span class="chip ok" id="hdSave" title="Данные хранятся в этом браузере">Автосохранение</span></div>
+    <div class="chips"><select class="chip" id="hdYear" title="Выбор года" aria-label="Год" style="appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:11px"></select><span class="chip ok" id="hdSave" title="Данные хранятся в этом браузере">Автосохранение</span></div>
   </div>
 </div></header>
 <main class="wrap" id="view"></main>
@@ -441,7 +441,7 @@ const BOOK_HEAD=['Дата','Документ','Содержание опера�
 /* ===== Проверки ===== */
 function checks(ip){
   const out=[],p=S.params,ops=opsOf(ip);
-  if(!p.verified)out.push(['red','Параметры налога не отмечены как проверенные. Откройте «Ещё», раздел «Параметры», сверьте значения с Налоговым кодексом и укажите дату проверки.']);
+  if(!p.verified)out.push([ops.length?'red':'','Параметры налога не отмечены как проверенные. Откройте «Ещё», раздел «Параметры», сверьте значения с Налоговым кодексом и укажите дату проверки.']);
   const pendI=ops.filter(o=>o.pending&&o.kind==='inc_other').length,pendE=ops.filter(o=>o.pending&&o.kind==='exp_other').length;
   if(pendI)out.push(['','Оплат без закрывающего документа (не признаны доходом): '+pendI+'. Они стоят в графе 7. После получения акта или накладной укажите документ в операции.']);
   if(pendE)out.push(['','Расходов без закрывающего документа (стоят в графе 10): '+pendE+'. После получения документов перенесите их в расходы, указав документ в операции.']);
@@ -451,7 +451,7 @@ function checks(ip){
   const c=calc(ip,12);
   if(c.s.g4>p.rateThr*0.8&&c.s.g4<=p.rateThr)out.push(['','Доход с начала года приближается к порогу '+fmt(p.rateThr)+' руб., после которого ставка меняется на '+p.rateHigh+'% на весь год.']);
   if(c.s.g4>p.rateThr)out.push(['red','Доход превысил порог '+fmt(p.rateThr)+' руб.: применена ставка '+p.rateHigh+'%.']);
-  if(ip.settings.method==='docs'&&c.raw<0)out.push(['','Расходы с начала года превышают доход. Убыток переносится только в случаях, указанных в ст. 205 НК (п. 11).']);
+  if(ip.settings.method==='docs'&&(c.incNet-c.exp)<0)out.push(['','Расходы с начала года превышают доход. Убыток переносится только в случаях, указанных в ст. 205 НК (п. 11).']);
   const other=ip.ops.length-ops.length;
   if(other>0)out.push(['','Операций за другие годы: '+other+'. Они не попадают в книгу и расчёт за '+ip.year+' год.']);
   for(let m=1;m<=12;m++){
@@ -469,11 +469,14 @@ function checks(ip){
 
 /* ===== Рендер ===== */
 function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2600)}
+/* годы для выбора: 2026-2028 и текущий год ИП, если он вне диапазона */
+const YEARS=[2026,2027,2028];
+const yearList=ip=>[...new Set(YEARS.concat([+ip.year||YEARS[0]]))].sort();
 function renderSel(){
   $('#ipSel').innerHTML=S.ips.map(i=>`<option value="${i.id}" ${i.id===S.active?'selected':''}>${esc(i.name)}</option>`).join('');
   try{const ip=cur(),w=String(ip.name||'').replace(/^(ИП|индивидуальный предприниматель)\s+/i,'').split(/\s+/).filter(Boolean);
    $('#hdAv').textContent=((w[0]||'И')[0]+(w[1]?w[1][0]:'')).toUpperCase();
-   $('#hdYear').textContent=ip.year+' год';
+   $('#hdYear').innerHTML=yearList(ip).map(y=>`<option value="${y}" ${+y===+ip.year?'selected':''} style="color:#000">${y} год</option>`).join('');
    $('#hdSub').textContent=(ip.unp?'УНП '+ip.unp+' · ':'')+(ip.settings.method==='norm'?'расходы по нормативу '+ip.settings.normPct+'%':'расходы по документам');
    const sv=$('#hdSave');sv.className='chip '+(typeof memOnly!=='undefined'&&memOnly?'bad':'ok');sv.textContent=typeof memOnly!=='undefined'&&memOnly?'Не сохраняется':'Автосохранение'}catch(e){}
 }
@@ -712,12 +715,42 @@ function homeQuick(ip){
   const T=[['add','','Операция','plus',1],['bk','docs','Документы','docs'],['bk','sale','Реализация','sale'],['goto','pay','Зарплата','pay'],['goto','tax','Налог','tax'],['bk','audit','Сверка','check']];
   return `<div class="qa noprint">${T.map(([a,k,l,i,red])=>`<a class="${red?'red':''}" data-act="${a}" ${a==='bk'?`data-k="${k}" data-go="1"`:a==='goto'?`data-r="${k}"`:''}><span>${icn(i)}</span>${l}</a>`).join('')}</div>`;
 }
+
+/* ===== Старт для нового пользователя ===== */
+function startSteps(ip,ops){
+  return [
+    {t:'Данные предпринимателя',d:'ФИО и УНП попадут в книги и печатные документы.',ok:ip.name&&ip.name!=='Мой ИП'&&!!ip.unp,go:'onb',b:'Заполнить'},
+    {t:'Вид деятельности и расходы',d:'От этого зависит, какие книги нужны именно вам.',ok:!!S.onb,go:'onb',b:'Выбрать'},
+    {t:'Первая операция',d:'Доход или расход: книга и налог заполнятся сами.',ok:ops.length>0,go:'add',b:'Добавить операцию'},
+    {t:'Проверка параметров налога',d:'Сверьте ставки с Налоговым кодексом: «Ещё», раздел «Параметры».',ok:!!S.params.verified,go:'goto-more',b:'Открыть'}];
+}
+function startCard(ip,ops){
+  const st=startSteps(ip,ops),done=st.filter(x=>x.ok).length;
+  if(done===st.length||(st[0].ok&&st[1].ok&&st[2].ok))return '';
+  const nx=st.find(x=>!x.ok);
+  return `<div class="card" style="border-left:4px solid #D4AF37"><b>Начните работу: ${done} из ${st.length}</b><div style="margin:8px 0">${st.map(x=>`<div style="display:flex;align-items:flex-start;gap:8px;padding:4px 0"><span style="font-weight:700;flex:0 0 auto;width:16px;color:${x.ok?'#2e7d32':'#999'}">${x.ok?'✓':'○'}</span><span style="${x.ok?'color:#888':''}"><b>${esc(x.t)}</b><br><small>${esc(x.d)}</small></span></div>`).join('')}</div><button class="red" data-act="${nx.go==='goto-more'?'goto':nx.go}" ${nx.go==='goto-more'?'data-r="more"':''}>${esc(nx.b)}</button><div class="hint" style="font-size:12.5px;margin-top:8px">Хотите сначала посмотреть, как всё выглядит? Демо-данные: «Ещё».</div></div>`}
+function onbForm(){
+  const ip=cur(),st=ip.settings;
+  miniForm('Быстрая настройка',[
+    {n:'name',l:'Фамилия, имя, отчество предпринимателя',v:ip.name&&ip.name!=='Мой ИП'?ip.name:''},
+    {n:'unp',l:'УНП (9 цифр)',v:ip.unp||''},
+    {n:'act',l:'Чем вы занимаетесь',opts:[['serv','Услуги, работы'],['trade','Торговля товарами'],['prod','Производство'],['cater','Общественное питание'],['mix','Несколько видов']]},
+    {n:'meth',l:'Как учитываете расходы',opts:[['docs','По документам (по умолчанию)'],['norm','По нормативу (20 или 30 процентов дохода)']]}
+  ],o=>{
+    if(!o.name){toast('Укажите ФИО предпринимателя');return false}
+    if(o.unp&&!/^\d{9}$/.test(o.unp)){toast('УНП состоит из 9 цифр');return false}
+    ip.name=o.name;ip.unp=o.unp;
+    st.actTrade=o.act==='trade'||o.act==='mix';st.actProd=o.act==='prod'||o.act==='mix';st.actCater=o.act==='cater'||o.act==='mix';
+    st.method=o.meth;if(o.meth==='norm'&&!st.normPct)st.normPct=20;
+    S.onb=1;toast('Готово. Остальное можно уточнить в «Ещё».');
+  });
+}
 function home(ip){
   const c=calc(ip,12),ops=opsOf(ip);
   const ch=checks(ip);
   let h=`<h2>${esc(ip.name)} · ${ip.year}</h2>`;
-  h+=auditCard(ip);
-  if(!ops.length)h+=`<div class="card"><b>Начните с первой операции.</b><div class="hint" style="font-size:14px;color:#444;margin:6px 0 10px">Вводите операции один раз в журнале: книга доходов и расходов (Приложение 9) и налог заполняются сами. Можно сначала посмотреть на демо-данных: раздел «Ещё».</div><button class="red" data-act="add">Добавить операцию</button></div>`;
+  h+=startCard(ip,ops);
+  if(ops.length)h+=auditCard(ip);
   h+=homeHero(ip,c)+homeQuick(ip);
   h+=`<h3>Проверки</h3>`+(ch.length?ch.map(x=>`<div class="warn ${x[0]}">${esc(x[1])}</div>`).join(''):'<div class="okmsg">Замечаний нет.</div>');
   h+=`<h3>Ближайшие сроки</h3><div class="card w">`+[3,6,9,12].map(m=>{const d=deadlines(ip,m);return `<div class="row" style="justify-content:space-between;padding:4px 0"><span>${PER[m]}</span><span>декларация до <b>${d.decl}</b>, уплата до <b>${d.pay}</b></span></div>`}).join('')+`<div class="hint">Сроки справочные (ст. 207, 217 НК). При выходных днях проверьте перенос.</div></div>`;
@@ -735,9 +768,9 @@ function journal(ip){
   if(ui.q){const q=ui.q.toLowerCase();ops=ops.filter(o=>((o.text||'')+(o.party||'')+(o.docNo||'')).toLowerCase().includes(q))}
   let h=`<h2>Журнал операций</h2><div class="two noprint"><select id="fm"><option value="">Все месяцы</option>${MN.map((m,i)=>`<option value="${i+1}" ${+ui.fm===i+1?'selected':''}>${m}</option>`).join('')}</select>
   <select id="fk"><option value="">Все виды</option>${Object.entries(KINDS).map(([k,v])=>`<option value="${k}" ${ui.fk===k?'selected':''}>${v.t}</option>`).join('')}</select></div>
-  <input id="fq" placeholder="Поиск по тексту, контрагенту, номеру" value="${esc(ui.q)}" style="margin:8px 0 8px">${docBar('Одна кнопка «Из Excel» для всего: накладные, акты и банковская выписка. Программа сама определит, что за файл.')}${pendCardHtml(ip)}${docsPanel(ip,'kudir')}<div class="noprint" style="margin-bottom:12px"><input type="file" id="bankIn" accept=".xls,.xlsx,.csv" style="display:none"><button class="sm ghost" data-act="cpty">Контрагенты</button><button class="sm ghost" data-act="svc">Услуги</button><button class="sm ghost" data-act="jt">${ui.jt?'Показать списком':'Показать таблицей'}</button><button class="sm" data-act="xlsx">Скачать журнал в Excel</button><button class="sm ghost" style="color:#b00020;border-color:#b00020" data-act="clear-bank">Удалить загруженное из выписки</button><button class="sm ghost" style="color:#b00020;border-color:#b00020" data-act="clear-journal">Очистить журнал за год</button></div>`;
+  <input id="fq" placeholder="Поиск по тексту, контрагенту, номеру" value="${esc(ui.q)}" style="margin:8px 0 8px">${pendCardHtml(ip)}<div class="noprint" style="margin:6px 0 10px"><input type="file" id="bankIn" accept=".xls,.xlsx,.csv" style="display:none"><div class="row" style="flex-wrap:wrap;align-items:center"><button class="sm" data-act="doc-file" title="Накладные, акты, банковская выписка">Загрузить из Excel</button><button class="sm ghost" data-act="doc-add">Документ вручную</button><button class="sm ghost" data-act="xlsx">Скачать в Excel</button></div><div class="hint" style="font-size:12.5px;margin-top:6px">Из Excel подходят накладные, акты и банковская выписка: тип файла программа определит сама.</div><details style="margin-top:8px"><summary style="cursor:pointer;font-size:13px;color:#555">Ещё действия</summary><div class="row" style="flex-wrap:wrap;margin-top:6px"><button class="sm ghost" data-act="doc-paste">Вставить таблицу</button><button class="sm ghost" data-act="bk" data-k="docs">Все документы</button><button class="sm ghost" data-act="cpty">Контрагенты</button><button class="sm ghost" data-act="svc">Услуги</button><button class="sm ghost" data-act="jt">${ui.jt?'Показать списком':'Показать таблицей'}</button></div><div class="hint" style="font-size:12.5px;margin:10px 0 4px;color:#8a1020">Удаление данных. Сначала скачайте журнал в Excel: это нельзя отменить после закрытия страницы.</div><div class="row" style="flex-wrap:wrap"><button class="sm ghost" style="color:#b00020;border-color:#b00020" data-act="clear-bank">Удалить загруженное из выписки</button><button class="sm ghost" style="color:#b00020;border-color:#b00020" data-act="clear-journal">Очистить журнал за год</button></div></details></div>${docsPanel(ip,'kudir')}`;
   if(ui.jt){h+=tblx(['Дата','Вид','Содержание','Контрагент','Документ','Сумма, руб.'],ops.slice().reverse().map(o=>({c:[dmy(o.date),KINDS[o.kind].t,o.text||'',o.party||'',[o.docType,o.docNo].filter(Boolean).join(' '),o.sum]})));return h}
-  if(!ops.length)h+='<div class="card">Операций нет.</div>';
+  if(!ops.length)h+='<div class="card">Операций за этот период нет. Нажмите «+ Операция» или загрузите банковскую выписку кнопкой «Загрузить из Excel».</div>';
   h+=ops.map(o=>{const k=KINDS[o.kind],fx=o.cur!=='BYN'?` · ${o.cur} ${fmt(o.sumCur)}`:'';
     return `<div class="op ${k.side}"><div class="l"><div class="t">${esc(o.text||k.t)}</div><small>${dmy(o.date)} · ${esc(o.party||'без контрагента')}${fx}</small><small><span class="tag">${k.t}</span>${o.nc?(o.cd?`<span class="tag" style="background:#e6f4ea">оплата + ${esc(String(o.cdType||'документ').toLowerCase())}${o.cn?' № '+esc(o.cn):''} от ${dmy(o.cd)}</span>`:'<span class="tag" style="background:#fff3cd">только оплата, нет закрывающего документа</span>'):''}${esc([o.docType,o.docNo].filter(Boolean).join(' №'))}${!o.nc&&attachList(o).length?'<span class="tag" style="background:#e6f4ea">'+esc(attachList(o).map(x=>docTxt({t:x.type,n:x.no,d:x.date})).join('; '))+'</span>':''}</small></div>
     <div class="s"><b>${fmt(o.sum)}</b><div class="noprint">${o.derived?'<span class="tag">'+(o.derivedLabel||'из зарплаты')+'</span>':`${o.nc&&!o.cd?`<button class="link" data-act="close-doc" data-id="${o.id}">Внести документ</button>`:(o.kind==='inc'||o.kind==='inc_other'?`<button class="link" data-act="pay-doc" data-id="${o.id}">Документ</button>`:'')}<button class="link" data-act="edit" data-id="${o.id}">Изм.</button><button class="link" data-act="del" data-id="${o.id}">Удал.</button>`}</div></div></div>`}).join('');
@@ -783,9 +816,10 @@ function bkNav(){
   const ip=ip0(),on=id=>{const b=booksReq(ip).find(x=>x.id===id);return !!(b&&b.on)};
   const G=[['Основные книги',[['kudir','Доходы и расходы',1],['agent','Налоговый агент',1]]],
    ['Имущество, товары, материалы',[['os','Основные средства',ip.settings.hasOS],['nma','НМА',ip.settings.hasNMA],['mbp','Малоценные',on('mbp')],['raw','Сырьё',on('raw')],['goods','Товары',on('goods')],['sum','Суммовой учёт',on('sum')],['vat','НДС',on('vat')]]],
-   ['Документы и расчёты',[['sale','Реализация',1],['docs','Документы',1],['settle','Расчёты',1],['audit','Сверка',1],['cars','Авто и топливо',1]]],
+   ['Документы и расчёты',[['sale','Реализация',1],['docs','Документы',1],['settle','Расчёты',1],['audit','Сверка',1],['--'],['cars','Авто и топливо',1],['adv','Авансовые отчёты',1]]],
    ['Настройка',[['list','Какие книги нужны',1]]]];
-  return `<div class="bknav noprint">${G.map(([t,L])=>{const l=L.filter(x=>x[2]);return l.length?`<div class="bkg"><i>${t}</i>${l.map(([k,n])=>`<button class="sm ${ui.bk===k?'':'ghost'}" data-act="bk" data-k="${k}">${n}</button>`).join('')}</div>`:''}).join('')}</div>`;
+  const cn=(()=>{const k=ui.bk||'kudir';for(const g of G)for(const x of g[1])if(x[0]===k)return x[1];return BOOK_NAMES[k]||'Книги'})();
+  return `<details class="bkdet noprint"><summary><span>Книга: <b>${esc(cn)}</b></span><span class="bkch">выбрать другую</span></summary><div class="bknav">${G.map(([t,L])=>{const l=L.filter(x=>x[2]||x[0]==='--');return l.length?`<div class="bkg"><i>${t}</i>${l.map(([k,n])=>k==='--'?'<span style="flex:0 0 100%;height:0"></span>':`<button class="sm ${ui.bk===k?'':'ghost'}" data-act="bk" data-k="${k}">${n}</button>`).join('')}</div>`:''}).join('')}</div></details>`;
 }
 /* ===== Оплата и закрывающий документ: подписи в книге и журнале ===== */
 const docTxt=x=>x?[x.t||(x.n?'':'платёж'),x.n?'№ '+x.n:(x.t?'б/н':''),x.d?'от '+dmy(x.d):''].filter(Boolean).join(' '):'';
@@ -990,7 +1024,9 @@ function svcForm(x){
     ip.svc=ip.svc||[];if(isNew){rec.id=uid();ip.svc.push(rec)}
     ip.svcIgnore=(ip.svcIgnore||[]).filter(k=>k!==dtKey(n));save();svcOpen()};
 }
-function bookTabs(){return bkNav()+(['kudir','raw','goods','sum','mbp','os','nma','settle','vat'].includes(ui.bk||'kudir')?docBar(DOCBAR_NOTE[ui.bk||'kudir'])+docsPanel(cur(),ui.bk||'kudir'):'')+`${(ui.bk==='list'||ui.bk==='audit'||ui.bk==='sale')?'':ui.bk==='prn'?`<div class="row noprint" style="margin:4px 0 10px"><button class="sm ghost" style="color:#b00020;border-color:#b00020" data-act="clear-book">Очистить журнал документов</button></div>`:`<div class="row noprint" style="margin:4px 0 10px"><button class="sm" data-act="xlsx">Скачать в Excel</button><button class="sm ghost" data-act="print">Печать</button>${CLEAR_DEF[ui.bk||'kudir']?`<button class="sm ghost" style="color:#b00020;border-color:#b00020" data-act="clear-book">Очистить книгу</button>`:''}</div>`}`}
+function carryNote(){try{const ip=cur(),y=+ip.year,k=ui.bk||'kudir';if(!['goods','sum','raw','mbp','os','nma','settle'].includes(k))return '';const m=dataMinYear(ip);if(!m||m>=y)return '';const L=openBal(ip,y).filter(x=>x.bk===k);if(!L.length)return '';
+  return `<div class="hint noprint" style="margin:0 0 8px;font-size:13px">Остатки на 1 января ${y} перенесены из ${y-1} года автоматически. ${L.map(x=>esc(x.t)+': '+esc(x.v).replace(/\.$/,'')).join('; ')}. <button class="link" data-act="bk" data-k="audit">Все остатки</button></div>`}catch(e){return ''}}
+function bookTabs(){return bkNav()+carryNote()+(['kudir','raw','goods','sum','mbp','os','nma','settle','vat'].includes(ui.bk||'kudir')?docBar(DOCBAR_NOTE[ui.bk||'kudir'])+docsPanel(cur(),ui.bk||'kudir'):'')+`${(ui.bk==='list'||ui.bk==='audit'||ui.bk==='sale')?'':ui.bk==='prn'?`<div class="row noprint" style="margin:4px 0 10px"><button class="sm ghost" style="color:#b00020;border-color:#b00020" data-act="clear-book">Очистить журнал документов</button></div>`:`<div class="row noprint" style="margin:4px 0 10px"><button class="sm" data-act="xlsx">Скачать в Excel</button><button class="sm ghost" data-act="print">Печать</button>${CLEAR_DEF[ui.bk||'kudir']?`<button class="sm ghost" style="color:#b00020;border-color:#b00020" data-act="clear-book">Очистить книгу</button>`:''}</div>`}`}
 const ip0=()=>cur();
 function book(ip){
   if(ui.bk==='agent')return bookTabs()+agentBook(ip);
@@ -998,6 +1034,7 @@ function book(ip){
   if(ui.bk==='sum')return bookTabs()+sumBookHtml(ip);
   if(ui.bk==='settle')return bookTabs()+settlePage(ip);
   if(ui.bk==='docs')return bookTabs()+docHub(ip);
+  if(ui.bk==='adv')return bookTabs()+advPage(ip);
   if(ui.bk==='prn')return bookTabs()+prnPage(ip);
   if(ui.bk==='sale')return bookTabs()+saleBook(ip);
   if(ui.bk==='audit')return bookTabs()+auditPage(ip);
@@ -1036,7 +1073,7 @@ function tax(ip){
     L('Налоговая база',fmt(c.base))+L('Ставка',c.rate+'%')+
     L('Налог с начала года',fmt(c.tax),'tot')+
     (prev?L('Исчислено за предыдущий период','− '+fmt(prev.tax)):'')+
-    L(prev?'К уплате за этот период':'К уплате за период',fmt(due),'tot')+`</table>
+    (due<0?L('Налог за период уменьшился на (к уплате нет)',fmt(-due),'tot'):L(prev?'К уплате за этот период':'К уплате за период',fmt(due),'tot'))+`</table>
   <div class="hint">Декларация до ${dl.decl}, уплата до ${dl.pay}. Сроки справочные.</div></div>`;
   if(c.raw<0)h+=`<div class="warn">Расчётная база отрицательна, налог принят равным нулю.</div>`;
   h+=`<h3>Вычеты по месяцам</h3><div class="scroll"><table class="calc"><thead><tr><th>Месяц</th><th>На ИП</th><th>На детей</th><th>На иждивенцев</th><th>Всего</th></tr></thead><tbody>`+c.ded.map(d=>`<tr><td>${MN[d.m-1]}${d.note?'*':''}</td><td>${fmt(d.self)}</td><td>${fmt(d.kids)}</td><td>${fmt(d.dep)}</td><td>${fmt(d.total)}</td></tr>`).join('')+`<tr class="tot"><td>Итого</td><td>${fmt(c.dedSelf)}</td><td>${fmt(c.dedKids)}</td><td>${fmt(c.dedDep)}</td><td>${fmt(c.dedSum)}</td></tr></tbody></table></div>${[...new Set(c.ded.filter(d=>d.note).map(d=>d.note))].map(n=>`<div class="hint">* ${esc(n)}: вычет на ИП не применяется (месяцы: ${c.ded.filter(d=>d.note===n).map(d=>MN[d.m-1].toLowerCase()).join(', ')}).</div>`).join('')}
@@ -1082,7 +1119,7 @@ function more(ip){
   return `<h2>Настройки</h2>
   <div class="card w"><h3 style="margin-top:0">Предприниматель</h3>
    <label>Название (ФИО)</label><input data-i="name" value="${esc(ip.name)}">
-   <div class="two"><div><label>УНП</label><input data-i="unp" inputmode="numeric" value="${esc(ip.unp)}"></div><div><label>Налоговый год</label><input data-i="year" inputmode="numeric" value="${ip.year}"></div></div>
+   <div class="two"><div><label>УНП</label><input data-i="unp" inputmode="numeric" value="${esc(ip.unp)}"></div><div><label>Налоговый год</label><select data-i="year">${yearList(ip).map(y=>`<option value="${y}" ${+y===+ip.year?'selected':''}>${y} год</option>`).join('')}</select></div></div>
    <h3>Реквизиты для документов</h3><div class="hint">Подставляются в шапку и текст всех печатных форм (накладные, акты, заказ-наряды, товарные чеки, ордера, счета). У каждого ИП свои.</div>
    ${REQ_F.map(([k,l])=>`<label>${l}</label><input data-r="${k}" ${k==='iban'||k==='bic'?'style="text-transform:uppercase"':''} value="${esc(prnSet(ip)[k]||'')}">`).join('')}
    <div class="row" style="margin-top:12px"><button class="sm" data-act="addip">Добавить ИП</button><button class="sm ghost" data-act="delip">Удалить этого ИП</button></div>
@@ -3071,7 +3108,7 @@ function auditItems(ip){
     if(!ok)add('red','pay','Выплата зарплаты по выписке ('+MNm(+m)+', '+fmt(r2(sal[m]))+' руб.), а расчёта зарплаты нет','Откройте «Зарплата», начните расчёт за этот месяц и укажите дату выплаты: иначе расходы на зарплату не попадут в книгу, а подоходный налог и взносы не будут посчитаны.',{k:'pay',l:'Зарплата',route:'pay'},'sal'+m)});
   Object.keys(fz).forEach(m=>{let d={};try{d=(pmGet(ip,+m).dates)||{}}catch(e){}
     if(!d.fsznDate)add('amber','pay','Платёж ФСЗН за наёмных ('+MNm(+m)+', '+fmt(r2(fz[m]))+' руб.): дата уплаты не указана в расчёте','В разделе «Зарплата» → «Выплаты» укажите дату уплаты взносов. Тогда расход попадёт в книгу и в книгу налогового агента.',{k:'pay',l:'Зарплата',route:'pay'},'fz'+m)});
-  const advMonths=new Set((ip.prn||[]).filter(r=>r.type==='adv').map(r=>mo(r.date)));
+  const advMonths=new Set((ip.prn||[]).filter(r=>r.type==='adv'||r.type==='adv_trip').map(r=>mo(r.date)));
   [[trip,'Командировочные и проезд'],[house,'Хозяйственные расходы']].forEach(([o,l])=>Object.keys(o).forEach(m=>{
     if(!advMonths.has(+m))add('amber','pay',l+' по выписке ('+MNm(+m)+', '+fmt(r2(o[m]))+' руб.): нет авансового отчёта','Расходы подотчётных лиц подтверждаются авансовым отчётом и приложенными платёжными документами (п. 7 Инструкции № 5). Составьте его в «Печатные документы» → «Авансовый отчёт» и приложите чеки.',{k:'prn',l:'Печатные документы'},'adv'+l+m)}));
   /* 4. материалы, товары, касса */
@@ -3105,9 +3142,32 @@ function auditCard(ip){
   const old=!seen||(Date.now()-new Date(seen).getTime())>7*864e5;
   return `<div class="card w" style="border-left:4px solid ${r?'#b00020':a?'#D4AF37':'#2e7d32'};margin-bottom:12px"><b>Сверка учёта</b><div style="margin:4px 0">${r||a?`Требует внимания: ${r+a}${r?` (срочных ${r})`:''}.`:'Замечаний нет.'} ${old?`Сверка ${seen?'проводилась '+dmy(seen):'ещё не проводилась'}: рекомендуется проводить раз в неделю после загрузки выписки.`:`Последняя сверка: ${dmy(seen)}.`}</div><button class="sm" data-act="bk" data-k="audit" data-go="1">Открыть сверку</button></div>`;
 }
+
+/* ===== Остатки на 1 января: сводка по всем книгам (переносятся автоматически) ===== */
+function dataMinYear(ip){
+  const ds=[];(ip.ops||[]).forEach(o=>ds.push(o.date));(ip.docs||[]).forEach(d=>ds.push(d.date));(ip.raw||[]).forEach(i=>(i.e||[]).forEach(e=>ds.push(e.date)));
+  const g=ip.gb;if(g)['lines','pays','sales','loss'].forEach(k=>(g[k]||[]).forEach(e=>ds.push(e.date)));
+  (ip.sumBook||[]).forEach(e=>ds.push(e.date));(ip.mbp||[]).forEach(m=>ds.push(m.date));(ip.assets||[]).forEach(a=>ds.push(a.commDate));(ip.settle||[]).forEach(e=>ds.push(e.date));
+  const ys=ds.filter(d=>d&&/^\d{4}/.test(d)).map(d=>+d.slice(0,4));return ys.length?Math.min(...ys):0}
+function openBal(ip,y){
+  const L=[],add=(t,v,bk)=>{if(v)L.push({t,v,bk})},py=y-1;
+  try{const c=gbCalc(ip,y);if(c){let q=0,sm=0;c.q[0].rows.forEach(r=>{q+=r.b0q||0;sm+=r.b0s||0});sm=r2(sm);if(sm>0||q>0)add('Товары (книга учёта товаров)',fq(q)+' ед. на сумму '+fmt(sm)+' руб.','goods');
+    const p=gbCalc(ip,py);if(p&&p.carryOut>0)add('Оплата поставщикам сверх расходов (товары), переносится на I квартал',fmt(p.carryOut)+' руб.','goods')}}catch(e){}
+  try{const c=sbCalc(ip,y);if(c&&(c.q[0].g3>0||c.q[0].g4>0))add('Товары (суммовой учёт)','по ценам приобретения '+fmt(c.q[0].g3)+' руб., по ценам реализации '+fmt(c.q[0].g4)+' руб.','sum');
+    const p=sbCalc(ip,py);if(p&&p.carryOut>0)add('Оплата поставщикам сверх расходов (суммовой учёт), переносится на I квартал',fmt(p.carryOut)+' руб.','sum')}catch(e){}
+  try{let sm=0,n=0;rawTurnover(ip,y+'-01-01',y+'-12-31').forEach(t=>{if(t.oq>0||t.os>0){sm=r2(sm+t.os);n++}});if(n)add('Сырьё и материалы ('+n+' '+plural(n,'вид','вида','видов')+')',fmt(sm)+' руб.','raw')}catch(e){}
+  try{let sm=0,n=0;(ip.mbp||[]).forEach(m=>{if(!m.date||+m.date.slice(0,4)>=y)return;const c=+m.cost||0,done=m.wdate&&+m.wdate.slice(0,4)<y?(+m.wsum||0):0,res=r2(c-done);if(res>0){sm=r2(sm+res);n++}});if(n)add('Отдельные предметы в составе оборотных средств, не списано ('+n+')',fmt(sm)+' руб.','mbp')}catch(e){}
+  [['os','Основные средства, остаточная стоимость'],['nma','Нематериальные активы, остаточная стоимость']].forEach(([k,t])=>{try{let sm=0,n=0;(ip.assets||[]).forEach(a=>{if((a.type==='nma')!==(k==='nma'))return;if(!a.commDate||+a.commDate.slice(0,4)>=y)return;if(a.outDate&&+a.outDate.slice(0,4)<y)return;const res=r2(asCost(a)-asAccumTo(a,py+'-12'));if(res>0){sm=r2(sm+res);n++}});if(n)add(t+' ('+n+')',fmt(sm)+' руб.',k)}catch(e){}});
+  try{const S2=settleSum(ip,y+'-01-01',y+'-12-31');let we=0,they=0;S2.forEach(m=>{if(m.open>0.004)we=r2(we+m.open);else if(m.open<-0.004)they=r2(they-m.open)});if(we>0)add('Мы должны контрагентам',fmt(we)+' руб.','settle');if(they>0)add('Контрагенты должны нам',fmt(they)+' руб.','settle')}catch(e){}
+  return L}
+function openBalCard(ip){
+  const y=+ip.year,L=openBal(ip,y);if(!L.length)return '';
+  const auto=dataMinYear(ip)&&dataMinYear(ip)<y;
+  return `<div class="card noprint" style="margin-bottom:10px;border-left:4px solid #2e7d32"><b>Остатки на 1 января ${y} года</b><div class="hint" style="font-size:13px;margin:4px 0 8px">${auto?'Остатки переносятся из '+(y-1)+' года автоматически, вносить их заново не нужно. Сверьте сводку с результатами инвентаризации на 1 января.':'Это остатки на начало года, которые вы внесли вручную. В следующие годы они будут переноситься сами.'}</div>${L.map(x=>`<div class="op"><div class="l"><div class="t">${esc(x.t)}</div><small>${x.v}</small></div><div class="s"><button class="link" data-act="bk" data-k="${x.bk}">Открыть</button></div></div>`).join('')}</div>`}
 function auditPage(ip){
   const it=auditItems(ip),sevName={red:'Срочно',amber:'Проверить',inf:'К сведению'},col={red:'#b00020',amber:'#D4AF37',inf:'#888'};
   let h=`<h2 class="noprint">Сверка и напоминания</h2><div class="hint noprint" style="margin-bottom:10px">Приложение сравнивает загруженную банковскую выписку с документами, книгами и зарплатой и подсказывает, чего не хватает. Проверки основаны на статье 205 НК и Инструкции № 5 МНС. Это подсказки: решение по каждой операции принимаете вы. Загрузите выписку (вкладка «Журнал») и документы, затем нажмите «Сверка проведена».</div>`;
+  h+=openBalCard(ip);
   h+=`<div class="row noprint" style="margin-bottom:10px"><button class="sm" data-act="au-done">Сверка проведена</button>${ip.auditDone?`<span class="hint">Последняя: ${dmy(ip.auditDone)}</span>`:''}</div>`;
   if(!it.length)return h+'<div class="card">Замечаний нет. Если выписка ещё не загружена, загрузите её: сверка начнёт работать после этого.</div>';
   Object.keys(AU_CATS).forEach(c=>{const L=it.filter(x=>x.cat===c);if(!L.length)return;
@@ -3218,11 +3278,20 @@ const PRN={
  rko:{g:5,t:'Расходный кассовый ордер',basis:'Типовой формы для ИП нет, реквизиты по ст. 10 Закона № 57-З. Для выплаты зарплаты есть отдельные ордера в разделе «Выплаты».',
   f:[T_('from','Выдать (ФИО, наименование)',''),T_('basisDoc','Основание (договор, акт, авансовый отчёт)',''),T_('sum','Сумма, руб.',''),T_('vatNote','В том числе НДС','без НДС'),T_('doc','Документ получателя (паспорт: серия, номер, кем выдан)','')],
   sign:[{r:'Индивидуальный предприниматель',k:'sg1',d:'ip'},{r:'Получил',k:'sg2',d:''}],rend:(ip,rec)=>prnKo(ip,rec,false)},
- adv:{g:5,t:'Авансовый отчёт',basis:'Типовой формы для ИП нет, реквизиты по ст. 10 Закона № 57-З. К отчёту прикладываются оправдательные документы (чеки, накладные, акты).',
-  f:[T_('emp','Подотчётное лицо (ФИО, должность)',''),T_('purp','Назначение аванса',''),D_('dAdv','Дата выдачи аванса',''),T_('advSum','Выдано, руб.','')],
-  cols:[cN('name','Расход (наименование документа, номер, дата)'),{k:'dt',l:'Дата',t:'d'},cM('sum','Сумма, руб.')],tot:['sum'],
-  sign:[{r:'Подотчётное лицо',k:'sg1',d:''},{r:'Индивидуальный предприниматель',k:'sg2',d:'ip'}],
-  text:(ip,rec)=>{const sp=(rec.rows||[]).reduce((a,r)=>a+P_(r,'sum'),0),adv=num(rec.v.advSum)||0,d=r2(adv-sp);return `Подотчётное лицо: <b>${esc(rec.v.emp)||'____________'}</b>. Назначение: ${esc(rec.v.purp)||'____________'}. Аванс выдан${rec.v.dAdv?' '+dmy(rec.v.dAdv):''} в сумме ${fmt(adv)} руб. Израсходовано ${fmt(sp)} руб. ${d>0?'<b>Остаток аванса к возврату: '+fmt(d)+' руб.</b>':d<0?'<b>Перерасход к возмещению: '+fmt(-d)+' руб.</b>':'Расчёт закрыт.'}`}},
+ adv:{g:5,t:'Авансовый отчёт (хозяйственные расходы)',basis:'Типовой формы для ИП нет, форму утверждает сам ИП, реквизиты по ст. 10 Закона № 57-З. К отчёту прикладываются оправдательные документы (чеки, накладные, акты). Сроки сдачи и порядок выдачи аванса проверьте по своим локальным актам и Инструкции Нацбанка № 472.',
+  f:[T_('emp','Подотчётное лицо (ФИО)',''),T_('post','Должность',''),T_('purp','Назначение аванса','Хозяйственные расходы'),D_('dAdv','Дата выдачи аванса',''),T_('rko','Основание выдачи (РКО № и дата, перевод на карту)',''),T_('advSum','Выдано, руб.',''),T_('prev','Остаток прошлого аванса (+) или перерасход (−), руб. (если есть)','')],
+  cols:[{k:'dt',l:'Дата документа',t:'d'},cN('name','Кому, за что, по какому документу уплачено'),cM('sum','Сумма, руб.')],tot:['sum'],
+  sign:[{r:'Подотчётное лицо',k:'sg1',d:''},{r:'Индивидуальный предприниматель',k:'sg2',d:'ip'}],rend:(ip,rec)=>prnAdv(ip,rec)},
+ adv_trip:{g:5,t:'Авансовый отчёт (командировка)',basis:'Типовой формы для ИП нет. Суточные считаются по Положению № 176 (постановление Совмина от 19.03.2019): ставки лежат в приложении, проверьте их на дату командировки. Проживание, проезд и прочие расходы вносите строками по документам.',
+  f:[T_('emp','Работник (ФИО)',''),T_('post','Должность',''),T_('place','Пункт назначения (город, страна)',''),T_('order','Приказ о командировке (номер, дата)',''),T_('purp','Цель командировки',''),
+   D_('dFrom','Дата выезда',''),D_('dTo','Дата возвращения',''),
+   S_('mode','Как считать суточные',['Общий порядок, по Республике Беларусь','Общий порядок, с выездом за границу','Водитель: общая выплата по Республике Беларусь','Водитель: общая выплата, с выездом за границу','Суточные не считать (ввёл строкой сам)'],'Общий порядок, по Республике Беларусь'),
+   T_('rate','Своя ставка суточных, руб. за день (оставьте пустым, чтобы взять из справки ниже)',''),
+   T_('mult','Водитель: сколько суточных платите за сутки по РБ (от 1 до 5)','3'),
+   T_('abDays','Дней за границей (только если выезд за границу)',''),T_('abNorm','За границей: норма суточных за день (для водителя евро за сутки), в валюте',''),T_('abCur','Валюта нормы (например EUR, USD)',''),T_('abRate','Курс валюты, BYN за 1 единицу',''),
+   D_('dAdv','Дата выдачи аванса',''),T_('rko','Основание выдачи (РКО № и дата, перевод на карту)',''),T_('advSum','Выдано, руб.',''),T_('advFx','Если аванс выдан в валюте: сумма и валюта (справочно)',''),T_('prev','Остаток прошлого аванса (+) или перерасход (−), руб. (если есть)','')],
+  cols:[{k:'dt',l:'Дата документа',t:'d'},cN('name','Кому, за что, по какому документу (билет, проживание, чек)'),cM('sum','Сумма, руб.')],tot:['sum'],
+  sign:[{r:'Работник',k:'sg1',d:''},{r:'Индивидуальный предприниматель',k:'sg2',d:'ip'}],rend:(ip,rec)=>prnAdv(ip,rec)},
  power:{g:5,t:'Доверенность на получение товарно-материальных ценностей',basis:'Типовой формы нет в виде обязательного бланка. Реквизиты по ст. 10 Закона № 57-З и гражданскому законодательству. Срок и полномочия проверьте по ГК РБ.',
   f:[D_('until','Действительна по',''),T_('who','Доверенное лицо (ФИО, должность)',''),T_('pass','Документ, удостоверяющий личность (серия, номер, кем и когда выдан)',''),T_('sup','От кого получить (поставщик)',''),T_('doc','На основании (договор, счёт, заказ)','')],
   cols:[cN('name','Наименование ценностей'),cU('unit'),cQ('qty','Количество')],sign:[{r:'Индивидуальный предприниматель',k:'sg1',d:'ip'},{r:'Образец подписи доверенного лица удостоверяю',k:'sg2',d:''}],
@@ -3249,6 +3318,64 @@ function prnGeneric(ip,rec){
   if(sp.tot){const k=sp.tot[sp.tot.length-1];if(rec.type==='inv_list'||rec.type==='recv'){const rs=rec.rows||[];const plus=r2(rs.reduce((a,r)=>{const x=sp.cols.find(c=>c.k==='ds').f(r);return a+(x>0?x:0)},0)),minus=r2(rs.reduce((a,r)=>{const x=sp.cols.find(c=>c.k==='ds').f(r);return a+(x<0?-x:0)},0));h+=`<p>Излишки: ${fmt(plus)} руб. Недостача: ${fmt(minus)} руб.</p>`}else h+=`<p><b>Сумма прописью:</b> ${sumWords(prnTotal(sp,rec.rows,k))}</p>`}
   if(v.concl)h+=`<p><b>Заключение:</b> ${esc(v.concl)}</p>`;
   h+=prnSign(ip,sp,rec)+`</div>`;return h}
+
+/* ===== Авансовый отчёт: расчёт и печать ===== */
+/* Суточные по РБ: ставка по дате. ПРОВЕРИТЬ на дату командировки: Положение № 176, приложение 1 (в вашем файле расчёта: 12,00 до 03.04.2026, 13,00 с 04.04.2026) */
+const ADV_RATES=[['0000-00-00',12],['2026-04-04',13]];
+const advRateOn=d=>{let v=ADV_RATES[0][1];ADV_RATES.forEach(([f,x])=>{if(d>=f)v=x});return v};
+function advDays(a,b){const r=[];if(!a||!b||b<a)return r;const x=new Date(a+'T00:00:00Z'),y=new Date(b+'T00:00:00Z');for(let t=x;t<=y&&r.length<400;t=new Date(t.getTime()+864e5))r.push(t.toISOString().slice(0,10));return r}
+function advCalc(rec){
+  const v=rec.v||{},trip=rec.type==='adv_trip',rows=(rec.rows||[]).filter(r=>String(r.name||'').trim()||P_(r,'sum'));
+  const docs=r2(rows.reduce((a,r)=>a+P_(r,'sum'),0));
+  const out={trip,rows,docs,lines:[],per:0,warn:[]};
+  if(trip){
+    const days=advDays(v.dFrom,v.dTo),total=days.length,mode=v.mode||'',own=num(v.rate)||0;
+    const drv=/^Водитель/.test(mode),ab=/за границу/.test(mode),none=/не считать/.test(mode);
+    const abD=ab?Math.min(total,Math.max(0,Math.round(num(v.abDays)||0))):0;
+    out.total=total;out.abD=abD;
+    if(!none&&total){
+      const dom=total-abD,k=drv?Math.min(5,Math.max(1,num(v.mult)||1)):1;
+      const byRate={};
+      let n=0;days.forEach(d=>{n++;if(n>dom)return;const r=own>0?own:advRateOn(d);byRate[r]=(byRate[r]||0)+1});
+      Object.keys(byRate).sort((a,b)=>a-b).forEach(r=>{const c=byRate[r],sm=r2(c*(+r)*k);
+        out.lines.push({t:(drv?'Общая выплата водителю (вместо суточных и проживания) по РБ: ':'Суточные по РБ: ')+c+' дн. × '+fmt(+r)+(drv?' × '+String(k).replace('.',',')+' (кратность)':'')+' руб.',sum:sm})});
+      if(abD){const nm=num(v.abNorm)||0,rt=num(v.abRate)||0,sm=r2(abD*nm*rt);
+        out.lines.push({t:(drv?'Общая выплата водителю за границей: ':'Суточные за границей: ')+abD+' дн. × '+fmt(nm)+' '+esc(v.abCur||'вал.')+' × курс '+String(rt).replace('.',',')+' BYN',sum:sm});
+        if(!(nm>0))out.warn.push('Не указана норма суточных за границей.');if(!(rt>0))out.warn.push('Не указан курс валюты для суточных за границей.')}
+      out.per=r2(out.lines.reduce((a,l)=>a+l.sum,0));
+    }
+    if(v.dFrom&&v.dTo&&v.dTo<v.dFrom)out.warn.push('Дата возвращения раньше даты выезда.');
+    if(!v.dFrom||!v.dTo)out.warn.push('Не заполнены даты выезда и возвращения: суточные не посчитаны.');
+    if(ab&&!abD)out.warn.push('Выбран выезд за границу, но не указано число дней за границей.');
+    if(drv&&!/Водитель/.test(v.post||'')&&v.post!==undefined&&v.post!=='')out.warn.push('Общая выплата водителю: проверьте, что работник занят на автомобильных перевозках (гл. 7 Положения № 176).');
+    if(v.dTo){let d=new Date(v.dTo+'T00:00:00Z'),n=0;while(n<15){d=new Date(d.getTime()+864e5);const w=d.getUTCDay(),md=d.toISOString().slice(5,10);if(w!==0&&w!==6&&!['01-01','01-07','03-08','05-01','05-09','07-03','11-07','12-25'].includes(md))n++}out.due=d.toISOString().slice(0,10)}
+  }
+  out.spent=r2(docs+out.per);out.adv=num(v.advSum)||0;out.prev=num(v.prev)||0;
+  out.diff=r2(out.adv+out.prev-out.spent);
+  if(!out.adv)out.warn.push('Не указана сумма выданного аванса.');
+  if(rows.some(r=>!(P_(r,'sum')>0)))out.warn.push('Есть строки без суммы.');
+  if(rows.some(r=>!r.dt))out.warn.push('У части документов не указана дата.');
+  return out}
+function prnAdv(ip,rec){
+  const v=rec.v,c=advCalc(rec),trip=c.trip,sp=PRN[rec.type];
+  let h=`<div class="pdoc">`+prnHead(ip,rec,'АВАНСОВЫЙ ОТЧЁТ'+(trip?' (командировка)':''));
+  h+=`<p><b>${trip?'Работник':'Подотчётное лицо'}:</b> ${esc(v.emp)||'____________'}${v.post?', '+esc(v.post):''}<br><b>${trip?'Цель командировки':'Назначение аванса'}:</b> ${esc(v.purp)||'____________'}`;
+  if(trip)h+=`<br><b>Командировка:</b> ${esc(v.place)||'____________'}, с ${dmy(v.dFrom)||'____'} по ${dmy(v.dTo)||'____'}${c.total?' ('+c.total+' '+plural(c.total,'день','дня','дней')+')':''}${v.order?'<br><b>Приказ:</b> '+esc(v.order):''}`;
+  h+=`</p>`;
+  h+=`<p><b>Получено:</b> ${fmt(c.adv)} руб.${v.dAdv?' от '+dmy(v.dAdv):''}${v.rko?' ('+esc(v.rko)+')':''}${v.advFx?'<br>Справочно, в валюте: '+esc(v.advFx):''}${c.prev?'<br>Остаток (+) / перерасход (−) прошлого аванса: '+fmt(c.prev)+' руб.':''}</p>`;
+  let n=0;
+  let t=`<table class="pdt"><tr><th>№</th><th>Дата</th><th>Кому, за что и по какому документу уплачено</th><th>Сумма, руб.</th></tr>`;
+  c.lines.forEach(l=>{n++;t+=`<tr><td>${n}</td><td></td><td>${l.t}</td><td class="n">${fmt(l.sum)}</td></tr>`});
+  c.rows.forEach(r=>{n++;t+=`<tr><td>${n}</td><td>${dmy(r.dt)}</td><td>${esc(r.name||'')}</td><td class="n">${fmt(P_(r,'sum'))}</td></tr>`});
+  t+=`<tr><td class="b" colspan="3">Всего израсходовано</td><td class="n b">${fmt(c.spent)}</td></tr></table>`;
+  h+=t;
+  h+=`<p><b>Израсходовано:</b> ${fmt(c.spent)} руб. (${sumWords(c.spent)})<br><b>Получено${c.prev?' с учётом остатка (перерасхода) прошлого аванса':''}:</b> ${fmt(r2(c.adv+c.prev))} руб.<br>`+
+    (c.diff>0?`<b>Остаток аванса к возврату в кассу: ${fmt(c.diff)} руб.</b>`:c.diff<0?`<b>Перерасход к выплате ${trip?'работнику':'подотчётному лицу'}: ${fmt(-c.diff)} руб.</b>`:`Расчёт по авансу закрыт.`)+`</p>`;
+  h+=`<p>Приложение: документов на ____ листах.</p><p>Отчёт проверен. К утверждению в сумме ${fmt(c.spent)} руб. ______________ &nbsp; «___» ____________ 20__ г.</p>`;
+  h+=prnSign(ip,sp,rec)+`</div>`;
+  const W=c.warn.slice();if(trip&&c.due)W.push('Срок сдачи отчёта: 15 рабочих дней после возвращения, то есть до '+dmy(c.due)+' (учтены выходные и постоянные праздники; Радуницу и переносы рабочих дней проверьте по календарю; основание: Инструкция Нацбанка № 472, пп. 83, 84).');
+  if(trip)W.push('Ставки суточных в справке приложения нужно проверить на дату командировки (Положение № 176, приложение 1 или 2). Налогообложение выплат сверх норм здесь не считается.');
+  return (W.length?`<div class="warn amber noprint" style="margin:8px">${W.map(x=>'• '+esc(x)).join('<br>')}</div>`:'')+h}
 function prnSign2(ip,v,isExec){
   const me=ipFio(ip),other=v.sg2||'',L=isExec?[['Исполнитель',me],['Заказчик',other]]:[['Исполнитель',other],['Заказчик',me]];
   return `<div class="pds">${L.map(([r,nm])=>`<div class="pdsr"><span class="r">${esc(r)}</span><span class="ln"></span><span class="n">${esc(nm)}</span></div><div class="pdsc"><span></span><span>подпись</span><span>фамилия, инициалы</span></div>`).join('')}</div>`}
@@ -3424,7 +3551,7 @@ function prnPage(ip){
     h+=`<div class="card noprint" style="margin-bottom:8px"><b>${esc(g)}</b>`+L.map(([k,s])=>`<div class="op"><div class="l"><div class="t">${esc(s.t)}</div><small>${esc(s.basis)}</small></div><div class="s"><button class="sm" data-act="prn-new" data-t="${k}">Составить</button></div></div>`).join('')+`</div>`});
   h+=`<div class="card noprint" style="margin-bottom:8px"><b>Другие документы в приложении</b><div class="hint" style="font-size:13px">Акт сверки с контрагентом: вкладка «Расчёты». Расходные кассовые ордера на зарплату: «Выплаты». Путевые листы: вкладка «Автомобили». Если нужна ТТН-1 или другая форма, которой здесь нет, напишите, добавим.</div></div>`;
   const J=ip.prn.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
-  h+=`<h3 class="noprint">Журнал документов</h3>`+(J.length?`<div class="noprint">${J.map(r=>`<div class="op"><div class="l"><div class="t">${esc(PRN[r.type]?PRN[r.type].t:r.type)} № ${esc(r.no)} от ${dmy(r.date)}</div><small>${esc(r.v.name||r.v.cust||r.v.cp||r.v.cons||r.v.sup||r.v.from||'')}</small></div><div class="s"><button class="link" data-act="prn-print" data-id="${r.id}">Печать</button><button class="link" data-act="prn-edit" data-id="${r.id}">Изм.</button><button class="link" data-act="prn-del" data-id="${r.id}">Удал.</button></div></div>`).join('')}</div>`:`<div class="card noprint">Документов пока нет.</div>`);
+  h+=`<h3 class="noprint">Журнал документов</h3>`+(J.length?`<div class="noprint">${J.map(r=>`<div class="op"><div class="l"><div class="t">${esc(PRN[r.type]?PRN[r.type].t:r.type)} № ${esc(r.no)} от ${dmy(r.date)}</div><small>${esc(r.v.name||r.v.cust||r.v.cp||r.v.cons||r.v.sup||r.v.from||r.v.emp||'')}</small></div><div class="s"><button class="link" data-act="prn-print" data-id="${r.id}">Печать</button><button class="link" data-act="prn-edit" data-id="${r.id}">Изм.</button><button class="link" data-act="prn-del" data-id="${r.id}">Удал.</button></div></div>`).join('')}</div>`:`<div class="card noprint">Документов пока нет.</div>`);
   return h}
 function prnField(f,val){
   const v=esc(val==null?'':val);
@@ -3725,7 +3852,7 @@ function docsPanel(ip,bk){
   const rows=D.slice(0,12).map(d=>{const G=docGoods(d),np=docPricedN(d);
     const st=price?`<span class="tag" style="background:${np===G.length?'#e6f4ea':'#fff3cd'}">расценено ${np} из ${G.length}</span>`:'';
     return `<div class="op"><div class="l"><div class="t">${esc(docLabel(d))}</div><small>${d.lines.length} стр. · итого ${fmt(t?r2(d.lines.filter(l=>l.type===t).reduce((x,l)=>x+docLine(l),0)):docTotal(d))} руб. ${srcLabel(d)?'· '+srcLabel(d)+' ':''}${st}</small></div><div class="s" style="flex-wrap:wrap;justify-content:flex-end">${price?`<button class="sm" data-act="doc-price" data-id="${d.id}">Расценка</button>`:''}${price?`<button class="sm ghost" data-act="doc-reg" data-id="${d.id}">Реестр цен / печать</button><button class="sm ghost" data-act="doc-view" data-id="${d.id}">Накладная</button>`:`<button class="sm ghost" data-act="doc-view" data-id="${d.id}">Открыть / печать</button>`}<button class="sm ghost" data-act="doc-edit" data-id="${d.id}">Изменить</button><button class="link" data-act="doc-del" data-id="${d.id}">Удал.</button></div></div>`}).join('');
-  return `<details class="card w noprint" style="padding:10px;margin:4px 0 10px" open><summary style="cursor:pointer;font-weight:700;font-size:14px">Реестр документов: ${D.length}</summary>${head}<div class="hint" style="font-size:13px;margin:6px 0">${steps}</div>${rows}<div class="row" style="margin-top:6px"><button class="sm ghost" data-act="bk" data-k="docs">Все документы${D.length>12?' ('+D.length+')':''}</button></div></details>`;
+  return `<details class="card w noprint" style="padding:10px;margin:4px 0 10px"><summary style="cursor:pointer;font-weight:700;font-size:14px">Реестр документов: ${D.length}</summary>${head}<div class="hint" style="font-size:13px;margin:6px 0">${steps}</div>${rows}<div class="row" style="margin-top:6px"><button class="sm ghost" data-act="bk" data-k="docs">Все документы${D.length>12?' ('+D.length+')':''}</button></div></details>`;
 }
 /* ===== Документы: единый реестр (загруженные, введённые, составленные) ===== */
 const DH_G={all:'Все',in:'Поступление',out:'Выданные',hr:'Кадры и зарплата',oth:'Прочие'};
@@ -3741,15 +3868,32 @@ function dhItems(ip){
   });
   (ip.prn||[]).forEach(r=>{
     const sp=PRN[r.type];if(!sp)return;const sale=isSale(r);let sum=null;
-    try{if(sp.cols&&sp.tot)sum=sale?saleTotal(r):prnTotal(sp,r.rows,sp.tot[0])}catch(e){}
+    try{if(r.type==='adv'||r.type==='adv_trip')sum=advCalc(r).spent;else if(sp.cols&&sp.tot)sum=sale?saleTotal(r):prnTotal(sp,r.rows,sp.tot[0])}catch(e){}
     const lk=linkedOps(ip,r.id);
-    L.push({k:'p',id:r.id,g:sale?'out':(sp.g===6?'hr':'oth'),date:r.date,title:sp.t+' № '+(r.no||'б/н'),party:r.v&&saleParty(r)||(r.v&&(r.v.name||r.v.sup||r.v.from))||'',sum,info:'',
+    L.push({k:'p',id:r.id,g:sale?'out':(sp.g===6?'hr':'oth'),date:r.date,title:sp.t+' № '+(r.no||'б/н'),party:r.v&&saleParty(r)||(r.v&&(r.v.name||r.v.sup||r.v.from||r.v.emp))||'',sum,info:'',
       where:sale&&r.type!=='pay_inv'?(lk.length?'':'не внесён в книгу доходов'):'',links:lk,sale:sale&&r.type!=='pay_inv'});
   });
   return L.sort((a,b)=>String(b.date).localeCompare(String(a.date)));
 }
+
+/* ===== Раздел «Авансовые отчёты» ===== */
+function advPage(ip){
+  const A=(ip.prn||[]).filter(r=>r.type==='adv'||r.type==='adv_trip');
+  const yrs=[...new Set(A.map(r=>String(r.date).slice(0,4)).concat(YEARS.map(String),[String(ip.year)]))].sort().reverse();
+  const y=ui.advY||String(ip.year);
+  const L=A.filter(r=>y==='all'||String(r.date).slice(0,4)===y).sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+  const cs=L.map(r=>({r,c:advCalc(r)}));
+  const sp=r2(cs.reduce((a,x)=>a+x.c.spent,0)),ret=r2(cs.reduce((a,x)=>a+(x.c.diff>0?x.c.diff:0),0)),over=r2(cs.reduce((a,x)=>a+(x.c.diff<0?-x.c.diff:0),0));
+  let h=`<h2 class="noprint">Авансовые отчёты</h2><div class="hint noprint" style="margin-bottom:8px">Отчёты подотчётных лиц по хозяйственным расходам и по командировкам. Составьте отчёт, распечатайте, подпишите. Здесь же видно остаток к возврату и перерасход.</div>
+  <div class="row noprint" style="margin-bottom:8px;flex-wrap:wrap"><button class="sm" data-act="prn-new" data-t="adv">Хозяйственные расходы</button><button class="sm" data-act="prn-new" data-t="adv_trip">Командировка</button></div>
+  <div class="noprint" style="margin-bottom:8px"><select id="advy">${yrs.map(v=>`<option value="${v}" ${y===v?'selected':''}>${v} год</option>`).join('')}<option value="all" ${y==='all'?'selected':''}>Все годы</option></select></div>`;
+  if(!L.length)return h+`<div class="card noprint">Авансовых отчётов за выбранный период нет. Нажмите «Хозяйственные расходы» или «Командировка», чтобы составить первый.</div>`;
+  h+=`<div class="card noprint" style="margin-bottom:8px"><small>Отчётов: ${L.length}. Израсходовано: <b>${fmt(sp)} руб.</b>${ret>0?' · к возврату в кассу: '+fmt(ret)+' руб.':''}${over>0?' · перерасход к выплате: '+fmt(over)+' руб.':''}</small></div><div class="noprint">`;
+  h+=cs.map(({r,c})=>{const bal=c.diff>0?'остаток к возврату '+fmt(c.diff)+' руб.':c.diff<0?'перерасход к выплате '+fmt(-c.diff)+' руб.':'расчёт закрыт';
+    return `<div class="op" style="display:block"><div class="l" style="min-width:0"><div class="t">${r.type==='adv_trip'?'Командировка':'Хозяйственные расходы'} № ${esc(r.no)} от ${dmy(r.date)}</div><small>${esc(r.v.emp||'без ФИО')}${r.type==='adv_trip'&&r.v.place?' · '+esc(r.v.place):''} · израсходовано ${fmt(c.spent)} руб. · ${bal}</small>${c.warn.length?`<small style="color:#8a5a00">Проверьте: ${esc(c.warn[0])}</small>`:''}</div><div class="s" style="flex-wrap:wrap;justify-content:flex-start;gap:4px 12px;margin-top:8px"><button class="sm ghost" data-act="prn-print" data-id="${r.id}">Печать</button><button class="sm ghost" data-act="prn-edit" data-id="${r.id}">Изменить</button><button class="link" data-act="prn-del" data-id="${r.id}">Удал.</button></div></div>`}).join('')+'</div>';
+  return h}
 function docHub(ip){
-  const H=ui.dh,all=dhItems(ip),yrs=[...new Set(all.map(x=>String(x.date).slice(0,4)).concat([String(ip.year)]))].sort().reverse();
+  const H=ui.dh,all=dhItems(ip),yrs=[...new Set(all.map(x=>String(x.date).slice(0,4)).concat(YEARS.map(String),[String(ip.year)]))].sort().reverse();
   const y=H.y||String(ip.year);
   let L=all.filter(x=>y==='all'||String(x.date).slice(0,4)===y);
   const cnt={all:L.length};Object.keys(DH_G).forEach(k=>{if(k!=='all')cnt[k]=L.filter(x=>x.g===k).length});
@@ -3759,6 +3903,7 @@ function docHub(ip){
   const shown=L.slice(0,H.n||40);
   let h=`<h2 class="noprint">Документы</h2><div class="hint noprint" style="margin-bottom:8px">Здесь все документы в одном месте: загруженные из Excel, введённые вручную и составленные в приложении. Откройте, распечатайте, исправьте или перейдите к записи в книге.</div>
   <div class="row noprint" style="margin-bottom:8px"><button class="sm" data-act="doc-file">Загрузить из Excel</button><button class="sm" data-act="bk" data-k="prn">Составить документ</button><button class="sm ghost" data-act="doc-add">Поступление вручную</button></div>
+  <div class="row noprint" style="margin-bottom:8px"><button class="sm ghost" data-act="bk" data-k="adv">Авансовые отчёты</button></div>
   <details class="noprint" style="margin-bottom:10px"><summary style="cursor:pointer;font-size:13px;color:#555">Другие действия</summary><div class="row" style="margin-top:6px"><button class="sm ghost" data-act="doc-paste">Вставить таблицу</button><button class="sm ghost" data-act="doc-pay">Оплата поставщику</button><button class="sm ghost" data-act="docs-reg" data-k="kudir">Реестр документов (печать)</button><button class="sm ghost" data-act="price-reg">Реестр розничных цен</button><button class="sm ghost" data-act="vat-sum">НДС по документам</button><button class="sm ghost" data-act="cpty">Контрагенты</button><button class="sm ghost" data-act="svc">Услуги</button><button class="sm ghost" data-act="inv-add">Инвентаризация сырья</button><button class="sm ghost" data-act="doc-tpl">Образец таблицы</button></div></details>
   <div class="row noprint" style="margin-bottom:6px;flex-wrap:wrap">${Object.entries(DH_G).map(([k,v])=>`<button class="sm ${H.g===k?'':'ghost'}" data-act="dh-g" data-k="${k}">${v} · ${cnt[k]}</button>`).join('')}</div>
   <div class="two noprint" style="margin-bottom:6px"><select id="dhy">${yrs.map(v=>`<option value="${v}" ${y===v?'selected':''}>${v} год</option>`).join('')}<option value="all" ${y==='all'?'selected':''}>Все годы</option></select><select id="dhm"><option value="">Все месяцы</option>${MN.map((m,i)=>`<option value="${i+1}" ${+H.m===i+1?'selected':''}>${m}</option>`).join('')}</select></div>
@@ -4539,6 +4684,7 @@ document.addEventListener('click',e=>{
   const b=e.target.closest('[data-act]');if(!b)return;
   const a=b.dataset.act,ip=cur();
   if(a==='add')opForm();
+  else if(a==='onb')onbForm();
   else if(a==='edit')opForm(ip.ops.find(o=>o.id===b.dataset.id));
   else if(a==='del'){if(confirm('Удалить операцию?')){ip.ops=ip.ops.filter(o=>o.id!==b.dataset.id);save();render()}}
   else if(a==='close')$('#modalRoot').innerHTML='';
@@ -4690,6 +4836,8 @@ document.addEventListener('click',e=>{
 document.addEventListener('change',e=>{
   const t=e.target,ip=cur();
   if(t.id==='ipSel'){S.active=t.value;save();render();return}
+  if(t.id==='hdYear'){const ip=cur();ip.year=+t.value||ip.year;ui.fm='';save();render();return}
+  if(t.id==='advy'){ui.advY=t.value;render(true);return}
   if(t.id==='dhy'){ui.dh.y=t.value;ui.dh.n=40;render(true);return}
   if(t.id==='dhm'){ui.dh.m=t.value;ui.dh.n=40;render(true);return}
   if(t.dataset.lv){const L=lvS();if(t.dataset.lv==='ch')L.chU=true;L[t.dataset.lv]=t.type==='checkbox'?t.checked:t.value;if(t.dataset.lv==='payM')return;L.out='';if(['sm','hourly','emp','kind','st','cat','minChk','ef','et','vf','vt','ch','cf','cb','cx','cu','etype'].includes(t.dataset.lv))render(true);else{const o=$('#lvOut');if(o)o.remove()}return}
