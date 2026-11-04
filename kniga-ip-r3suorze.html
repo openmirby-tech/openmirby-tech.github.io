@@ -9,8 +9,7 @@
 -->
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8"><meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Книга доходов и расходов ИП — Бухгалтер нового времени</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -96,7 +95,6 @@ table.calc tr.tot td{border-top:2px solid var(--ink);font-weight:700;font-size:1
 .ab2c{font-size:12px;color:#bfb596}.ab2c a{color:#e9e2d0;text-decoration:none;border-bottom:1px solid #6b5a2c}
 .ab2r{margin-top:10px;padding-top:10px;border-top:1px solid #3a2f18;font-size:11px;color:#9d9378;line-height:1.45}
 .ab2n{margin:0 4px 6px;font-size:11px;color:var(--mut)}
-.printfoot{display:none}
 footer.foot{border-top:1px solid var(--line);padding:16px 0 8px;color:var(--mut);font-size:12px}
 .months{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .months label{margin:0;display:flex;gap:6px;align-items:center;font-size:13px;color:var(--ink)}
@@ -256,7 +254,7 @@ body.prnOn>*:not(#prnRoot){display:none!important}
  table.book tr.ytd td{border-top:2px solid #000!important}
  table.book thead{display:table-header-group}table.book tr{page-break-inside:avoid}
  .printhead{display:block;margin-bottom:8px}
- .printfoot{display:block;position:fixed;bottom:0;left:0;right:0;font-size:7pt;color:#777;text-align:center}
+
  .about{display:none}
  .doc{border:0;padding:0;page-break-after:always}.doc:last-child{page-break-after:auto}
  @page{size:A4 landscape;margin:10mm}
@@ -299,7 +297,6 @@ body.prnOn>*:not(#prnRoot){display:none!important}
   <a href="#/pay" data-r="pay"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><path d="M7 15h4"/></svg>Зарплата</a>
   <a href="#/more" data-r="more"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/></svg>Ещё</a>
 </nav>
-<div class="printfoot" id="printfoot">Программа «Книга доходов и расходов для ИП». Автор: Ольга Мирончикова, клуб «Бухгалтер нового времени», online-kurs.by</div>
 <div id="modalRoot"></div>
 <script>
 'use strict';
@@ -712,7 +709,7 @@ function homeHero(ip,c){
   ${due?`<div class="due">Ближайшая уплата, ${esc(due.per)}: <b>${due.d}</b> <i class="${days<=7?'hot':''}">${days===0?'сегодня':days===1?'завтра':'через '+days+' дн.'}</i></div>`:''}</div>`;
 }
 function homeQuick(ip){
-  const T=[['add','','Операция','plus',1],['goto','journal','Выписка','bank'],['bk','sale','Реализация','sale'],['bk','docs','Документы','docs'],['bk','prn','Печать','print'],['goto','pay','Зарплата','pay'],['goto','tax','Налог','tax'],['bk','audit','Сверка','check']];
+  const T=[['add','','Операция','plus',1],['bk','docs','Документы','docs'],['bk','sale','Реализация','sale'],['goto','pay','Зарплата','pay'],['goto','tax','Налог','tax'],['bk','audit','Сверка','check']];
   return `<div class="qa noprint">${T.map(([a,k,l,i,red])=>`<a class="${red?'red':''}" data-act="${a}" ${a==='bk'?`data-k="${k}" data-go="1"`:a==='goto'?`data-r="${k}"`:''}><span>${icn(i)}</span>${l}</a>`).join('')}</div>`;
 }
 function home(ip){
@@ -786,7 +783,7 @@ function bkNav(){
   const ip=ip0(),on=id=>{const b=booksReq(ip).find(x=>x.id===id);return !!(b&&b.on)};
   const G=[['Основные книги',[['kudir','Доходы и расходы',1],['agent','Налоговый агент',1]]],
    ['Имущество, товары, материалы',[['os','Основные средства',ip.settings.hasOS],['nma','НМА',ip.settings.hasNMA],['mbp','Малоценные',on('mbp')],['raw','Сырьё',on('raw')],['goods','Товары',on('goods')],['sum','Суммовой учёт',on('sum')],['vat','НДС',on('vat')]]],
-   ['Документы и расчёты',[['sale','Реализация',1],['docs','Загрузка документов',1],['prn','Печатные документы',1],['settle','Расчёты',1],['audit','Сверка',1],['cars','Авто и топливо',1]]],
+   ['Документы и расчёты',[['sale','Реализация',1],['docs','Документы',1],['settle','Расчёты',1],['audit','Сверка',1],['cars','Авто и топливо',1]]],
    ['Настройка',[['list','Какие книги нужны',1]]]];
   return `<div class="bknav noprint">${G.map(([t,L])=>{const l=L.filter(x=>x[2]);return l.length?`<div class="bkg"><i>${t}</i>${l.map(([k,n])=>`<button class="sm ${ui.bk===k?'':'ghost'}" data-act="bk" data-k="${k}">${n}</button>`).join('')}</div>`:''}).join('')}</div>`;
 }
@@ -1000,7 +997,7 @@ function book(ip){
   if(ui.bk==='list')return bookTabs()+booksList(ip);
   if(ui.bk==='sum')return bookTabs()+sumBookHtml(ip);
   if(ui.bk==='settle')return bookTabs()+settlePage(ip);
-  if(ui.bk==='docs')return bookTabs()+docsPage(ip);
+  if(ui.bk==='docs')return bookTabs()+docHub(ip);
   if(ui.bk==='prn')return bookTabs()+prnPage(ip);
   if(ui.bk==='sale')return bookTabs()+saleBook(ip);
   if(ui.bk==='audit')return bookTabs()+auditPage(ip);
@@ -3728,7 +3725,52 @@ function docsPanel(ip,bk){
   const rows=D.slice(0,12).map(d=>{const G=docGoods(d),np=docPricedN(d);
     const st=price?`<span class="tag" style="background:${np===G.length?'#e6f4ea':'#fff3cd'}">расценено ${np} из ${G.length}</span>`:'';
     return `<div class="op"><div class="l"><div class="t">${esc(docLabel(d))}</div><small>${d.lines.length} стр. · итого ${fmt(t?r2(d.lines.filter(l=>l.type===t).reduce((x,l)=>x+docLine(l),0)):docTotal(d))} руб. ${srcLabel(d)?'· '+srcLabel(d)+' ':''}${st}</small></div><div class="s" style="flex-wrap:wrap;justify-content:flex-end">${price?`<button class="sm" data-act="doc-price" data-id="${d.id}">Расценка</button>`:''}${price?`<button class="sm ghost" data-act="doc-reg" data-id="${d.id}">Реестр цен / печать</button><button class="sm ghost" data-act="doc-view" data-id="${d.id}">Накладная</button>`:`<button class="sm ghost" data-act="doc-view" data-id="${d.id}">Открыть / печать</button>`}<button class="sm ghost" data-act="doc-edit" data-id="${d.id}">Изменить</button><button class="link" data-act="doc-del" data-id="${d.id}">Удал.</button></div></div>`}).join('');
-  return `<details class="card w noprint" style="padding:10px;margin:4px 0 10px" open><summary style="cursor:pointer;font-weight:700;font-size:14px">Реестр документов: ${D.length}</summary>${head}<div class="hint" style="font-size:13px;margin:6px 0">${steps}</div>${rows}${D.length>12?`<div class="hint">Показаны последние 12. Полный список: «Реестр документов (печать)».</div>`:''}</details>`;
+  return `<details class="card w noprint" style="padding:10px;margin:4px 0 10px" open><summary style="cursor:pointer;font-weight:700;font-size:14px">Реестр документов: ${D.length}</summary>${head}<div class="hint" style="font-size:13px;margin:6px 0">${steps}</div>${rows}<div class="row" style="margin-top:6px"><button class="sm ghost" data-act="bk" data-k="docs">Все документы${D.length>12?' ('+D.length+')':''}</button></div></details>`;
+}
+/* ===== Документы: единый реестр (загруженные, введённые, составленные) ===== */
+const DH_G={all:'Все',in:'Поступление',out:'Выданные',hr:'Кадры и зарплата',oth:'Прочие'};
+ui.dh=ui.dh||{g:'all',m:'',y:'',q:'',n:40};
+function linkedOps(ip,id){return (ip.ops||[]).filter(o=>o.prnId===id||o.saleLink===id||(o.cdRef&&o.cdRef.id===id)||(o.attach||[]).some(a=>a.ref&&a.ref.id===id))}
+function dhItems(ip){
+  const L=[];
+  (ip.docs||[]).forEach(d=>{
+    const G=docGoods(d),T=k=>d.lines.some(l=>l.type===k),wh=[];
+    if(T('raw'))wh.push('книга сырья');if(T('goods'))wh.push(sbActive(ip)?'книга суммового учёта':'книга товаров');if(T('mbp'))wh.push('малоценные предметы');if(T('os'))wh.push('основные средства');if(T('svc'))wh.push('журнал расходов');
+    L.push({k:'d',id:d.id,g:'in',date:d.date,title:(DK[d.dtype]||DK.nakl)+' № '+(d.no||'б/н'),party:d.supplier||'',sum:docTotal(d),
+      info:'оплачено '+fmt(docPaid(d))+(G.length?', расценено '+docPricedN(d)+' из '+G.length:'')+(docVatT(d)>0?', НДС '+fmt(docVatT(d)):''),src:srcLabel(d),where:wh.join(', '),links:linkedOps(ip,d.id),goods:G.length>0});
+  });
+  (ip.prn||[]).forEach(r=>{
+    const sp=PRN[r.type];if(!sp)return;const sale=isSale(r);let sum=null;
+    try{if(sp.cols&&sp.tot)sum=sale?saleTotal(r):prnTotal(sp,r.rows,sp.tot[0])}catch(e){}
+    const lk=linkedOps(ip,r.id);
+    L.push({k:'p',id:r.id,g:sale?'out':(sp.g===6?'hr':'oth'),date:r.date,title:sp.t+' № '+(r.no||'б/н'),party:r.v&&saleParty(r)||(r.v&&(r.v.name||r.v.sup||r.v.from))||'',sum,info:'',
+      where:sale&&r.type!=='pay_inv'?(lk.length?'':'не внесён в книгу доходов'):'',links:lk,sale:sale&&r.type!=='pay_inv'});
+  });
+  return L.sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+}
+function docHub(ip){
+  const H=ui.dh,all=dhItems(ip),yrs=[...new Set(all.map(x=>String(x.date).slice(0,4)).concat([String(ip.year)]))].sort().reverse();
+  const y=H.y||String(ip.year);
+  let L=all.filter(x=>y==='all'||String(x.date).slice(0,4)===y);
+  const cnt={all:L.length};Object.keys(DH_G).forEach(k=>{if(k!=='all')cnt[k]=L.filter(x=>x.g===k).length});
+  if(H.g!=='all')L=L.filter(x=>x.g===H.g);
+  if(H.m)L=L.filter(x=>+String(x.date).slice(5,7)===+H.m);
+  if(H.q){const q=H.q.toLowerCase();L=L.filter(x=>(x.title+' '+x.party).toLowerCase().includes(q))}
+  const shown=L.slice(0,H.n||40);
+  let h=`<h2 class="noprint">Документы</h2><div class="hint noprint" style="margin-bottom:8px">Здесь все документы в одном месте: загруженные из Excel, введённые вручную и составленные в приложении. Откройте, распечатайте, исправьте или перейдите к записи в книге.</div>
+  <div class="row noprint" style="margin-bottom:8px"><button class="sm" data-act="doc-file">Загрузить из Excel</button><button class="sm" data-act="bk" data-k="prn">Составить документ</button><button class="sm ghost" data-act="doc-add">Поступление вручную</button></div>
+  <details class="noprint" style="margin-bottom:10px"><summary style="cursor:pointer;font-size:13px;color:#555">Другие действия</summary><div class="row" style="margin-top:6px"><button class="sm ghost" data-act="doc-paste">Вставить таблицу</button><button class="sm ghost" data-act="doc-pay">Оплата поставщику</button><button class="sm ghost" data-act="docs-reg" data-k="kudir">Реестр документов (печать)</button><button class="sm ghost" data-act="price-reg">Реестр розничных цен</button><button class="sm ghost" data-act="vat-sum">НДС по документам</button><button class="sm ghost" data-act="cpty">Контрагенты</button><button class="sm ghost" data-act="svc">Услуги</button><button class="sm ghost" data-act="inv-add">Инвентаризация сырья</button><button class="sm ghost" data-act="doc-tpl">Образец таблицы</button></div></details>
+  <div class="row noprint" style="margin-bottom:6px;flex-wrap:wrap">${Object.entries(DH_G).map(([k,v])=>`<button class="sm ${H.g===k?'':'ghost'}" data-act="dh-g" data-k="${k}">${v} · ${cnt[k]}</button>`).join('')}</div>
+  <div class="two noprint" style="margin-bottom:6px"><select id="dhy">${yrs.map(v=>`<option value="${v}" ${y===v?'selected':''}>${v} год</option>`).join('')}<option value="all" ${y==='all'?'selected':''}>Все годы</option></select><select id="dhm"><option value="">Все месяцы</option>${MN.map((m,i)=>`<option value="${i+1}" ${+H.m===i+1?'selected':''}>${m}</option>`).join('')}</select></div>
+  <input id="dhq" class="noprint" placeholder="Поиск: название, номер, контрагент" value="${esc(H.q)}" style="margin-bottom:10px">`;
+  if(!L.length)return h+`<div class="card noprint">${all.length?'По выбранным условиям документов нет.':'Документов пока нет. Загрузите накладные из Excel или составьте документ.'}</div>`;
+  h+=`<div class="noprint">${shown.map(x=>{
+    const lk=x.links.map(o=>`<button class="link" data-act="edit" data-id="${o.id}">В журнале: ${dmy(o.date)}, ${fmt(o.sum)} руб.</button>`).join('');
+    const status=x.k==='p'&&x.sale?(x.links.length?'<span class="tag" style="background:#e6f4ea">в книге доходов</span>':'<span class="tag" style="background:#fff3cd">не внесён в книгу доходов</span>'):'';
+    const btn=x.k==='d'?`<button class="sm ghost" data-act="${x.goods?'doc-reg':'doc-view'}" data-id="${x.id}">${x.goods?'Реестр цен':'Открыть'}</button>${x.goods?`<button class="link" data-act="doc-view" data-id="${x.id}">Накладная</button>`:''}<button class="link" data-act="doc-edit" data-id="${x.id}">Изменить</button><button class="link" data-act="doc-del" data-id="${x.id}">Удал.</button>`
+      :`<button class="sm ghost" data-act="prn-print" data-id="${x.id}">Печать</button><button class="link" data-act="prn-edit" data-id="${x.id}">Изменить</button>${x.sale&&!x.links.length?`<button class="link" data-act="sale-inc" data-id="${x.id}">Доход</button>`:''}<button class="link" data-act="prn-del" data-id="${x.id}">Удал.</button>`;
+    return `<div class="op" style="display:block"><div class="l" style="min-width:0"><div class="t">${esc(x.title)}</div><small>${dmy(x.date)}${x.party?' · '+esc(x.party):''}${x.sum!=null?' · '+fmt(x.sum)+' руб.':''}${x.src?' · '+x.src:''}</small>${x.info||x.where||status?`<small>${esc(x.info||'')}${x.where&&x.k==='d'?(x.info?' · ':'')+'в книгах: '+esc(x.where):''} ${status}</small>`:''}${lk?`<small>${lk}</small>`:''}</div><div class="s" style="flex-wrap:wrap;justify-content:flex-start;gap:4px 12px;margin-top:8px">${btn}</div></div>`}).join('')}${L.length>shown.length?`<div class="row"><button class="sm ghost" data-act="dh-more">Показать ещё (осталось ${L.length-shown.length})</button></div>`:''}</div>`;
+  return h;
 }
 function docsPage(ip){
   const D=(ip.docs||[]).slice().sort((a,b)=>b.date.localeCompare(a.date)||String(b.no).localeCompare(String(a.no)));
@@ -4580,6 +4622,8 @@ document.addEventListener('click',e=>{
   else if(a==='close-doc')closeDocChoose(b.dataset.id);
   else if(a==='pay-doc')payDocChoose(b.dataset.id);
   else if(a==='cpty')cptyOpen();
+  else if(a==='dh-g'){ui.dh.g=b.dataset.k;ui.dh.n=40;render(true)}
+  else if(a==='dh-more'){ui.dh.n=(ui.dh.n||40)+40;render(true)}
   else if(a==='svc')svcOpen();
   else if(a==='vat-sum')vatSummaryView();
   else if(a==='price-reg')priceRegistry();
@@ -4646,6 +4690,8 @@ document.addEventListener('click',e=>{
 document.addEventListener('change',e=>{
   const t=e.target,ip=cur();
   if(t.id==='ipSel'){S.active=t.value;save();render();return}
+  if(t.id==='dhy'){ui.dh.y=t.value;ui.dh.n=40;render(true);return}
+  if(t.id==='dhm'){ui.dh.m=t.value;ui.dh.n=40;render(true);return}
   if(t.dataset.lv){const L=lvS();if(t.dataset.lv==='ch')L.chU=true;L[t.dataset.lv]=t.type==='checkbox'?t.checked:t.value;if(t.dataset.lv==='payM')return;L.out='';if(['sm','hourly','emp','kind','st','cat','minChk','ef','et','vf','vt','ch','cf','cb','cx','cu','etype'].includes(t.dataset.lv))render(true);else{const o=$('#lvOut');if(o)o.remove()}return}
   if(t.dataset.lvr){const L=lvS();L.rows=L.rows||{};const r=L.rows[t.dataset.lvr]=L.rows[t.dataset.lvr]||{};r[t.dataset.lf]=t.type==='checkbox'?t.checked:t.value;L.out='';{const o=$('#lvOut');if(o)o.remove()}return}
   if(t.id==='skkoIn'){if(t.files[0])skkoLoad(t.files[0]);t.value='';return}
@@ -4666,6 +4712,7 @@ document.addEventListener('change',e=>{
   if(t.dataset.p){const k=t.dataset.p;S.params[k]=TXT.includes(k)?t.value.trim():(t.value.trim()===''?'':(isFinite(num(t.value))?num(t.value):S.params[k]));save();toast('Сохранено');return}
 });
 document.addEventListener('input',e=>{
+  if(e.target.id==='dhq'){ui.dh.q=e.target.value;ui.dh.n=40;const pos=e.target.selectionStart;render(true);const n=$('#dhq');if(n){n.focus();n.setSelectionRange(pos,pos)}return}
   if(e.target.id==='fq'){ui.q=e.target.value;const pos=e.target.selectionStart;render();const n=$('#fq');if(n){n.focus();n.setSelectionRange(pos,pos)}}
 });
 window.addEventListener('hashchange',()=>{_rt=null;render()});
