@@ -768,6 +768,10 @@ HELP_NEW.push({h:'Календарь и журнал РКО',q:[
 ['Какие отчёты показывает календарь','Всегда: декларация и уплата подоходного налога ИП. Если есть работники: декларация налогового агента, сведения о доходах физических лиц, ФСЗН (4-фонд, ПУ-3), Белгосстрах. Если в параметрах ИП отмечено «плательщик НДС»: декларация по НДС, уплата НДС, ЭСЧФ. Для ИП отчётный период по НДС квартал: декларация до 20-го, уплата до 22-го числа месяца после квартала. Ежемесячно до 20-го подаётся НДС при ввозе из стран ЕАЭС (показывается, если в параметрах включена книга НДС) и направляются на портал ЭСЧФ без выставления покупателю; ЭСЧФ покупателям выставляются до 10-го числа. Белгосстрах: взносы до 25-го после квартала (можно платить реже, например раз в год вперёд), годовой отчёт до 25 января. Сроки подтверждены путеводителями ЮрСпектр на 30.09.2026 и Правилами № 742. Если в календаре стоит «проверьте срок», сверьте его по официальному акту.'],
 ['Выдача под отчёт и расходный кассовый ордер','При записи «Выдано под отчёт» выберите, как выданы деньги. Если из кассы, сразу откроется расходный кассовый ордер с подставленными ФИО, суммой и основанием: проверьте, сформируйте и распечатайте. В списке выдач у каждой записи видно «РКО № … от …» или красную отметку «РКО не оформлен» с кнопкой «Оформить РКО». Если деньги выданы с карты или со счёта, выберите второй вариант: ордер не требуется.'],
 ['Журнал РКО','Раздел «Книги» → «Документы и расчёты» → «Журнал РКО». В одном списке: ордера по зарплате и авансу (из раздела «Зарплата»), ордера на выдачу под отчёт и прочие ордера из печатных документов. Можно выбрать год и вид выдачи, скачать журнал в Excel или распечатать. Выдачи под отчёт без ордера показаны красным в той же таблице. Журнал собирается сам.']
+,
+['Регулярные платежи в календаре','В «Календаре сроков» откройте блок «Мои регулярные платежи» и нажмите «+ Регулярный платёж»: название, вид, сумма, как часто (каждый месяц, квартал, год), число месяца и за сколько дней напомнить. Платёж повторится на весь год, появится на плитках, в месячной сетке и в списке, а в месяце покажется общая сумма ваших платежей. Нажмите «Выполнено», когда оплатили. Приложение платежи не совершает, это напоминание.'],
+['График зарплаты и напоминание об отчёте','В том же блоке укажите числа месяца для аванса и зарплаты: календарь покажет выплаты по графику, пока вы не внесли точные даты в расчёте зарплаты. Даты уплаты подоходного налога, взносов ФСЗН и Белгосстраха из расчёта зарплаты тоже попадают в календарь. За несколько дней до срока авансового отчёта придёт напоминание, а в день срока он покажется красным, если не сдан.'],
+['Календарь в телефон','Кнопка «В календарь телефона (.ics)» скачивает файл со всеми сроками на год вперёд. Откройте его на телефоне или импортируйте в Google Календарь: сроки появятся там и будут напоминать, даже когда приложение закрыто. После изменений в приложении скачайте файл заново.']
 ]});
 
 const HELP=HELP_NEW.concat([
@@ -1447,8 +1451,7 @@ function home(ip){
   if(ops.length)h+=auditCard(ip);
   h+=homeHero(ip,c)+homeQuick(ip);
   h+=`<h3>Проверки</h3>`+(ch.length?ch.map(x=>`<div class="warn ${x[0]}">${esc(x[1])}</div>`).join(''):'<div class="okmsg">Замечаний нет.</div>');
-  {const td=new Date().toISOString().slice(0,10),ymd=x=>x.split('.').reverse().join('-');
-  h+=`<h3>Ближайшие сроки</h3><div class="card w"><table class="dl"><tr><th>Период</th><th>Декларация до</th><th>Уплата до</th></tr>`+[3,6,9,12].map(m=>{const d=deadlines(ip,m);return `<tr class="${ymd(d.pay)<td?'past':''}"><td>${PER[m]}</td><td><b>${d.decl}</b></td><td><b>${d.pay}</b></td></tr>`}).join('')+`</table><div class="hint">Сроки справочные. Если срок выпал на выходной, проверьте перенос.</div></div>`;}
+  h+=`<div class="hint noprint" style="margin:10px 0">Все сроки налогов, отчётов и платежей: плитка «Сроки» выше.</div>`;
   return h;
 }
 
@@ -3496,7 +3499,7 @@ function assetsPage(ip,type){
 }
 function miniForm(title,fields,cb){
   const root=$('#modalRoot');
-  root.innerHTML=`<div class="modal"><form class="sheet" id="mf" autocomplete="off"><h2>${title}</h2>${fields.map(f=>`<label>${f.l}</label>${f.opts?`<select name="${f.n}">${f.opts.map(([v,l])=>`<option value="${v}">${esc(l)}</option>`).join('')}</select>`:`<input name="${f.n}" ${f.t==='date'?'type="date"':(f.d?'inputmode="decimal"':'')} value="${esc(f.v||'')}">`}`).join('')}<div class="row" style="margin-top:14px"><button class="red" type="submit">Сохранить</button><button class="ghost" type="button" data-act="close">Отмена</button></div></form></div>`;
+  root.innerHTML=`<div class="modal"><form class="sheet" id="mf" autocomplete="off"><h2>${title}</h2>${fields.map(f=>`<label>${f.l}</label>${f.opts?`<select name="${f.n}">${f.opts.map(([v,l])=>`<option value="${v}" ${f.v!=null&&String(f.v)===String(v)?'selected':''}>${esc(l)}</option>`).join('')}</select>`:`<input name="${f.n}" ${f.t==='date'?'type="date"':(f.d?'inputmode="decimal"':'')} value="${esc(f.v||'')}">`}`).join('')}<div class="row" style="margin-top:14px"><button class="red" type="submit">Сохранить</button><button class="ghost" type="button" data-act="close">Отмена</button></div></form></div>`;
   $('#mf').onsubmit=e=>{e.preventDefault();const o={};fields.forEach(f=>o[f.n]=e.target[f.n].value.trim());if(cb(o)!==false){root.innerHTML='';save();render(true)}};
 }
 /* ===== Классификатор основных средств (шифр → нормативный срок службы) ===== */
@@ -7161,18 +7164,75 @@ function repEvents(ip,emp){
     out.push({date:repDate(r,yy,q),t:r.t+': '+nm+' '+yy+(r.ok?'':' (проверьте срок)'),go:r.kind==='tax'?'tax':'cal',kind:r.kind,rid:r.id})}))});
   return out;
 }
+const PAY_CAT=[['rent','Аренда'],['loan','Кредит, лизинг, рассрочка'],['util','Коммунальные, связь, интернет'],['sup','Поставщикам'],['tax','Налоги и взносы (личные)'],['oth','Прочее']];
+const PAY_PER={m:'каждый месяц',q:'раз в квартал',y:'раз в год'};
+function pmDates(p,from,to){
+  const out=[],st=p.from||from,sd=new Date(st+'T00:00:00Z');let y=sd.getUTCFullYear(),m=sd.getUTCMonth();const step=p.per==='y'?12:p.per==='q'?3:1,dd=+p.day>0?+p.day:1;
+  for(let i=0;i<300;i++){const dim=new Date(Date.UTC(y,m+1,0)).getUTCDate(),iso=y+'-'+hxPad(m+1)+'-'+hxPad(Math.min(dd,dim));
+    if(iso>to)break;if(iso>=from&&iso>=st&&(!p.to||iso<=p.to))out.push(iso);m+=step;while(m>11){m-=12;y++}}
+  return out}
+function payForm(p){
+  const ip=cur();
+  miniForm(p?'Изменить платёж':'Регулярный платёж',[{n:'t',l:'Название (например, аренда офиса)',v:p&&p.t||''},{n:'cat',l:'Вид платежа',opts:PAY_CAT,v:p&&p.cat||'rent'},{n:'sum',l:'Сумма, руб. (можно не указывать)',d:1,v:p&&p.sum?String(p.sum).replace('.',','):''},{n:'per',l:'Как часто',opts:Object.entries(PAY_PER),v:p&&p.per||'m'},{n:'day',l:'Число месяца, когда платить (1-31; в коротком месяце будет последний день)',v:p&&p.day||''},{n:'from',l:'Первый платёж не раньше',t:'date',v:p&&p.from||todayISO()},{n:'to',l:'Последний платёж (если есть конец)',t:'date',v:p&&p.to||''},{n:'rem',l:'Напомнить за сколько дней (0 - не напоминать)',v:p&&p.rem!=null?p.rem:'2'}],o=>{
+    if(!o.t){toast('Укажите название платежа');return false}
+    const day=parseInt(o.day);if(!(day>=1&&day<=31)){toast('Укажите число месяца от 1 до 31');return false}
+    if(!o.from){toast('Укажите дату первого платежа');return false}
+    if(o.to&&o.to<o.from){toast('Конец раньше начала');return false}
+    const sm=o.sum?num(o.sum):0;if(o.sum&&!(sm>=0)){toast('Сумма указана неверно');return false}
+    const rec={id:p?p.id:uid(),t:o.t,cat:o.cat,sum:r2(sm||0),per:o.per,day,from:o.from,to:o.to,rem:Math.max(0,parseInt(o.rem)||0)};
+    ip.pays=ip.pays||[];const i=ip.pays.findIndex(x=>x.id===rec.id);if(i<0)ip.pays.push(rec);else ip.pays[i]=rec});
+}
+function paysBlock(ip){
+  const td=todayISO(),L=ip.pays||[],st=ip.settings||{};
+  const n30=calEvents(ip).filter(e=>e.main&&e.date>=td&&e.date<=addDays(td,30)),s30=r2(n30.reduce((a,e)=>a+(e.sum||0),0));
+  const cn=c=>(PAY_CAT.find(x=>x[0]===c)||[0,'Прочее'])[1];
+  return `<details class="doc noprint" ${ui.sec&&ui.sec.pays?'open':''} ontoggle="secT('pays',this.open)"><summary><b>Мои регулярные платежи</b> <small>${L.length?L.length+' шт.':'аренда, кредит, связь и другое'}</small></summary>
+  <div class="hint">Внесите платежи, которые нужно не забыть: аренда, кредит, интернет, поставщики. Приложение само повторит их каждый месяц, квартал или год, напомнит заранее и покажет на календаре. Сами платежи оно не совершает и в книгу не вносит: это напоминание.</div>
+  ${L.length?`<div class="hint" style="margin:6px 0"><b>Ближайшие 30 дней:</b> ${n30.length} платежей${s30>0?' на '+fmt(s30)+' руб.':''}</div>`:''}
+  ${L.map(p=>`<div class="crow"><i style="background:${CAL_K.pm[2]}"></i><div class="cbd"><div class="ct">${esc(p.t)}${p.sum>0?' · '+fmt(p.sum)+' руб.':''}</div><div class="cu" style="background:#c2185b1a;color:#c2185b">${PAY_PER[p.per]||''}, ${p.day}-го числа</div><div class="hint" style="margin:4px 0 0">${cn(p.cat)} · с ${dmy(p.from)}${p.to?' по '+dmy(p.to):''}${p.rem>0?' · напомнить за '+p.rem+' дн.':''}</div><div class="cb"><button class="cbtn" data-hx="payedit" data-id="${p.id}">Изменить</button><button class="cbtn" data-hx="paydel" data-id="${p.id}">Удалить</button></div></div></div>`).join('')}
+  <div class="row" style="margin:8px 0"><button class="cbtn add" data-hx="payadd">+ Регулярный платёж</button></div>
+  <div class="hint" style="margin-top:10px"><b>График зарплаты и отчётов по умолчанию.</b> Укажите числа месяца, и календарь будет показывать выплаты до тех пор, пока вы не внесёте точные даты в расчёте зарплаты.</div>
+  <div class="two"><div><label>Аванс, число месяца</label><input inputmode="numeric" data-hx="calset" data-k="advDay" value="${esc(st.advDay||'')}" placeholder="например, 20"></div><div><label>Зарплата, число месяца</label><input inputmode="numeric" data-hx="calset" data-k="payDay" value="${esc(st.payDay||'')}" placeholder="например, 5"></div></div>
+  <label>Напомнить о сдаче авансового отчёта за дней до срока</label><input inputmode="numeric" data-hx="calset" data-k="accRem" value="${esc(st.accRem||'')}" placeholder="3" style="max-width:120px">
+  </details>`;
+}
+function icsDownload(ip){
+  const td=todayISO(),to=addDays(td,366),esc2=t=>String(t).replace(/\\/g,'\\\\').replace(/;/g,'\;').replace(/,/g,'\\,').replace(/\n/g,' ');
+  const skip=new Set(ip.remDone||[]),L=calEvents(ip).filter(e=>e.kind!=='bk'&&e.date>=td&&e.date<=to&&!skip.has(e.date+'|'+e.t));
+  const out=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Buhgalter novogo vremeni//Kniga IP//RU','CALSCALE:GREGORIAN'];
+  L.forEach((e,i)=>{const d=e.date.replace(/-/g,''),n=addDays(e.date,1).replace(/-/g,'');out.push('BEGIN:VEVENT','UID:'+d+'-'+i+'-'+(ip.id||'ip')+'@kniga-ip','DTSTAMP:'+td.replace(/-/g,'')+'T000000Z','DTSTART;VALUE=DATE:'+d,'DTEND;VALUE=DATE:'+n,'SUMMARY:'+esc2(e.t),'END:VEVENT')});
+  out.push('END:VCALENDAR');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([out.join('\r\n')],{type:'text/calendar;charset=utf-8'}));a.download='kalendar-ip.ics';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);toast('Файл календаря скачан: откройте его на телефоне или в Google Календаре. Событий: '+L.length,6000);
+}
 function calEvents(ip){
   const td=todayISO(),ev=repEvents(ip,(ip.staff||[]).length>0),add=(date,t,go,kind)=>{if(date)ev.push({date,t,go,kind})};
   Object.keys(ip.payroll||{}).forEach(k=>{const d=(ip.payroll[k].dates)||{},mn=MN[+k.slice(5)-1]+' '+k.slice(0,4);if(d.advDate)add(d.advDate,'Выплата аванса за '+mn,'pay:dates','pay');if(d.payoutDate)add(d.payoutDate,'Выплата зарплаты за '+mn,'pay:dates','pay')});
   try{(ip.accObs||[]).forEach(it=>{const s=accStat(ip,it);if(s.st!=='ok')add(s.due,'Срок авансового отчёта: '+it.emp+', '+fmt(it.sum)+' руб.','book:adv','acc')})}catch(e){}
   (ip.rem||[]).forEach(r=>add(r.date,r.t,'','rem'));
+  /* даты по зарплате: налог, ФСЗН, Белгосстрах */
+  Object.keys(ip.payroll||{}).forEach(k=>{const d=(ip.payroll[k].dates)||{},mn=MN[+k.slice(5)-1]+' '+k.slice(0,4);
+    if(d.pnDate)add(d.pnDate,'Уплата подоходного налога с зарплаты за '+mn,'pay:dates','pay');
+    if(d.fsznDate)add(d.fsznDate,'Уплата взносов в ФСЗН за '+mn,'pay:dates','pay');
+    if(d.bgsDate)add(d.bgsDate,'Уплата взносов в Белгосстрах за '+mn,'pay:dates','pay')});
+  /* график выплат по умолчанию, если даты ещё не внесены */
+  if((ip.staff||[]).length){const st=ip.settings||{},ad=+st.advDay,pd=+st.payDay,have=(f)=>Object.values(ip.payroll||{}).some(r=>r.dates&&r.dates[f]&&String(r.dates[f]).slice(0,7)===null);
+    for(let i=-1;i<=4;i++){const dt=new Date(td+'T00:00:00Z');dt.setUTCDate(1);dt.setUTCMonth(dt.getUTCMonth()+i);const ym=dt.toISOString().slice(0,7),dim=new Date(Date.UTC(dt.getUTCFullYear(),dt.getUTCMonth()+1,0)).getUTCDate();
+      const hasF=f=>Object.values(ip.payroll||{}).some(r=>r.dates&&r.dates[f]&&String(r.dates[f]).slice(0,7)===ym);
+      if(ad>0&&ad<=31&&!hasF('advDate'))add(ym+'-'+hxPad(Math.min(ad,dim)),'Выплата аванса (по графику)','pay:dates','pay');
+      if(pd>0&&pd<=31&&!hasF('payoutDate'))add(ym+'-'+hxPad(Math.min(pd,dim)),'Выплата зарплаты (по графику)','pay:dates','pay')}}
+  /* напоминание о сдаче авансового отчёта заранее */
+  try{const rd=num((ip.settings||{}).accRem);const n=rd>0?rd:3;(ip.accObs||[]).forEach(it=>{const s=accStat(ip,it);if(s.st==='wait'){const d=addDays(s.due,-n);if(d>=td&&d<s.due)add(d,'Скоро срок отчёта: напомнить '+it.emp+' (до '+dmy(s.due)+')','book:adv','acc')}})}catch(e){}
+  /* регулярные платежи */
+  {const from=(+ip.year-1)+'-11-01',to=(+ip.year+1)+'-03-31',done=new Set(ip.remDone||[]);
+   (ip.pays||[]).forEach(p=>pmDates(p,from,to).forEach(d=>{const sm=num(p.sum),t=(p.t||'Платёж')+(sm>0?': '+fmt(sm)+' руб.':'');ev.push({date:d,t,go:'',kind:'pm',sum:sm>0?sm:0,main:1,pid:p.id});
+     const r=num(p.rem);if(r>0&&d>td&&!done.has(d+'|'+t)){const rd=addDays(d,-r);if(rd>=td)ev.push({date:rd,t:'Скоро платёж ('+dmy(d)+'): '+t,go:'',kind:'pm'})}}))}
   const nb=S.lastBackup?addDays(S.lastBackup,14):td;add(nb<td?td:nb,'Сохранить резервную копию данных','more','bk');
   return ev.filter(e=>e.date).sort((a,b)=>a.date.localeCompare(b.date));
 }
 function repRef(){
   return `<details class="doc" ${ui.sec&&ui.sec.repref?'open':''} ontoggle="secT('repref',this.open)"><summary><b>Справочник сроков отчётности</b> <small>откуда взяты даты</small></summary><div class="hint">Отчёты нанимателя (налоговый агент, сведения о доходах, ФСЗН, Белгосстрах) показываются в календаре только если у ИП есть работники, а НДС и ЭСЧФ только если в параметрах ИП отмечено «плательщик НДС». Метка «подтверждено» значит, что срок прямо виден в календарях МНС, которые вы прислали. Метка «сверьте» значит, что срок взят из открытых источников, не из официального акта. Число месяца можно изменить, если норма поменялась.</div>`+REPORTS.map(r=>`<div class="op" style="display:block;border-left:4px solid ${r.ok?'#2e7d32':'#D4AF37'}"><div class="l" style="min-width:0"><div class="t">${esc(r.t)}</div><small><b style="color:${r.ok?'#2e7d32':'#9a6b00'}">${r.ok?'подтверждено календарём МНС':'сверьте по официальному источнику'}</b> · ${esc(r.rule)}</small><small>${esc(r.src)}</small></div><div class="s" style="justify-content:flex-start;gap:8px;margin-top:6px;align-items:center">${r.pers?`<select data-hx="repper" data-id="${r.id}" style="width:auto">${r.pers.map(p=>`<option value="${p}" ${repPer(r)===p?'selected':''}>${({m:'каждый месяц',q:'каждый квартал',y:'раз в год'})[p]}</option>`).join('')}</select>`:''}<label style="margin:0;font-size:13px">Число месяца</label><input type="number" min="1" max="31" style="width:70px" data-hx="repday" data-id="${r.id}" value="${repDay(r)}">${repDay(r)!==r.day?`<button class="link" data-hx="represet" data-id="${r.id}">Вернуть ${r.day}</button>`:''}</div></div>`).join('')+`<div class="hint">Перенос срока, если он выпадает на выходной: на следующий рабочий день (для взносов Белгосстраха, по данным ekv.by, на предыдущий; правило не подтверждено). Праздничные и перенесённые дни задаются в «Ещё» (параметры «Праздничные дни» и «Нерабочие дни по переносам»).</div></details>`;
 }
-const CAL_K={tax:['Налоги','#1565c0','linear-gradient(180deg,#d6ecff,#8cc4f5)'],rep:['Отчёты','#6a1b9a','linear-gradient(180deg,#eadcff,#bb9cf0)'],pay:['Зарплата','#2e7d32','linear-gradient(180deg,#d9f5e0,#8fd8a6)'],acc:['Подотчёт','#ef6c00','linear-gradient(180deg,#ffe3cf,#f5aa7a)'],rem:['Мои','#8a6d12','linear-gradient(180deg,#fff6d0,#f2dc8b)'],bk:['Копия','#0f766e','linear-gradient(180deg,#d4f4ef,#86d6c8)']};
+const CAL_K={tax:['Налоги','#1565c0','linear-gradient(180deg,#d6ecff,#8cc4f5)'],rep:['Отчёты','#6a1b9a','linear-gradient(180deg,#eadcff,#bb9cf0)'],pay:['Зарплата','#2e7d32','linear-gradient(180deg,#d9f5e0,#8fd8a6)'],acc:['Подотчёт','#ef6c00','linear-gradient(180deg,#ffe3cf,#f5aa7a)'],rem:['Мои','#8a6d12','linear-gradient(180deg,#fff6d0,#f2dc8b)'],pm:['Платежи','#c2185b','linear-gradient(180deg,#ffd9e6,#f59bb8)'],bk:['Копия','#0f766e','linear-gradient(180deg,#d4f4ef,#86d6c8)']};
 const MSH=['янв','фев','мар','апр','мая','июн','июл','авг','сен','окт','ноя','дек'];
 function calPage(ip){
   const td=todayISO(),ev0=calEvents(ip),rem=(ip.rem||[]),skip=new Set((ip.remDone||[])),evAll=ev0.filter(e=>!skip.has(e.date+'|'+e.t)),hid=ev0.length-evAll.length;
@@ -7192,21 +7252,22 @@ function calPage(ip){
   for(let d=1;d<=dim;d++){const iso=cm+'-'+String(d).padStart(2,'0'),L=byDay[iso]||[],wk=((lead+d-1)%7)>=5,late=L.some(e=>e.date<td&&!['pay','bk'].includes(e.kind));
     cells+=`<button type="button" class="cc ${wk?'wk':''} ${iso===td?'td':''} ${ui.cd===iso?'sel':''}" data-hx="cday" data-d="${iso}"><b>${d}</b><span class="dots">${L.slice(0,4).map(e=>`<u style="background:${(CAL_K[e.kind]||CAL_K.rem)[1]}"></u>`).join('')}</span>${L.length>4?`<small>+${L.length-4}</small>`:''}</button>`}
   const sel=ui.cd&&ui.cd.slice(0,7)===cm?(byDay[ui.cd]||[]):null;
+  const mp=evAll.filter(e=>e.main&&e.date.slice(0,7)===cm),mSum=mp.length?`<div class="hint" style="margin-top:8px">Ваши платежи в этом месяце: ${mp.length}${r2(mp.reduce((a,e)=>a+(e.sum||0),0))>0?' на '+fmt(r2(mp.reduce((a,e)=>a+(e.sum||0),0)))+' руб.':''}</div>`:'';
   const prevM=cmo===1?(cy-1)+'-12':cy+'-'+String(cmo-1).padStart(2,'0'),nextM=cmo===12?(cy+1)+'-01':cy+'-'+String(cmo+1).padStart(2,'0');
   const past=ev.filter(e=>e.date<td&&left(e)>=-14&&!['pay','bk'].includes(e.kind));
   const w7=ev.filter(e=>e.date>=td&&left(e)<=7),m30=ev.filter(e=>e.date>=td&&left(e)>7&&left(e)<=45),later=ev.filter(e=>e.date>=td&&left(e)>45&&left(e)<=200);
   const sec=(t,a,open)=>a.length?`<details class="doc" ${open?'open':''}><summary><b>${t}</b> <small>${a.length}</small></summary>${a.map(rowH).join('')}</details>`:'';
   const EVT=[['ФСЗН: ПУ-1','при приёме работника без свидетельства соцстрахования: в течение 2 календарных дней со дня приёма (кроме тех, у кого в паспорте есть идентификационный номер); при смене анкетных данных 5 рабочих дней (Правила, постановление Совмина № 742 от 20.12.2025, п. 15)'],['ФСЗН: ПУ-2','при приёме: не позднее 5 календарных дней; при увольнении: не позднее следующего дня после увольнения; при изменении сведений о периодах работы: раз в квартал до 10-го числа (п. 16 тех же Правил)'],['Белгосстрах: уведомление','в течение месяца письменно сообщить о заключении или прекращении трудовых договоров (Положение о регистрации страхователей, по neg.by, 2018; сверьте действующую редакцию)'],['ЭСЧФ по иным операциям','срок зависит от операции (ст. 131 НК); при сбое портала не позднее 5 рабочих дней после восстановления (п. 24 ст. 131 НК, по neg.by, 2026)']];
-  return `<h2>Календарь предпринимателя</h2><div class="hint" style="margin-bottom:8px">Налоги, отчёты, зарплата, подотчёт и ваши напоминания: плитками, по месяцам и списком. Цвет рамки показывает срочность: красный просрочено или сегодня, жёлтый ближайшая неделя, зелёный впереди. Сроки с пометкой «проверьте срок» взяты из открытых источников: сверьте их по официальному акту. Если срок выпадает на выходной, он сдвигается на следующий рабочий день.</div>
+  return `<h2>Календарь предпринимателя</h2><div class="hint" style="margin-bottom:6px;font-weight:700;color:#3d3210">ИП: ${esc(ip.name)}. У каждого ИП свой календарь: платежи, напоминания и график зарплаты хранятся отдельно.</div><div class="hint" style="margin-bottom:8px">Налоги, отчёты, зарплата, подотчёт и ваши напоминания: плитками, по месяцам и списком. Цвет рамки показывает срочность: красный просрочено или сегодня, жёлтый ближайшая неделя, зелёный впереди. Сроки с пометкой «проверьте срок» взяты из открытых источников: сверьте их по официальному акту. Если срок выпадает на выходной, он сдвигается на следующий рабочий день.</div>
   <div class="cchips noprint">${chips.map(([k,l])=>`<button type="button" class="${F===k?'on':''}" data-hx="cfilt" data-k="${k}">${l}</button>`).join('')}</div>
-  <div class="row noprint" style="margin:8px 0 10px"><button class="cbtn add" data-hx="remadd">+ Своё напоминание</button></div>
+  <div class="row noprint" style="margin:8px 0 10px;gap:8px;flex-wrap:wrap"><button class="cbtn add" data-hx="payadd">+ Регулярный платёж</button><button class="cbtn add" data-hx="remadd">+ Напоминание</button><button class="cbtn" data-hx="ics">В календарь телефона (.ics)</button></div>
   <h3 class="chd">Ближайшие сроки</h3>${near.length?`<div class="ctiles">${near.map(tile).join('')}</div>`:'<div class="hint">Ближайших сроков нет.</div>'}
   <h3 class="chd">По месяцам</h3><div class="cmon"><div class="cnav noprint"><button type="button" class="sm ghost" data-hx="cmon" data-d="${prevM}">←</button><b>${MN[cmo-1]} ${cy}</b><button type="button" class="sm ghost" data-hx="cmon" data-d="${nextM}">→</button><button type="button" class="sm ghost" data-hx="cmon" data-d="${td.slice(0,7)}">Сегодня</button></div>
   <div class="cgrid"><i>пн</i><i>вт</i><i>ср</i><i>чт</i><i>пт</i><i class="wk">сб</i><i class="wk">вс</i>${cells}</div>
   <div class="clg">${Object.entries(CAL_K).filter(([k])=>k!=='bk').map(([k,v])=>`<span><u style="background:${v[1]}"></u>${v[0]}</span>`).join('')}</div>
-  ${sel?(sel.length?`<div style="margin-top:8px"><b>${dmy(ui.cd)}</b>${sel.map(rowH).join('')}</div>`:`<div class="hint">На ${dmy(ui.cd)} событий нет.</div>`):'<div class="hint noprint">Нажмите на день, чтобы увидеть, что на него назначено.</div>'}</div>
+  ${mSum}${sel?(sel.length?`<div style="margin-top:8px"><b>${dmy(ui.cd)}</b>${sel.map(rowH).join('')}</div>`:`<div class="hint">На ${dmy(ui.cd)} событий нет.</div>`):'<div class="hint noprint">Нажмите на день, чтобы увидеть, что на него назначено.</div>'}</div>
   <h3 class="chd">Отчёты по событию</h3><div class="hint">Эти отчёты не привязаны к дате календаря: они нужны при определённых событиях.</div><div class="cevt">${EVT.map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>
-  ${repRef()}<h3 class="chd">Весь список</h3>${sec('Недавно прошли',past,true)}${sec('Ближайшие 7 дней',w7,true)}${sec('Ближайшие 45 дней',m30,false)}${sec('Дальше',later,false)}${ev.length?'':'<div class="hint">Событий нет.</div>'}${hid?`<div class="hint" style="margin-top:8px">Скрыто выполненных: ${hid}. <button class="link" data-hx="evshow">Показать снова</button></div>`:''}`;
+  ${paysBlock(ip)}${repRef()}<h3 class="chd">Весь список</h3>${sec('Недавно прошли',past,true)}${sec('Ближайшие 7 дней',w7,true)}${sec('Ближайшие 45 дней',m30,false)}${sec('Дальше',later,false)}${ev.length?'':'<div class="hint">Событий нет.</div>'}${hid?`<div class="hint" style="margin-top:8px">Скрыто выполненных: ${hid}. <button class="link" data-hx="evshow">Показать снова</button></div>`:''}`;
 }
 /* --- сводка по ИП --- */
 function allPage(){
@@ -7308,6 +7369,10 @@ async function snapFill(){const box=document.getElementById('snapBox');if(!box)r
 document.addEventListener('click',async e=>{
   const b=e.target.closest&&e.target.closest('[data-hx]');if(!b)return;const a=b.dataset.hx,ip=cur();
   if(a==='lgo'){e.preventDefault();hxGo(b.dataset.to)}
+  else if(a==='payadd')payForm(null)
+  else if(a==='payedit'){const p=(ip.pays||[]).find(x=>x.id===b.dataset.id);if(p)payForm(p)}
+  else if(a==='paydel'){if(confirm('Удалить этот регулярный платёж?')){ip.pays=(ip.pays||[]).filter(x=>x.id!==b.dataset.id);save();render(true)}}
+  else if(a==='ics')icsDownload(ip)
   else if(a==='cfilt'){ui.cf=b.dataset.k;render(true)}
   else if(a==='cmon'){ui.cm=b.dataset.d;ui.cd=null;render(true)}
   else if(a==='cday'){ui.cd=ui.cd===b.dataset.d?null:b.dataset.d;render(true)}
@@ -7332,7 +7397,7 @@ document.addEventListener('click',async e=>{
   else if(a==='snapdel'){await SNAP.del(+b.dataset.at);snapFill()}
   else if(a==='snapres'){const all=await SNAP.all(),r=all.find(x=>x.at===+b.dataset.at);if(!r)return;if(!confirm('Вернуть данные на '+new Date(r.at).toLocaleString('ru-RU')+' (ИП: '+r.info.ips+', операций: '+r.info.ops+', работников: '+r.info.st+')? Текущие данные будут заменены, перед этим приложение сохранит для них точку.'))return;await snapMake('before');try{S=JSON.parse(r.data);save();render();toast('Данные восстановлены')}catch(x){toast('Не удалось восстановить')}}
 });
-document.addEventListener('change',e=>{const t=e.target;if(!t||!t.dataset||!t.dataset.hx)return;if(t.dataset.hx==='repday'){S.repDay=S.repDay||{};const v=parseInt(t.value);if(v>=1&&v<=31)S.repDay[t.dataset.id]=v;else delete S.repDay[t.dataset.id];save();ui.sec=ui.sec||{};ui.sec.repref=true;render(true)}else if(t.dataset.hx==='repper'){S.repPer=S.repPer||{};S.repPer[t.dataset.id]=t.value;save();ui.sec=ui.sec||{};ui.sec.repref=true;render(true)}else if(t.dataset.hx==='rkjy'){ui.rkY=t.value;render(true)}else if(t.dataset.hx==='rkjk'){ui.rkK=t.value;render(true)}else if(t.dataset.hx==='lm'){ui.lm=+t.value;render(true)}else if(t.dataset.hx==='lq'){ui.lq=+t.value;render(true)}});
+document.addEventListener('change',e=>{const t=e.target;if(!t||!t.dataset||!t.dataset.hx)return;if(t.dataset.hx==='repday'){S.repDay=S.repDay||{};const v=parseInt(t.value);if(v>=1&&v<=31)S.repDay[t.dataset.id]=v;else delete S.repDay[t.dataset.id];save();ui.sec=ui.sec||{};ui.sec.repref=true;render(true)}else if(t.dataset.hx==='calset'){const v=parseInt(t.value);const st=cur().settings;if(v>=1&&v<=31)st[t.dataset.k]=v;else delete st[t.dataset.k];save();ui.sec=ui.sec||{};ui.sec.pays=true;render(true)}else if(t.dataset.hx==='repper'){S.repPer=S.repPer||{};S.repPer[t.dataset.id]=t.value;save();ui.sec=ui.sec||{};ui.sec.repref=true;render(true)}else if(t.dataset.hx==='rkjy'){ui.rkY=t.value;render(true)}else if(t.dataset.hx==='rkjk'){ui.rkK=t.value;render(true)}else if(t.dataset.hx==='lm'){ui.lm=+t.value;render(true)}else if(t.dataset.hx==='lq'){ui.lq=+t.value;render(true)}});
 setTimeout(()=>{try{snapAuto()}catch(e){}},2500);
 
 function slipSend(ip,act,id){
