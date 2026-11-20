@@ -107,6 +107,7 @@ details.secfold{margin:14px 0 8px}details.secfold>summary{cursor:pointer;font-si
 .hubt{position:relative;padding-left:56px!important}.hubt .ic{position:absolute;left:12px;top:12px;width:34px;height:34px;border-radius:10px;background:#faf3d6;display:flex;align-items:center;justify-content:center}.hubt .ic svg{width:20px;height:20px;stroke:#5a4a14;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.hubt.off .ic{background:#eee}
 .bkbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 12px;margin-bottom:10px}.bkbar label{font-size:12px;color:#777;display:block}.bkbar .sel{flex:1 1 220px;min-width:0}.bkbar select{width:100%;font-weight:700;font-size:15px;padding:10px;margin:0}
 @media(max-width:420px){.hubtask b{font-size:14px}}
+@media(max-width:700px){button.sm,a.sm,button.link,form>button[type=submit]{min-height:40px!important}.qm{width:28px!important;height:28px!important;font-size:14px!important}input[type=checkbox]{width:24px!important;height:24px!important}summary{min-height:40px!important}}
 
 .bkcur{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1px solid #e0c768;border-radius:16px;padding:10px 12px;background:linear-gradient(135deg,#fffdf3,#fbf0c6);color:#111;font:inherit;cursor:pointer;box-shadow:0 3px 10px rgba(120,90,10,.18)}.bkcur .ic{flex:0 0 42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#1b1b1b,#3a2f12);display:flex;align-items:center;justify-content:center}.bkcur .ic svg{width:22px;height:22px;stroke:#f0cd72;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.bkcur .tx{flex:1;min-width:0}.bkcur small{display:block;font-size:11.5px;color:#7a6a2a}.bkcur b{display:block;font-size:17px;line-height:1.2}.bkcur .chev{flex:0 0 auto;font-size:13px;font-weight:700;color:#fff;background:#e10600;border-radius:99px;padding:6px 12px;white-space:nowrap}
 .bkbar{flex-direction:column;align-items:stretch}.bkbar .bkall{display:flex;gap:8px}.bkbar .bkall button{flex:1}
@@ -1262,7 +1263,7 @@ const HELP=HELP_NEW.concat([
 {h:'Остатки, режим налогообложения, решения и образцы документов',q:[
 ['Как посмотреть остатки на любую дату','«Книги» → «Остатки на дату». Выберите дату: приложение покажет остатки товаров, сырья и материалов, малоценных предметов, а также основные средства и нематериальные активы с остаточной стоимостью. Таблицу можно распечатать или скачать в Excel. Остатки считаются по данным книг, поэтому важно вносить поступления, продажи и списания.'],
 ['Как выбрать налоговый режим','«Налог» → «Какой налоговый режим выгоднее». Введите ожидаемый доход, расходы с документами, вычеты и ставку единого налога (из Приложения 24 к Налоговому кодексу). Приложение сравнит подоходный налог по фактическим расходам, подоходный налог с нормативом 20% или 30% и единый налог, покажет самый выгодный вариант и что будет при другом доходе. Затем оформите выбор в «Зарплата → Приказы и договоры → Решения ИП». Условия применения единого налога проверьте по Налоговому кодексу.'],
-['Какие решения ИП можно составить','Группа «Решения ИП»: о порядке и сроках сдачи выручки, о передаче имущества в предпринимательскую деятельность (в том числе для личного и делового использования), о ведении книг учёта, о выборе режима налогообложения и способа учёта расходов, о сроках выплаты заработной платы с листом ознакомления.'],
+['Какие решения ИП можно составить','Только для ИП. Группа «Решения ИП»: о порядке и сроках сдачи выручки, о передаче имущества в предпринимательскую деятельность (в том числе для личного и делового использования), о ведении книг учёта, о выборе режима налогообложения и способа учёта расходов, о сроках выплаты заработной платы с листом ознакомления.'],
 ['Положение об оплате труда, правила трудового распорядка, договор о материальной ответственности','В группе «Охрана труда и пожарная безопасность: инструкции и программы» есть образцы: положение об оплате труда, правила внутреннего трудового распорядка, договор о коллективной материальной ответственности, инструкции и программы инструктажей. Приказы об их утверждении, о комиссиях по списанию и амортизационной политике, об изменении штатного расписания и график отпусков находятся в «Приказах по основной деятельности». Образцы универсальные: уберите лишнее и приведите под свою деятельность.']
 ]},
 {h:'Зарплата работников',q:[
@@ -1797,6 +1798,7 @@ const TIPS=[[/Пакет документов|Шаблоны документо�
 [/ИП — основное место работы/,'Если отмечено, вычеты по подоходному налогу применяются в вашей ведомости. Если человек работает у вас по совместительству, а основная работа в другом месте, снимите галочку.'],
 [/^Документ, удостоверяющий личность/,'Паспорт или иной документ: серия, номер, дата выдачи и орган. Нужны для расходного кассового ордера.'],
 [/^Должность$/,'Название должности или профессии должно соответствовать квалификационному справочнику (ст. 19 ТК).'],
+[/^Протоколы и решения учредителей/,'Документы собственников организации: протокол общего собрания участников, решение единственного участника, назначение директора, изменения в устав. Участники подставляются из раздела «Учредители».'],
 [/^Решения ИП/,'Решения предпринимателя как нанимателя и налогоплательщика: способ учёта расходов, налоговый режим, остатки и другие. Типовой формы нет, форму утверждает ИП.'],
 [/^Кадровые приказы/,'Приказы по работникам: приём, перевод, отпуск, увольнение, командировка и другие.'],
 [/^Приказы по основной деятельности/,'Приказы по хозяйственной деятельности ИП: инвентаризация, ответственные лица, нормы и другие.'],
@@ -2270,7 +2272,7 @@ function render0(keep){try{accApply()}catch(e){}
   const r=route();
   document.querySelectorAll('#nav a').forEach(a=>{const bk=ui.bk||'';a.classList.toggle('on',a.dataset.nav?(a.dataset.nav==='docs'?(r==='book'&&(bk==='docs'||(bk==='sale'&&window.matchMedia('(max-width:700px)').matches))):(r==='book'&&a.dataset.nav===bk)):(a.dataset.r==='book'?(r==='book'&&bk!=='sale'&&bk!=='settle'&&bk!=='docs'):a.dataset.r===r))});
   const ip=cur();
-  const v={home,journal,book,tax,pay,more,help:helpPage,memo:memoPage,kinds:kindsPage,taxcmp:()=>taxcmpPage(cur()),lists:()=>listsPage(cur()),cal:()=>calPage(cur()),all:allPage,train:trainPage,terms:termsPage,mg:()=>mgPage(cur()),pf:()=>pfPage(),crm:()=>crmPage(cur()),td:tdPage,stat:()=>statPage(cur()),div:()=>typeof divPage==='function'?divPage(cur()):home()}[r]||home;
+  const v={home,journal,book,tax,pay,more,help:helpPage,memo:memoPage,kinds:kindsPage,taxcmp:()=>taxcmpPage(cur()),lists:()=>listsPage(cur()),cal:()=>calPage(cur()),all:allPage,train:trainPage,terms:termsPage,mg:()=>mgPage(cur()),pf:()=>pfPage(),crm:()=>crmPage(cur()),td:tdPage,stat:()=>statPage(cur()),div:()=>typeof divPage==='function'?divPage(cur()):''}[r]||home;
   const y=window.scrollY;
   try{if(r==='book'&&!S.seenBook&&opsOf(cur()).length){S.seenBook=1;save()}}catch(e){}
   const back=(['help','memo','kinds','taxcmp','lists','cal','all','train','terms','journal','book','tax','pay','more','mg','pf','crm','td','stat'].includes(r))?`<div class="noprint backbar">${(navBackBtn()&&!/Назад: обзор/.test(navBackBtn()))?navBackBtn():'<a class="red" href="#/home" style="display:inline-block;text-decoration:none;padding:6px 14px;border-radius:20px;color:#fff;font-size:13px;font-weight:700;background:linear-gradient(#e53935,#b71c1c);box-shadow:0 2px 0 #7f1111">← На обзор</a>'}</div>`:'';
@@ -2348,6 +2350,7 @@ function taxLinks(ip){
   else if(t==='single')b=bt('endecl','Декларация по единому налогу');
   else if(t==='both')b=bt('indecl','Декларация по подоходному налогу')+bt('endecl','Декларация по единому налогу');
   else b=bt('indecl','Декларация по подоходному налогу');
+  if(t!=='usn')b+=bt('orgtax','Другие налоги и сборы');
   return b+gt('cal','Сроки уплаты и отчётности');
 }
 function sysCard(ip,where){
@@ -6122,6 +6125,11 @@ function g11ClubPay(C,c,dt,n,tier,sm,rid){g11(C);const p=g11ProgFor(C,(tier?tier
   const wasRem=g11Removed(mine,dt),ns=wasRem?dt:(mine.end<L0?L0:mine.end);mine.h=mine.h||[];mine.h.push({s:mine.start,e:mine.end,sum:mine.sum,paid:mine.paid});
   mine.start=ns;mine.end=addMonths(ns,n);mine.sum=sm;mine.paid=dt;mine.pid=p.id;mine.tkFor='';mine.closed='';delete mine.autoClosed;mine.off=false;delete mine.bonus;mine.join=(wasRem&&dt>=pfAdd(todayISO(),-14))?'new':'';if(mine.join==='new')mine.ret=1;else delete mine.ret;return 'ext'}
 function ldClubOf(C,x){let K;try{K=ldKind(C,x)}catch(e){return null}const a=parseFloat(String(K.sum||'').replace(/\s/g,'').replace(',','.'))||0;if(!(K.paid&&a>0))return null;const cs=g11ClubSub({prod:K.prod,grp:K.g,sum:a});return cs?{K,a,n:cs.n,tier:cs.tier}:null}
+/* 3.589: контакт обновляется по последней заявке; прежнее значение остаётся в истории клиента */
+function ldNewer(c,f,v){v=String(v||'').trim();if(!v||ldBadP(v))return;const o=String(c[f]||'').trim();if(!o){c[f]=v;return}
+  const dg=x=>String(x).replace(/\D/g,'').slice(-9),same=f==='phone'?(dg(o)===dg(v)):o.toLowerCase()===v.toLowerCase();if(same)return;
+  c.prev=c.prev||[];c.prev.unshift({f:f,v:o,to:v,d:todayISO()});if(c.prev.length>20)c.prev.length=20;c[f]=v;
+  c.log=c.log||[];c.log.push({id:uid(),type:'Сообщение',date:todayISO(),text:({phone:'Телефон',email:'Почта',tg:'Telegram'}[f]||f)+' обновлён по последней заявке: было '+o+', стало '+v})}
 function ldAdd(C,r){
   r=Object.assign({},r,{phone:ldBadP(r.phone)?'':r.phone,page:ldPg(r.page)});
   const src=LD_NAMES[r.src]||r.src||'Заявка',name=(r.name||'').replace(/\s+/g,' ').trim()||(r.ig?ldAt(r.ig):r.tg?ldAt(r.tg):r.phone||r.email||'Без имени');
@@ -6129,7 +6137,7 @@ function ldAdd(C,r){
   const text=K.label+(K.sum?' · '+K.sum:'')+(K.prod?' · '+K.prod:'')+' · '+src+(r.page?' · '+String(r.page).slice(0,80):'')+': '+(r.msg||'без сообщения')+(r.utm?' ('+r.utm+')':'')+(r.all?'\n'+r.all:'');
   let c=ldFind(C,r),isNew=false;
   if(c){c.log=c.log||[];c.log.push({id:uid(),type:'Сообщение',date:todayISO(),text});try{if(g11Upg(c.name,name))c.name=name}catch(e){}
-    if(!c.phone&&r.phone)c.phone=r.phone;if(!c.email&&r.email)c.email=r.email;if(!c.tg&&ldAt(r.tg))c.tg=ldAt(r.tg);if(!c.ig&&ldAt(r.ig))c.ig=ldAt(r.ig);
+    ldNewer(c,'phone',r.phone);ldNewer(c,'email',r.email);ldNewer(c,'tg',ldAt(r.tg));if(!c.ig&&ldAt(r.ig))c.ig=ldAt(r.ig);
     if(r.msg)c.note=((c.note||'')+(c.note?'\n':'')+todayISO().split('-').reverse().join('.')+': '+r.msg).slice(0,2000)}
   else{isNew=true;
     c=Object.assign({id:uid(),created:todayISO(),log:[],deals:[],hist:[],st:'',cons:{basis:'consent',date:'',form:'',mk:0,rev:'',notice:'',ev:''}},
@@ -7422,7 +7430,7 @@ function g11Quick(C){g11(C);const names=C.cl.map(c=>c.name),noPrg=!C.prg.length;
     const st=g('st')||todayISO(),en=g('en')||g11End(p,st);if(!en){toast('Укажите дату окончания: у программы нет срока');return}if(en<st){toast('Окончание раньше начала');return}
     const tgh=ldHandle(g('tg')),probe={phone:g('ph'),email:g('em'),tg:tgh,ig:''};let c=C.cl.find(x=>x.name.toLowerCase()===name.toLowerCase())||ldFind(C,probe),isNew=false;
     if(!c){isNew=true;c=Object.assign({id:uid(),created:todayISO(),log:[],deals:[],hist:[],st:'',type:'person',cons:{basis:'consent',date:'',form:'',mk:0,rev:'',notice:'',ev:''}},{name,phone:g('ph'),email:g('em'),tg:tgh?'@'+tgh:'',ig:'',src:'Добавлен вручную',city:'',bd:'',unp:'',resp:'',tags:[],note:''});C.cl.push(c);crmSetSt(C,c,C.cst[0],true)}
-    else{if(!c.phone&&g('ph'))c.phone=g('ph');if(!c.email&&g('em'))c.email=g('em');if(!c.tg&&tgh)c.tg='@'+tgh}
+    else{ldNewer(c,'phone',g('ph'));ldNewer(c,'email',g('em'));ldNewer(c,'tg',tgh?'@'+tgh:'')}
     if(g('gr'))c.g=[...new Set((c.g||[]).concat([g('gr')]))];
     c.mem=c.mem||[];c.mem.push({id:uid(),pid,start:st,end:en,sum:g('sm')===''?(p&&p.sum||''):num(g('sm')),paid:st});
     close();save();ui.crmt='sub';ui.smf='all';render(true);toast((isNew?'Подписчик добавлен: ':'Подписка добавлена: ')+c.name+', доступ до '+dmy(en)+'.',5000)}}
@@ -7508,7 +7516,7 @@ function g11OffDlg(C,c,m,mode){
 /* адрес входа в личный кабинет на сайте (кнопка на главной); пустая строка скрывает кнопку */
 const CABINET_URL='https://online-kurs.by/members/login';
 (function(){const a=document.getElementById('hbCab');if(a&&CABINET_URL){a.href=CABINET_URL;a.style.display=''}})();
-const APP_BUILD='20261120-4100';
+const APP_BUILD='20261120-4380';
 try{const _b=APP_BUILD;document.getElementById('ftVer').textContent='от '+_b.slice(6,8)+'.'+_b.slice(4,6)+'.'+_b.slice(0,4)+', сборка '+_b.slice(9,11)+':'+_b.slice(11)}catch(e){}
 (function(){
   if(location.protocol==='file:')return;
@@ -8668,6 +8676,7 @@ function booksReq(ip){
   if(taxSysOf(ip)==='usn')L.push({id:'orgtax',form:'НК РБ',name:'Налоги и сборы организации (недвижимость, земля, транспорт, экология, реклама)',on:true,status:'по наличию объектов',note:'Расчёт и сроки местных и иных налогов и сборов.'},{id:'tovotch',form:'Товарный отчёт',name:'Товарный отчёт',on:true,status:'при торговле',note:'Отчёт материально ответственного лица.'});
   if(taxSysOf(ip)==='usn')L.push({id:'usnbook',form:'Приложение 1',name:'Книга при УСН (разделы I, III, IV, VI)',on:true,status:'обязательна',note:'Налоговый учёт организации на УСН: валовая выручка по кассовому принципу, налоговый агент, взносы, недвижимость, численность. Расходы в этой книге не ведутся.'});
   if(taxSysOf(ip)==='usn')L.push({id:'usndecl',form:'Приложение 22',name:'Декларация по налогу при УСН (разделы I-III)',on:true,status:'обязательна',note:'Налог по кварталам нарастающим итогом, срок подачи до 20-го и уплаты до 22-го числа.'});
+  if(taxSysOf(ip)!=='usn')L.push({id:'orgtax',form:'НК РБ, Указ № 131',name:'Другие налоги и сборы (недвижимость, земля, транспорт, экология, реклама)',on:true,status:'по наличию объектов',note:'Для ИП: налог на недвижимость, земельный, транспортный, экологический налоги и сбор за размещение рекламы (Фейсбук, Инстаграм и др.).'});
   L.push({id:'reps',form:'ФСЗН, МНС',name:'Отчёты по работникам',on:!!(ip.staff&&ip.staff.length),status:(ip.staff&&ip.staff.length)?'обязательны':'нет работников',note:'4-фонд, ПУ-1, ПУ-2, ПУ-3, ПУ-6, пояснительная записка, налоговый агент, сведения о подоходном налоге.',built:true});
   if(ipKind(ip)!=='org'&&taxSysOf(ip)!=='single')L.push({id:'indecl',form:'НК РБ',name:'Декларация по подоходному налогу',on:true,status:'обязательна',note:'Доходы, расходы, вычеты, налоговая база и налог по вашей книге доходов и расходов: данные для заполнения декларации.',built:true});
   if(singleOn(ip))L.push({id:'endecl',form:'Приложение 23',name:'Декларация по единому налогу (расчёт, объекты, часть II)',on:true,status:'обязательна',note:'Исчисление единого налога по объектам и месяцам, лист 3, часть II.',built:true});
@@ -8689,7 +8698,7 @@ const HUBI={"stat":"list","orgtax":"tax","tovotch":"list","usnbook":"book","usnd
 function booksHub(ip){
   const reqs=booksReq(ip),on=id=>{const b=reqs.find(x=>x.id===id);return b?!!b.on:true},hasWorkers=!!(ip.staff&&ip.staff.length);
   const t0=taxSysOf(ip),MB=t0==='usn'?[['usnbook','Книга при УСН'],['tovotch','Товарный отчёт'],['kudir','Журнал доходов и расходов']]:t0==='single'?[['vv','Книга валовой выручки'],['kudir','Доходы и расходы (анализ)']]:t0==='both'?[['kudir','Доходы и расходы (подоходный)'],['vv','Книга валовой выручки']]:[['kudir','Доходы и расходы']],
-   DC=t0==='usn'?[['usndecl','Декларация по налогу при УСН'],['orgtax','Налоги и сборы организации']]:t0==='both'?[['indecl','Декларация по подоходному налогу'],['endecl','Декларация по единому налогу']]:t0==='single'?[['endecl','Декларация по единому налогу']]:[['indecl','Декларация по подоходному налогу']];
+   DC=t0==='usn'?[['usndecl','Декларация по налогу при УСН'],['orgtax','Налоги и сборы организации']]:t0==='both'?[['indecl','Декларация по подоходному налогу'],['endecl','Декларация по единому налогу'],['orgtax','Другие налоги и сборы']]:t0==='single'?[['endecl','Декларация по единому налогу'],['orgtax','Другие налоги и сборы']]:[['indecl','Декларация по подоходному налогу'],['orgtax','Другие налоги и сборы']];
   DC.push(['reps','Отчёты']);
   const G=[['Главные книги',[...MB,['agent','Налоговый агент']]],...(DC.length?[['Декларации и отчётность',DC]]:[]),
    ['Имущество, товары, материалы',[['stock','Остатки на дату'],['os','Основные средства'],['nma','НМА'],['mbp','Малоценные предметы'],['raw','Сырьё и материалы'],['goods','Товары'],['sum','Суммовой учёт'],['vat','НДС']]],
@@ -8729,7 +8738,7 @@ document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest
 function bkNav(){
   const ip=ip0(),on=id=>{const b=booksReq(ip).find(x=>x.id===id);return !!(b&&b.on)};
   const t0=taxSysOf(ip),MB=t0==='usn'?[['usnbook','Книга при УСН',1],['tovotch','Товарный отчёт',1],['kudir','Журнал доходов и расходов',1]]:t0==='single'?[['vv','Книга валовой выручки',1],['kudir','Доходы и расходы (анализ)',1]]:t0==='both'?[['kudir','Доходы и расходы (подоходный налог)',1],['vv','Книга валовой выручки',1]]:[['kudir','Доходы и расходы',1]],
-   DC=t0==='usn'?[['usndecl','Декларация по налогу при УСН',1],['orgtax','Налоги и сборы организации',1]]:t0==='both'?[['indecl','Декларация по подоходному налогу',1],['endecl','Декларация по единому налогу',1]]:t0==='single'?[['endecl','Декларация по единому налогу',1]]:[['indecl','Декларация по подоходному налогу',1]];
+   DC=t0==='usn'?[['usndecl','Декларация по налогу при УСН',1],['orgtax','Налоги и сборы организации',1]]:t0==='both'?[['indecl','Декларация по подоходному налогу',1],['endecl','Декларация по единому налогу',1],['orgtax','Другие налоги и сборы',1]]:t0==='single'?[['endecl','Декларация по единому налогу',1],['orgtax','Другие налоги и сборы',1]]:[['indecl','Декларация по подоходному налогу',1],['orgtax','Другие налоги и сборы',1]];
   DC.push(['reps','Отчёты',1]);
   const G=[['Главные книги',[...MB,['agent','Налоговый агент',1]]],...(DC.length?[['Декларации и отчётность',DC]]:[]),
    ['Имущество, товары, материалы',[['stock','Остатки на дату',1],['os','Основные средства',ip.settings.hasOS],['nma','НМА',ip.settings.hasNMA],['mbp','Малоценные',on('mbp')],['raw','Сырьё',on('raw')],['goods','Товары',on('goods')],['sum','Суммовой учёт',on('sum')],['vat','НДС',on('vat')]]],
@@ -9353,6 +9362,8 @@ const CM_DIM={аня:'анна',анечка:'анна',ануся:'анна',в
 const cmW=n=>String(n||'').toLowerCase().replace(/ё/g,'е').replace(/[^a-zа-я0-9 ]/g,' ').split(/\s+/).filter(Boolean);
 const cmStem=w=>w.replace(/(овна|евна|ична|инична|ович|евич|ьич|ская|ский|цкая|цкий|ова|ева|ина|ов|ев|ин|ая|ий|ой|ый|а|я)$/,'');
 function cmLev(a,b,max){if(a===b)return 0;if(Math.abs(a.length-b.length)>max)return max+1;let p=[],c=[];for(let j=0;j<=b.length;j++)p[j]=j;for(let i=1;i<=a.length;i++){c[0]=i;let mn=c[0];for(let j=1;j<=b.length;j++){c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1])c[j]=Math.min(c[j],(p[j-2]!==undefined?p[j-2]:9)+1);mn=Math.min(mn,c[j])}if(mn>max)return max+1;[p,c]=[c,p]}return p[b.length]}
+/* 3.589: номер для Telegram, Viber и WhatsApp приводится к международному виду (375…), чтобы местный номер не ушёл чужому человеку */
+function phIntl(v){const d=String(v||'').replace(/\D/g,'');if(!d)return '';if(d.startsWith('375')&&d.length===12)return '+'+d;if(d.startsWith('80')&&d.length===11)return '+375'+d.slice(2);if(d.length===9)return '+375'+d;if(d.length===10&&d[0]==='0')return '+375'+d.slice(1);return d.length>=10?'+'+d:''}
 function cmPhone(v){let d=String(v||'').replace(/\D/g,'');if(d.startsWith('375')&&d.length===12)d=d.slice(3);else if(d.startsWith('80')&&d.length===11)d=d.slice(2);else if(d.length===10&&d[0]==='0')d=d.slice(1);return d.length===9?d:(d.length>=11?d.slice(-9):'')}
 function cmEmail(v){let e=String(v||'').trim().toLowerCase();if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e))return null;let [l,d]=e.split('@');if(d==='googlemail.com')d='gmail.com';if(d==='gmail.com')l=l.split('+')[0].replace(/\./g,'');else l=l.split('+')[0];return {l,d}}
 const cmH=v=>String(v||'').trim().replace(/^https?:\/\/(www\.)?(t\.me|instagram\.com)\//i,'').replace(/^@/,'').replace(/\/$/,'').toLowerCase();
@@ -9931,7 +9942,7 @@ function profCard(ip){
   return `<div class="card profc noprint"><div class="profh"><div class="profav">${esc(profInit(ip.name))}</div><div style="min-width:0"><b>${esc(ip.name||(org?'Новая организация':'Новый ИП'))}</b><small>${ip.unp?'УНП '+esc(ip.unp)+' · ':''}${org?'УСН':esc(TAXSYS_N[taxSysOf(ip)])} · ${ip.year} год</small></div></div>
   <div class="profb"><label>${org?'Наименование организации':'ФИО предпринимателя'}</label><input data-i="name" value="${esc(ip.name)}">
   <div class="pgrid"><div><label>УНП</label><input data-i="unp" inputmode="numeric" value="${esc(ip.unp)}"></div><div><label>Налоговый год</label><select data-i="year">${yearList(ip).map(y=>`<option value="${y}" ${+y===+ip.year?'selected':''}>${y} год</option>`).join('')}</select></div></div>
-  <details class="profd"><summary>Реквизиты для печатных документов</summary><div class="hint">Подставляются в шапку всех печатных форм: накладных, актов, заказ-нарядов, ордеров, счетов, а также в отчёты ФСЗН. У каждого профиля свои.</div><div class="profa" style="margin:6px 0"><button class="sm" data-act="own-req-file">Загрузить реквизиты из файла (Word, PDF, Excel)</button></div><div class="pgrid">${reqFor(ip).map(([k,l])=>`<div${/адрес|Адрес/.test(l)?' style="grid-column:1/-1"':''}><label>${l}</label><input data-r="${k}" ${k==='iban'||k==='bic'?'style="text-transform:uppercase"':''} value="${esc(P[k]||'')}"></div>`).join('')}</div></details>
+  <details class="profd"><summary>Реквизиты для печатных документов</summary><div class="hint">Подставляются в шапку всех печатных форм: накладных, актов, заказ-нарядов, ордеров, счетов, а также в отчёты ФСЗН. У каждого профиля свои.</div><div class="profa" style="margin:6px 0"><button class="sm" data-act="own-req-file">Загрузить реквизиты из файла (Word, PDF, Excel)</button></div><div class="pgrid">${(window.reqFor||(()=>REQ_F))(ip).map(([k,l])=>`<div${/адрес|Адрес/.test(l)?' style="grid-column:1/-1"':''}><label>${l}</label><input data-r="${k}" ${k==='iban'||k==='bic'?'style="text-transform:uppercase"':''} value="${esc(P[k]||'')}"></div>`).join('')}</div></details>
   <div class="profa"><button class="sm" data-act="addip">+ ${org?'Профиль':'ИП'}</button><a class="sm ghost" href="#/all" style="text-decoration:none">Все профили</a></div>
   <details class="profd danger"><summary>Удаление и очистка</summary><div class="profa" style="margin-top:8px"><button class="sm ghost" data-act="delip">${org?'Удалить профиль':'Удалить ИП'}</button><button class="sm ghost" data-act="clear-key" data-k="all">Очистить данные</button><button class="sm ghost" data-act="clear-key" data-k="rules">Сбросить правила выписки</button></div><div class="hint">Очистка удаляет введённые данные, но не название, УНП и настройки. После неё 15 секунд доступна кнопка «Отменить».</div></details></div></div>`;
 }
@@ -10043,14 +10054,14 @@ function usnBkHtml(ip){
 
 /* ===== Налоги и сборы организации: недвижимость, земельный, транспортный, экологический налоги, рекламный сбор ===== */
 /* Формулы по путеводителям ЮрСпектр на 2026 год: недвижимость Н = НБ x С x К (подп. 1.1 ст. 230 НК, ставка организаций 1%, К задаёт местный Совет), земельный ЗН = НБ x С x Кп x Ку (x 3 для участка без капстроений, п. 12-1 ст. 241 НК), транспортный налог = база x ставка (п. 1 ст. 307-7 НК), экологический и рекламный сбор: сроки 20-е и 22-е число месяца после квартала. Ставки и коэффициенты зависят от региона и вида объекта: вводятся пользователем по решению местного Совета и приложениям к НК; в приложение не зашиваются. */
-function otD(ip){ip.usn=ip.usn||{};const o=ip.usn.ot=ip.usn.ot||{};['re','land','veh','eco','ad'].forEach(k=>o[k]=o[k]||[]);o.par=o.par||{reRate:'1',reK:'1',adRate:''};return o}
+function otD(ip){ip.usn=ip.usn||{};const o=ip.usn.ot=ip.usn.ot||{};['re','land','veh','eco','ad'].forEach(k=>o[k]=o[k]||[]);o.par=o.par||{reRate:(ipKind(ip)==='org'?'1':'0.1'),reK:'1',adRate:''};return o}
 function otReBase(r){const v=[+r.contract||0,+r.market||0,r2((+r.area||0)*(+r.price||0))].filter(x=>x>0);return r.kind==='own'?(+r.resid||0):(v.length?Math.max(...v):0)}
 function otReTax(ip,r){const P=otD(ip).par,b=otReBase(r);return r2(b*(num(P.reRate)||0)/100*(num(P.reK)||1))}
 function otLandTax(r){return r2((+r.cad||0)*(num(r.rate)||0)/100*((+r.months||12)/12)*(num(r.ky)||1)*(r.nobuild?3:1))}
 function otVehTax(r){return r2((+r.base||0)*(+r.rate||0)*(+r.mult||1)*((+r.months||12)/12))}
 function otEcoTax(r){return r2((+r.vol||0)*(+r.rate||0)*(num(r.k)||1))}
 function otAdBase(ip,y){
-  const auto=allOps(ip).filter(o=>(o.kind==='exp'||o.kind==='exp_other')&&o.date&&+o.date.slice(0,4)===y&&/реклам/i.test((o.text||'')+' '+(o.party||''))&&!/сбор|налог/i.test(o.text||''));
+  const auto=allOps(ip).filter(o=>(o.kind==='exp'||o.kind==='exp_other')&&o.date&&+o.date.slice(0,4)===y&&/реклам|таргет|facebook|фейсбук|instagram|инстаграм|meta ads|google ads|яндекс директ|тикток|tiktok|вконтакте/i.test((o.text||'')+' '+(o.party||''))&&!/сбор|налог/i.test(o.text||''));
   return auto;
 }
 
@@ -10065,6 +10076,7 @@ function otPayBlock(ip,y,k,tax){
   let h=`<div class="card" style="margin-top:10px;border-left:5px solid ${P.sum>=tax&&tax>0?'#2e7d32':'#D4AF37'}"><b>Уплата по журналу</b><div class="hint" style="margin:4px 0 6px">Берутся расходы за ${y} год, где в описании названа уплата (слова «${{re:'налог на недвижимость',land:'земельный налог',veh:'транспортный налог',eco:'экологический налог',ad:'рекламный сбор'}[k]}»). Вносите платёж в журнал или загружайте выписку с таким назначением платежа.</div>`;
   h+=`<div>Исчислено: <b>${fmt(tax)}</b> руб. Уплачено: <b>${fmt(P.sum)}</b> руб. ${tax>0?(diff>0?'К уплате: <b>'+fmt(diff)+'</b> руб.':diff<0?'Переплата: <b>'+fmt(-diff)+'</b> руб.':'Расчёты закрыты.'):''}</div>`;
   if(P.rows.length)h+=tblx(['Дата','Описание','Сумма, руб.'],P.rows.map(o=>({c:[dmy(o.date),o.text||o.party||'',+o.sum||0]})));
+  if(tax>0){const pc=Math.max(0,Math.min(100,Math.round(P.sum/tax*100)));h+=`<div style="margin-top:8px"><div style="height:9px;border-radius:6px;background:#eee;overflow:hidden"><div style="width:${pc}%;height:100%;background:${P.sum>=tax?'#2e7d32':'#D4AF37'}"></div></div><div class="hint" style="margin-top:3px">Уплачено ${pc}% от исчисленного</div></div>`}
   return h+`</div>`;
 }
 function otFromAssets(){
@@ -10079,35 +10091,43 @@ function otFromAssets(){
 function orgTaxHtml(ip){
   const y=+ip.year,D=otD(ip),t=ui.otx||'re';
   const TB=[['re','Недвижимость'],['land','Земельный налог'],['veh','Транспортный налог'],['eco','Экологический налог'],['ad','Рекламный сбор']];
-  let h=`<h2 class="noprint">Налоги и сборы организации</h2><div class="hint noprint" style="margin-bottom:8px">Налог на недвижимость, земельный, транспортный и экологический налоги, сбор за размещение рекламы. Ставки и коэффициенты зависят от региона и вида объекта: введите их по решению местного Совета депутатов и приложениям к Налоговому кодексу. Сроки и формулы приведены по путеводителям на 2026 год; сверьте с НК.</div>`;
+  const isO=ipKind(ip)==='org';let h=`<div class="hint noprint" style="margin-bottom:8px">${isO?'':'Для ИП: '}Налог на недвижимость, земельный, транспортный и экологический налоги, сбор за размещение рекламы. Ставки и коэффициенты зависят от региона и вида объекта: введите их по решению местного Совета депутатов и приложениям к Налоговому кодексу. Сроки и формулы приведены по путеводителям (редакция на 2026 год); за ${y} год сверьте ставки и сроки с НК.</div>`;
   h+=`<div class="row noprint" style="margin-bottom:10px;flex-wrap:wrap">${TB.map(([k,l])=>`<button class="sm ${k===t?'':'ghost'}" data-act="ot-tab" data-t="${k}">${l}</button>`).join('')}</div>`;
   const del=(k,id)=>({h:`<a class="noprint" data-act="ot-del" data-t="${k}" data-id="${id}" style="color:#b00020;cursor:pointer">удалить</a>`});
   const add=k=>`<div class="row noprint" style="margin:8px 0"><button class="sm" data-act="ot-add" data-t="${k}">+ Добавить</button></div>`;
+  const ipNote=(!isO&&(t==='re'||t==='land'||t==='veh'))?`<div class="hint noprint" style="border-left:4px solid #D4AF37;padding-left:8px"><b>Как платит ИП: расчёт делает налоговый орган</b><br>Как физическое лицо ИП не рассчитывает налог на недвижимость, земельный и транспортный налоги сам: сумму исчисляет налоговый орган и присылает извещение. Налоги уплачиваются единым имущественным платежом не позднее 15 ноября года, следующего за налоговым периодом. Ставка налога на недвижимость для физических лиц 0,1% (подп. 1.2 ст. 230 НК). Таблица ниже нужна для самопроверки извещения. Налог на недвижимость ИП платит сам только по объектам, взятым в финансовый лизинг не на балансе лизингодателя. Экологический налог и сбор за рекламу ИП исчисляет сам (по кварталам).</div>`:'';
   if(t==='re'){
     const R=D.re,tot=r2(R.reduce((a,r)=>a+otReTax(ip,r),0)),area=R.reduce((a,r)=>a+(+r.area||0),0);
-    h+=`<h3>Налог на недвижимость за ${y} год</h3><div class="hint">Н = НБ x С x К. Ставка для организаций 1% (подп. 1.1 ст. 230 НК, кроме отдельных объектов с пониженными ставками), коэффициент К устанавливает местный Совет. Собственные строения: налоговая база по остаточной стоимости на 1 января. Арендованные у физического лица или ИП: база берётся наибольшей из договорной, рыночной и расчётной стоимости (площадь x расчётная стоимость 1 кв. м по приложению 32-3 к НК). Декларация подаётся не позднее 20 марта отчётного года.</div>`;
-    h+=`<div class="card noprint" style="padding:8px"><label>Ставка, %</label><input data-ot="reRate" inputmode="decimal" value="${esc(D.par.reRate)}"><label>Коэффициент К к ставке (по решению Совета)</label><input data-ot="reK" inputmode="decimal" value="${esc(D.par.reK)}"></div>`+add('re').replace('</div>','<button class="sm ghost" data-act="ot-fa">Взять из основных средств</button></div>');
+    h+=ipNote+`<h3>Налог на недвижимость за ${y} год</h3><div class="hint">Н = НБ x С x К. Ставка для организаций 1% (подп. 1.1 ст. 230 НК, кроме отдельных объектов с пониженными ставками), ставку для ИП и физических лиц сверьте с НК и введите в параметрах, коэффициент К устанавливает местный Совет. Собственные строения: налоговая база по остаточной стоимости на 1 января. Арендованные у физического лица или ИП: база берётся наибольшей из договорной, рыночной и расчётной стоимости (площадь x расчётная стоимость 1 кв. м по приложению 32-3 к НК). Декларация подаётся не позднее 20 марта отчётного года.</div>`;
+    h+=`<div class="card noprint" style="padding:8px"><b>Параметры расчёта</b><label>Ставка, %</label><input data-ot="reRate" inputmode="decimal" value="${esc(D.par.reRate)}"><label>Коэффициент К к ставке (по решению Совета)</label><input data-ot="reK" inputmode="decimal" value="${esc(D.par.reK)}"></div>`+add('re').replace('</div>','<button class="sm ghost" data-act="ot-fa">Взять из основных средств</button></div>');
     h+=R.length?tblx(['Объект','Вид','Площадь, кв. м','Налоговая база, руб.','Налог за год, руб.',''],R.map(r=>({c:[r.name||'',r.kind==='own'?'Собственный':'Арендованный у физлица (ИП)',String(+r.area||0),otReBase(r),otReTax(ip,r),del('re',r.id)]})).concat([{t:'tot',c:['Итого','',String(r2(area)),'',tot,'']}])):'<div class="hint">Объекты не внесены.</div>';
-    if(R.length){h+=`<div class="hint">${area<=1000?'Общая площадь '+r2(area)+' кв. м не превышает 1 000 кв. м: организация на УСН не исчисляет налог по капитальным строениям, кроме сданных в аренду (подп. 1.3 ст. 326 НК). Проверьте, подходит ли это вам, и при необходимости исключите объект.':'Общая площадь '+r2(area)+' кв. м превышает 1 000 кв. м: налог исчисляется в общем порядке.'}</div>`}
+    if(R.length&&isO){h+=`<div class="hint">${area<=1000?'Общая площадь '+r2(area)+' кв. м не превышает 1 000 кв. м: организация на УСН не исчисляет налог по капитальным строениям, кроме сданных в аренду (подп. 1.3 ст. 326 НК). Проверьте, подходит ли это вам, и при необходимости исключите объект.':'Общая площадь '+r2(area)+' кв. м превышает 1 000 кв. м: налог исчисляется в общем порядке.'}</div>`}
   }else if(t==='land'){
     const R=D.land,tot=r2(R.reduce((a,r)=>a+otLandTax(r),0));
-    h+=`<h3>Земельный налог за ${y} год</h3><div class="hint">ЗН = НБ x С x Кп x Ку; для участка без капитальных строений ставка увеличивается в 3 раза (п. 12-1 ст. 241 НК). НБ — кадастровая стоимость участка, С — ставка по приложению к НК и решению Совета, Кп — период владения (месяцев / 12). Авансы в 2026 году по сроку не позднее 22 мая, 22 августа, 22 ноября (в 2026 году четыре аванса, п. 2 ст. 4 закона от 30.12.2025 N 127-З); окончательный расчёт не позднее 22 февраля следующего года.</div>`+add('land');
+    h+=ipNote+`<h3>Земельный налог за ${y} год</h3><div class="hint">ЗН = НБ x С x Кп x Ку; для участка без капитальных строений ставка увеличивается в 3 раза (п. 12-1 ст. 241 НК). НБ — кадастровая стоимость участка, С — ставка по приложению к НК и решению Совета, Кп — период владения (месяцев / 12). Авансы в ${y} году по сроку не позднее 22 мая, 22 августа, 22 ноября (в 2026 году четыре аванса, п. 2 ст. 4 закона от 30.12.2025 N 127-З); окончательный расчёт не позднее 22 февраля следующего года.</div>`+add('land');
     h+=R.length?tblx(['Участок','Кадастровая стоимость, руб.','Ставка, %','Месяцев','Ку','Без капстроений','Налог за год, руб.',''],R.map(r=>({c:[r.name||'',+r.cad||0,String(r.rate||''),String(r.months||12),String(r.ky||1),r.nobuild?'да (x3)':'нет',otLandTax(r),del('land',r.id)]})).concat([{t:'tot',c:['Итого','','','','','',tot,'']}])):'<div class="hint">Участки не внесены.</div>';
   }else if(t==='veh'){
     const R=D.veh,tot=r2(R.reduce((a,r)=>a+otVehTax(r),0));
-    h+=`<h3>Транспортный налог за ${y} год</h3><div class="hint">Годовая сумма = налоговая база x ставка (п. 1 ст. 307-7 НК); ставки по приложению 27 к НК, повышающая кратность: x10 для транспортных средств повышенной комфортности, x5 и x2 в случаях, предусмотренных НК. Период владения учитывается как месяцы / 12. Доплата по итогам года не позднее 22 февраля следующего года.</div>`+add('veh');
+    h+=ipNote+`<h3>Транспортный налог за ${y} год</h3><div class="hint">Годовая сумма = налоговая база x ставка (п. 1 ст. 307-7 НК); ставки по приложению 27 к НК, повышающая кратность: x10 для транспортных средств повышенной комфортности, x5 и x2 в случаях, предусмотренных НК. Период владения учитывается как месяцы / 12. Доплата по итогам года не позднее 22 февраля следующего года.</div>`+add('veh');
     h+=R.length?tblx(['Транспортное средство','База (кВт, куб. см, кг)','Ставка за год','Кратность','Месяцев','Налог за год, руб.',''],R.map(r=>({c:[r.name||'',String(+r.base||0),String(+r.rate||0),String(r.mult||1),String(r.months||12),otVehTax(r),del('veh',r.id)]})).concat([{t:'tot',c:['Итого','','','','',tot,'']}])):'<div class="hint">Транспортные средства не внесены.</div>';
   }else if(t==='eco'){
     const R=D.eco,tot=r2(R.reduce((a,r)=>a+otEcoTax(r),0));
     h+=`<h3>Экологический налог за ${y} год</h3><div class="hint">Налог = объём x ставка x понижающий коэффициент (если есть льгота). Ставки зависят от загрязняющего вещества и вида воздействия: выбросы, сброс сточных вод, хранение и захоронение отходов (приложения к НК). Декларация подаётся не позднее 20-го, налог уплачивается не позднее 22-го числа месяца после квартала.</div>`+add('eco');
     h+=R.length?tblx(['Показатель','Объём','Ставка','Коэффициент','Квартал','Налог, руб.',''],R.map(r=>({c:[r.name||'',String(+r.vol||0),String(+r.rate||0),String(r.k||1),String(r.q||''),otEcoTax(r),del('eco',r.id)]})).concat([{t:'tot',c:['Итого','','','','',tot,'']}])):'<div class="hint">Записей нет.</div>';
   }else{
-    const auto=otAdBase(ip,y),manual=D.ad,rate=num(D.par.adRate)||0;
-    const sumAuto=r2(auto.reduce((a,o)=>a+(+o.sum||0),0)),sumMan=r2(manual.reduce((a,r)=>a+(+r.sum||0),0));
-    h+=`<h3>Сбор за размещение рекламы за ${y} год</h3><div class="hint">Плательщик — белорусский рекламодатель (юридическое лицо или ИП). База — стоимость услуг по размещению рекламы без НДС. Расчёт подаётся не позднее 20-го, сбор уплачивается не позднее 22-го числа месяца после квартала. Ставку введите по Налоговому кодексу; из журнала подставлены расходы, где в тексте или контрагенте есть слово «реклам».</div><div class="card noprint" style="padding:8px"><label>Ставка сбора, %</label><input data-ot="adRate" inputmode="decimal" value="${esc(D.par.adRate)}"></div>`+add('ad');
-    h+=tblx(['Дата','Описание','Сумма без НДС, руб.','Источник',''],auto.map(o=>({c:[dmy(o.date),o.text||o.party||'',+o.sum||0,'журнал','']})).concat(manual.map(r=>({c:[r.date?dmy(r.date):'',r.name||'',+r.sum||0,'вручную',del('ad',r.id)]})),[{t:'tot',c:['Итого база','',r2(sumAuto+sumMan),'','']},{t:'tot',c:['Сбор по ставке '+rate+'%','',r2((sumAuto+sumMan)*rate/100),'','']}]));
-    if(!rate)h+=`<div class="hint">Ставка не введена: укажите её, и сбор будет рассчитан.</div>`;
-    h+=otPayBlock(ip,y,'ad',r2((sumAuto+sumMan)*rate/100));
+    const auto=otAdBase(ip,y),manual=D.ad,rate=(D.par.adRate===''||D.par.adRate==null)?20:(num(D.par.adRate)||0),rateOut=(D.par.adRateOut===''||D.par.adRateOut==null)?10:(num(D.par.adRateOut)||0);
+    const qOf=d=>d?Math.min(4,Math.floor((+String(d).slice(5,7)-1)/3)+1):1;
+    const L=[];auto.forEach(o=>L.push({d:o.date,q:qOf(o.date),t:o.text||o.party||'',s:+o.sum||0,out:false,src:'журнал'}));
+    manual.forEach(r=>L.push({d:r.date||'',q:qOf(r.date),t:r.name||'',s:+r.sum||0,out:r.kind==='out',src:'вручную',id:r.id}));
+    L.sort((a,b)=>String(a.d).localeCompare(String(b.d)));
+    const Qs=[1,2,3,4].map(q=>{const a=L.filter(x=>x.q===q&&!x.out),b=L.filter(x=>x.q===q&&x.out),s1=r2(a.reduce((z,x)=>z+x.s,0)),s2=r2(b.reduce((z,x)=>z+x.s,0));return {q,s1,s2,fee:r2(s1*rate/100+s2*rateOut/100)}});
+    const feeY=r2(Qs.reduce((z,x)=>z+x.fee,0)),baseY=r2(Qs.reduce((z,x)=>z+x.s1+x.s2,0));
+    h+=`<h3>Сбор за размещение рекламы за ${y} год</h3><div class="hint">Плательщик — белорусский рекламодатель: организация или ИП (Указ № 131, гл. 28-2 НК). Ставки: 20% — реклама в интернете (Фейсбук, Инстаграм, Гугл, Яндекс, сайты, соцсети) и прочая, 10% — наружная реклама (ст. 307-15 НК). База — стоимость услуг без НДС; если исполнитель НДС не предъявил (например, он на УСН), то вся стоимость. Сбор исчисляется за каждый квартал отдельно, без нарастающего итога. Расчёт подаётся электронно не позднее 20-го, сбор уплачивается не позднее 22-го числа месяца после квартала. Организация включает сбор в затраты, ИП — в расходы при подоходном налоге в размере фактической уплаты (подтвердите документом).</div><div class="card noprint" style="padding:8px"><b>Параметры расчёта</b><label>Ставка для рекламы в интернете и прочей, %</label><input data-ot="adRate" inputmode="decimal" value="${esc(D.par.adRate===''||D.par.adRate==null?'20':D.par.adRate)}"><label>Ставка для наружной рекламы, %</label><input data-ot="adRateOut" inputmode="decimal" value="${esc(D.par.adRateOut===''||D.par.adRateOut==null?'10':D.par.adRateOut)}"></div>`+add('ad');
+    h+=tblx(['Квартал','База 20%, руб.','База 10%, руб.','Сбор, руб.','Расчёт до','Уплата до'],Qs.map(x=>{const mo=x.q===4?'01':String(x.q*3+1).padStart(2,'0'),yy=x.q===4?y+1:y;return {c:['Квартал '+x.q,x.s1,x.s2,x.fee,'20.'+mo+'.'+yy,'22.'+mo+'.'+yy]}}).concat([{t:'tot',c:['За год',r2(Qs.reduce((z,x)=>z+x.s1,0)),r2(Qs.reduce((z,x)=>z+x.s2,0)),feeY,'','']}]));
+    h+=`<div class="hint">Перенос срока на ближайший рабочий день, если срок выпал на выходной, календарь учитывает. Расходы из журнала считаются рекламой в интернете (20%); наружную рекламу добавьте вручную с выбором вида.</div>`;
+    h+=tblx(['Дата','Описание','Сумма без НДС, руб.','Вид','Источник',''],L.map(x=>({c:[x.d?dmy(x.d):'',x.t,x.s,x.out?'наружная, '+rateOut+'%':'интернет и прочая, '+rate+'%',x.src,x.id?del('ad',x.id):'']})));
+    if(!L.length)h+='<div class="hint">Рекламных расходов за год нет.</div>';
+    h+=otPayBlock(ip,y,'ad',feeY);
   }
   if(t==='re')h+=otPayBlock(ip,y,'re',r2(D.re.reduce((a,r)=>a+otReTax(ip,r),0)));
   else if(t==='land')h+=otPayBlock(ip,y,'land',r2(D.land.reduce((a,r)=>a+otLandTax(r),0)));
@@ -10838,7 +10858,7 @@ function otForm(t){
    land:[{n:'name',l:'Участок'},{n:'cad',l:'Кадастровая стоимость участка, руб.',d:1},{n:'rate',l:'Ставка земельного налога, %',d:1},{n:'months',l:'Месяцев владения в году',v:'12'},{n:'ky',l:'Коэффициент Ку по решению Совета',v:'1'},{n:'nobuild',l:'На участке нет капитальных строений (ставка x3)',opts:[['','Нет, строения есть'],['1','Да, строений нет']]}],
    veh:[{n:'name',l:'Транспортное средство (марка, номер)'},{n:'base',l:'Налоговая база (кВт, куб. см, кг, мест)',d:1},{n:'rate',l:'Ставка налога за год по приложению 27 к НК, руб. за единицу базы',d:1},{n:'mult',l:'Кратность ставки',opts:[['1','1 (общий случай)'],['2','2'],['5','5'],['10','10 (повышенной комфортности)']]},{n:'months',l:'Месяцев владения в году',v:'12'}],
    eco:[{n:'name',l:'Показатель (вещество, вид воздействия)'},{n:'vol',l:'Объём (тонн, куб. м)',d:1},{n:'rate',l:'Ставка за единицу, руб.',d:1},{n:'k',l:'Понижающий коэффициент (1, если нет льготы)',v:'1'},{n:'q',l:'Квартал (1-4)'}],
-   ad:[{n:'date',l:'Дата оказания услуги',t:'date',v:td},{n:'name',l:'Описание услуги'},{n:'sum',l:'Стоимость услуг без НДС, руб.',d:1}]
+   ad:[{n:'date',l:'Дата оказания услуги',t:'date',v:td},{n:'name',l:'Описание услуги'},{n:'kind',l:'Вид рекламы',opts:[['net','В интернете и прочая (20%)'],['out','Наружная (10%)']]},{n:'sum',l:'Стоимость услуг без НДС, руб.',d:1}]
   }[t];
   miniForm('Добавить запись',F,o=>{const r={id:uid()};F.forEach(f=>{const v=o[f.n];r[f.n]=f.d?(num(v)||0):v});if(t==='land')r.nobuild=!!o.nobuild;D[t].push(r)});
 }
@@ -10888,26 +10908,35 @@ function usnDeclHtml(ip){
   h+=`<div class="hint">Значения формы сверены по файлам форм за 2023, 2024, 2025 годы (ilex) и 2026 год (приложение 22).</div>`;
   return h;
 }
+function usnChartHtml(C,P,cnt,ip,y){
+  const M=Array(12).fill(0);try{usnIncOps(ip,y).concat(usnManInc(ip,y)).forEach(o=>{const m=+String(o.date).slice(5,7)-1;if(m>=0&&m<12)M[m]=r2(M[m]+(+o.sum||0))})}catch(e){}
+  const mx=Math.max(1,...M),L='ЯФМАМИИАСОНД';
+  const bars=M.map((v,i)=>{const hh=Math.max(3,Math.round(v/mx*66)),x=8+i*34;return `<rect x="${x}" y="${84-hh}" width="24" height="${hh}" rx="5" fill="${v?'#D4AF37':'#e8e2c8'}"><title>${USN_MN[i]}: ${fmt(v)} руб.</title></rect><text x="${x+12}" y="100" text-anchor="middle" font-size="10" fill="#555">${L[i]}</text>`}).join('');
+  const g=(t,v,lim,u)=>{if(!lim)return '';const p=Math.min(100,Math.round(v/lim*100)),c=v>lim?'#c0392b':v>lim*0.8?'#D4AF37':'#2e7d32';return `<div style="margin:6px 0"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:12.5px"><span>${t}</span><b>${u===' чел.'?v:fmt(v)} из ${u===' чел.'?lim:fmt(lim)} (${p}%)</b></div><div style="height:9px;border-radius:6px;background:#eee;overflow:hidden"><div style="width:${p}%;height:100%;background:${c}"></div></div></div>`};
+  return `<div class="card usnviz noprint" style="padding:12px 14px;margin:8px 0"><div class="usnvg"><div><div style="font-weight:700;font-size:13px;margin-bottom:2px">Выручка по месяцам, руб.</div><svg viewBox="0 0 416 106" width="100%" style="max-height:130px">${bars}</svg><div class="hint" style="margin-top:2px">За год: <b>${fmt(C.total)}</b> руб. Налог нарастающим итогом: <b>${fmt(C.rows[3]?C.rows[3].taxCum:0)}</b> руб.</div></div><div><div style="font-weight:700;font-size:13px;margin-bottom:4px">Насколько близко пределы</div>${g('Выручка за год',C.total,P.stopRev,' руб.')}${g('Выручка для бухучёта',C.total,P.bookRev,' руб.')}${g('Работники',cnt,P.stopNum,' чел.')}</div></div></div><style>.usnvg{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:700px){.usnvg{grid-template-columns:1fr}}</style>`}
 function usnHtml(ip){
   const y=+ip.year,C=usnCalc(ip,y),P=C.P;ip.usn=ip.usn||{};ip.usn.chk=ip.usn.chk||{};
   let h=`<h2>Налог при УСН</h2><div class="hint" style="margin-bottom:8px">Организация на упрощённой системе платит ${P.rate}% с валовой выручки (ст. 329 НК) по кассовому принципу: выручка включается в день поступления денег на счёт или в кассу, дата акта или накладной значения не имеет. Налог считается нарастающим итогом с начала года (п. 1 ст. 331 НК). НДС по реализации на УСН не начисляется (подп. 1.2 п. 1 ст. 326 НК), но уплачивается при ввозе товаров и по услугам иностранных организаций. Расчёт из журнала: поступления вида «Доход».</div>`;
   const rows=C.rows.map(r=>({c:[r.q+' квартал',r.inc,r.cum,r.taxCum,r.pay,r.decl,r.pay_d]}));
-  h+=tblx(['Квартал','Выручка за квартал, руб.','Выручка нарастающим итогом, руб.','Налог нарастающим итогом, руб.','Налог к уплате за квартал, руб.','Срок декларации (до 20-го)','Срок уплаты (до 22-го)'],rows);
-  h+=`<div class="hint">Декларация подаётся не позднее 20-го, налог платится не позднее 22-го числа месяца, следующего за кварталом (ст. 332 НК); при выходном дне срок переносится на следующий рабочий день. Налог за квартал = налог нарастающим итогом минус исчисленный за прошлые кварталы. Уплаченные суммы вы вносите в журнал как налоги.</div>`;
-  /* контроль порогов */
+  let hq=tblx(['Квартал','Выручка за квартал, руб.','Выручка нарастающим итогом, руб.','Налог нарастающим итогом, руб.','Налог к уплате за квартал, руб.','Срок декларации (до 20-го)','Срок уплаты (до 22-го)'],rows);
+  hq+=`<div class="hint">Декларация подаётся не позднее 20-го, налог платится не позднее 22-го числа месяца, следующего за кварталом (ст. 332 НК); при выходном дне срок переносится на следующий рабочий день. Налог за квартал = налог нарастающим итогом минус исчисленный за прошлые кварталы. Уплаченные суммы вы вносите в журнал как налоги.</div>`;
+  h+=usnChartHtml(C,P,(ip.staff||[]).length,ip,y);
+  h+=foldSec('usnq','Налог по кварталам',4,hq);
+  let hl='';/* контроль порогов */
   const cnt=(ip.staff||[]).length,rev=C.total;
   const bar=(t,v,lim,u,txt)=>lim?`<div class="card" style="margin:6px 0;padding:10px;border-left:5px solid ${v>lim?'#c0392b':v>lim*0.8?'#D4AF37':'#2e7d32'}"><b>${t}</b><div>${u===' чел.'?v:fmt(v)}${u} из ${u===' чел.'?lim:fmt(lim)}${u} (${Math.round(v/lim*100)}%)</div><div class="hint">${txt}</div></div>`:`<div class="hint">${t}: предельное значение для ${y} года не внесено.</div>`;
-  h+=`<h3>Контроль предельных значений</h3>`;
-  h+=bar('Валовая выручка и право на УСН',rev,P.stopRev,' руб.','Если выручка с начала года превысит предел, применение УСН прекращается с месяца, следующего за отчётным периодом, в котором это произошло (подп. 6.4 п. 6 ст. 327 НК). В следующем году УСН применять нельзя, если УСН прекращена с месяца, иного чем январь (п. 4 ст. 324 НК).');
-  h+=bar('Валовая выручка и ведение бухгалтерского учёта',rev,P.bookRev,' руб.','Если выручка не больше этого значения и в среднем работает не более '+(P.bookNum||'')+' человек, достаточно Книги учёта доходов и расходов при УСН. После превышения бухгалтерский учёт ведётся с месяца, следующего за отчётным периодом, в котором было превышение (п. 2 ст. 333 НК).');
-  h+=bar('Численность работников (по числу записанных работников)',cnt,P.stopNum,' чел.','Предел для применения УСН: в среднем с начала года более '+(P.stopNum||'')+' человек, и для бухгалтерского учёта более '+(P.bookNum||'')+' человек. Среднюю численность считайте по табелю: здесь показано число работников в разделе «Зарплата».');
-  if(P.note)h+=`<div class="hint">${esc(P.note)}</div>`;
+  hl+=bar('Валовая выручка и право на УСН',rev,P.stopRev,' руб.','Если выручка с начала года превысит предел, применение УСН прекращается с месяца, следующего за отчётным периодом, в котором это произошло (подп. 6.4 п. 6 ст. 327 НК). В следующем году УСН применять нельзя, если УСН прекращена с месяца, иного чем январь (п. 4 ст. 324 НК).');
+  hl+=bar('Валовая выручка и ведение бухгалтерского учёта',rev,P.bookRev,' руб.','Если выручка не больше этого значения и в среднем работает не более '+(P.bookNum||'')+' человек, достаточно Книги учёта доходов и расходов при УСН. После превышения бухгалтерский учёт ведётся с месяца, следующего за отчётным периодом, в котором было превышение (п. 2 ст. 333 НК).');
+  hl+=bar('Численность работников (по числу записанных работников)',cnt,P.stopNum,' чел.','Предел для применения УСН: в среднем с начала года более '+(P.stopNum||'')+' человек, и для бухгалтерского учёта более '+(P.bookNum||'')+' человек. Среднюю численность считайте по табелю: здесь показано число работников в разделе «Зарплата».');
+  if(P.note)hl+=`<div class="hint">${esc(P.note)}</div>`;
+  h+=foldSec('usnlim','Контроль предельных значений',3,hl);
   /* проверка права на УСН */
   const on=USN_BAN.filter(b=>ip.usn.chk[b[0]]);
-  h+=`<h3>Подходит ли вам УСН</h3><div class="hint">Отметьте то, что относится к вашей организации (ст. 324 п. 2 НК). Если есть отметки, упрощённую систему применять нельзя. Условия перехода: численность не более ${P.transNum||50} человек и выручка за девять месяцев года, предшествующего переходу, не более ${P.transRev9?fmt(P.transRev9).replace(',00','')+' руб.':'(не внесено)'}; уведомление подаётся с 1 октября по 31 декабря (п. 2 ст. 327 НК).</div>`;
-  h+=on.length?`<div class="warn amber">Отмечено ограничений: ${on.length}. Применять УСН нельзя: ${on.map(b=>esc(b[0])).join(', ')} (п. 2 ст. 324 НК).</div>`:'<div class="hint">Ограничений не отмечено.</div>';
-  h+=usnYearsHtml(y);
-  h+=`<div class="card" style="padding:8px">`+USN_BAN.map(b=>`<label style="display:flex;gap:8px;align-items:flex-start;margin:4px 0;color:#111"><input type="checkbox" data-usnchk="${b[0]}" ${ip.usn.chk[b[0]]?'checked':''}> <span><b>${b[0]}</b> ${esc(b[1])}</span></label>`).join('')+`</div>`;
+  let hc=`<div class="hint">Отметьте то, что относится к вашей организации (ст. 324 п. 2 НК). Если есть отметки, упрощённую систему применять нельзя. Условия перехода: численность не более ${P.transNum||50} человек и выручка за девять месяцев года, предшествующего переходу, не более ${P.transRev9?fmt(P.transRev9).replace(',00','')+' руб.':'(не внесено)'}; уведомление подаётся с 1 октября по 31 декабря (п. 2 ст. 327 НК).</div>`;
+  hc+=on.length?`<div class="warn amber">Отмечено ограничений: ${on.length}. Применять УСН нельзя: ${on.map(b=>esc(b[0])).join(', ')} (п. 2 ст. 324 НК).</div>`:'<div class="hint">Ограничений не отмечено.</div>';
+  hc+=usnYearsHtml(y);
+  hc+=`<div class="card" style="padding:8px">`+USN_BAN.map(b=>`<label style="display:flex;gap:8px;align-items:flex-start;margin:4px 0;color:#111"><input type="checkbox" data-usnchk="${b[0]}" ${ip.usn.chk[b[0]]?'checked':''}> <span><b>${b[0]}</b> ${esc(b[1])}</span></label>`).join('')+`</div>`;
+  h+=foldSec('usnchk','Подходит ли вам УСН: проверка ограничений'+(on.length?' (отмечено: '+on.length+')':''),USN_BAN.length,hc);
   return h;
 }
 document.addEventListener('change',e=>{const t=e.target;if(t&&t.dataset&&t.dataset.usnchk){const ip=cur();ip.usn=ip.usn||{};ip.usn.chk=ip.usn.chk||{};ip.usn.chk[t.dataset.usnchk]=t.checked;save();render(true)}});
@@ -11087,7 +11116,7 @@ function more(ip){
    <select data-s="goods"><option value="qty" ${(st.goods||'qty')==='qty'?'selected':''}>Количественный учёт по каждому товару (Приложение 7)</option><option value="markup" ${st.goods==='markup'?'selected':''}>Средний процент торговых надбавок (Приложение 7, пп. 65–67)</option><option value="sum" ${st.goods==='sum'?'selected':''}>Средний процент покупной стоимости, суммовой учёт (Приложение 8, глава 7)</option></select>
    <label style="display:flex;gap:8px;align-items:center;color:#111"><input type="checkbox" data-s="cateringSum" ${st.cateringSum?'checked':''}> Общественное питание: суммовой учёт (Приложение 8)</label>
    <label style="display:flex;gap:8px;align-items:center;color:#111"><input type="checkbox" data-s="rkoCtl" ${st.rkoCtl!==false?'checked':''}> Контролировать РКО: подсказывать, где расход из кассы (чеки, оплата наличными, выдача подотчёта) не подтверждён расходным кассовым ордером</label><div class="hint">Отключите, если оплачиваете из личных средств и кассу как таковую не ведёте.</div>
-   <label style="display:flex;gap:8px;align-items:center;color:#111;margin-top:10px"><input type="checkbox" data-s="vatPayer" ${st.vatPayer?'checked':''}> Я плательщик НДС: показывать в календаре декларацию, уплату НДС и ЭСЧФ</label>
+   <label style="display:flex;gap:8px;align-items:center;color:#111;margin-top:10px"><input type="checkbox" data-s="vatPayer" ${st.vatPayer?'checked':''}> ${ipKind(ip)==='org'?'Показывать в календаре декларацию, уплату НДС и ЭСЧФ (есть НДС к уплате или общая система)':'Показывать в календаре декларацию, уплату НДС и ЭСЧФ'}</label>${ipKind(ip)==='org'?'<div class="hint" style="margin-top:4px">Организация на УСН не уплачивает НДС по операциям внутри Беларуси (подп. 1.1.2 и 1.2.2 ст. 326 НК), ЭСЧФ при реализации не создаёт (п. 6 ст. 130 НК). Но НДС платит при ввозе товаров, при покупке у иностранных организаций, не состоящих на учёте в Беларуси, по договорам поручения и комиссии с ними, а также при излишнем выставлении НДС покупателю. Отметьте галочку, если у вас есть такие случаи, чтобы в календаре появились декларация, уплата и ЭСЧФ. Организация на общей системе налогообложения отмечает её всегда. Ввозной НДС ведётся во вкладке «НДС».</div>':'<div class="hint" style="margin-top:4px">ИП не является плательщиком НДС при реализации (ч. 2 ст. 112 НК). Отметьте, только если вы исчисляете НДС в иных случаях: приобретение у иностранных организаций, договоры поручения и комиссии с ними, излишне предъявленный НДС в ЭСЧФ. НДС при ввозе ведётся отдельно во вкладке «НДС».</div>'}
    <div class="hint" style="margin-top:6px">Что у вас есть в учёте:</div>
    ${[['hasOS','Основные средства'],['hasNMA','Нематериальные активы'],['hasMBP','Отдельные предметы в составе оборотных средств'],['hasRaw','Сырьё и материалы'],['hasCars','Автомобили и топливо (путевые листы, шины, нормируемые расходы)'],['vat','Ввоз из ЕАЭС или обязательства по НДС (Приложение 11)']].map(([k,l])=>`<label style="display:flex;gap:8px;align-items:center;color:#111"><input type="checkbox" data-s="${k}" ${st[k]?'checked':''}> ${l}</label>`).join('')}
    <div class="row" style="margin-top:8px;flex-wrap:wrap;gap:6px"><a class="sm" href="#/book" onclick="ui.bk='list'">Показать, какие книги нужны</a><a class="sm ghost" href="#/kinds" style="text-decoration:none">Справочник видов деятельности</a></div></div>
@@ -12299,7 +12328,7 @@ const REFY={
   bpm:[['2026-02-01',496.96,'с 1 февраля 2026 года, постановление Минтруда и соцзащиты от 22.01.2026 № 2'],['2026-05-01',509.62,'с 1 мая 2026 года, постановление Минтруда и соцзащиты от 22.04.2026 № 28'],['2026-08-01',530.37,'с 1 августа 2026 года'],['2026-11-01',535.70,'с 1 ноября 2026 года, постановление Минтруда и соцзащиты от 19.10.2026 № 88']],
   ded:{self:216,selfLim:1308,selfQ:3930,child:63,high:120,cat:306,young:860},
   ip:{rate:20,high:30,thr:500000,chk:1},
-  pn:'С 1 января 2026 года по доходам свыше 350 000 руб. за год применяются повышенные ставки: 25% и 30% (свыше 600 000 руб.), стандартные вычеты к таким доходам не применяются (ст. 214 Налогового кодекса в редакции Закона от 30.12.2025 № 127-З). Как это работает для ИП и ступенями или со всей суммы, сверьте по тексту кодекса.'
+  pn:'С 1 января 2026 года повышенные ставки применяются к совокупности доходов за календарный год, перечисленных в ч. 1 и 2 п. 8-2 ст. 199 НК (зарплата и иные выплаты по трудовым отношениям, доходы по гражданско-правовым договорам, аренда и т.п.): 25% с превышения 350 000 руб. и 30% с превышения 600 000 руб. Налог по этим ставкам исчисляется только с суммы превышения (база = доходы минус 350 000 или 600 000 руб.), льготы ст. 208–212 НК к сумме превышения не применяются. Дивиденды свыше 350 000 руб. за год облагаются по ставке 25%. Предпринимательский доход ИП в этом перечне не указан. В ведомости зарплаты это считается нарастающим итогом с начала года (с 2026 года), в предупреждении к работнику показано, с какой суммы удержано по 25% и 30%. Сверяйте с актуальной редакцией ст. 199 и 214 НК.'
  },
  2027:null,2028:null,2029:null,2030:null,2031:null,2032:null
 };
@@ -16780,7 +16809,7 @@ function prnTotal(sp,rows,k){const c=sp.cols.find(x=>x.k===k);return r2((rows||[
 function prnGeneric(ip,rec){
   const sp=PRN[rec.type],v=rec.v;let h=`<div class="pdoc">`;
   if(sp.appr)h+=`<div class="pda"><b>УТВЕРЖДАЮ</b><br>Индивидуальный предприниматель<br>_____________ ${esc(ipFio(ip))}<br>${dmy(rec.date)}</div>`;
-  const tx=sp.text?sp.text(ip,rec):'',dup=!!tx&&((ip.unp&&tx.indexOf(ip.unp)>=0)||tx.indexOf(esc('Индивидуальный предприниматель '+fioClean(ip.name)))>=0);
+  const tx=sp.text?sp.text(ip,rec):'',dup=!!tx&&((ip.unp&&tx.indexOf(ip.unp)>=0)||tx.indexOf(esc((ipKind(ip)==='org'?(typeof orgName==='function'?orgName(ip):ip.name):'Индивидуальный предприниматель '+fioClean(ip.name))))>=0);
   h+=prnHead(ip,rec,esc(sp.ttl?sp.ttl(rec):sp.t),dup);
   if(tx)h+=`<p>${tx}</p>`;
   if(sp.cols)h+=prnTable(sp,rec.rows);
@@ -20419,7 +20448,7 @@ const dayW=n=>{n=Math.round(+n)||0;const a=n%100,b=n%10;return n+' '+((a>10&&a<2
 const ordPeriod=(a,b)=>a&&b?'с '+dmy(a)+' по '+dmy(b):'';
 const SER={k:{t:'Кадровые приказы (приём, переводы, увольнение, отпуска)',suf:'-т'},td:{t:'Трудовые договоры и контракты',suf:''},o:{t:'Приказы по основной деятельности',suf:'-ос'},ot:{t:'Охрана труда и пожарная безопасность',suf:'-ОТ'},v:{t:'Воинский учёт',suf:'-в'},m:{t:'Приказы по зарплате (премии, надбавки, удержания)',suf:'-ЗП'},r:{t:'Решения ИП',suf:''},vd:{t:'Платёжные ведомости и ведомости аванса',suf:''},rv:{t:'Расчётные ведомости',suf:''},rk:{t:'Расходные кассовые ордера по зарплате',suf:''},tb:{t:'Табели учёта рабочего времени',suf:''}};
 const OT_TYPES=['safe','fire','pozhin'];
-const serOf=type=>{const sp=ORD[type];if(!sp)return null;if(OT_TYPES.includes(type))return 'ot';if(type==='milreg')return 'v';if(type==='k_td')return 'td';return({k:'k',t:'k',o:'o',v:'v',m:'m',r:'r'})[sp.g]||null};
+const serOf=type=>{const sp=ORD[type];if(!sp)return null;if(OT_TYPES.includes(type))return 'ot';if(type==='milreg')return 'v';if(type==='k_td')return 'td';return({k:'k',t:'k',o:'o',v:'v',m:'m',r:'r',u:'u'})[sp.g]||null};
 const seqOfNo=no=>{const m=String(no||'').match(/\d+/);return m?+m[0]:0};
 const nsOf=(ip,ser)=>Object.assign({suf:SER[ser].suf,start:1},(ip.numset||{})[ser]||{});
 const fmtNo=(ip,ser,seq)=>String(seq).padStart(2,'0')+nsOf(ip,ser).suf;
@@ -21056,7 +21085,7 @@ function payOrd(ip){
   const L=(ip.ord||[]).slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
   const det=(k,title,cnt,body,open)=>`<details class="ordg" data-od="${k}" ${(ui.od[k]!=null?ui.od[k]:open)?'open':''}><summary><span>${title}</span><i>${cnt}</i></summary>${body}</details>`;
   let h='<div class="hint" style="margin:8px 0">Выберите документ, проверьте данные и распечатайте. Данные работника подставляются из его карточки.</div><input class="ofind" id="ofind" placeholder="Найти документ: отпуск, пожарная, договор, касса..." oninput="ordFind(this.value)">';
-  ['r','k','o','z','d','v'].forEach(g=>{const it=Object.entries(ORD).filter(([k,s])=>s.g===g&&!ordHideOrg(k));
+  ['u','r','k','o','z','d','v'].forEach(g=>{const it=Object.entries(ORD).filter(([k,s])=>s.g===g&&!ordHideOrg(k));if(!it.length)return;
     h+=det(g,ORDG[g],it.length,`<div class="row" style="flex-wrap:wrap;gap:6px">${it.map(([k,s])=>`<button class="sm ghost" data-act="ord-new" data-t="${k}">${oE(s.t)}</button>`).join('')}</div>`,0)});
   h+=det('done','Составленные документы',L.length,L.length?L.map(r=>`<div class="op"><div class="l"><div class="t">${oE(ordNameOf(ip,r))}${r.no?' № '+oE(r.no):''}</div><small>${dmy(r.date)}${r.v.fio?' · '+oE(r.v.fio):''}</small></div><div class="s noprint"><button class="link" data-act="ord-show" data-id="${r.id}">Печать</button><button class="link" data-act="ord-edit" data-id="${r.id}">Изменить</button><button class="link" data-act="ord-del" data-id="${r.id}">Удалить</button></div></div>`).join(''):'<div class="hint" style="padding-bottom:12px">Пока ничего не составлено.</div>',L.length?1:0);
   return h}
@@ -21257,15 +21286,15 @@ function payGuide(ip){
   h+=`<div class="card w" style="margin-top:14px"><b>Увольнение и перевод</b><div class="hint" style="font-size:14px;color:#333;margin-top:6px">В карточке работника кнопки «перевод» и «увольнение» открывают свой пакет: заявление, приказ, соглашение, расписка. При увольнении проверьте компенсацию за неиспользованный отпуск и окончательный расчёт в день увольнения.</div></div>`;
   return h}
 function hrCreateOpen(){
-  const root=$('#modalRoot'),G=['r','k','o','z','d','v'];
+  const root=$('#modalRoot'),G=['u','r','k','o','z','d','v'];
   const grp=G.map(g=>[(typeof ORDG!=='undefined'&&ORDG[g])||g,Object.entries(ORD).filter(([k,x])=>x.g===g&&!ordHideOrg(k)).map(([k,x])=>['ord-new',k,x.t])]).filter(x=>x[1].length);
   const pr=Object.entries(PRN).filter(([k,x])=>x.g===6).map(([k,x])=>['prn-new',k,x.t]);
   if(pr.length)grp.push(['Другие кадровые и расчётные документы',pr]);
   root.innerHTML=`<div class="modal"><div class="sheet"><h2>Создать документ</h2><div class="hint">Приказы, заявления, договоры, справки по работникам. Данные работника подставятся из его карточки.</div>
   <input id="hcq" placeholder="Найти документ: отпуск, командировка, договор..." style="margin:6px 0 10px">
-  <div id="hcl">${grp.map(([t,L])=>`<div class="card hcg" style="margin-bottom:8px"><b>${esc(t)}</b><div class="row" style="flex-wrap:wrap;gap:6px;margin-top:6px">${L.map(([a,k,n])=>`<button class="sm ghost" data-act="${a}" data-t="${k}" data-n="${esc(String(n).toLowerCase())}">${esc(n)}</button>`).join('')}</div></div>`).join('')}</div>
+  <div id="hcl">${grp.map(([t,L])=>`<div class="card hcdg" style="margin-bottom:8px"><b>${esc(t)}</b><div class="row" style="flex-wrap:wrap;gap:6px;margin-top:6px">${L.map(([a,k,n])=>`<button class="sm ghost" data-act="${a}" data-t="${k}" data-n="${esc(String(n).toLowerCase())}">${esc(n)}</button>`).join('')}</div></div>`).join('')}</div>
   <div class="row"><button class="ghost" type="button" data-act="sale-x">Закрыть</button></div></div></div>`;
-  const q=$('#hcq');q.oninput=()=>{const v=q.value.trim().toLowerCase();root.querySelectorAll('.hcg').forEach(c=>{let any=false;c.querySelectorAll('button[data-n]').forEach(b=>{const m=!v||b.dataset.n.includes(v);b.style.display=m?'':'none';if(m)any=true});c.style.display=any?'':'none'})}}
+  const q=$('#hcq');q.oninput=()=>{const v=q.value.trim().toLowerCase();root.querySelectorAll(".hcdg").forEach(c=>{let any=false;c.querySelectorAll('button[data-n]').forEach(b=>{const m=!v||b.dataset.n.includes(v);b.style.display=m?'':'none';if(m)any=true});c.style.display=any?'':'none'})}}
 const PAY_TABS=[['staff','Сотрудники'],['file','Личное дело'],['tabel','Табель'],['pcal','Производственный календарь'],['sch','Графики работы'],['calc','Начисление зарплаты'],['leave','Отпуск, больничный'],['ord','Приказы и договоры'],['dates','Выплаты'],['docs','Ведомости'],['rep','Отчёты'],['hc','Калькулятор численности'],['fund','Фонды и долги'],['reg','Нумерация документов'],['dreg','Реестр документов'],['guide','Порядок работы'],['ref','Справочник']];
 function pay(ip){
   const tabs=PAY_TABS;
@@ -22655,7 +22684,7 @@ function slipHtml(ip,m,r,mk){
 }
 function slipText(ip,m,r,mk){
   const d=pmGet(ip,m).dates||{},L=[];
-  L.push('Расчётный листок за '+mk,'Индивидуальный предприниматель '+fioClean(ip.name)+(ip.unp?', УНП '+ip.unp:''),'Работник: '+r.e.fio+(r.e.pos?', '+r.e.pos:''),'Отработано: '+r.w+' из '+r.nd+' дн.','','Начислено:');
+  L.push('Расчётный листок за '+mk,(ipKind(ip)==='org'?(typeof orgName==='function'?orgName(ip):ip.name):'Индивидуальный предприниматель '+fioClean(ip.name))+(ip.unp?', УНП '+ip.unp:''),'Работник: '+r.e.fio+(r.e.pos?', '+r.e.pos:''),'Отработано: '+r.w+' из '+r.nd+' дн.','','Начислено:');
   r.lines.forEach(l=>L.push('  '+l.label+(l.note?' ('+l.note+')':'')+': '+fmt(l.amount)));
   L.push('  Всего начислено: '+fmt(r.gross),'','Удержано:','  Подоходный налог '+S.params.pnRate+'%: '+fmt(r.pn),'  Взнос в ФСЗН '+r.fzEmpR+'%: '+fmt(r.f1));
   r.holds.forEach(x=>{if(x.amount>0)L.push('  '+x.name+': '+fmt(x.amount))});
@@ -22938,11 +22967,13 @@ function calEvents(ip){
   /* сроки налогов и сборов организации (по текстам путеводителей и НК) */
   if(ipKind(ip)==='org'){try{
     for(let i=ev.length-1;i>=0;i--)if(ev[i].kind==='tax'&&/подоходн/i.test(ev[i].t))ev.splice(i,1);
-    const U=usnCalc(ip,+ip.year);U.rows.forEach(r=>{add(isoOf(r.decl),'Декларация по налогу при УСН: '+r.q+' квартал '+ip.year,'book:usndecl','tax');add(isoOf(r.pay_d),'Уплата налога при УСН: '+r.q+' квартал '+ip.year+(r.pay>0?', '+fmt(r.pay)+' руб.':''),'book:usndecl','tax')})}catch(e){}
-    try{const D=otD(ip),y=+ip.year,sh=d=>shiftIso(d,'next'),E=(d,t)=>add(sh(d),t,'book:orgtax','tax'),Q=['01','04','07','10'];
+    const U=usnCalc(ip,+ip.year);U.rows.forEach(r=>{add(isoOf(r.decl),'Декларация по налогу при УСН: '+r.q+' квартал '+ip.year,'book:usndecl','tax');add(isoOf(r.pay_d),'Уплата налога при УСН: '+r.q+' квартал '+ip.year+(r.pay>0?', '+fmt(r.pay)+' руб.':''),'book:usndecl','tax')})}catch(e){}}
+  {try{const D=otD(ip),y=+ip.year,sh=d=>shiftIso(d,'next'),E=(d,t)=>add(sh(d),t,'book:orgtax','tax'),Q=['01','04','07','10'];
+    if(ipKind(ip)!=='org'){if(D.re.length||D.land.length||D.veh.length)E(y+'-11-15','Единый имущественный платёж за прошлый год: уплата по извещению налогового органа')}else{
     if(D.re.length){E(y+'-03-20','Налог на недвижимость: срок декларации');[['03','22'],['06','22'],['09','22'],['12','22']].forEach(([m,d])=>E(y+'-'+m+'-'+d,'Налог на недвижимость: уплата (за год сразу в марте или по 1/4)'))}
     if(D.land.length){E(y+'-02-22','Земельный налог: окончательная уплата за прошлый год');[['05'],['08'],['11']].forEach(([m])=>E(y+'-'+m+'-22','Земельный налог: авансовый платёж (сверьте срок)'))}
     if(D.veh.length){E(y+'-02-20','Транспортный налог: срок декларации');E(y+'-02-22','Транспортный налог: доплата за прошлый год');['03','06','09'].forEach(m=>E(y+'-'+m+'-22','Транспортный налог: авансовый платёж'))}
+    }
     const quart=(name)=>Q.forEach(m=>{const mm=+m,yy=mm===10?y+1:y,mo=mm===10?'01':String(mm+3).padStart(2,'0');E(yy+'-'+mo+'-20',name+': срок расчёта');E(yy+'-'+mo+'-22',name+': срок уплаты')});
     if(D.eco.length)quart('Экологический налог');
     if(D.ad.length||otAdBase(ip,y).length)quart('Рекламный сбор')}catch(e){}}
@@ -23501,7 +23532,7 @@ function payCalc(ip){
    ${pdi('payoutDate','Дата окончательной выплаты зарплаты','date')}${pdi('vedNo','Номер ведомости за вторую половину месяца','text')}
    ${t.adv>0?`<div class="sg"><span>Всего выплачивается авансом</span><b>${fmt(t.adv)}</b></div>`:''}<div class="sg"><span>Всего к выплате при окончательном расчёте</span><b>${fmt(t.fin)}</b></div>
    <div class="hint" style="margin-top:8px">Распечатать и оформить:</div>
-   <div class="row" style="flex-wrap:wrap;gap:6px;margin-top:6px">${t.adv>0?`<button class="sm ghost" data-act="godoc" data-k="advv">Ведомость аванса</button><button class="sm ghost" data-act="godoc" data-k="advk">РКО аванса</button>`:''}<button class="sm ghost" data-act="godoc" data-k="pay">Ведомость за вторую половину</button><button class="sm ghost" data-act="godoc" data-k="rko">РКО за вторую половину</button><button class="sm ghost" data-act="godoc" data-k="ved">Расчётная ведомость</button><button class="sm red" data-act="slipprint" data-id="all">Расчётные листки всех работников</button></div></div>`;
+   <div class="row" style="flex-wrap:wrap;gap:6px;margin-top:6px">${t.adv>0?`<button class="sm ghost" data-act="godoc" data-k="advv">Ведомость аванса</button><button class="sm ghost" data-act="godoc" data-k="advk">РКО аванса</button>`:''}<button class="sm ghost" data-act="godoc" data-k="pay">Ведомость за вторую половину</button><button class="sm ghost" data-act="godoc" data-k="rko">РКО за вторую половину</button><button class="sm ghost" data-act="godoc" data-k="ved">Расчётная ведомость</button><button class="sm red" data-act="slipprint" data-id="all">Расчётные листки всех работников</button><button class="sm" data-slipmail="all">Листки на e-mail</button></div></div>`;
   return h;
 }
 function payDates(ip){
@@ -23547,7 +23578,7 @@ function payDocs(ip){
     else{if(d.advMethod!=='cash_bank'&&d.advMethod!=='cash_rev')h+=`<div class="warn noprint">Для аванса выбрана безналичная выплата. РКО оформляется только при выдаче наличных.</div>`;
       h+=t.rows.filter(r=>r.adv>0).map((r,i)=>koForm(ip,Object.assign({},r,{pay:r.adv}),((d.rko||{})[r.e.id+':adv'])||'___',{payoutDate:d.advDate,vedNo:d.advNo},mk,'Аванс за '+mk)).join('')}
   }else if(ui.pd==='slip'){
-    h+=`<div class="hint noprint" style="margin-bottom:8px">Расчётный листок на каждого работника: печать на отдельных листах. Кнопка «На e-mail» предложит способы: письмо в Gmail в браузере, почтовая программа устройства, файл для вложения (Word) и копирование текста. Прикрепить файл к письму сайт сам не может, поэтому файл сохраняется отдельно, а на телефоне его можно передать в почтовое приложение кнопкой «Поделиться».</div>`+t.rows.map(r=>`<div class="noprint row" style="margin:10px 0 4px"><b style="flex:1">${esc(r.e.fio)}</b><button class="sm ghost" data-act="slipmail" data-id="${r.e.id}">На e-mail</button><button class="sm ghost" data-act="slipcopy" data-id="${r.e.id}">Скопировать текст</button></div>`+slipHtml(ip,m,r,mk)).join('');
+    h+=`<div class="noprint" style="margin-bottom:8px"><button class="sm red" data-slipmail="all">Отправить листки на e-mail: одному или списком</button></div><div class="hint noprint" style="margin-bottom:8px">Расчётный листок на каждого работника: печать на отдельных листах. Кнопка «На e-mail» предложит способы: письмо в Gmail в браузере, почтовая программа устройства, файл для вложения (Word) и копирование текста. Прикрепить файл к письму сайт сам не может, поэтому файл сохраняется отдельно, а на телефоне его можно передать в почтовое приложение кнопкой «Поделиться».</div>`+t.rows.map(r=>`<div class="noprint row" style="margin:10px 0 4px"><b style="flex:1">${esc(r.e.fio)}</b><button class="sm ghost" data-act="slipmail" data-id="${r.e.id}">На e-mail</button><button class="sm ghost" data-act="slipcopy" data-id="${r.e.id}">Скопировать текст</button></div>`+slipHtml(ip,m,r,mk)).join('');
   }else if(ui.pd==='pay'){
     h+=`<div class="doc"><h3>Платёжная ведомость № ${esc(d.vedNo||'___')} за ${mk}${t.adv>0?' (окончательный расчёт, после аванса)':''}</h3>${head}<div>Дата выплаты: ${d.payoutDate?dmy(d.payoutDate):'__________'}</div><div class="scroll" style="margin-top:8px"><table class="book" style="min-width:520px"><thead><tr>${['№','Работник','Сумма к выплате','Подпись в получении'].map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>`+
       t.rows.map((r,i)=>row([i+1,r.e.fio,r.fin,''])).join('')+`<tr class="quarter"><td></td><td>Итого</td><td class="n">${fmt(t.fin)}</td><td></td></tr></tbody></table></div>
@@ -23733,9 +23764,9 @@ function bgsOut(ip,e,iso){return (ip.hr||[]).some(h=>h.emp===e.id&&['mat','child
 
 /* ===== Единый расчёт численности: списочная, среднесписочная, средняя с начала года ===== */
 const HC_RULES={
-  bel:{n:'Списочная численность в среднем за период (декларация налогового агента)',out:['mat'],wk:1,d:'Списочная численность за каждый день: все, кто состоит в штате, включая больных, находящихся в отпуске и в командировке. В декларации налогового агента не учитываются только работники в отпусках по беременности и родам и по уходу за ребёнком до трёх лет. В выходной и праздник берётся число предыдущего рабочего дня. Внешние совместители по доле ставки.'},
-  sred:{n:'Среднесписочная численность по Указаниям Белстата (4-фонд, строки 56 и 57, статистика)',out:['mat','sick','unpaid'],wk:1,part:1,d:'Из списочной численности исключаются: отпуска по беременности и родам и по уходу за ребёнком до трёх лет, дни болезни по листкам нетрудоспособности, отпуска без сохранения зарплаты (кроме предоставленных по инициативе нанимателя) (п. 10.1 Указаний, постановление Белстата от 20.01.2020 № 1). Работающие неполное время по своему заявлению считаются пропорционально времени (п. 10.4), в сумме по одному человеку не больше 1. В выходной и праздник берётся число предыдущего рабочего дня.'},
-  bgs:{n:'Для Белгосстраха',out:['mat'],wk:0,d:'Считается за каждый календарный день, включая выходные и праздники. Не входят работники в отпусках по беременности и родам и по уходу за ребёнком до трёх лет. Каждый работник, в том числе совместитель и подрядчик на вашей территории, считается за одну единицу независимо от доли ставки.'}};
+  bel:{n:'Налоговый агент (подоходный налог): списочная численность в среднем за период',out:['mat'],wk:1,d:'Списочная численность за каждый день: все, кто состоит в штате, включая больных, находящихся в отпуске и в командировке. В декларации налогового агента не учитываются только работники в отпусках по беременности и родам и по уходу за ребёнком до трёх лет. В выходной и праздник берётся число предыдущего рабочего дня. Внешние совместители по доле ставки.'},
+  sred:{n:'Среднесписочная по Указаниям Белстата: 4-фонд строка 01, строки 56 и 57, статистика',out:['mat','sick','unpaid'],wk:1,part:1,d:'Из списочной численности исключаются: отпуска по беременности и родам и по уходу за ребёнком до трёх лет, дни болезни по листкам нетрудоспособности, отпуска без сохранения зарплаты (кроме предоставленных по инициативе нанимателя) (п. 10.1 Указаний, постановление Белстата от 20.01.2020 № 1). Работающие неполное время по своему заявлению считаются пропорционально времени (п. 10.4), в сумме по одному человеку не больше 1. В выходной и праздник берётся число предыдущего рабочего дня.'},
+  bgs:{n:'Белгосстрах: численность по календарным дням',out:['mat'],wk:0,d:'Считается за каждый календарный день, включая выходные и праздники. Не входят работники в отпусках по беременности и родам и по уходу за ребёнком до трёх лет. Каждый работник, в том числе совместитель и подрядчик на вашей территории, считается за одну единицу независимо от доли ставки.'}};
 HC_RULES.fszn=HC_RULES.sred;
 const hcLT={mat:'mat',child:'mat',sick:'sick',unpaid:'unpaid'};
 function hcP(ip,e){
@@ -23863,7 +23894,7 @@ function hcAnswer(h){
   const cats=['main','ext','civ'],box=(t,b,f)=>`<div class="hcf" style="border:2px solid #d4af37;background:#fffdf3"><b style="font-size:15px">${t}</b><br>${b}<div class="hint" style="margin-top:6px">${f}</div></div>`;
   if(rp==='ag'){const org=ipKind(cur())==='org',Pe=hcPeriod(P,y,mm,'bel',cats),ids=P.filter(p=>p.hire<=h.date&&(!p.dism||p.dism>=y+'-01-01'));
     return box('Декларация налогового агента: сведения раздела III за период с 1 января по '+MN[mm-1]+' '+y,
-     `<b>Организация</b>, строка 2 «Средняя численность работников»: <b>${Math.round(Pe.avg)}</b> чел. (${fm1(Pe.avg)} до округления).<br><b>Индивидуальный предприниматель</b>: <b>${ids.length}</b> физических лиц с начала года.<br>${org?'Для вашего профиля (организация) применяется первое значение.':'Для вашего профиля (ИП) применяется второе значение.'}<br>Фонд заработной платы (строка 1) берётся из начисленной зарплаты с начала года. Строка 3 заполняется только организацией с филиалами: сумма по ней и по филиалам.`,
+     `<b>Организация</b>, строка 2 «Средняя численность работников»: <b>${Math.round(Pe.avg)}</b> чел. (${fm1(Pe.avg)} до округления). В неё входят: списочная численность в среднем, средняя численность внешних совместителей и средняя численность лиц по договорам подряда с физическими лицами (индивидуальные предприниматели-подрядчики не считаются).<br><b>Индивидуальный предприниматель</b>: <b>${ids.length}</b> физических лиц с начала года.<br>${org?'Для вашего профиля (организация) применяется первое значение.':'Для вашего профиля (ИП) применяется второе значение.'}<br>Фонд заработной платы (строка 1) берётся из начисленной зарплаты с начала года. Строка 3 заполняется только организацией с филиалами: сумма по ней и по филиалам.`,
      'Основание: п. 87.5 Инструкции о порядке заполнения налоговой декларации (расчёта) по подоходному налогу с физических лиц налогового агента, постановление МНС от 20.01.2026 № 3. Значения нарастающим итогом с начала года.')}
   if(rp==='bgs'){const bm=[];for(let m=1;m<=12;m++){const a=cats.reduce((t,c)=>t+hcMonth(P,y,m,'bgs',c).avg,0);bm.push(hcRound(a))}
     const mo=bm.filter(v=>v>0).length,av=mo?Math.max(1,Math.round(bm.reduce((a,b)=>a+b,0)/mo)):0;
@@ -23961,7 +23992,7 @@ function hcView(host){
   root.innerHTML=`${inl?'<div class="card" id="hcs">':'<div class="modal"><div class="sheet" id="hcs" style="max-width:760px">'}<h3 style="margin:0 0 6px">Калькулятор численности работников</h3>
    <div class="hint">Данные подставлены из раздела «Зарплата»: даты приёма и увольнения, отпуска, табель. Их можно менять и добавлять людей, чтобы разобраться в расчёте или проверить свой случай: изменения не записываются в учёт.</div>
    <div class="hcg"><label style="grid-column:1/-1">Для какого отчёта нужна численность<select data-hc="rep">${Object.entries(HC_REPS).map(([k,v])=>`<option value="${k}" ${h.rep===k?'selected':''}>${v.n}</option>`).join('')}</select></label><label>Год<input data-hc="y" inputmode="numeric" value="${h.y}"></label><label>Считать по месяц<select data-hc="endM">${MN.map((m,i)=>`<option value="${i+1}" ${h.endM===i+1?'selected':''}>${m}</option>`).join('')}</select></label><label>Дата для списочной<input type="date" data-hc="date" value="${h.date}"></label>
-   <label>Как считать<select data-hc="rule">${Object.entries(HC_RULES).map(([k,v])=>`<option value="${k}" ${h.rule===k?'selected':''}>${v.n}</option>`).join('')}</select></label></div>
+   <label>Как считать<select data-hc="rule">${Object.entries(HC_RULES).filter(([k])=>k!=='fszn').map(([k,v])=>`<option value="${k}" ${h.rule===k?'selected':''}>${v.n}</option>`).join('')}</select></label></div>
    <details ${h.openP?'open':''} style="margin:8px 0"><summary onclick="ui.hc.openP=!this.parentNode.open" style="cursor:pointer;font-weight:700">Работники и их даты (${h.P.length})</summary><div id="hcp">${h.P.map(row).join('')||'<div class="hint">Работников нет. Добавьте или загрузите пример.</div>'}</div></details>
    <div class="row" style="flex-wrap:wrap;gap:6px;margin:8px 0"><button class="sm" data-hc="add">+ Человек</button><button class="sm ghost" data-hc="app">Данные из приложения</button><button class="sm ghost" data-hc="demo">Пример для обучения</button></div>
    <div id="hcr">${hcResHtml(h)}</div>${inl?'':'<div class="row" style="margin-top:10px"><button class="sm" data-hc="close">Закрыть</button></div>'}</div>${inl?'':'</div>'}`;
@@ -27123,7 +27154,7 @@ function foldPage(){try{
     /* большие подсказки */
     if(e.tagName==='DIV'&&e.classList.contains('hint')&&txt(e).length>150&&!e.querySelector('input,select,button')){
       e.dataset.c13f='1';const d=document.createElement('details');d.className='card cfold noprint';d.style.padding='10px 14px';
-      const t=txt(e);d.innerHTML='<summary><span class="cft">Подсказка</span><small></small></summary>';d.querySelector('small').textContent=capOf('Подсказка',null)==='как работает этот раздел'&&/^(Перед загрузкой|Остатки|Приложение|Все выдачи|Формы|Покупку|Клиент)/.test(t)?CAP['Подсказка']:CAP['Подсказка'];
+      const t=txt(e);d.innerHTML='<summary><span class="cft"></span><small></small></summary>';let ti=capOf('',e);if(ti.length>64)ti=ti.slice(0,62).replace(/[\s,;:.-]+\S*$/,'')+'…';const nh=root.querySelectorAll('[data-hf]').length;d.dataset.hf='1';if(!ti||/нажмите|=/.test(ti)||ti.length<14||/…$/.test(ti))ti=nh?'Пояснение и правила расчёта':'Об этом разделе';d.querySelector('.cft').textContent=ti;d.querySelector('small').textContent='нажмите, чтобы прочитать полностью';
       e.parentNode.insertBefore(d,e);const c=document.createElement('div');c.style.marginTop='6px';c.appendChild(e);d.appendChild(c);return}
     /* крупные карточки с заголовком */
     if(e.tagName==='DIV'&&e.classList.contains('card')&&!e.classList.contains('bkbar')&&e.offsetHeight>170){
@@ -27177,7 +27208,7 @@ function dhSide(){try{
 
 function foldNote(){try{
   document.querySelectorAll('#view .foldnote').forEach(x=>x.remove());
-  const v=document.getElementById('view');if(!v)return;try{if(S&&(S.foldN||0)>=8)return}catch(e){}
+  const v=document.getElementById('view');if(!v)return;try{if(S&&(S.foldN||0)>=2)return}catch(e){}
   const L=[...v.querySelectorAll('details:not(.docbd):not(.akm):not(.cxg2):not(.cxdh):not(.yrq)')].filter(d=>!d.closest('.modal,#modalRoot,.cxnav')&&d.querySelector(':scope>summary'));
   if(L.length<3)return;
   const n=document.createElement('div');n.className='foldnote noprint';n.textContent='Блоки со стрелкой справа раскрываются нажатием на название. Нажмите ещё раз, чтобы свернуть.';
@@ -27393,7 +27424,7 @@ try{
 const mbCopy=(t,msg)=>{try{navigator.clipboard.writeText(t).then(()=>toast(msg||'Скопировано',2500),()=>toast('Не удалось скопировать: выделите текст вручную',4000))}catch(e){toast('Не удалось скопировать: выделите текст вручную',4000)}};
 window.msgBar=function(f,c){
   if(!f||!c)return;const ta=f.elements.namedItem('b');if(!ta||f.querySelector('.msgbar'))return;
-  const sEl=f.elements.namedItem('s'),tg=ldHandle(c.tg),ph=String(c.phone||'').replace(/[^\d+]/g,''),phd=ph.replace(/\D/g,'');
+  const sEl=f.elements.namedItem('s'),tg=ldHandle(c.tg),ph=phIntl(c.phone),phd=ph.replace(/\D/g,'');
   const T=()=>ta.value,S=()=>sEl?sEl.value:'';
   let anchor=null;['g11tg','g11tga','g11ml','mmtg','mmvb','mmml'].forEach(id=>{const b=f.querySelector('#'+id);if(b){if(!anchor)anchor=b.parentNode;b.style.display='none'}});
   f.querySelectorAll('.row').forEach(r=>{if(r.children.length&&[...r.children].every(x=>x.style.display==='none'))r.style.display='none'});
@@ -27590,7 +27621,7 @@ details.mbx .row{gap:6px;flex-wrap:wrap;margin-top:4px}
 `;document.head.appendChild(css);
 window.msgBar=function(f,c){
   if(!f||!c)return;const ta=f.elements.namedItem('b');if(!ta||f.querySelector('.msgbar2'))return;
-  const sEl=f.elements.namedItem('s'),tg=ldHandle(c.tg),ph=String(c.phone||'').replace(/[^\d+]/g,''),phd=ph.replace(/\D/g,'');
+  const sEl=f.elements.namedItem('s'),tg=ldHandle(c.tg),ph=phIntl(c.phone),phd=ph.replace(/\D/g,'');
   const T=()=>ta.value,S=()=>sEl?sEl.value:'';
   const cp=msg=>navigator.clipboard.writeText(T()).then(()=>toast(msg||'Текст скопирован',2500),()=>toast('Не удалось скопировать: выделите текст вручную',4000));
   const cpX=(t,msg)=>navigator.clipboard.writeText(t).then(()=>toast(msg||'Скопировано',2500),()=>toast('Не удалось скопировать: выделите текст вручную',4000));
@@ -29101,7 +29132,7 @@ const wFind=(C,p)=>{const nm=(p.name||'').trim(),w=nm.split(/\s+/).filter(Boolea
 function wAddOne(C,e,p,came){const td=td0();let isNew=false;const nm=(p.name||p.tg||p.email||p.phone||'').trim();if(!nm)return null;
   let c=wFind(C,p);
   if(!c){c=Object.assign({id:uid(),created:td,log:[],deals:[],hist:[],st:'',type:'person',cons:{basis:'consent',date:'',form:'',mk:0,rev:'',notice:'',ev:''}},{name:nm,phone:p.phone||'',email:p.email||'',tg:p.tg?'@'+ldHandle(p.tg):'',ig:'',src:'Вебинар: '+e.title,city:'',bd:'',unp:'',resp:'',tags:[],note:''});C.cl.push(c);crmSetSt(C,c,C.cst[0],true);isNew=true}
-  else{if(!c.phone&&p.phone)c.phone=p.phone;if(!c.email&&p.email)c.email=p.email;if(!c.tg&&p.tg)c.tg='@'+ldHandle(p.tg)}
+  else{ldNewer(c,'phone',p.phone);ldNewer(c,'email',p.email);ldNewer(c,'tg',p.tg?'@'+ldHandle(p.tg):'')}
   c.wv=c.wv||[];let w=c.wv.find(z=>z.e===e.id),added=false;if(!w){w={e:e.id,reg:td,came:'',paid:null,buy:null,acc:null,ofr:''};c.wv.push(w);c.g=[...new Set((c.g||[]).concat([ldGrpId(C,'Вебинар')]))];added=true}
   if(came&&!w.came)w.came=e.date&&e.date<td?e.date:td;return {c,isNew,added}}
 /* чтение таблицы из файла: csv, txt, xlsx */
@@ -29335,7 +29366,7 @@ function V(C,g,les,c,tar){g=g||{};les=les||null;const L=(g.les||[]).slice().sort
   const zoom=(les&&les.zoom)||g.zoom||window.lkGet('zoom'),zid=g.zid||'',zpw=g.zpw||'';
   const left=g.seats?Math.max(0,+g.seats-inGr(C,g).length):'';
   return {nm:c?g11First(c.name):'',kurs:kName(C,g.kind)||g.name||'',short:kShort(C,g.kind),tar:TN[tar]||'',date:les?dd(les.date):dd(g.start),time:(les&&les.time)||g.time||'',zoom,
-    zb:zoom?J(['Ссылка на Zoom: '+zoom,zid?'Идентификатор конференции: '+zid:'',zpw?'Код доступа: '+zpw:'']):'',chat:g.chat||'',page:g.page||window.lkGet('page'),n:i>=0?i+1:((les&&les.n)||''),tot:L.length||'',topic:(les&&les.topic)||'',agenda:(les&&les.agenda)||'',rec:(les&&les.rec)||'',sched:schedTxt(g),
+    zb:zoom?J(['Ссылка на Zoom: '+zoom,zid?'Идентификатор конференции: '+zid:'',zpw?'Код доступа: '+zpw:'']):'',chat:g.chat||C.crsChat||'',page:g.page||window.lkGet('page'),n:i>=0?i+1:((les&&les.n)||''),tot:L.length||'',topic:(les&&les.topic)||'',agenda:(les&&les.agenda)||'',rec:(les&&les.rec)||'',sched:schedTxt(g),
     start:dd(g.start),seats:g.seats||'',left,pmin:pr('min'),popt:pr('opt'),pmax:pr('max'),sig:sigOf(C),hi:c?'Здравствуйте, '+g11First(c.name)+'!':'Добрый день!'}}
 function schedTxt(g){const xf=(g&&g.xf)||[];return ((g&&g.les)||[]).slice().sort((a,b)=>(a.date||'').localeCompare(b.date||'')).map((z,i)=>'№'+(i+1)+' · '+dd(z.date)+(z.time?' в '+z.time:'')+(z.topic?' · '+z.topic:'')+(z.zoom?' · Zoom: '+z.zoom:'')+(z.rec?' · запись: '+z.rec:'')+xf.map(f=>z.x&&z.x[f.id]?' · '+f.n+': '+z.x[f.id]:'').join('')).join('\n')}
 const lessonL=v=>v.n?'занятие №'+v.n+(v.topic?' «'+v.topic+'»':''):'занятие';
@@ -29432,7 +29463,7 @@ function gForm(C,g){const ed=!!g;g=g||{kind:eduCat(C).filter(k=>!k.off)[0]?eduCa
   <div class="two"><div><label>Мест в группе</label><input name="seats" inputmode="numeric" value="${E(g.seats||'')}"></div><div><label>Статус</label><select name="status">${['набор','идёт','завершён'].map(s=>`<option ${s===(g.status||'набор')?'selected':''}>${s}</option>`).join('')}</select></div></div>
   <label>Ссылка на Zoom (общая для занятий группы)</label><input name="zoom" value="${E(g.zoom||'')}" placeholder="https://us02web.zoom.us/j/...">
   <div class="two"><div><label>Идентификатор</label><input name="zid" value="${E(g.zid||'')}"></div><div><label>Код доступа</label><input name="zpw" value="${E(g.zpw||'')}"></div></div>
-  <label>Ссылка на закрытый чат группы в Telegram</label><input name="chat" value="${E(g.chat||'')}" placeholder="https://t.me/+...">
+  <label>Ссылка на закрытый чат группы в Telegram</label><input name="chat" value="${E(g.chat||'')}" placeholder="https://t.me/+..."><div class="hint">Если оставить пустым, в сообщениях подставится единая ссылка на группу по курсам (CRM → «Ссылки на заявления по курсам»).</div>
   <label>Ссылка на страницу курса на сайте</label><input name="page" value="${E(g.page||'')}" placeholder="https://online-kurs.by/...">
   <div class="hint">Группа в статусе «набор» с датой старта становится «ближайшим групповым стартом»: дата подставляется в договоры и сообщения. На сайте дату старта нужно указать вручную. Пока группы нет, ученик учится индивидуально по тарифу, без группы.</div><div class="row" style="margin-top:14px"><button class="red" type="submit">${ed?'Сохранить':'Создать'}</button><button type="button" class="ghost" id="cgfx">Отмена</button></div>`);
   document.getElementById('cgfx').onclick=close;f.elements.namedItem('kind').onchange=function(){if(this.value==='__new')window.addCourseFrom(C,f,()=>gForm(C,ed?g:null))};
@@ -30456,10 +30487,20 @@ const REP={
   return tiles([[ev.length,'мероприятий'],[R,'записей'],[Cm,'пришли'],[R?Math.round(Cm/R*100)+'%':'0%','явка']])+H3('Записались и пришли по мероприятиям')+bars(rows.map(r=>({l:r.e.title+(r.e.date?' · '+r.e.date.slice(5).split('-').reverse().join('.'):''),v:r.reg})),{color:PAL[4]})+bars(rows.map(r=>({l:'пришли: '+r.e.title.slice(0,30),v:r.came})),{color:PAL[0]})+H3('Таблица')+tbl(['Мероприятие','Дата','Записались','Пришли','Явка','Купили'],rows.map(r=>[r.e.title,r.e.date||'',r.reg,r.came,r.reg?Math.round(r.came/r.reg*100)+'%':'',r.buy]))}
 };
 const NAMES=[['cl','Клиенты'],['deal','Сделки'],['fun','Воронка'],['sub','Подписки'],['crs','Курсы'],['web','Вебинары'],['all','Всё вместе']];
-window.crmReport=function(kind){const C=CC(),ip=cur();kind=kind||'cl';let root=document.getElementById('prnRoot');if(!root){root=document.createElement('div');root.id='prnRoot';document.body.appendChild(root)}
- const body=kind==='all'?NAMES.filter(n=>n[0]!=='all').map(n=>'<h2 style="margin:18px 0 4px;font-size:17px;border-bottom:2px solid #D4AF37;padding-bottom:3px;page-break-before:'+(n[0]==='cl'?'auto':'always')+'">'+n[1]+'</h2>'+REP[n[0]](C)).join(''):'<h2 style="margin:6px 0;font-size:18px;border-bottom:2px solid #D4AF37;padding-bottom:3px">'+X((NAMES.find(n=>n[0]===kind)||[])[1])+'</h2>'+REP[kind](C);
- root.innerHTML='<div class="prnBar noprint"><button class="red" id="rpP">Печать</button>'+NAMES.map(n=>'<button type="button" class="sm '+(n[0]===kind?'':'ghost')+'" data-rp="'+n[0]+'">'+n[1]+'</button>').join('')+'<button class="ghost" id="rpX">Закрыть</button></div><div style="max-width:190mm;margin:0 auto;background:#fff;padding:10mm;font-family:inherit;color:#222"><div style="font-size:12px;color:#6b6240">'+[X(ip.name||''),ip.unp?'УНП '+X(ip.unp):''].filter(Boolean).join(' · ')+' · отчёт на '+todayISO().split('-').reverse().join('.')+'</div>'+body+'</div>';
- document.body.classList.add('prnOn');document.getElementById('rpP').onclick=()=>window.print();document.getElementById('rpX').onclick=()=>{document.body.classList.remove('prnOn');root.remove()};root.querySelectorAll('[data-rp]').forEach(b=>b.onclick=()=>window.crmReport(b.dataset.rp))};
+const RPN=[['all','За всё время'],['m0','Этот месяц'],['m1','Прошлый месяц'],['q0','Этот квартал'],['y0','Этот год'],['y1','Прошлый год'],['c','Свои даты']];
+const rpRange=R=>{const d=new Date(),y=d.getFullYear(),m=d.getMonth(),iso=x=>x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0'),L=(a,b)=>[iso(new Date(a,b,1)),iso(new Date(a,b+1,0))];
+ if(R.p==='m0')return L(y,m);if(R.p==='m1')return L(y,m-1);if(R.p==='q0'){const q=Math.floor(m/3)*3;return [iso(new Date(y,q,1)),iso(new Date(y,q+3,0))]}
+ if(R.p==='y0')return [y+'-01-01',y+'-12-31'];if(R.p==='y1')return [(y-1)+'-01-01',(y-1)+'-12-31'];if(R.p==='c')return [R.f||'',R.t||''];return ['','']};
+function repRun(C,kind,R){const [a,b]=rpRange(R),on=!!(a||b),inP=v=>{if(!on)return true;const d=String(v||'').slice(0,10);if(!d)return false;return (!a||d>=a)&&(!b||d<=b)};if(!on)return REP[kind](C);
+ let C2=C;if(kind==='cl'||kind==='fun')C2=Object.assign({},C,{cl:C.cl.filter(c=>inP(c.created))});else if(kind==='deal')C2=Object.assign({},C,{cl:C.cl.map(c=>Object.assign({},c,{deals:(c.deals||[]).filter(d=>inP(d.date))}))});else if(kind==='web')C2=Object.assign({},C,{web:(C.web||[]).filter(e=>inP(e.date))});
+ if(kind==='sub'||kind==='crs'){const ga=g11All;g11All=function(){return ga.apply(this,arguments).filter(x=>inP(x.m&&x.m.start))};try{return REP[kind](C2)}finally{g11All=ga}}
+ return REP[kind](C2)}
+window.crmReport=function(kind){const C=CC(),ip=cur();kind=kind||'cl';const R=window.__rp=window.__rp||{p:'all',f:'',t:''};let root=document.getElementById('prnRoot');if(!root){root=document.createElement('div');root.id='prnRoot';document.body.appendChild(root)}
+ const [pa,pb]=rpRange(R),dm=v=>v?v.split('-').reverse().join('.'):'',per=(pa||pb)?'за период '+(dm(pa)||'…')+' – '+(dm(pb)||'…'):'за всё время';
+ const body=kind==='all'?NAMES.filter(n=>n[0]!=='all').map(n=>'<h2 style="margin:18px 0 4px;font-size:17px;border-bottom:2px solid #D4AF37;padding-bottom:3px;page-break-before:'+(n[0]==='cl'?'auto':'always')+'">'+n[1]+'</h2>'+repRun(C,n[0],R)).join(''):'<h2 style="margin:6px 0;font-size:18px;border-bottom:2px solid #D4AF37;padding-bottom:3px">'+X((NAMES.find(n=>n[0]===kind)||[])[1])+'</h2>'+repRun(C,kind,R);
+ root.innerHTML='<div class="prnBar noprint"><button class="red" id="rpP">Печать</button>'+NAMES.map(n=>'<button type="button" class="sm '+(n[0]===kind?'':'ghost')+'" data-rp="'+n[0]+'">'+n[1]+'</button>').join('')+'<select id="rpPer" style="min-height:36px">'+RPN.map(n=>'<option value="'+n[0]+'"'+(n[0]===R.p?' selected':'')+'>'+n[1]+'</option>').join('')+'</select>'+(R.p==='c'?'<input type="date" id="rpF" value="'+X(R.f)+'"><input type="date" id="rpT" value="'+X(R.t)+'">':'')+'<button class="ghost" id="rpX">Закрыть</button></div><div style="max-width:190mm;margin:0 auto;background:#fff;padding:10mm;font-family:inherit;color:#222"><div style="font-size:12px;color:#6b6240">'+[X(ip.name||''),ip.unp?'УНП '+X(ip.unp):''].filter(Boolean).join(' · ')+' · отчёт на '+todayISO().split('-').reverse().join('.')+' · '+per+'</div>'+body+'</div>';
+ document.body.classList.add('prnOn');document.getElementById('rpP').onclick=()=>window.print();document.getElementById('rpX').onclick=()=>{document.body.classList.remove('prnOn');root.remove()};root.querySelectorAll('[data-rp]').forEach(b=>b.onclick=()=>window.crmReport(b.dataset.rp));
+ document.getElementById('rpPer').onchange=e=>{R.p=e.target.value;window.crmReport(kind)};const f=document.getElementById('rpF'),t=document.getElementById('rpT');if(f)f.onchange=()=>{R.f=f.value;window.crmReport(kind)};if(t)t.onchange=()=>{R.t=t.value;window.crmReport(kind)}};
 function repBtn(){try{if(route()!=='crm'||document.getElementById('repbtn9'))return;const h=[...document.querySelectorAll('h2')].find(x=>x.textContent.trim()==='CRM');if(!h)return;const w=document.createElement('div');w.className='noprint';w.id='repbtn9';w.style.cssText='margin:4px 0 8px';w.innerHTML='<button type="button" class="sm ghost" id="repgo9">Отчёты и диаграммы для печати</button>';h.parentNode.insertBefore(w,h.nextSibling);document.getElementById('repgo9').onclick=()=>{const m={cl:'cl',deal:'deal',sub:'sub',crs:'crs',web:'web',fun:'fun'},t=ui.crmt;window.crmReport(t==='deal'&&ui.dv==='pipe'?'fun':(m[t]||'cl'))}}catch(e){console.error(e)}}
 })();
 
@@ -30571,8 +30612,8 @@ document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest
  const C=crmOf(cur()),x=ldInb(C).find(y=>y.id===b.dataset.id);if(!x)return;if(!x.v){x.v=1;save()}
  let K={t:'lead'};try{K=ldKind(C,x)}catch(er){}const d=ldFind(C,x),nm=esc(d?d.name:(x.name||x.ig||x.tg||x.phone||x.email||'Без имени'));
  const fire=a=>{const t=document.createElement('button');t.type='button';t.dataset.ld=a;t.dataset.id=x.id;t.style.display='none';document.body.appendChild(t);t.click();t.remove()};
- const tg=String(x.tg||x.ig||'').replace(/^.*(t\.me\/|instagram\.com\/)/,'').replace(/^@/,''),ph=String(x.phone||'').replace(/[^\d+]/g,'');
- const cb=[];if(x.tg&&tg)cb.push(['Написать в Телеграм',()=>window.open('https://t.me/'+tg,'_blank')]);if(ph&&!ldBadP(x.phone))cb.push(['Позвонить',()=>{location.href='tel:'+ph}]);if(x.email)cb.push(['Написать на почту',()=>window.open('mailto:'+x.email,'_blank')]);
+ const tg=String(x.tg||x.ig||'').replace(/^.*(t\.me\/|instagram\.com\/)/,'').replace(/^@/,''),ph=phIntl(x.phone);
+ const cb=[];if(x.tg&&tg)cb.push(['Написать в Телеграм',()=>window.open('https://t.me/'+tg,'_blank')]);if(ph&&!ldBadP(x.phone))cb.push(['Позвонить',()=>{location.href='tel:'+ph}]);if(x.email)cb.push(['Написать на почту',()=>window.open(gmailUrl(x.email,'Ваша заявка: '+(((typeof LD_KL!=='undefined'&&LD_KL[K.t])||'Заявка'))),'_blank','noopener')]);
  const step2=()=>nxDlg('Шаг 2 из 2: перенесите в клиенты','Заявка: <b>'+nm+'</b>.',d?'Этот человек уже есть в клиентах. Заявка запишется в его карточку, и появится задача по этому обращению. Дубля не будет.':'В базе появится новый клиент, а программа поставит задачи по этому типу заявки. После этого заявка уйдёт из списка, а я подскажу следующий шаг.',[[d?'Объединить с клиентом':'Перенести в клиенты',()=>fire('acc'),'red'],['Назад',step1]],'Позже');
  const step1=()=>nxDlg('Шаг 1 из 2: проверьте заявку','Заявка: <b>'+nm+'</b>.',esc(KT[K.t]||KT.lead),[...cb.map(c=>[c[0],c[1]]),['Всё проверено, к шагу 2',step2,'red']],'Позже');
  step1()},true);
@@ -30623,7 +30664,7 @@ const _ib3=ldInbox;ldInbox=function(C){let h=_ib3.apply(this,arguments);try{
   const raw=ldInb(C),by={};raw.forEach(x=>by[x.id]=x);const T=document.createElement('div');T.innerHTML=h;
   T.querySelectorAll('.ldc').forEach(c=>{const ck=c.querySelector('[data-ldsel]'),x=ck&&by[ck.dataset.ldsel];if(!x)return;
     const l=c.querySelector('.lda');
-    if(l&&!l.querySelector('[data-lgo]')){let b='';const ph=String(x.phone||'').replace(/[^\d+]/g,''),tg=String(x.tg||'').replace(/^@/,'').trim();
+    if(l&&!l.querySelector('[data-lgo]')){let b='';const ph=phIntl(x.phone),tg=String(x.tg||'').replace(/^@/,'').trim();
       if(ph.length>=7)b+='<button type="button" class="sm ghost" data-lgo="tel" data-id="'+x.id+'">Позвонить</button> ';
       if(tg||ph.length>=7)b+='<button type="button" class="sm ghost" data-lgo="tg" data-id="'+x.id+'">Написать в Telegram</button> ';
       b+='<button type="button" class="sm ghost" data-lgo="copy" data-id="'+x.id+'">Скопировать ответ</button>';
@@ -30632,7 +30673,7 @@ const _ib3=ldInbox;ldInbox=function(C){let h=_ib3.apply(this,arguments);try{
   return T.innerHTML}catch(e){return h}};
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-lgo]');if(!b)return;e.preventDefault();e.stopPropagation();
   const C=crmOf(cur()),x=ldInb(C).find(z=>String(z.id)===b.dataset.id);if(!x)return;const k=b.dataset.lgo;
-  const ph=String(x.phone||'').replace(/[^\d+]/g,''),tg=String(x.tg||'').replace(/^@/,'').trim();
+  const ph=phIntl(x.phone),tg=String(x.tg||'').replace(/^@/,'').trim();
   if(k==='tel'){location.href='tel:'+ph}
   else if(k==='tg'){window.open(tg?'https://t.me/'+encodeURIComponent(tg):'https://t.me/'+(ph[0]==='+'?ph:'+'+ph),'_blank')}
   else{const tx=tplFor(C,x),ok=()=>toast('Ответ скопирован. Вставьте его в переписку и поправьте под себя',4500);
@@ -31047,6 +31088,593 @@ function rcModal(){
 document.addEventListener('change',e=>{const t=e.target;if(!t||!t.dataset)return;
   if(t.dataset.rcc){ui.rcSel=ui.rcSel||new Set();t.checked?ui.rcSel.add(t.dataset.rcc):ui.rcSel.delete(t.dataset.rcc);const o=document.getElementById('rcOut');if(o)o.value=rcJson()}});
 document.addEventListener('input',e=>{const t=e.target;if(!t||!t.id)return;if(t.id==='rcMsg'||t.id==='rcBan'){if(t.id==='rcMsg')ui.rcMsg=t.value;else ui.rcBan=t.value;const o=document.getElementById('rcOut');if(o)o.value=rcJson()}});
+
+/* 3.588: в заголовке CRM показываем название открытого раздела */
+{const _crmT=crmPage;crmPage=function(ip){let h=_crmT.apply(this,arguments);try{
+  const i=h.indexOf('<h2>CRM</h2>');if(i<0||i>60)return h;
+  const NM={today:'Сегодня',inbox:'Заявки',tk:'Задачи',cl:'Клиенты',deal:'Сделки',cal:'Календарь',sub:'Подписки',docs:'Документы',st:'Аналитика',pd:'Данные ПД',set:'Настройки',crs:'Курсы',web:'Вебинары',fun:'Воронки',ofr:'Предложения'};
+  const m=h.match(/<button class="cxn[^"]*\bon\b[^"]*"[\s\S]*?<b>([^<]+)<\/b>/);
+  let nm=(m&&m[1])||NM[ui.crmt||'today']||'';
+  if(ui.crmc&&!m)nm='Карточка клиента';
+  if(nm)h=h.replace('<h2>CRM</h2>','<h2 class="crmH">CRM<span style="color:#1a9a93;font-weight:800"> · '+nm+'</span></h2>')}catch(e){}return h}}
+try{const K='Карта приложения: что где находится';if(HELP_ADD[K]&&HELP_ADD[K].indexOf('Заголовок CRM')<0)HELP_ADD[K]+='<br><br><b>Заголовок CRM.</b> Над содержимым раздела крупно написано, где вы находитесь: «CRM · Заявки», «CRM · Клиенты», «CRM · Сделки» и так далее. В карточке клиента: «CRM · Карточка клиента».'}catch(e){}
+
+/* 3.589: расположение меню разделов: слева (по умолчанию), сверху, только значки */
+(function(){
+  const NM=[['side','Слева','Крупное меню слева с подписями. Подходит большому экрану.'],['top','Сверху','Разделы одной строкой над содержимым. Больше места под таблицы и списки.'],['icons','Слева, только значки','Узкая колонка со значками, подписи видны при наведении. Ещё больше места под содержимое.']];
+  const mode=()=>({top:'top',icons:'icons'}[S.navMode]||'side');
+  const st=document.createElement('style');st.id='navCss';st.textContent=`
+@media(min-width:901px){
+body.nav-top .cx{display:block}
+body.nav-top .cx>.cxnav{position:static;flex-direction:row;flex-wrap:wrap;align-items:center;gap:6px;padding:8px 10px;margin:0 0 14px;border-radius:18px}
+body.nav-top .cx>.cxnav .cxn{width:auto;flex:none;padding:8px 14px!important;gap:8px}
+body.nav-top .cx>.cxnav .cxn .cxl small{display:none}
+body.nav-top .cx>.cxnav .cxsec{flex-direction:row;flex-wrap:wrap;align-items:center;margin:0 0 0 6px;padding:0 0 0 10px;border-top:0;border-left:1px solid rgba(212,175,55,.3)}
+body.nav-top .cx>*:not(h2):not(.cxnav){grid-column:auto}
+body.nav-top .cx>.cxnav .cxg2{flex:1 1 100%;flex-direction:row;flex-wrap:wrap;align-items:center;margin:4px 0 0;padding:8px 0 0;border-left:0;border-top:1px solid rgba(212,175,55,.22)}
+body.nav-top .cx>.cxnav .cxg2::details-content{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+body.nav-top .cx>.cxnav .cxg2>summary{margin-right:10px;white-space:nowrap}
+body.nav-icons .cx{grid-template-columns:78px minmax(0,1fr);column-gap:18px}
+body.nav-icons .cx>.cxnav{padding:10px 6px}
+body.nav-icons .cx>.cxnav .cxn{justify-content:center;padding:10px 4px!important;position:relative}
+body.nav-icons .cx>.cxnav .cxn .cxl{display:none}
+body.nav-icons .cx>.cxnav .cxn .cxi{width:24px;height:24px}
+body.nav-icons .cx>.cxnav .cxb{position:absolute;top:2px;right:2px;margin:0;padding:0 5px;font-size:10.5px;line-height:15px}
+body.nav-icons .cx>.cxnav .cxsec button{justify-content:center;font-size:0;padding:9px 4px!important}
+body.nav-icons .cx>.cxnav .cxsec button .cxi{width:22px;height:22px}
+body.nav-icons .cx>.cxnav .cxsec>*:not(button){display:none}
+}`;document.head.appendChild(st);
+  window.navApply=function(){try{const m=mode();document.body.classList.toggle('nav-top',m==='top');document.body.classList.toggle('nav-icons',m==='icons');
+    if(m==='icons')document.querySelectorAll('.cx>.cxnav .cxn,.cx>.cxnav .cxsec button').forEach(b=>{if(!b.title){const l=b.querySelector('.cxl b');b.title=(l?l.textContent:b.textContent).trim()}})}catch(e){}};
+  const _r=render0;render0=function(k){const x=_r(k);navApply();return x};
+  const _s=crmSet;crmSet=function(C){let h=_s.apply(this,arguments);try{
+    const cur=mode();
+    h=`<div class="mgc" style="border-left:4px solid #D4AF37"><h3>Расположение меню разделов</h3><div class="hint">Выберите, где удобнее видеть список разделов. Это касается компьютера, на телефоне меню всегда в удобном для телефона виде. Данные не меняются.</div><div class="row" style="gap:8px;flex-wrap:wrap;margin-top:8px">${NM.map(([k,t,d])=>`<button type="button" class="${cur===k?'red':'ghost'}" data-navmode="${k}" title="${esc(d)}">${esc(t)}</button>`).join('')}</div><div class="hint" style="margin-top:6px">${esc((NM.find(x=>x[0]===cur)||NM[0])[2])}</div></div>`+h}catch(e){console.error(e)}return h};
+  document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-navmode]');if(!b)return;e.preventDefault();e.stopPropagation();S.navMode=b.dataset.navmode==='side'?'':b.dataset.navmode;save();render(true);toast('Меню: '+(NM.find(x=>x[0]===b.dataset.navmode)||NM[0])[1],2500)},true);
+  try{navApply()}catch(e){}
+})();
+
+/* 3.589: без мигания при переходах между разделами: убраны поэтапные анимации появления */
+{const st=document.createElement('style');st.id='noBlinkCss';st.textContent='#view>*,.cx>*:not(.cxnav),.hv .chkd,.hv .card,.hv>*,.hv *{animation:none!important}';document.head.appendChild(st)}
+
+/* 3.589: справка */
+try{
+  const A1='Меню разделов: слева, сверху или только значки',A2='Телефон, почта и Telegram клиента обновляются по последней заявке';
+  Object.assign(HELP_ADD,{[A1]:'На компьютере меню разделов можно расположить так, как вам удобнее. Откройте «CRM → Настройки → Расположение меню разделов» и выберите один из трёх вариантов: <b>Слева</b> (крупное тёмное меню с подписями, как было), <b>Сверху</b> (все разделы одной строкой над содержимым, больше места под таблицы) или <b>Слева, только значки</b> (узкая колонка, название раздела видно при наведении мыши). Выбор запоминается в этом браузере. На телефоне меню всегда в телефонном виде. Данные при смене меню не меняются.<br><br>В заголовке страницы CRM рядом с названием раздела крупно написано, где вы находитесь, например «CRM · Клиенты».',
+  [A2]:'Если заявка приходит от человека, который уже есть в базе, приложение узнаёт его по имени, телефону, почте или Telegram и добавляет заявку в его карточку. Раньше телефон и почта записывались, только если поле было пустым. Теперь <b>контакт берётся из последней заявки</b>: если человек сменил номер или указал другую почту, в карточке появится новое значение, а прежнее останется в истории клиента строкой «Телефон обновлён по последней заявке: было …, стало …». Кнопки «Позвонить», Telegram, Viber, WhatsApp и «Письмо» всегда используют актуальные данные карточки. Номера без кода страны (29 123-45-67, 8 029 123-45-67) для Telegram, Viber и WhatsApp приводятся к виду +375…, чтобы сообщение не ушло постороннему человеку. Перед отправкой всё равно сверьте имя и номер на экране.'});
+  HELP_ORDER.forEach(g=>{const i=g[1].indexOf('Карточка клиента пополняется автоматически');if(i>=0){if(!g[1].includes(A1))g[1].splice(i+1,0,A1);if(!g[1].includes(A2))g[1].splice(i+2,0,A2)}})
+}catch(e){console.error(e)}
+
+/* 3.589: длинные значения в плитках шапки страницы (например «Единый и подоходный») переносятся и не налезают на соседние плитки */
+{const st=document.createElement('style');st.id='heroFixCss';st.textContent='.pgb .ps b.lg{white-space:normal!important;word-break:normal!important;overflow-wrap:anywhere;font-size:17px!important;line-height:1.18;letter-spacing:0!important}.pgb .ps>div{overflow:hidden}';document.head.appendChild(st);
+ window.heroFix=function(){try{document.querySelectorAll('.pgb .ps b').forEach(b=>{b.classList.toggle('lg',(b.textContent||'').trim().length>11)})}catch(e){}};
+ const _r=render0;render0=function(k){const x=_r(k);heroFix();return x};try{heroFix()}catch(e){}}
+
+/* 3.589: компактные формы расчётов в «Зарплате» и в окнах калькуляторов */
+{const st=document.createElement('style');st.id='calcCompactCss';st.textContent=`
+@media(min-width:700px){
+body[data-r="pay"] #view input:not([type=checkbox]):not([type=radio]):not([type=range]),body[data-r="pay"] #view select,body[data-r="pay"] .sheet input:not([type=checkbox]):not([type=radio]):not([type=range]),body[data-r="pay"] .sheet select{min-height:38px;height:auto;padding:7px 10px;font-size:15px;border-radius:10px}
+body[data-r="pay"] #view label,body[data-r="pay"] .sheet label{font-size:12px}
+}
+.hcg{display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr))!important;gap:8px 10px!important;margin:8px 0!important}
+.hcg>label{grid-column:span 4;min-width:0}.hcg>label:first-child{grid-column:1/-1}.hcg>label:nth-child(5){grid-column:span 7}
+.hcr{display:grid!important;grid-template-columns:repeat(24,minmax(0,1fr))!important;gap:6px 8px!important;padding:8px 10px!important;margin:6px 0!important;align-items:end}
+.hcr{grid-template-columns:repeat(12,minmax(0,1fr))!important}
+.hcr>input[data-hc=fio]{grid-column:span 6;grid-row:1}.hcr>select[data-hc=kind]{grid-column:span 4;grid-row:1}
+.hcr>label{position:relative;min-width:0;display:flex;flex-direction:column;gap:2px;font-size:11.5px;grid-column:span 4!important}
+.hcr>button{grid-column:11/13;grid-row:1;justify-self:stretch;min-height:36px;padding:4px 6px}
+.hcr input[type=date]{font-size:13.5px!important;padding-right:4px!important}
+.hcr input,.hcr select,.hcg input,.hcg select{width:100%!important;min-width:0;min-height:36px!important;padding:6px 8px!important;font-size:14.5px!important;border-radius:9px!important;text-overflow:ellipsis}
+.hcr .qm{position:absolute;right:2px;top:-2px;transform:scale(.8)}
+@media(max-width:700px){
+.hcg>label,.hcg>label:nth-child(5){grid-column:span 6}.hcg>label:first-child{grid-column:1/-1}
+.hcr>input[data-hc=fio],.hcr>select[data-hc=kind]{grid-column:1/-1;grid-row:auto}
+.hcr>label{grid-column:span 6!important}.hcr>button{grid-column:1/-1;grid-row:auto;justify-self:stretch}
+.hcr input,.hcr select,.hcg input,.hcg select{font-size:16px!important}
+}`;document.head.appendChild(st)}
+
+/* 3.590: крупный заголовок «Раздел · Подраздел» (Документы, Реализация, Зарплата, Управленческий учёт, Личные финансы) */
+(function(){
+  if(!document.getElementById('secHCss')){const st=document.createElement('style');st.id='secHCss';
+  st.textContent='h2.secH{font-size:24px;line-height:1.2;margin:2px 0 12px;font-weight:800}h2.secH span{color:#1a9a93;font-weight:800}h2.secHid{display:none!important}body.pcalOn #view .c11b,body.pcalOn #view .c11t{display:none!important}@media(max-width:700px){h2.secH{font-size:20px}}';document.head.appendChild(st)}
+  const tx=b=>{if(!b)return '';const x=b.querySelector('.dht')||b.querySelector('b');if(x)return x.textContent.trim();const n=[...b.childNodes].find(x=>x.nodeType===3&&x.textContent.trim());return (n?n.textContent:b.textContent).trim()};
+  function secName(v){const b=document.querySelector('.cxnav .cxg2 button.on');return b?b.textContent.trim():''}
+  function subName(v,r){
+    let s='';
+    if(r==='book'){
+      const t=v.querySelector('.dhg[data-sg="t"] button.on');
+      if(t){s=tx(t);if(/^Все/.test(s))s='';if(!s){const u=v.querySelector('.dhg[data-sg="s"] button.on');s=u?tx(u):'';if(/^Все/.test(s))s=''}return s||"Все документы"}
+      const d=v.querySelector('.dhg button[data-act="dh-g"].on');if(d){s=tx(d);return /^Все/.test(s)?'Все документы':s}
+      return ''}
+    let b;if(r==='pay'&&ui.ps){b=document.querySelector('.cxnav button[data-act="ps"][data-k="'+ui.ps+'"]');if(b)return tx(b)}
+    b=document.querySelector('.cxnav>.cxn.on');if(b)return tx(b);
+    b=document.querySelector('.cxnav>.cxsec:not(.cxg2) button.on');if(b)return tx(b);
+    if(r==='pay'&&ui.ps){b=document.querySelector('.cxnav button[data-act="ps"][data-k="'+ui.ps+'"]');if(b)return tx(b)}
+    return ''}
+  function secHead(){try{
+    const v=document.getElementById('view');if(!v)return;v.querySelectorAll('.secH').forEach(x=>x.remove());v.querySelectorAll('.secHid').forEach(x=>x.classList.remove('secHid'));
+    const r=document.body.dataset.r||'';document.body.classList.toggle('pcalOn',r==='pay'&&ui.ps==='pcal');if(!['book','pay','mg','pf'].includes(r))return;
+    const cx=v.querySelector(':scope>.cx');if(!cx)return;
+    const sec=secName(v),sub=subName(v,r);if(!sec||!sub||sub===sec)return;
+    const cont=[...cx.children].find(c=>!c.matches('.cxnav,.backbar'));if(!cont)return;
+    const f=cont.matches('h2')?cont:cont.querySelector('h2');if(f&&!f.classList.contains('secH')&&f.textContent.trim().startsWith(sec))f.classList.add('secHid');
+    const h=document.createElement('h2');h.className='secH noprint';h.innerHTML=sec.replace(/</g,'&lt;')+' <span>· '+sub.replace(/</g,'&lt;')+'</span>';
+    cx.insertBefore(h,cont)}catch(e){}}
+  const _r=render0;render0=function(k){const x=_r.apply(this,arguments);secHead();return x};
+  const _R=render;render=function(){const x=_R.apply(this,arguments);secHead();return x};
+  window.secHead=secHead;
+})();
+
+/* 3.590: компактные баннеры и плитки разделов (Зарплата, Расчёты, Упр. учёт, Личные финансы) */
+(function(){if(document.getElementById('c11CompactCss'))return;const st=document.createElement('style');st.id='c11CompactCss';
+st.textContent=`.c11b{padding:10px 14px!important;margin:0 0 8px!important;border-radius:18px!important}
+.c11i{flex:0 0 34px!important;height:34px!important;border-radius:11px!important}.c11s0{width:20px!important;height:20px!important}
+.c11h b{font-size:17px!important}.c11h small{font-size:12px!important;margin-top:0!important}
+.c11s{margin-top:8px!important;gap:6px!important}.c11s>div{padding:5px 6px!important;border-radius:12px!important}
+.c11s b{font-size:17px!important}.c11s small{font-size:11px!important;margin-top:1px!important}
+.c11t{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))!important;gap:8px!important;margin:0 0 10px!important}
+.c11a{padding:8px 10px!important;border-radius:14px!important;gap:1px!important;flex-direction:row!important;flex-wrap:wrap;align-items:center!important;column-gap:8px!important}
+.c11ai{width:28px!important;height:28px!important;border-radius:9px!important;margin:0!important;flex:0 0 28px}.c11s1{width:16px!important;height:16px!important}
+.c11a::after{width:50px!important;height:50px!important;right:-16px!important;top:-16px!important}
+.c11a b{font-size:13.5px!important;flex:1 1 0;min-width:0}.c11a small{flex:0 0 100%;font-size:11px!important;line-height:1.2!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media(min-width:1100px){.c11t{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+@media(max-width:600px){.c11t{grid-template-columns:1fr 1fr!important}.c11a:last-child:nth-child(odd){grid-column:auto!important}}
+h2.secH{margin-top:0!important}`;document.head.appendChild(st)})();
+
+/* 3.590: «Какой налоговый режим выгоднее»: результат сверху, диаграммы «куда уходит доход» и «налог при разном доходе» */
+(function(){
+  if(!document.getElementById('tcVisCss')){const st=document.createElement('style');st.id='tcVisCss';
+  st.textContent='.tcv{margin:10px 0;padding:12px 14px}.tcv h4{margin:0 0 8px;font-size:15px}.tcv .lg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;margin:6px 0 0}.tcv .lg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}.tcv .st{display:flex;height:24px;border-radius:8px;overflow:hidden;background:#eee}.tcv .st b{display:block;height:100%}.tcv .rw{margin:7px 0}.tcv .rw small{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:2px}.tcv svg{width:100%;height:auto;display:block}';document.head.appendChild(st)}
+  const K=['#6a34a2','#D4AF37','#1a9a93'];
+  const _th=tcHtml;tcHtml=function(v){let h=_th.apply(this,arguments);try{
+    const R=tcCompute(v);if(!(R.inc>0))return h;
+    const L=[['По документам',R.A.tax,K[0]],['По нормативу',R.B.tax,K[1]]];if(R.C)L.push(['Единый налог',R.C.tax,K[2]]);
+    const best=Math.min(...L.map(x=>x[1]));
+    const exp=R.exp,pc=x=>Math.round(x/R.inc*100);
+    const rows=L.map(x=>{const t=Math.min(x[1],R.inc),e=Math.min(exp,Math.max(0,R.inc-t)),r=Math.max(0,R.inc-t-e);
+      return `<div class="rw"><small><span><b>${x[0]}</b>${x[1]===best?' · выгоднее всего':''}</span><span>налог ${fmt(x[1])} руб. (${pc(x[1])}%)</span></small><div class="st"><b style="width:${t/R.inc*100}%;background:${x[2]}"></b><b style="width:${e/R.inc*100}%;background:#b9b3a3"></b><b style="width:${r/R.inc*100}%;background:#43a047"></b></div></div>`}).join('');
+    const A=`<div class="card tcv"><h4>Куда уходит ваш доход за год</h4>${rows}<div class="lg"><span><i style="background:#6a34a2"></i>налог</span><span><i style="background:#b9b3a3"></i>расходы по документам</span><span><i style="background:#43a047"></i>остаётся вам</span></div></div>`;
+    const N=21,pts=[];for(let i=0;i<N;i++){const m=i/(N-1)*2,v2=Object.assign({},v,{inc:String(R.inc*m),exp:String(exp*m)}),r=tcCompute(v2);pts.push([m,r.A.tax,r.B.tax,r.C?r.C.tax:null])}
+    const M=Math.max(1,...pts.flatMap(p=>[p[1],p[2],p[3]||0])),W=600,H=230,pl=66,pr=14,pt=12,pb=28,X=m=>pl+m/2*(W-pl-pr),Y=y=>H-pb-y/M*(H-pt-pb);
+    const line=(idx,c)=>{const q=pts.filter(p=>p[idx]!=null);if(!q.length)return '';return `<polyline fill="none" stroke="${c}" stroke-width="2.6" stroke-linejoin="round" points="${q.map(p=>X(p[0]).toFixed(1)+','+Y(p[idx]).toFixed(1)).join(' ')}"/>`};
+    const grid=[0,.5,1].map(g=>`<line x1="${pl}" x2="${W-pr}" y1="${Y(M*g).toFixed(1)}" y2="${Y(M*g).toFixed(1)}" stroke="#ddd" stroke-dasharray="3 3"/><text x="${pl-5}" y="${(Y(M*g)+4).toFixed(1)}" font-size="11" text-anchor="end" fill="#666">${Math.round(M*g).toLocaleString('ru-RU')}</text>`).join('');
+    const xl=[0,1,2].map(m=>`<text x="${X(m).toFixed(1)}" y="${H-8}" font-size="11" text-anchor="${m===0?'start':m===2?'end':'middle'}" fill="#666">${m===1?'ваш доход':Math.round(R.inc*m).toLocaleString('ru-RU')}</text>`).join('');
+    const sv=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Налог при разном доходе">${grid}${xl}<line x1="${X(1)}" x2="${X(1)}" y1="${pt}" y2="${H-pb}" stroke="#141004" stroke-dasharray="4 3"/>${line(1,K[0])}${line(2,K[1])}${line(3,K[2])}</svg>`;
+    const B=`<div class="card tcv"><h4>Сколько налога при разном доходе</h4>${sv}<div class="lg">${L.map(x=>`<span><i style="background:${x[2]}"></i>${x[0]}</span>`).join('')}</div><div class="hint" style="margin-top:6px">По горизонтали доход от нуля до двойного, по вертикали налог за год. Пунктир: ваш доход сейчас. Где линия ниже, там режим выгоднее.</div></div>`;
+    const i=h.indexOf('</div></div>');return i<0?h+A+B:h.slice(0,i+12)+A+B+h.slice(i+12)}catch(e){return h}};
+  const mv=()=>{try{const o=document.getElementById('tcOut'),s=document.querySelector('#view .tcx-step');if(o&&s&&s.previousElementSibling!==o){s.parentNode.insertBefore(o,s)}}catch(e){}};
+  const _R=render;render=function(){const x=_R.apply(this,arguments);mv();return x};
+})();
+
+/* 3.590: производственный календарь: сразу виден календарь, компактные выбор года и недели, цифры одним рядом */
+(function(){
+  if(!document.getElementById('pcCss')){const st=document.createElement('style');st.id='pcCss';
+  st.textContent=`.pcbar{display:flex;flex-direction:column;gap:6px;margin:0 0 8px}.pcbar .rft{margin:0!important;padding:0!important;gap:5px!important}
+.pcbar .rft button{flex:0 0 auto!important;padding:5px 11px!important;font-size:13px!important;min-height:32px!important;border-radius:999px}
+.pcbar .rw2{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}.pcbar .rw2 .sm{min-height:32px;padding:5px 14px;font-size:13px}
+.pcst{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0 0 8px}.pcst>div{background:var(--soft,#f6f1e3);border-radius:14px;padding:8px 10px;min-width:0}.pcst>div.g{background:#141004;color:#f3d56b}
+.pcst b{display:block;font-size:22px;line-height:1.1;font-weight:900}.pcst small{display:block;font-size:11.5px;opacity:.85;line-height:1.2;margin-top:2px}
+.pcmw .pcm{grid-template-columns:repeat(2,1fr);margin-top:8px}.pcmw .pcc{padding:8px 10px 6px}.pcmw .pcc b{font-size:14px}
+@media(min-width:700px){.pcmw .pcm{grid-template-columns:repeat(3,1fr)}}@media(min-width:1100px){.pcmw .pcm{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:600px){.pcst{grid-template-columns:1fr 1fr}.pcst b{font-size:19px}}`;document.head.appendChild(st)}
+  const _pc=prodCalHtml;
+  prodCalHtml=function(ip,wrap){
+    let o;try{o=_pc.call(this,ip,0)}catch(e){return _pc.apply(this,arguments)}
+    try{
+      const ys=pcYears(),y=ys.includes(+ui.pcy)?+ui.pcy:(ys.includes(+ip.year)?+ip.year:2026),T=pcStat(y),cm=new Date().getFullYear()===y?new Date().getMonth()+1:0;
+      const dets=o.match(/<details class="whyd pcd"[\s\S]*?<\/details>/g)||[];
+      const nt=o.match(/<div class="hint">((?:Шестидневная|Пятидневная)[\s\S]*?)<\/div>\s*<div class="row noprint" style="margin-top:8px">/);
+      const six=PCW()===6?`<div class="hint noprint" style="margin:0">Выходной день недели:</div><div class="rft noprint">${[1,2,3,4,5,6,0].map(k=>`<button class="${PCD()===k?'on':''}" data-act="pc-d" data-v="${k}">${['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'][k]}</button>`).join('')}</div>`:'';
+      let h=`<div class="pcbar noprint"><div class="rft">${ys.map(x=>`<button class="${x===y?'on':''}" data-act="pc-y" data-v="${x}">${x}</button>`).join('')}</div>
+      <div class="rw2"><div class="rft">${[[5,'Пятидневная неделя'],[6,'Шестидневная неделя']].map(([k,l])=>`<button class="${PCW()===k?'on':''}" data-act="pc-w" data-v="${k}">${l}</button>`).join('')}</div><button class="sm red" data-act="pc-print" data-v="${y}">Распечатать ${y}</button></div>${six}</div>
+      <div class="pcst"><div class="g"><b>${T.Y.w}</b><small>рабочих дней в ${y} году</small></div><div><b>${T.Y.o}</b><small>выходных и праздничных из ${T.Y.c}</small></div><div><b>${T.Y.hr}</b><small>часов, ${PCW()===6?'шестидневная':'пятидневная'} неделя</small></div><div><b>${T.Y.sh}</b><small>сокращённых на 1 час дней</small></div></div>
+      <div class="pcl"><span><i class="pc-w">1</i>рабочий</span><span><i class="pc-we">1</i>выходной</span><span><i class="pc-hol">1</i>праздничный</span><span><i class="pc-xoff">1</i>выходной по переносу</span>${PCW()===5?'<span><i class="pc-wsat">1</i>рабочая суббота по переносу</span>':''}<span><i class="pc-w pc-s">1</i>сокращённый на 1 час</span></div>
+      <div class="pcmw"><div class="pcm">${MN.map((n,i)=>`<div class="pcc ${i+1===cm?'now':''}"><b>${n[0].toUpperCase()+n.slice(1)}</b>${pcGrid(y,i+1)}<small>раб. ${T.M[i].w} · вых. ${T.M[i].o} · ${T.M[i].hr}&nbsp;ч</small></div>`).join('')}</div></div>
+      ${dets[1]||''}${dets[2]||''}${nt?`<div class="hint">${nt[1]}</div>`:''}`;
+      return h}catch(e){return _pc.apply(this,arguments)}};
+})();
+
+/* 3.592: после выбора подраздела (Покупки, Касса, Ведомости, вкладки CRM) страница открывается с заголовка раздела, а не с середины */
+(function(){
+  const sig=()=>{const h=document.querySelector('#view .secH,#view .crmH,#view h2');return (document.body.dataset.r||'')+'|'+(h?h.textContent.trim():'')};
+  const topOff=()=>{let m=0;document.querySelectorAll('header,.top,.hdr,#top,.appbar').forEach(e=>{const s=getComputedStyle(e);if(s.position==='fixed'||s.position==='sticky'){const r=e.getBoundingClientRect();if(r.top<=1&&r.height<300)m=Math.max(m,r.bottom)}});return m};
+  function toHead(){try{
+    if(document.querySelector('#modalRoot .modal,#modalRoot .sheet'))return;
+    const v=document.getElementById('view');if(!v)return;
+    const t=v.querySelector('.secH,.crmH')||v.querySelector('.cx>h2')||v.querySelector('h2');if(!t)return;
+    const y=t.getBoundingClientRect().top+window.scrollY-topOff()-10;
+    if(Math.abs(window.scrollY-y)>8)window.scrollTo(0,Math.max(0,y))}catch(e){}}
+  document.addEventListener('click',e=>{const b=e.target&&e.target.closest&&e.target.closest('#view .cxnav button,#view .dhg button');if(!b||b.closest('.cxg2'))return;
+    const s0=sig();[60,200,450].forEach(t=>setTimeout(()=>{if(sig()!==s0||t===450&&0)toHead()},t))},true);
+})();
+
+/* 3.593: понятный переключатель «ИП | Предприятие» в шапке вместо маленького выпадающего списка */
+(function(){
+  if(!document.getElementById('kindSegCss')){const st=document.createElement('style');st.id='kindSegCss';
+  st.textContent=`.hdT b select#kindSel,.hdT b .kd,#kindSelM,#kindSelM.on{display:none!important}
+#kindSeg{display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);flex:0 0 auto}
+#kindSeg button{border:0;background:transparent;color:#f3ead0;font:inherit;font-weight:700;font-size:13.5px;padding:6px 14px;border-radius:999px;cursor:pointer;min-height:0;box-shadow:none;white-space:nowrap}
+#kindSeg button.on{background:linear-gradient(180deg,#f8e49a,#D4AF37);color:#141004}
+#kindSeg button:not(.on):hover{background:rgba(255,255,255,.14)}
+#kindSeg.one button{cursor:default}
+@media(max-width:520px){#kindSeg button{padding:6px 11px;font-size:13px}}`;document.head.appendChild(st)}
+  function seg(){try{
+    const hd=document.querySelector('.hd2');if(!hd)return;
+    const b=document.querySelector('.hdT b');if(b&&b.firstChild&&b.firstChild.nodeType===3&&/Мой учёт\s*-/.test(b.firstChild.textContent))b.firstChild.textContent='Мой учёт';
+    let s=document.getElementById('kindSeg');if(!s){s=document.createElement('div');s.id='kindSeg';s.setAttribute('role','group');s.setAttribute('aria-label','Что вести: ИП или предприятие');hd.insertBefore(s,hd.firstChild)}
+    const E=edOn(),both=E.ip&&E.org,K=ipKind(cur()),sm=window.innerWidth<520;
+    const items=[['ip','ИП'],['org',sm?'Предпр.':'Предприятие']].filter(x=>both||x[0]===K);
+    s.className=both?'':'one';s.title=both?'Переключатель: вести ИП или предприятие. Данные у них отдельные.':'Вы ведёте '+(K==='org'?'предприятие':'ИП');
+    s.innerHTML=items.map(([k,t])=>`<button type="button" data-k="${k}" class="${k===K?'on':''}" aria-pressed="${k===K}">${t}</button>`).join('')}catch(e){}}
+  document.addEventListener('click',e=>{const b=e.target&&e.target.closest&&e.target.closest('#kindSeg button');if(!b)return;e.preventDefault();e.stopPropagation();
+    const E=edOn();if(!(E.ip&&E.org)||b.classList.contains('on'))return;
+    const sel=document.getElementById('kindSel');if(!sel)return;sel.disabled=false;sel.value=b.dataset.k;sel.dispatchEvent(new Event('change',{bubbles:true}))},true);
+  const _rs=renderSel;renderSel=function(){const x=_rs.apply(this,arguments);seg();return x};
+  window.addEventListener('resize',seg);setTimeout(seg,0);
+})();
+
+/* 3.594: кнопка «Назад» на каждой странице, кроме обзора (в том числе «Учредители и дивиденды» у предприятий на УСН) */
+(function(){
+  function ensureBack(){try{
+    const r=document.body.dataset.r||'';if(!r||r==='home')return;
+    const v=document.getElementById('view');if(!v||v.querySelector(':scope>.backbar,:scope>a.backbar'))return;
+    const d=document.createElement('div');d.className='noprint backbar';
+    const nb=(typeof navBackBtn==='function')?navBackBtn():'';
+    d.innerHTML=(nb&&!/Назад: обзор/.test(nb))?nb:'<a class="red" href="#/home" style="display:inline-block;text-decoration:none;padding:6px 14px;border-radius:20px;color:#fff;font-size:13px;font-weight:700;background:linear-gradient(#e53935,#b71c1c);box-shadow:0 2px 0 #7f1111">← На обзор</a>';
+    v.insertBefore(d,v.firstChild)}catch(e){}}
+  const _R=render;render=function(){const x=_R.apply(this,arguments);ensureBack();return x};
+  window.ensureBack=ensureBack;
+})();
+
+/* 3.595: единый вид кнопок-ссылок и кнопок в строках списков (не сжимаются, не переносят текст) */
+(function(){const s=document.createElement('style');s.id='btnRowCss';s.textContent=`
+#view a.sm,#view .op>a.sm,#modalRoot a.sm{font-family:Inter,sans-serif;font-weight:700;letter-spacing:.005em;border:1px solid transparent;border-radius:999px;min-height:42px;padding:9px 18px;background:var(--btn-bg,#111);color:var(--btn-fg,#fff);box-shadow:var(--btn-sh,0 1px 2px rgba(0,0,0,.15));display:inline-flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;font-size:14px}
+#view a.sm.ghost{background:#fff;color:#111;border:1px solid #d9d2b6}
+#view .op>button,#view .op>a.sm,#view .op>.s,#view .op>.s>button,#view .op>.s>a{flex:0 0 auto;white-space:nowrap;align-self:center}
+#view .op>.l{flex:1 1 0;min-width:0}
+#view .op button.sm,#view .op a.sm{width:auto;min-width:96px;height:auto}
+@media(max-width:560px){#view .op:has(>button.sm:only-of-type,>a.sm:only-of-type){flex-wrap:wrap}#view .op>button.sm,#view .op>a.sm{min-width:0;padding:9px 14px}}
+`;document.head.appendChild(s)})();
+
+/* 3.596: прямое открытие #/div и #/more: после загрузки всех блоков страница перерисовывается без ошибок раннего рендера */
+(function(){try{if(/^#\/(div|more)/.test(location.hash||''))setTimeout(()=>{try{render(true)}catch(e){}},0)}catch(e){}})();
+
+/* 3.596: «Учредители и дивиденды · вкладка» крупным заголовком, как в других разделах */
+(function(){
+  function dh(){try{if((document.body.dataset.r||'')!=='div')return;const v=document.getElementById('view');if(!v)return;
+    const h=v.querySelector(':scope>h2,:scope>.cx h2');const b=v.querySelector('button[data-dv="tab"]:not(.ghost)');
+    if(!h||!b||h.classList.contains('secH'))return;const sub=b.textContent.trim();
+    h.classList.add('secH');h.innerHTML='Учредители и дивиденды <span>· '+sub.replace(/</g,'&lt;')+'</span>'}catch(e){}}
+  const _R=render;render=function(){const x=_R.apply(this,arguments);dh();return x};
+  const _r0=render0;render0=function(){const x=_r0.apply(this,arguments);dh();return x};
+})();
+
+/* 3.597: вкладки налогов организации: выбранная вкладка заметна */
+(function(){const s=document.createElement('style');s.id='otTabCss';s.textContent=`html body #view button.sm[data-act="ot-tab"]:not(.ghost){background:#D4AF37 linear-gradient(#f3d667,#D4AF37)!important;background-color:#D4AF37!important;color:#141004!important;border-color:#b8922a!important;box-shadow:0 2px 0 #b8922a!important}`;document.head.appendChild(s)})();
+(function(){function mk(){try{document.querySelectorAll('#view button[data-act="ot-tab"]').forEach(b=>{const on=!b.classList.contains('ghost');b.style.setProperty('background',on?'#D4AF37':'#fffdf2','important');b.style.setProperty('color','#141004','important');b.style.setProperty('border','1.5px solid '+(on?'#b8922a':'#141004'),'important');b.style.setProperty('font-weight','700','important')})}catch(e){}}
+  const _R=render;render=function(){const x=_R.apply(this,arguments);mk();return x}})();
+
+/* 3.600 qstrip на телефоне: кнопки переносятся, а не обрезаются справа */
+(function(){try{const s=document.createElement('style');s.id='qstripWrap';s.textContent='@media(max-width:520px){.qstrip{flex-wrap:wrap!important;overflow:visible!important;gap:8px!important}.qstrip>button,.qstrip>a{flex:1 1 calc(50% - 8px);min-width:0;white-space:normal;justify-content:center;text-align:center}}';document.head.appendChild(s)}catch(e){}})();
+
+/* 3.601 «Другие налоги и сборы» для ИП: заголовок зависит от типа профиля */
+try{Object.defineProperty(BOOK_NAMES,'orgtax',{configurable:true,enumerable:true,get(){try{return ipKind(cur())==='org'?'Налоги и сборы организации':'Другие налоги и сборы'}catch(e){return 'Налоги и сборы'}}})}catch(e){}
+
+/* 3.601 справка: другие налоги и сборы ИП */
+try{Object.assign(HELP_ADD,{"Другие налоги и сборы для ИП":"ИП, как и организация, может платить налог на недвижимость, земельный, транспортный и экологический налоги и сбор за размещение рекламы (Указ № 131: Фейсбук, Инстаграм, Гугл, Яндекс и др. — рекламодатель ИП тоже плательщик). Откройте «Книги» → «Другие налоги и сборы» или «Налог» → «Другие налоги и сборы». Ставки и коэффициенты введите по Налоговому кодексу и решению местного Совета: в приложении они не зашиты. Для сбора за рекламу база — израсходованный рекламный бюджет без НДС по курсу на дату расхода; расходы с пометкой «реклама», «Facebook», «Instagram» и т. п. подставляются из журнала. Сумму сбора ИП учитывает в расходах при подоходном налоге. Сроки (расчёт до 20-го, уплата до 22-го числа месяца после квартала) попадают в календарь."});
+HELP_ORDER.forEach(g=>{const i=g[1].indexOf('CRM: клиенты, сделки, задачи');if(i>=0&&!g[1].includes("Другие налоги и сборы для ИП"))g[1].splice(i+1,0,"Другие налоги и сборы для ИП")})}catch(e){}
+
+/* 3.603 организация: решения и протоколы учредителей вместо «Решений ИП» */
+try{(function(){
+const O=x=>esc(x==null?'':x);
+const part=ip=>{try{return dvOf(ip).f||[]}catch(e){return []}};
+const one=ip=>part(ip).length===1;
+const pos=ip=>{try{return(prnSet(ip).dirPos||'Директор')}catch(e){return 'Директор'}};
+const partsTxt=ip=>{const L=part(ip);return L.length?L.map(f=>O(f.name)+(f.share?' ('+fmt(f.share)+'%)':'')).join('; '):'__________________'};
+const sigs=ip=>{const L=part(ip);const R=(L.length?L:[{name:''}]).map(f=>`<div class="pdsr" style="margin-top:18px"><span class="r">Участник</span><span class="ln"></span><span class="n">${O(f.name?fioIni(f.name):'')}</span></div><div class="pdsc"><span></span><span>подпись</span><span>расшифровка</span></div>`);return R.join('')};
+const chiefSig=ip=>`<div class="pdsr" style="margin-top:26px"><span class="r">${O(pos(ip))}</span><span class="ln"></span><span class="n">${O(ipFio(ip))}</span></div><div class="pdsc"><span></span><span>подпись</span><span>расшифровка</span></div>`;
+const ex=v=>String(v||'').split('\n').map(x=>x.trim()).filter(Boolean);
+const q=(v,def)=>{const L=ex(v);return L.length?L:def};
+const nb=L=>L.map((x,i)=>(i+1)+'. '+x);
+Object.assign(ORD,{
+ u_prot:{g:'u',t:'Протокол общего собрания участников',f:[
+  {n:'city',l:'Место проведения (город)',v:()=>''},
+  {n:'kind',l:'Собрание',t:'sel',o:['очередное','внеочередное'],v:()=>'очередное'},
+  {n:'reason',l:'Повод, по которому собрались (одной строкой)',v:()=>''},
+  {n:'who',l:'Присутствуют участники: каждый с новой строки. Лишних строки удалите, добавьте недостающих',t:'area',v:ip=>{try{return (dvOf(ip).f||[]).map(f=>f.name+(f.share?' ('+fmt(f.share)+'%)':'')).join('\n')}catch(e){return ''}}},
+  {n:'chair',l:'Председатель собрания',v:ip=>{try{const f=(dvOf(ip).f||[])[0];return f?f.name:''}catch(e){return ''}}},
+  {n:'secr',l:'Секретарь собрания',v:()=>''},
+  {n:'agenda',l:'Повестка дня: каждый вопрос с новой строки',t:'area',v:()=>''},
+  {n:'dec',l:'Решения по каждому вопросу: каждое с новой строки, в том же порядке',t:'area',v:()=>''},
+  {n:'extra',l:'Дополнительно (любой текст, который нужно добавить в протокол)',t:'area',v:()=>''}],
+  rend:(v,ip)=>{const A=q(v.agenda,['__________']),D=q(v.dec,['__________']),W=q(v.who,[]);
+   return{doc:1,org:1,num:1,title:'ПРОТОКОЛ',sub:(v.kind==='внеочередное'?'внеочередного':'очередного')+' общего собрания участников',paras:[],
+   html:`${v.reason?`<p style="text-align:justify"><b>Повод:</b> ${O(v.reason)}.</p>`:''}<p style="text-align:justify"><b>Присутствовали:</b></p>${W.length?W.map(x=>`<p style="margin:1px 0 1px 1cm">${O(x)}</p>`).join(''):'<p style="margin-left:1cm">__________________</p>'}
+   <p style="text-align:justify">Присутствуют участники, обладающие ${W.length&&W.length===(part(ip).length)?'100%':'____%'} голосов; кворум имеется, собрание правомочно принимать решения.</p>
+   <p style="text-align:justify"><b>Председатель собрания:</b> ${O(v.chair||'__________')}. <b>Секретарь собрания:</b> ${O(v.secr||'__________')}.</p>
+   <p style="margin:10px 0 2px"><b>Повестка дня:</b></p>${nb(A).map(x=>`<p style="margin:2px 0 2px 1cm">${O(x)}</p>`).join('')}
+   <p style="margin:10px 0 2px"><b>По вопросам повестки дня решили:</b></p>${nb(D).map(x=>`<p style="margin:2px 0 2px 1cm;text-align:justify">${O(x)}${/[.;]$/.test(x)?'':'.'}</p>`).join('')}
+   ${v.extra?`<p style="text-align:justify;margin-top:8px">${O(v.extra).replace(/\n/g,'<br>')}</p>`:''}
+   <p style="margin-top:8px">Голосовали единогласно: «за» — 100%, «против» — нет, «воздержались» — нет.</p>
+   <div style="margin-top:22px"><div class="pdsr"><span class="r">Председатель собрания</span><span class="ln"></span><span class="n">${O(v.chair?fioIni(v.chair):'')}</span></div><div class="pdsc"><span></span><span>подпись</span><span>расшифровка</span></div>
+   <div class="pdsr" style="margin-top:18px"><span class="r">Секретарь собрания</span><span class="ln"></span><span class="n">${O(v.secr?fioIni(v.secr):'')}</span></div><div class="pdsc"><span></span><span>подпись</span><span>расшифровка</span></div></div>`}}},
+ u_sole:{g:'u',t:'Решение единственного участника',f:[
+  {n:'city',l:'Место принятия решения (город)',v:()=>''},
+  {n:'who',l:'Единственный участник',v:ip=>{const f=part(ip)[0];return f?f.name:''}},
+  {n:'dec',l:'Принятые решения: каждое с новой строки',t:'area',v:()=>''}],
+  rend:(v,ip)=>{const D=q(v.dec,['__________']);return{doc:1,org:1,num:1,title:'РЕШЕНИЕ',sub:'единственного участника',paras:[],
+   html:`<p style="text-align:justify">Я, ${O(v.who||'__________')}, являясь единственным участником ${O(prnOrgS(ip))}, в соответствии с законодательством и уставом принял следующие решения:</p>${nb(D).map(x=>`<p style="margin:3px 0 3px 1cm;text-align:justify">${O(x)}${/[.;]$/.test(x)?'':'.'}</p>`).join('')}
+   <div class="pdsr" style="margin-top:26px"><span class="r">Единственный участник</span><span class="ln"></span><span class="n">${O(v.who?fioIni(v.who):'')}</span></div><div class="pdsc"><span></span><span>подпись</span><span>расшифровка</span></div>`}}},
+ u_chief:{g:'u',t:'О назначении (избрании) директора',f:[
+  {n:'city',l:'Город',v:()=>''},
+  {n:'fio',l:'Ф.И.О. директора',v:ip=>{try{return ipFio(ip)}catch(e){return ''}}},
+  {n:'term',l:'Срок полномочий',v:()=>'на срок, указанный в контракте'},
+  {n:'basis',l:'Контракт',v:()=>'с заключением контракта'}],
+  rend:(v,ip)=>({doc:1,org:1,num:1,title:one(ip)?'РЕШЕНИЕ':'ПРОТОКОЛ',sub:'о назначении (избрании) директора',paras:[],
+   html:`<p style="text-align:justify"><b>${one(ip)?'Единственный участник':'Участники'}:</b> ${partsTxt(ip)}.</p><p style="text-align:justify">Принято решение: назначить (избрать) директором ${O(prnOrgS(ip))} ${O(v.fio||'__________')} ${O(v.term||'')}, ${O(v.basis||'')}. Директор осуществляет текущее руководство деятельностью организации в пределах компетенции, установленной законодательством и уставом.</p>${sigs(ip)}`})},
+ u_stav:{g:'u',t:'О внесении изменений в устав',f:[
+  {n:'city',l:'Город',v:()=>''},
+  {n:'ch',l:'Какие изменения: каждое с новой строки',t:'area',v:()=>''}],
+  rend:(v,ip)=>{const C=q(v.ch,['__________']);return{doc:1,org:1,num:1,title:one(ip)?'РЕШЕНИЕ':'ПРОТОКОЛ',sub:'о внесении изменений и (или) дополнений в устав',paras:[],
+   html:`<p style="text-align:justify"><b>${one(ip)?'Единственный участник':'Участники'}:</b> ${partsTxt(ip)}.</p><p style="text-align:justify">Принято решение внести в устав ${O(prnOrgS(ip))} следующие изменения и (или) дополнения:</p>${nb(C).map(x=>`<p style="margin:3px 0 3px 1cm;text-align:justify">${O(x)}${/[.;]$/.test(x)?'':'.'}</p>`).join('')}<p style="text-align:justify">Директору поручено обеспечить государственную регистрацию изменений в установленном порядке.</p>${sigs(ip)}`}}}
+});
+ORDG.u='Протоколы и решения учредителей';ORDSFX.u='';NL.u='документа';
+SER.u={t:'Протоколы и решения учредителей',suf:''};
+ORD_ORG_HIDE.push('r_cash','r_pays');
+ordHideOrg=function(k){try{const org=ipKind(cur())==='org';if(String(k).indexOf('u_')===0)return !org;return org&&ORD_ORG_HIDE.includes(k)}catch(e){return false}};
+})()}catch(e){console.warn('3.603',e)}
+try{const T="Протоколы и решения учредителей организации";Object.assign(HELP_ADD,{[T]:"Только для организации. «Зарплата» → «Приказы и договоры» → «Протоколы и решения учредителей»: протокол общего собрания участников, решение единственного участника, назначение директора, изменения в устав. Участники и их доли берутся из раздела «Учредители». В протоколе выберите состав присутствующих (список участников подставлен, лишних удалите), укажите повод, повестку и решения, при необходимости допишите свой текст в поле «Дополнительно». Шапка с логотипом на протоколах и решениях не ставится. Дивиденды оформляются отдельно: «Учредители» → «Прибыль» → «Распределить дивиденды»."});
+HELP_ORDER.forEach(g=>{const i=g[1].indexOf('CRM: клиенты, сделки, задачи');if(i>=0&&!g[1].includes(T))g[1].splice(i+1,0,T)})}catch(e){}
+
+/* 3.603 шапка документов (логотип, реквизиты) и конструктор писем */
+try{(function(){
+const O=x=>esc(x==null?'':String(x));
+const LH_D={mode:'fancy',logo:'',pos:'left',size:20,rule:'thick',req:{unp:1,addr:0,phone:0,email:0,bank:0,reg:0},custom:''};
+const lhGet=ip=>{const P=prnSet(ip);const l=P.lh=P.lh||{};Object.keys(LH_D).forEach(k=>{if(l[k]==null)l[k]=(typeof LH_D[k]==='object'?JSON.parse(JSON.stringify(LH_D[k])):LH_D[k])});l.req=Object.assign({},LH_D.req,l.req||{});return l};
+const css=document.createElement('style');css.textContent=`
+.pdoc h1{font-size:17pt;letter-spacing:.06em;margin:16px 0 4px}
+.lhb{margin:0 0 14px}.lhb .lhr{display:flex;align-items:center;gap:14px}.lhb.c .lhr{flex-direction:column;text-align:center;gap:6px}
+.lhb img{max-height:24mm;max-width:46mm;object-fit:contain}.lhb .lhn{font-weight:700;line-height:1.15;letter-spacing:.02em}
+.lhb .lhk{font-size:9.5pt;letter-spacing:.08em;text-transform:uppercase;color:#444}.lhb .lhq{font-size:9.5pt;color:#333;margin-top:3px;line-height:1.3}
+.lhb .l1{border-top:2.5pt solid #1a1a1a;margin-top:8px}.lhb .l2{border-top:.5pt solid #1a1a1a;margin-top:1.2mm}.lhb.thin .l1{border-top-width:1pt}.lhb.thin .l2{display:none}
+.lhov{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:10px}
+.lhov .lhs{background:#fff;border-radius:14px;max-width:560px;width:100%;max-height:92vh;overflow:auto;padding:16px 18px;box-shadow:0 8px 40px rgba(0,0,0,.35)}
+.lhov label{display:block;margin:10px 0 3px;font-size:13px;color:#444}.lhov input[type=text],.lhov select,.lhov textarea,.lhov input[type=email]{width:100%;box-sizing:border-box}
+.lhov .ck{display:flex;gap:8px;align-items:center;margin:4px 0;font-size:14px}.lhov .ck input{width:auto}
+`;document.head.appendChild(css);
+function lhBlock(ip,l){
+  const org=ipKind(ip)==='org',P=prnSet(ip);
+  const nm=org?(typeof orgName==='function'?orgName(ip):String(ip.name||'')):fioClean(ip.name);
+  const q=[];
+  if(l.custom&&l.custom.trim())l.custom.split('\n').map(x=>x.trim()).filter(Boolean).forEach(x=>q.push(x));
+  else{const r=l.req;if(r.unp&&ip.unp)q.push('УНП '+ip.unp);if(r.reg&&P.regDoc)q.push('свидетельство о гос. регистрации '+P.regDoc+(P.regOrg?', '+P.regOrg:''));
+    if(r.addr&&P.addr)q.push(P.addr);if(r.phone&&P.phone)q.push('тел. '+P.phone);if(r.email&&P.email)q.push('e-mail: '+P.email);if(r.bank){const b=reqBank(ip);if(b)q.push(b)}}
+  const reqL=l.custom&&l.custom.trim()?q.join('<br>'):q.join(' · ');
+  const logo=l.logo?`<img src="${l.logo}" alt="">`:'';
+  const tx=`<div>${org?'':'<div class="lhk">Индивидуальный предприниматель</div>'}<div class="lhn" style="font-size:${+l.size||20}pt">${O(nm)}</div>${reqL?`<div class="lhq">${reqL}</div>`:''}</div>`;
+  return `<div class="lhb ${l.pos==='top'?'c':''} ${l.rule==='thin'?'thin':''}" data-lh="1"><div class="lhr">${logo}${tx}</div><div class="l1"></div><div class="l2"></div></div>`}
+function lhApply(force){
+  const r=document.getElementById('prnRoot');if(!r)return;let ip;try{ip=cur()}catch(e){return}if(!ip)return;
+  const l=lhGet(ip),sig=JSON.stringify(l)+'|'+ip.name+'|'+ip.unp;
+  r.querySelectorAll('.pdoc').forEach(p=>{
+    if(!force&&p._lhSig===sig)return;
+    const cur0=p.querySelector(':scope > [data-lh]');if(cur0){if(p._lhOrig){const t=document.createElement('div');t.innerHTML=p._lhOrig;cur0.replaceWith(t.firstElementChild)}else cur0.remove()}
+    p._lhSig=sig;p._lhOrig=null;
+    if(l.mode==='plain')return;
+    const f=p.firstElementChild;if(!f)return;
+    if(f.tagName==='H1'&&/^(Счёт на оплату|Расчёт пособия)/.test(f.textContent.trim())&&l.mode==='fancy'){const t=document.createElement('div');t.innerHTML=lhBlock(ip,l);f.insertAdjacentElement('beforebegin',t.firstElementChild);return}
+    const st=String(f.getAttribute('style')||'').replace(/\s/g,'');
+    const isHd=f.classList.contains('pdh')||(/text-align:center/.test(st)&&/font-weight:700/.test(st)&&f.tagName==='DIV'&&f.textContent.length<260&&!f.querySelector('table,h1'));
+    if(!isHd)return;
+    const ht=((p.querySelector('h1,h2')||{}).textContent||'').trim();
+    if(/^(ПРОТОКОЛ|РЕШЕНИЕ)/i.test(ht))return;
+    if(f.classList.contains('pdh')&&!/^(АКТ|ПРИХОДНЫЙ|РАСХОДНЫЙ|НАКЛАДНАЯ|КОМАНДИРОВОЧНОЕ|СПРАВКА|СЧЁТ|ДОВЕРЕННОСТЬ|ПРИКАЗ|РАСПОРЯЖЕНИЕ|ДОГОВОР)/i.test(ht))return;
+    p._lhOrig=f.outerHTML;
+    if(l.mode==='none'){f.remove();return}
+    const t=document.createElement('div');t.innerHTML=lhBlock(ip,l);f.replaceWith(t.firstElementChild)})}
+window.lhApply=lhApply;
+let busy=0;new MutationObserver(()=>{if(busy)return;busy=1;requestAnimationFrame(()=>{busy=0;try{lhApply()}catch(e){console.warn(e)}})}).observe(document.body,{childList:true,subtree:true});
+/* кнопка в панели печати */
+const _pd=prnDecorate;prnDecorate=function(){const had=document.querySelector('#prnRoot .prnBar');const r=_pd.apply(this,arguments);try{const bar=document.querySelector('#prnRoot .prnBar');if(bar&&!bar.querySelector('#lhBtn')){const b=document.createElement('button');b.type='button';b.id='lhBtn';b.className='ghost';b.textContent='Шапка и логотип';b.onclick=()=>lhOpen(10000);bar.appendChild(b)}}catch(e){}return r};
+function lhOpen(z){
+  const ip=cur(),l=lhGet(ip);let ov=document.getElementById('lhOv');if(ov)ov.remove();
+  ov=document.createElement('div');ov.id='lhOv';ov.className='lhov';ov.style.zIndex=z||60;
+  const ck=(k,t)=>`<label class="ck"><input type="checkbox" data-lhr="${k}" ${l.req[k]?'checked':''}> ${t}</label>`;
+  ov.innerHTML=`<div class="lhs"><h2 style="margin:0 0 4px">Шапка документов</h2><div class="hint">Действует на всех приказах, договорах и других документах. Изменения видны сразу.</div>
+  <label>Вид шапки</label><select id="lhM"><option value="fancy">Оформленная: название крупно, линия, реквизиты</option><option value="plain">Простая (как было)</option><option value="none">Без шапки (печать на готовом бланке)</option></select>
+  <label>Логотип (картинка PNG или JPG)</label><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><input type="file" id="lhF" accept="image/*" style="flex:1;min-width:0"><button class="sm ghost" id="lhX">Убрать логотип</button></div><div id="lhP" class="hint"></div>
+  <label>Расположение логотипа</label><select id="lhPos"><option value="left">Слева от названия</option><option value="top">Над названием по центру</option></select>
+  <label>Размер названия</label><select id="lhS"><option value="16">Меньше</option><option value="20">Обычный</option><option value="24">Крупный</option><option value="28">Очень крупный</option></select>
+  <label>Линия под шапкой</label><select id="lhR"><option value="thick">Жирная с тонкой</option><option value="thin">Тонкая</option></select>
+  <label>Какие реквизиты показывать под названием</label>${ck('unp','УНП')}${ck('reg','Свидетельство о регистрации')}${ck('addr','Адрес')}${ck('phone','Телефон')}${ck('email','Электронная почта')}${ck('bank','Банковские реквизиты')}
+  <label>Свой текст шапки (если заполнено, заменяет реквизиты выше; каждая строка с новой строки)</label><textarea id="lhC" rows="3" placeholder="Например: г. Гомель, ул. Советская, 1 · тел. +375 ..."></textarea>
+  <div class="hint">Адрес, телефон и банк берутся из Настроек → реквизиты. Если там пусто, строка не покажется.</div>
+  <div style="display:flex;gap:8px;margin-top:12px"><button class="red" id="lhOk">Готово</button></div></div>`;
+  document.body.appendChild(ov);
+  const $$=s=>ov.querySelector(s),sv=()=>{save();lhApply(true)},pv=()=>{$$('#lhP').innerHTML=l.logo?`<img src="${l.logo}" style="max-height:60px;margin-top:6px">`:'Логотип не загружен.'};
+  $$('#lhM').value=l.mode;$$('#lhPos').value=l.pos;$$('#lhS').value=String(l.size);$$('#lhR').value=l.rule;$$('#lhC').value=l.custom||'';pv();
+  $$('#lhM').onchange=e=>{l.mode=e.target.value;sv()};$$('#lhPos').onchange=e=>{l.pos=e.target.value;sv()};$$('#lhS').onchange=e=>{l.size=+e.target.value;sv()};$$('#lhR').onchange=e=>{l.rule=e.target.value;sv()};
+  $$('#lhC').oninput=e=>{l.custom=e.target.value;sv()};
+  ov.querySelectorAll('[data-lhr]').forEach(c=>c.onchange=()=>{l.req[c.dataset.lhr]=c.checked?1:0;sv()});
+  $$('#lhX').onclick=()=>{l.logo='';pv();sv()};
+  $$('#lhF').onchange=e=>{const f=e.target.files[0];if(!f)return;const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,600/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);l.logo=c.toDataURL('image/png');pv();sv()};im.onerror=()=>toast('Не удалось прочитать картинку');im.src=fr.result};fr.readAsDataURL(f)};
+  $$('#lhOk').onclick=()=>ov.remove();ov.addEventListener('click',e=>{if(e.target===ov)ov.remove()})}
+window.lhOpen=lhOpen;
+/* ===== конструктор писем ===== */
+const MON=['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+function ltPeople(ip){const L=[];(ip.staff||[]).forEach(e=>L.push({n:e.fio||e.name||'',m:e.email||'',g:'Работники'}));(ip.cpty||[]).filter(c=>c.type!=='fl').forEach(c=>L.push({n:c.name||'',m:c.email||c.mail||'',g:'Контрагенты'}));try{((crmOf(ip)||{}).cl||[]).forEach(x=>L.push({n:x.name||'',m:x.mail||x.email||(x.x&&(x.x.mail||x.x.email))||'',g:'Клиенты CRM'}))}catch(e){}return L.filter(x=>x.n)}
+const ltFirst=n=>{const w=String(n||'').trim().split(/\s+/);return w.length>=3?w[1]+' '+w[2]:(w.length===2?w[1]:w[0]||'')};
+const LT={
+ pay:{t:'Расчётный листок работнику',f:[['per','Период','m'],['sum','К выплате, руб. (по желанию)','']],s:v=>'Расчётный листок за '+v.per,b:v=>`Здравствуйте${v.who?', '+ltFirst(v.who):''}!\n\nНаправляю расчётный листок за ${v.per}.${v.sum?'\nК выплате: '+v.sum+' руб.':''}\nЕсли будут вопросы по расчёту, напишите, я всё поясню.`},
+ act:{t:'Акт сверки контрагенту',f:[['per','Период (например, 1 квартал 2026)',''],['sum','Сальдо на конец периода, руб. (по желанию)','']],s:v=>'Акт сверки взаимных расчётов за '+v.per,b:v=>`Здравствуйте${v.who?', '+v.who:''}!\n\nНаправляю акт сверки взаимных расчётов за ${v.per}.${v.sum?'\nСальдо на конец периода: '+v.sum+' руб.':''}\nПросим подписать и вернуть один экземпляр либо сообщить о расхождениях.`},
+ rem:{t:'Напоминание об оплате',f:[['doc','Счёт или договор (номер, дата)',''],['sum','Сумма, руб.',''],['dt','Срок оплаты','']],s:v=>'Напоминание об оплате'+(v.doc?' по '+v.doc:''),b:v=>`Здравствуйте${v.who?', '+v.who:''}!\n\nНапоминаю об оплате${v.doc?' по '+v.doc:''}${v.sum?' на сумму '+v.sum+' руб.':''}${v.dt?'. Срок оплаты: '+v.dt:''}.\nЕсли платёж уже отправлен, пожалуйста, пришлите платёжное поручение, чтобы я мог его найти.`},
+ docs:{t:'Направление документов',f:[['what','Какие документы (акт, накладная, ЭСЧФ)',''],['doc','Основание (договор, номер, дата)','']],s:v=>'Направляю документы'+(v.doc?' по '+v.doc:''),b:v=>`Здравствуйте${v.who?', '+v.who:''}!\n\nНаправляю ${v.what||'документы'}${v.doc?' по '+v.doc:''}. Прошу подписать и вернуть один экземпляр.`},
+ dog:{t:'Договор на подписание',f:[['doc','Договор (номер, дата)','']],s:v=>'Договор на подписание'+(v.doc?' '+v.doc:''),b:v=>`Здравствуйте${v.who?', '+v.who:''}!\n\nНаправляю проект договора${v.doc?' '+v.doc:''}. Прошу ознакомиться и сообщить замечания либо подписать и вернуть один экземпляр.`},
+ zay:{t:'Ссылка на заявление о зачислении',f:[['course','Курс','c']],s:v=>'Заявление о зачислении на курс'+(v.cname?' «'+v.cname+'»':''),b:v=>`Здравствуйте${v.who?', '+ltFirst(v.who):''}!\n\nДля зачисления на курс${v.cname?' «'+v.cname+'»':''} заполните заявление по ссылке:\n${v.zl||'(ссылка на заявление не указана: добавьте её в «Ссылки на заявления» в разделе CRM)'}\n\nПосле заполнения пришлите его мне в ответном сообщении.`},
+ free:{t:'Свободное письмо',f:[],s:v=>'',b:v=>`Здравствуйте${v.who?', '+v.who:''}!\n\n`}
+};
+function ltOpen(key){
+  const ip=cur(),P=prnSet(ip),ppl=ltPeople(ip);let ov=document.getElementById('ltOv');if(ov)ov.remove();
+  ov=document.createElement('div');ov.id='ltOv';ov.className='lhov';ov.style.zIndex=40;
+  const pm=(()=>{const d=new Date();d.setMonth(d.getMonth()-1);return MON[d.getMonth()]+' '+d.getFullYear()})();
+  const sigDef=(ipKind(ip)==='org'?(P.dirFio?(P.dirPos||'Директор')+' '+(typeof orgName==='function'?orgName(ip):ip.name)+'\n'+P.dirFio:(typeof orgName==='function'?orgName(ip):ip.name)):'Индивидуальный предприниматель\n'+fioClean(ip.name))+(P.phone?'\nтел. '+P.phone:'')+(P.email?'\n'+P.email:'');
+  ov.innerHTML=`<div class="lhs"><h2 style="margin:0 0 4px">Письмо</h2><div class="hint">Выберите шаблон, поправьте текст и отправьте: письмо откроется в Gmail или почтовой программе.</div>
+  <label>Шаблон</label><select id="ltT">${Object.keys(LT).map(k=>`<option value="${k}">${LT[k].t}</option>`).join('')}</select>
+  <label>Кому из списка</label><select id="ltW"><option value="">Выбрать из работников и контрагентов</option>${['Работники','Контрагенты','Клиенты CRM'].map(g=>`<optgroup label="${g}">${ppl.filter(x=>x.g===g).map((x,i)=>`<option value="${O(x.n)}|${O(x.m)}">${O(x.n)}${x.m?' · '+O(x.m):''}</option>`).join('')}</optgroup>`).join('')}</select>
+  <label>Адрес электронной почты</label><input type="email" id="ltTo" placeholder="name@example.com">
+  <div id="ltF"></div>
+  <label>Тема</label><input type="text" id="ltS"><label>Текст письма</label><textarea id="ltB" rows="9"></textarea>
+  <label class="ck"><input type="checkbox" id="ltG" checked> Добавить подпись</label><textarea id="ltSg" rows="4"></textarea>
+  <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="red" id="ltOk">Отправить</button><button class="ghost" id="ltCp">Скопировать</button><button class="ghost" id="ltX">Закрыть</button></div></div>`;
+  document.body.appendChild(ov);
+  const $$=s=>ov.querySelector(s);let who='';$$('#ltSg').value=sigDef;
+  const vals=()=>{const v={who:who,per:pm};ov.querySelectorAll('#ltF [data-k]').forEach(i=>v[i.dataset.k]=i.value);if(v.course){try{const cc=eduCat(crmOf(ip)).find(x=>x.id===v.course);v.cname=cc?cc.name:'';v.zl=eduZl(v.course)}catch(e){}}return v};
+  const fill=()=>{const k=$$('#ltT').value,T=LT[k],v=vals();$$('#ltS').value=T.s(v);$$('#ltB').value=T.b(v)};
+  const draw=()=>{const T=LT[$$('#ltT').value];$$('#ltF').innerHTML=T.f.map(([k,l,t])=>`<label>${l}</label>${t==='c'?`<select data-k="${k}">${eduCat(crmOf(ip)).filter(x=>!x.off).map(x=>`<option value="${x.id}">${O(x.name)}</option>`).join('')}</select>`:t==='m'?`<select data-k="${k}">${[0,1,2,3,4,5,6,7,8,9,10,11].map(i=>{const y=+ip.year;return `<option>${MON[i]} ${y}</option>`}).join('')}</select>`:`<input type="text" data-k="${k}">`}`).join('');
+    ov.querySelectorAll('#ltF [data-k]').forEach(i=>{i.oninput=i.onchange=fill});
+    const sel=ov.querySelector('#ltF select[data-k="per"]');if(sel){const o=[...sel.options].find(x=>x.text===pm);if(o)sel.value=o.text}fill()};
+  $$('#ltT').onchange=draw;
+  $$('#ltW').onchange=e=>{const [n,m]=String(e.target.value).split('|');who=n||'';if(m)$$('#ltTo').value=m;fill()};
+  const full=()=>{const b=$$('#ltB').value.trim(),s=$$('#ltG').checked?'\n\nС уважением,\n'+$$('#ltSg').value.trim():'';return b+s};
+  $$('#ltX').onclick=()=>ov.remove();
+  $$('#ltCp').onclick=()=>{try{navigator.clipboard.writeText('Тема: '+$$('#ltS').value+'\n\n'+full());toast('Письмо скопировано')}catch(e){toast('Не удалось скопировать')}};
+  $$('#ltOk').onclick=()=>{mailSend($$('#ltTo').value.trim(),$$('#ltS').value,full(),{})};
+  if(key&&LT[key])$$('#ltT').value=key;draw()}
+window.ltOpen=ltOpen;
+/* карточки в настройках */
+const _more=more;more=function(ip){let h=_more.apply(this,arguments);try{const a='data-act="navcfg">Настроить меню</button></div>';const i=h.indexOf(a);if(i>=0){const j=i+a.length;h=h.slice(0,j)+`<div class="card kref noprint"><b>Оформление документов</b><div class="hint" style="margin:4px 0 8px">Логотип, крупное название организации или ИП, линия под шапкой, реквизиты. Можно печатать и без шапки, на готовом бланке.</div><button class="sm" data-lh="open">Шапка и логотип</button></div><div class="card kref noprint"><b>Конструктор писем</b><div class="hint" style="margin:4px 0 8px">Расчётный листок работнику, акт сверки, напоминание об оплате, направление документов. Отправка через Gmail или почтовую программу.</div><button class="sm" data-lt="open">Написать письмо</button></div>`+h.slice(j)}}catch(e){}return h};
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('[data-lh="open"]');if(a){lhOpen(60);return}const b=e.target.closest&&e.target.closest('[data-lt="open"]');if(b)ltOpen()});
+})()}catch(e){console.warn('3.603b',e)}
+try{const T1="Шапка документов и логотип",T2="Конструктор писем";Object.assign(HELP_ADD,{[T1]:"Кнопка «Шапка и логотип» есть в разделах «Зарплата», «Расчёты», печатных документах и на экране печати любого документа; также Ещё → Настройки → «Оформление документов». Загрузите логотип, выберите вид шапки (оформленная, простая или без шапки для готового бланка), размер названия, линию и реквизиты. Свой текст шапки заменяет реквизиты. Настройка действует на всех документах и для ИП, и для организации. Шапка меняется у документов, где вверху стоит название организации или ИП.",[T2]:"Кнопки письма есть в тех разделах, где они нужны: в «Зарплате» (расчётный листок), в «Расчётах с контрагентами» (акт сверки, напоминание об оплате), в печатных документах и договорах, в CRM; также Ещё → Настройки → «Конструктор писем». Шаблоны: расчётный листок работнику, акт сверки, напоминание об оплате, направление документов, договор на подписание, свободное письмо. Выберите адресата из работников и контрагентов, поправьте текст и нажмите «Отправить»: письмо откроется в Gmail или почтовой программе. Вложение прикрепляется вручную."});
+[T1,T2].forEach(T=>HELP_ORDER.forEach(g=>{const i=g[1].indexOf('CRM: клиенты, сделки, задачи');if(i>=0&&!g[1].includes(T))g[1].splice(i+1,0,T)}))}catch(e){}
+
+/* 3.604 конструктор писем и шапка: кнопки в нужных разделах и на главной */
+try{(function(){
+const bar=(key,html)=>`<div class="row noprint" data-ltbar="${key}" style="gap:6px;flex-wrap:wrap;margin:6px 0 10px">${html}</div>`;
+const B=(k,t,cls)=>`<button class="sm ${cls||''}" data-lt-t="${k}">${t}</button>`;
+function rules(){const r=document.body.dataset.r||'home',bk=(typeof ui!=='undefined'&&ui.bk)||'';
+  if(r==='home'||r==='')return null;
+  if(r==='pay')return ['pay',B('pay','Письмо работнику (расчётный листок)')+B('free','Другое письмо','ghost')+`<button class="sm ghost" data-lh="open">Шапка и логотип</button>`];
+  if(r==='crm')return ['crm',B('free','Написать письмо')+B('zay','Письмо со ссылкой на заявление','ghost')+`<button class="sm ghost" data-zlopen="1">Ссылки на заявления по курсам</button>`+B('rem','Напоминание об оплате','ghost')];
+  if(r==='book'&&bk==='settle')return ['settle',B('act','Письмо: акт сверки')+B('rem','Письмо: напоминание об оплате','ghost')+B('docs','Направить документы','ghost')+`<button class="sm ghost" data-lh="open">Шапка и логотип</button>`];
+  if(r==='book'&&(bk==='prn'||bk==='sale'||bk==='docs'))return ['dog',B('dog','Письмо: направить договор')+B('docs','Письмо: направить документы','ghost')+`<button class="sm ghost" data-lh="open">Шапка и логотип</button>`];
+  return null}
+function inject(){const V=document.getElementById('view');if(!V)return;const R=rules();
+  V.querySelectorAll('[data-ltbar]').forEach(x=>{if(!R||x.dataset.ltbar!==R[0])x.remove()});
+  if(R&&!V.querySelector('[data-ltbar]')){const h=V.querySelector('h2');const t=document.createElement('div');t.innerHTML=bar(R[0],R[1]);const el=t.firstElementChild;if(h)h.insertAdjacentElement('afterend',el);else V.insertBefore(el,V.firstChild)}
+  const M=document.getElementById('modalRoot');if(M){const s=M.querySelector('.sheet');const h=s&&s.querySelector('h2');
+    if(h&&/^Договоры и оферты|^Документы курса|^Документы для группы/.test(h.textContent)&&!s.querySelector('[data-ltbar]')){const t=document.createElement('div');t.innerHTML=bar('dogm',B('dog','Письмо: направить договор')+B('zay','Письмо со ссылкой на заявление','ghost')+`<button class="sm ghost" data-zlopen="1">Ссылки на заявления</button>`);h.insertAdjacentElement('afterend',t.firstElementChild)}}}
+let q=0;const ob=new MutationObserver(()=>{if(q)return;q=requestAnimationFrame(()=>{q=0;try{inject()}catch(e){}})});
+const start=()=>{const V=document.getElementById('view'),M=document.getElementById('modalRoot');if(V)ob.observe(V,{childList:true});if(M)ob.observe(M,{childList:true});inject()};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+window.addEventListener('hashchange',()=>setTimeout(inject,50));
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-lt-t]');if(b){ltOpen(b.dataset.ltT);return}const g=e.target.closest&&e.target.closest('[data-lt-go]');if(g)location.hash='#/'+g.dataset.ltGo});
+})()}catch(e){console.warn('3.604',e)}
+try{const T="Как заполнить ЭСЧФ: порядок и типы";Object.assign(HELP_ADD,{[T]:"Памятка по алгоритму «Заполнение ЭСЧФ» (ЮрСпектр, актуально на 06.10.2026, Инструкция № 14). Приложение ЭСЧФ не составляет: оно напоминает о сроках, а саму накладную вы заполняете на портале. Тип ЭСЧФ: при реализации обычно «исходный»; для исправлений составляется «дополнительный», «исправленный» или «дополнительный без ссылки на ЭСЧФ». Форма состоит из шести разделов: 1 общий (строки 1–5.1), 2 реквизиты поставщика (6–14), 3 реквизиты получателя (15–21.1), 4 грузоотправитель и грузополучатель (22–29), 5 условия поставки (30–31), 6 данные по товарам, работам, услугам. Номер ЭСЧФ портал присваивает сам: УНП плательщика, год, десятизначное число. Дата выставления ставится при отправке на портал. В строке 3 по общему правилу дата совершения операции, то есть момент фактической реализации; для возврата, экспорта, ввоза из ЕАЭС и вне ЕАЭС, передачи вычетов есть особые даты, их смотрите в путеводителе. Строки 5 и 5.1 заполняются только в дополнительном и исправленном ЭСЧФ. Плательщик заполняет только те реквизиты, которые нужны для его операции."});
+HELP_ORDER.forEach(g=>{const i=g[1].indexOf('CRM: клиенты, сделки, задачи');if(i>=0&&!g[1].includes(T))g[1].splice(i+1,0,T)})}catch(e){}
+
+/* 3.607 подоходный налог с зарплаты: 25% и 30% при доходах за год свыше 350 000 и 600 000 руб. (подп. 1.2 и 1.3 ст. 214 НК, п. 8-2 ст. 199 НК) */
+try{(function(){
+const T1=350000,T2=600000;let busy=0;
+const _ec=empCalc;
+empCalc=function(ip,m,e){const R=_ec.apply(this,arguments);
+  if(busy||!R||!(+ip.year>=2026)||!(R.pnb>0))return R;
+  busy=1;let prev=0;try{for(let k=1;k<m;k++){if(!pmActive(ip,k))continue;const Q=_ec(ip,k,e);if(Q&&Q.pnb>0)prev=r2(prev+Q.pnb)}}catch(x){}finally{busy=0}
+  const cur=r2(prev+R.pnb);if(cur<=T1)return R;
+  const ex1=Math.max(0,r2(Math.min(cur,T2)-Math.max(prev,T1))),ex2=Math.max(0,r2(cur-Math.max(prev,T2)));
+  if(!(ex1+ex2>0))return R;
+  const norm=Math.max(0,r2(R.pnb-ex1-ex2)),p=PP(ip),base=Math.max(0,r2(norm-R.ded));
+  const pn=r2(base*p.pnRate/100+ex1*0.25+ex2*0.30);
+  R.pnHigh={prev,cur,ex1,ex2,pn13:r2(base*p.pnRate/100)};R.base=base;R.pn=pn;R.net=r2(R.gross-pn-R.f1);
+  try{const I=inpOf(ip,m,e.id),hd=holdCalc(e,R.net,I,R.gross);R.hold=hd.total;R.holds=hd.rows;R.pay=r2(R.net-hd.total);R.fin=r2(R.pay-R.adv)}catch(x){R.pay=R.net;R.fin=r2(R.net-R.adv)}
+  R.warn=(R.warn||[]).concat(['Доход с начала года '+fmt(cur)+' руб.: с суммы свыше '+fmt(T1)+' руб. налог по ставке 25%'+(ex2>0?', свыше '+fmt(T2)+' руб. по ставке 30%':'')+'. В этом месяце: с '+fmt(ex1)+' руб. по 25%'+(ex2>0?', с '+fmt(ex2)+' руб. по 30%':'')+'; вычеты на превышение не применяются (ч. 4 п. 8-2 ст. 199 НК). Проверьте по актуальной редакции НК.']);
+  return R};
+})()}catch(e){console.warn('3.607',e)}
+
+/* 3.608 ссылки на заявления о зачислении по курсам */
+try{(function(){
+const ZL0={ip:'https://drive.google.com/file/d/1N1jrIDru3CDhZUBWfr3wjneppuw7F2rc/view?usp=drivesdk',org:'https://drive.google.com/file/d/1g80N4ltihOPSQoDCEM121IJD4mN602as/view?usp=drivesdk'};
+const zlOf=(C,id)=>{const c=eduCat(C).find(x=>x.id===id);return (c&&c.zl)||ZL0[id]||''};
+window.eduZl=function(courseId){return zlOf(crmOf(cur()),courseId)};
+function zlOpen(){
+  const ip=cur(),C=crmOf(ip),L=eduCat(C),root=document.getElementById('modalRoot');
+  root.innerHTML=`<div class="modal"><div class="sheet"><h2>Ссылки на заявления о зачислении</h2><div class="hint">У каждого курса своё заявление: в нём указано название курса. Для курсов ИП и организации ссылки уже стоят. Для остальных вставьте ссылку на заявление, оно появится в письме и в окне документов курса.</div>
+  <div class="card" style="margin:8px 0;border-left:4px solid #7c4dff"><b>Единая ссылка на Telegram-группу по курсам</b><div class="hint" style="font-size:13px;word-break:break-all">${C.crsChat?esc(C.crsChat):'Ссылка не указана'}</div><div class="hint">Подставляется в сообщения о зачислении, если у группы нет своей ссылки.</div><div class="row" style="gap:6px;flex-wrap:wrap;margin-top:6px">${C.crsChat?'<button class="sm" data-zl="tcp">Скопировать ссылку</button>':''}<button class="sm ghost" data-zl="ted">${C.crsChat?'Изменить ссылку':'Добавить ссылку'}</button></div></div>${L.map(c=>{const z=(c.zl)||ZL0[c.id]||'';return `<div class="card" style="margin:8px 0;${c.off?'opacity:.55':''}"><b>${esc(c.name)}</b>${c.off?' <small>(отключён)</small>':''}<div class="hint" style="font-size:13px;word-break:break-all">${z?esc(z):'Ссылка не указана'}</div><div class="row" style="gap:6px;flex-wrap:wrap;margin-top:6px">${z?`<button class="sm" data-zl="cp" data-c="${c.id}">Скопировать ссылку</button><a class="sm ghost" href="${esc(z)}" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center">Открыть</a>`:''}<button class="sm ghost" data-zl="ed" data-c="${c.id}">${z?'Изменить ссылку':'Добавить ссылку'}</button></div></div>`}).join('')}
+  <div class="row" style="margin-top:10px"><button class="ghost" id="zlX">Закрыть</button></div></div></div>`;
+  document.getElementById('zlX').onclick=()=>{root.innerHTML=''}}
+window.zlOpen=zlOpen;
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-zl]');if(b){const ip=cur(),C=crmOf(ip),id=b.dataset.c;
+  if(b.dataset.zl==='tcp'){try{navigator.clipboard.writeText(C.crsChat||'');toast('Ссылка скопирована')}catch(x){toast('Не удалось скопировать')}return}
+  if(b.dataset.zl==='ted'){window.__miniPend=zlOpen;miniForm('Единая ссылка на Telegram-группу по курсам',[{n:'t',l:'Ссылка-приглашение (https://t.me/+...)',v:C.crsChat||''}],o=>{C.crsChat=String(o.t||'').trim()});return}
+  if(b.dataset.zl==='cp'){const z=zlOf(C,id);try{navigator.clipboard.writeText(z);toast('Ссылка скопирована')}catch(x){toast('Не удалось скопировать')}return}
+  if(b.dataset.zl==='ed'){const c=eduCat(C).find(x=>x.id===id);window.__miniPend=zlOpen;miniForm('Заявление: '+(c?c.name:''),[{n:'z',l:'Ссылка на заявление о зачислении на этот курс',v:zlOf(C,id)}],o=>{const w=eduCatW(C,id);w.zl=String(o.z||'').trim()})}
+  return}
+  const o=e.target.closest&&e.target.closest('[data-zlopen]');if(o)zlOpen()});
+})()}catch(e){console.warn('3.608',e)}
+try{const T="Ссылки на заявления о зачислении по курсам";Object.assign(HELP_ADD,{[T]:"CRM → кнопка «Ссылки на заявления по курсам» (она же в окне «Документы курса»). У каждого курса своё заявление, потому что в нём указано название курса. Для курса ИП и курса организации ссылки с Google Диска уже стоят. Для остальных курсов нажмите «Добавить ссылку» и вставьте адрес заявления. Ссылку можно скопировать, открыть или отправить в письме: кнопка «Письмо со ссылкой на заявление», где выбирается курс, и подставляется нужная ссылка."});
+HELP_ORDER.forEach(g=>{const i=g[1].indexOf('CRM: клиенты, сделки, задачи');if(i>=0&&!g[1].includes(T))g[1].splice(i+1,0,T)})}catch(e){}
+/* ===== 3.611: расчётные листки на e-mail одному или списком ===== */
+try{(function(){
+const O2=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const ok=v=>/^\S+@\S+\.\S+$/.test(String(v||'').trim());
+function sig(ip){const P=prnSet(ip),nm=typeof orgName==='function'?orgName(ip):ip.name;return (ipKind(ip)==='org'?(P.dirFio?(P.dirPos||'Директор')+' '+nm+'\n'+P.dirFio:nm):'Индивидуальный предприниматель\n'+fioClean(ip.name))+(P.phone?'\nтел. '+P.phone:'')+(P.email?'\n'+P.email:'')}
+function fn(s,r,mk){const w=String(r.e.fio||'').trim().split(/\s+/);const nm=w.length>=3?w[1]+' '+w[2]:(w.length===2?w[1]:w[0]||'');return String(s).replace(/\{имя\}/g,nm).replace(/\{период\}/g,mk).replace(/\{сумма\}/g,fmt(r.fin))}
+function slipMailOpen(){
+  const ip=cur(),m=ui.pm,t=monthCalc(ip,m);if(!t||!t.rows.length){toast('Сначала добавьте работников и выполните начисление');return}
+  const mk=MN[m-1]+' '+ip.year;let ov=document.getElementById('smOv');if(ov)ov.remove();
+  ov=document.createElement('div');ov.id='smOv';ov.className='lhov';ov.style.zIndex=40;
+  const rows=t.rows;
+  ov.innerHTML=`<div class="lhs"><h2 style="margin:0 0 4px">Расчётные листки на e-mail</h2><div class="hint">${O2(mk)}. Каждому работнику уходит отдельное письмо с его листком, чужие цифры другим не попадают. Адрес берётся из карточки работника; если его нет, впишите здесь, он сохранится в карточке.</div>
+  <div class="row" style="gap:6px;flex-wrap:wrap;margin:8px 0"><button class="sm ghost" id="smAll">Выбрать всех</button><button class="sm ghost" id="smNone">Снять выбор</button></div>
+  <div id="smL">${rows.map((r,i)=>`<div class="card" style="padding:8px 10px;margin:6px 0"><label class="ck" style="margin:0"><input type="checkbox" data-i="${i}" ${ok(r.e.email)?'checked':''}> <b>${O2(r.e.fio)}</b> <span class="hint" data-st="${i}"></span></label><div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap"><input type="email" data-em="${i}" value="${O2(r.e.email||'')}" placeholder="name@example.com" style="flex:1;min-width:180px"><button class="sm ghost" data-one="${i}">Письмо</button></div></div>`).join('')}</div>
+  <h3 style="margin:12px 0 4px;font-size:15px">Текст письма</h3><div class="hint">В тексте работают метки {имя}, {период}, {сумма}: для каждого подставятся свои значения.</div>
+  <label>Тема</label><input type="text" id="smS" value="Расчётный листок за {период}">
+  <label>Начало письма</label><textarea id="smB" rows="4">Здравствуйте, {имя}!\n\nНаправляю расчётный листок за {период}. К выплате: {сумма} руб.</textarea>
+  <label class="ck"><input type="checkbox" id="smT" checked> Вставить листок в текст письма</label>
+  <label>Окончание письма</label><textarea id="smE" rows="2">Если будут вопросы по расчёту, напишите, я всё поясню.</textarea>
+  <label class="ck"><input type="checkbox" id="smG" checked> Добавить подпись</label><textarea id="smSg" rows="3">${O2(sig(ip))}</textarea>
+  <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="red" id="smGo">Отправить выбранным по очереди</button><button class="ghost" id="smCm">Одно общее письмо выбранным (скрытая копия)</button><button class="ghost" id="smCp">Скопировать адреса</button><button class="ghost" id="smX">Закрыть</button></div>
+  <div id="smQ" class="hint" style="margin-top:10px"></div></div>`;
+  document.body.appendChild(ov);const $$=s=>ov.querySelector(s);
+  const chk=()=>[...ov.querySelectorAll('#smL [data-i]')];
+  const em=i=>$$('[data-em="'+i+'"]').value.trim();
+  const saveEm=i=>{const v=em(i);if(ok(v)&&rows[i].e.email!==v){rows[i].e.email=v;save()}};
+  ov.querySelectorAll('[data-em]').forEach(x=>x.onchange=()=>{const i=+x.dataset.em;if(x.value.trim()&&!ok(x.value)){toast('Проверьте адрес почты');return}saveEm(i);if(ok(x.value))$$('[data-i="'+i+'"]').checked=true});
+  $$('#smAll').onclick=()=>chk().forEach(c=>c.checked=true);$$('#smNone').onclick=()=>chk().forEach(c=>c.checked=false);
+  $$('#smX').onclick=()=>ov.remove();
+  const body=r=>{let b=fn($$('#smB').value,r,mk).trim();if($$('#smT').checked)b+='\n\n'+slipText(ip,m,r,mk);const e=fn($$('#smE').value,r,mk).trim();if(e)b+='\n\n'+e;if($$('#smG').checked)b+='\n\nС уважением,\n'+$$('#smSg').value.trim();return b};
+  const subj=r=>fn($$('#smS').value,r,mk);
+  const open=(i)=>{const r=rows[i],v=em(i);if(!ok(v)){toast('У работника «'+r.e.fio+'» нет верного адреса почты');return false}saveEm(i);window.open(gmailUrl(v,subj(r),body(r)),'_blank','noopener');const s=$$('[data-st="'+i+'"]');if(s)s.textContent='письмо открыто';return true};
+  ov.querySelectorAll('[data-one]').forEach(b=>b.onclick=()=>open(+b.dataset.one));
+  let q=[],pos=0;
+  const next=()=>{const box=$$('#smQ');if(pos>=q.length){box.innerHTML='Готово: открыто писем '+q.length+'. Проверьте каждое в Gmail и нажмите «Отправить» там.';return}const i=q[pos];box.innerHTML='Письмо '+(pos+1)+' из '+q.length+': <b>'+O2(rows[i].e.fio)+'</b> <button class="sm red" id="smNx">Открыть это письмо</button> <button class="sm ghost" id="smSk">Пропустить</button>';$$('#smNx').onclick=()=>{if(open(i)){pos++;next()}};$$('#smSk').onclick=()=>{pos++;next()}};
+  $$('#smGo').onclick=()=>{q=chk().filter(c=>c.checked).map(c=>+c.dataset.i);if(!q.length){toast('Отметьте работников');return}const bad=q.filter(i=>!ok(em(i)));if(bad.length){toast('Нет адреса: '+bad.map(i=>rows[i].e.fio).join(', '),6000);return}pos=0;next()};
+  const sel=()=>chk().filter(c=>c.checked).map(c=>em(+c.dataset.i)).filter(ok);
+  $$('#smCp').onclick=()=>{const a=sel();if(!a.length){toast('Нет адресов у отмеченных');return}try{navigator.clipboard.writeText(a.join(', '));toast('Адресов скопировано: '+a.length)}catch(e){toast('Не удалось скопировать')}};
+  $$('#smCm').onclick=()=>{const a=sel();if(!a.length){toast('Нет адресов у отмеченных');return}const r0=rows[0];let b=String($$('#smB').value).replace(/\{имя\}/g,'коллеги').replace(/\{период\}/g,mk).replace(/[^\n]*\{сумма\}[^\n]*/g,'').trim();const e=String($$('#smE').value).trim();if(e)b+='\n\n'+e;if($$('#smG').checked)b+='\n\nС уважением,\n'+$$('#smSg').value.trim();
+    const su=String($$('#smS').value).replace(/\{период\}/g,mk);window.open('https://mail.google.com/mail/?view=cm&fs=1&bcc='+encodeURIComponent(a.join(','))+'&su='+encodeURIComponent(su)+'&body='+encodeURIComponent(b.slice(0,1800)),'_blank','noopener')};
+}
+window.slipMailOpen=slipMailOpen;
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-slipmail]');if(b){e.preventDefault();slipMailOpen()}});
+const T="Расчётные листки на e-mail";Object.assign(HELP_ADD,{[T]:"Зарплата → Выплаты и листки → кнопка «Листки на e-mail». Отметьте работников, проверьте адреса (они берутся из карточек, недостающие можно вписать: адрес сохранится), поправьте тему и текст. Метки {имя}, {период}, {сумма} подставляются для каждого свои. Кнопка «Отправить выбранным по очереди» открывает отдельное письмо в Gmail каждому, цифры других работников никому не попадают. «Одно общее письмо» уходит всем в скрытой копии без расчёта: подходит для сообщения «листки готовы». Файл Word с листком можно сохранить на странице листка и приложить вручную."});
+HELP_ORDER.forEach(g=>{const i=g[1].indexOf('Конструктор писем');if(i>=0&&!g[1].includes(T))g[1].splice(i+1,0,T)});
+})()}catch(e){console.warn('3.611',e)}
+/* ===== 3.612: тренажёры «Зарплата и кадры» и «НДС и ЭСЧФ» ===== */
+try{(function(){
+const A=(t,q,o,a,w)=>TRAIN.push({t,q,o,a,w});
+A('pay','Доход работника с начала года вырос до 380 000 руб. Как облагается подоходным налогом сумма сверх 350 000?',['Весь доход года пересчитывается по ставке 25%','Только часть дохода сверх 350 000 облагается по ставке 25%','Ставка не меняется, остаётся 13%'],1,'Нарастающим итогом считается совокупный доход с начала года: с превышения над 350 000 руб. налог 25%, сам доход до этой суммы остаётся по прежней ставке. Для превышения стандартные, социальные и иные вычеты не применяются (ч. 1 и 2 п. 8-2 ст. 199 НК). Приложение считает это в начислении зарплаты.');
+A('pay','Доход работника с начала года превысил 600 000 руб. Какая ставка подоходного налога у части сверх этой суммы?',['25%','30%','13%'],1,'Часть дохода свыше 600 000 руб. облагается по ставке 30%, часть между 350 000 и 600 000 руб. по ставке 25%. Считается нарастающим итогом с начала года.');
+A('pay','Расчётные листки нужно отправить всем работникам на почту. Как сделать правильно?',['Одним письмом всем в общую копию, чтобы быстрее','Каждому отдельным письмом со своим листком','Отправить в общий чат работников'],1,'Расчётный листок содержит зарплату и удержания, это персональные данные. Каждый работник получает только свой листок. В приложении окно «Листки на e-mail» открывает отдельное письмо каждому, а общее письмо в скрытой копии подходит только для сообщения без цифр.');
+A('pay','У работника нет адреса электронной почты в карточке, а листок на почту отправить нужно. Что сделать?',['Отправить на свой адрес и переслать позже','Вписать адрес в окне «Листки на e-mail»: он сохранится в карточке','Отказаться от отправки листка'],1,'Адрес можно ввести прямо в окне отправки, он запишется в карточку работника, и в следующем месяце вводить его не придётся. Адрес нужно проверить: ошибка отправит чужие данные постороннему человеку.');
+A('pay','Какой взнос в ФСЗН удерживается из заработной платы работника?',['Взносы работника в ФСЗН не удерживаются','1% от начисленной зарплаты','34% от начисленной зарплаты'],1,'Из зарплаты работника удерживается 1% в ФСЗН. Взносы нанимателя (34%) платит наниматель сверх зарплаты, из зарплаты работника они не удерживаются.');
+A('vat','ИП на подоходном налоге продаёт товары покупателю в Беларуси. Исчисляет ли он НДС с этой реализации?',['Да, по ставке 20%','Нет, ИП не плательщик НДС по операциям внутри Беларуси','Да, но только при выручке выше лимита'],1,'ИП исключены из плательщиков НДС по операциям внутри Беларуси (ч. 2 ст. 112 НК). Но ИП платит НДС при ввозе товаров и в случаях, когда покупает у иностранных организаций, не состоящих на учёте в Беларуси.');
+A('vat','Организация на УСН покупает услугу у иностранной организации, место реализации которой Беларусь, и та не состоит на учёте в Беларуси. Нужно ли платить НДС?',['Нет, УСН освобождает от всех видов НДС','Да, организация исчисляет и платит НДС по п. 1 ст. 114 НК','Только если сумма больше 10 000 руб.'],1,'УСН освобождает только от «внутреннего» НДС при реализации. «Ввозной» НДС и НДС при покупках у нерезидентов на территории Беларуси платятся и на УСН. Отметьте галочку НДС в настройках, чтобы в календаре появились декларация и сроки.');
+A('vat','Организация на УСН без НДС продала товар белорусскому покупателю. Нужно ли создавать ЭСЧФ?',['Да, ЭСЧФ создаётся на каждую продажу','Нет, при реализации внутри Беларуси ЭСЧФ не создаётся (п. 6 ст. 130 НК)','Только если покупатель плательщик НДС'],1,'Продавцы на особых режимах без уплаты НДС при реализации на территории Беларуси ЭСЧФ не создают. Исключение: если НДС всё же выставлен покупателю.');
+A('vat','Организация на УСН ошибочно выставила покупателю НДС в накладной. Что с этим налогом?',['Ничего, УСН освобождает от НДС','Сумму излишне предъявленного НДС нужно уплатить в бюджет','Налог возвращается покупателю автоматически'],1,'Если НДС выставлен в первичном документе или ЭСЧФ, его нужно уплатить, даже если вы не плательщик (подп. 7.1 ст. 129 НК). Поэтому на УСН в накладной пишут «без НДС».');
+A('vat','ИП на подоходном налоге ввозит товар из-за границы. Платит ли он НДС при ввозе?',['Нет, ИП НДС не платит никогда','Да, ввозной НДС платят все, кто ввозит товары, даже не являясь плательщиками внутреннего НДС','Только организации'],1,'Плательщиков «ввозного» НДС больше, чем плательщиков «внутреннего»: ввозной НДС платят все организации и ИП, которые ввозят товары на территорию Беларуси (подп. 1.2 ст. 115 НК). В приложении ввозной НДС ведётся во вкладке «НДС».');
+TRK.push({k:'pay',n:'Зарплата и кадры',e:'Подоходный налог 25% и 30%, взносы, расчётные листки',go:'pay',gn:'Зарплата'},{k:'vat',n:'НДС и ЭСЧФ',e:'Когда ИП и организация на УСН платят НДС, ЭСЧФ, ввозной НДС',go:'tax',gn:'Налог и сроки'});
+const T="Тренажёры по зарплате и НДС";Object.assign(HELP_ADD,{[T]:"Ещё → Тренажёр: к направлениям «Книга», «Дела», CRM, управленческий учёт и личные финансы добавлены «Зарплата и кадры» (подоходный налог 25% и 30%, взносы, расчётные листки) и «НДС и ЭСЧФ» (когда ИП и организация на УСН платят НДС, ЭСЧФ, ввозной НДС). После каждого ответа показан разбор со ссылкой на норму."})}
+)()}catch(e){console.warn('3.612',e)}
 
 </script>
 <style id="club4Css">
