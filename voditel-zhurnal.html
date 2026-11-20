@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Журнал рейсов водителя</title>
+<style>
+:root{--bg:#f3f5f8;--c:#fff;--t:#17202a;--m:#55606c;--a:#c0392b;--ok:#1d7a3a;--w:#a35f00;--l:#cfd6de;--blue:#1b5fb0}
+@media (prefers-color-scheme:dark){:root{--bg:#12161a;--c:#1c2228;--t:#f1f4f7;--m:#a6b0bb;--l:#34404b;--blue:#6aa8f0}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--t);font:19px/1.45 system-ui,Arial,sans-serif;padding:12px 14px 70px;max-width:520px;margin:auto}
+h1{font-size:24px;margin:8px 0 2px}h2{font-size:22px;margin:6px 0 8px}
+.sub{color:var(--m);font-size:16px;margin-bottom:12px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.tile{background:var(--c);border:2px solid var(--l);border-radius:18px;padding:16px 10px;text-align:center;font:inherit;color:var(--t);min-height:128px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.tile b{font-size:21px;line-height:1.2}.tile small{color:var(--m);font-size:15px}
+.tile i{font-style:normal;font-size:34px;line-height:1}
+.t1{border-color:#2e86de}.t2{border-color:#e67e22}.t3{border-color:#27ae60}.t4{border-color:#8e44ad}.t5{border-color:#16a085}.t6{border-color:var(--a);background:var(--a);color:#fff}.t6 small{color:#fff}
+.back{background:none;border:0;color:var(--blue);font:inherit;font-size:20px;padding:8px 0;margin-bottom:4px}
+.card{background:var(--c);border:1px solid var(--l);border-radius:16px;padding:14px;margin:10px 0}
+label{display:block;font-size:18px;font-weight:600;margin:14px 0 4px}
+.h{color:var(--m);font-size:16px;margin:0 0 6px}
+input,select,textarea{min-width:0;width:100%;font:inherit;font-size:21px;padding:13px;border:2px solid var(--l);border-radius:12px;background:var(--bg);color:var(--t)}
+.two{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;column-gap:10px;row-gap:0;align-items:start}.two>div{min-width:0;grid-row:span 3;display:grid;grid-template-rows:subgrid;row-gap:0}.two label{display:flex;align-items:flex-end;margin:14px 0 4px;line-height:1.2;min-height:0}.two .h{margin:4px 0 0;font-size:15px;line-height:1.3}.calc{background:var(--bg);border:2px solid var(--l);border-radius:14px;padding:12px;margin:14px 0}.calc table{width:100%;border-collapse:collapse;font-size:18px}.calc td{padding:5px 0}.calc td:last-child{text-align:right;font-weight:700;white-space:nowrap}.calc .big2{font-size:24px}.led{width:100%;border-collapse:collapse;font-size:16px}.led th,.led td{padding:6px 3px;border-bottom:1px solid var(--l);text-align:right}.led th:first-child,.led td:first-child{text-align:left}.t7{border-color:#d4ac0d}.opt{display:block;width:100%;text-align:left;border:2px solid var(--l);background:var(--c);color:var(--t);border-radius:14px;padding:12px 14px;margin:8px 0;font:inherit}.opt b{display:block;font-size:20px}.opt small{display:block;color:var(--m);font-size:16px;line-height:1.35}.opt.on{border-color:var(--blue);background:rgba(27,95,176,.12)}.opt.on.m{border-color:var(--w);background:rgba(230,126,34,.16)}.mt{border-left:6px solid var(--w);background:rgba(230,126,34,.16);padding:6px 10px;margin:6px 0;border-radius:8px;font-size:17px}.tgs{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tg{text-align:left;border:2px solid var(--l);background:var(--c);color:var(--t);border-radius:14px;padding:10px 12px;font:inherit;min-height:74px}.tg b{display:block;font-size:18px;line-height:1.2}.tg small{display:block;color:var(--m);font-size:15px;margin-top:3px;line-height:1.25}.tg.on{border-color:var(--blue);background:rgba(27,95,176,.10)}.tg.done b::after{content:' ✓';color:var(--ok)}.sec{border-top:2px dashed var(--l);margin-top:10px;padding-top:2px}.tile.wide{grid-column:1/-1}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0}
+.chip{border:2px solid var(--l);background:var(--c);color:var(--t);border-radius:24px;padding:10px 16px;font:inherit;font-size:18px}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.big{width:100%;font:inherit;font-size:22px;font-weight:700;border:0;border-radius:16px;padding:18px;margin:14px 0 6px;background:var(--ok);color:#fff}
+.big.g{background:var(--c);color:var(--t);border:2px solid var(--l);font-weight:600}
+.big.r{background:var(--a)}
+.warn{background:#fff4e0;color:#7a4a00;border-left:6px solid var(--w);padding:10px 12px;border-radius:10px;font-size:17px;margin:10px 0}
+@media (prefers-color-scheme:dark){.warn{background:#3a2c12;color:#ffd699}}
+.okb{background:#e5f5ea;color:#14562a;border-left:6px solid var(--ok);padding:10px 12px;border-radius:10px;font-size:18px;margin:10px 0}
+@media (prefers-color-scheme:dark){.okb{background:#16301f;color:#b8efc8}}
+.rec{border-top:1px solid var(--l);padding:12px 0}.rec:first-child{border-top:0}
+.rec b{font-size:20px}.rec .d{color:var(--m);font-size:17px}
+.rec .row{display:flex;gap:10px;margin-top:8px}.rec button{flex:1;font:inherit;font-size:17px;padding:10px;border-radius:10px;border:2px solid var(--l);background:var(--c);color:var(--t)}
+.rec button.del{color:var(--a)}
+.sum{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}.sum div{background:var(--bg);border-radius:12px;padding:10px;text-align:center;font-size:16px}.sum b{display:block;font-size:24px}
+.step{display:flex;gap:12px;margin:12px 0;align-items:flex-start}.step span{flex:0 0 36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.fab{position:fixed;right:10px;bottom:14px;opacity:.92;z-index:50;width:54px;height:54px;border-radius:50%;border:0;background:var(--blue);color:#fff;font:700 28px/1 inherit;box-shadow:0 3px 10px rgba(0,0,0,.35)}.fab small{display:block;font-size:11px;font-weight:600}
+#app:has(input:focus,textarea:focus,select:focus) .fab{display:none}#app{padding-bottom:80px}details.mm{background:var(--bg);border-radius:12px;margin:8px 0;padding:4px 12px}details.mm summary{font-size:19px;font-weight:700;padding:10px 0;cursor:pointer}details.mm .x{font-size:18px;line-height:1.45;padding-bottom:10px}details.mm .x p{margin:6px 0}
+</style></head><body>
+<div id="app"></div>
+<script>
+const K='bnv_voditel_v1';let D={drv:'',car:'',cars:[],rows:[],idle:[],fuel:[],exp:[],last:''};
+try{D=Object.assign(D,JSON.parse(localStorage.getItem(K))||{})}catch(e){}
+['rows','idle','fuel','exp','cars'].forEach(k=>D[k]=D[k]||[]);
+if(D.car&&!D.cars.some(c=>c.plate===D.car))D.cars.push({plate:D.car,name:''});
+const $=s=>document.querySelector(s),app=$('#app');
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(D))}catch(e){}};
+const num=v=>{const n=parseFloat(String(v==null?'':v).replace(',','.'));return isFinite(n)?n:0};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const today=()=>new Date().toISOString().slice(0,10);
+const dmy=d=>(d||'').split('-').reverse().join('.');
+const pm=x=>{const q=/^(\d{1,2}):(\d{2})/.exec(x||'');return q?+q[1]*60+ +q[2]:null};
+const span=r=>{const a=pm(r.out),b=pm(r.in);if(a===null||b===null)return 0;let d=b-a;if(d<=0)d+=1440;return d/60};
+const shiftH=r=>Math.max(0,Math.round((span(r)-num(r.brk)/60)*100)/100);
+function check(r){const w=[],t=span(r),s=shiftH(r),int=r.kind==='int';
+ if(!int&&s>10)w.push('Смена получилась '+s+' ч. Это больше 10 часов. Скажите бухгалтеру или диспетчеру.');
+ if(num(r.drive)>9)w.push('За рулём указано '+num(r.drive)+' ч. Это больше 9 часов.');
+ if(t>(int?4.5:4)&&num(r.brk)<(int?45:20))w.push('Перерыв '+num(r.brk)+' мин. При такой смене нужен перерыв не меньше '+(int?'45':'20')+' минут.');
+ return w}
+const isSimple=()=>D.full!==1;
+const TILES=[['shift','🚚','Смена целиком','записать за один раз, задним числом','t1'],['idle','⏳','Простой','ждал погрузку, границу','t2'],['fuel','⛽','Заправка','записать литры и чек','t3'],['fcalc','🧮','Топливо','остаток в баке, расчёт литров','t7'],['exp','🧾','Расход в пути','дорога, парковка, ремонт','t4'],['list','📋','Мои записи','посмотреть всё, что записал','t5'],['send','📤','Отправить бухгалтеру','в конце месяца','t6']];
+let VIEW='home',EDIT=null,KIND='rb',CHIP={},AUTO={};
+function go(v,id){VIEW=v;EDIT=id||null;window.scrollTo(0,0);draw()}
+const hd=(t,sub)=>`<button class="back" data-go="home">← На главную</button><h2>${t}</h2>${sub?`<div class="sub">${sub}</div>`:''}`;
+const HINT={odoS:'Цифры на спидометре перед выездом.',odoE:'Цифры на спидометре, когда вернулись.',fuelS:'Сколько литров в баке по указателю. Не знаете точно, впишите примерно.',filled:'Сколько литров залили за рейс. Не заправлялись: 0.',norm:'Литров на 100 км. Есть в «Мои данные» или в путевом листе.',ext:'Обычно 0.',out:'Время на часах при выезде.',in:'Время на часах при возвращении.',date:'Какого числа. Сегодня уже стоит.',from:'Когда начали стоять.',to:'Когда поехали дальше.',litres:'Сколько литров залили. Смотрите на чек.',sum:'Сумма из чека. Не знаете точно, впишите примерно.',note:'Что купили или за что заплатили. Номер чека, если есть.',place:'АЗС, город.',doc:'Номер внизу или вверху чека.'};
+const hn=id=>HINT[id]?`<div class="h">${HINT[id]}</div>`:'';
+const fld=(id,l,h,v,extra)=>`<label for="${id}">${l}</label>${(h||HINT[id])?`<div class="h">${h||HINT[id]}</div>`:''}<input id="${id}" value="${esc(v||'')}" ${extra||''}>`;
+const f2=(id,l,v,extra)=>`<div><label for="${id}">${l}</label><input id="${id}" value="${esc(v==null?'':v)}" ${extra||'inputmode="decimal"'}>${hn(id)}</div>`;
+const r1=x=>Math.round(x*10)/10;
+const chips=(id,arr,cur)=>`<div class="chips" data-chips="${id}">${arr.map(a=>`<button type="button" class="chip ${String(cur)===String(a)?'on':''}" data-v="${esc(a)}">${esc(a)}</button>`).join('')}</div>`;
+const carLbl=c=>c.plate+(c.name?' ('+c.name+')':'');
+const carFull=c=>carLbl(c)+(num(c.norm)?', норма '+c.norm+' л/100 км':'');
+function carFld(v){const has=D.cars.length>0,known=has&&D.cars.some(c=>c.plate===v);return `<label for="car">Автомобиль</label>${has?`<div class="chips" data-chips="car">${D.cars.map(c=>`<button type="button" class="chip ${c.plate===v?'on':''}" data-v="${esc(c.plate)}">${esc(carLbl(c))}</button>`).join('')}<button type="button" class="chip" data-v="__other">Другой</button></div>`:''}<div id="carOther" style="display:${has&&known?'none':''}"><input id="car" value="${esc(v||'')}" placeholder="государственный номер" autocapitalize="characters"></div>`}
+function carOf(p){return D.cars.find(c=>c.plate===p)||{}}
+const openShift=()=>D.rows.find(x=>x.open);
+const nowT=()=>new Date().toTimeString().slice(0,5);
+function prevShift(car,date,id){return D.rows.filter(x=>!x.open&&x.car===car&&x.id!==id&&(x.date||'')<date).sort((a,b)=>b.date.localeCompare(a.date)||(b.out||'').localeCompare(a.out||''))[0]}
+function autoFilled(car,from,to){return r1(D.fuel.filter(f=>f.car===car&&f.date<=to&&(from?f.date>from:f.date===to)).reduce((q,f)=>q+num(f.litres),0))}
+function fcalc(r,id){const has=v=>v!==undefined&&v!==null&&String(v)!=='';
+ const km=(has(r.odoS)&&has(r.odoE)&&num(r.odoE)>=num(r.odoS))?r1(num(r.odoE)-num(r.odoS)):0;
+ const norm=num(r.norm),ext=num(r.ext),spent=r1(km*norm/100*(1+ext/100));
+ const pv=r.date?prevShift(r.car,r.date,id):null;
+ const filled=has(r.filled)?num(r.filled):autoFilled(r.car,pv?pv.date:'',r.date);
+ const start=has(r.fuelS)?num(r.fuelS):(pv&&has(pv.fuelE)?num(pv.fuelE):null);
+ const end=start===null?null:r1(start+filled-spent);
+ return {km,norm,ext,spent,filled,start,end,pv}}
+function fuelNote(r){let m='';if(r.src==='mate')m+='<div class="mt">🔁 Забрал машину у напарника'+(r.mate?' ('+esc(r.mate)+')':'')+'. Начал с остатка '+(r.fuelS!==''&&r.fuelS!=null?num(r.fuelS)+' л':'?')+(r.odoS?', спидометр '+num(r.odoS):'')+'</div>';else if(r.src==='own')m+='<div class="d">Продолжил свою работу на этой машине</div>';if(r.hand)m+='<div class="mt">➡ Передал машину: '+esc(r.hand)+'</div>';return m+fuelNote2(r)}
+function fuelNote2(r){if(!num(r.norm)&&!num(r.spent))return '';const f=fcalc(r,r.id);const sp=r.spent!=null&&r.spent!==''?num(r.spent):f.spent;
+ let t='<br>Пробег '+f.km+' км, списано по норме '+sp+' л'+(f.filled?', заправлено '+f.filled+' л':'')+(r.fuelE!==''&&r.fuelE!=null?', остаток '+num(r.fuelE)+' л'+(r.fuelAuto?' (расчётный)':''):'');
+ if(!r.fuelAuto&&f.end!==null&&r.fuelE!==''&&r.fuelE!=null){const d=r1(num(r.fuelE)-f.end);if(Math.abs(d)>=0.1)t+='<br>Фактический остаток '+(d<0?'меньше':'больше')+' расчётного на '+Math.abs(d)+' л'}
+ return t}
+function home(){
+ const n=(a)=>a.length;
+ return `<h1>Журнал рейсов</h1><div class="sub">${D.drv?'Водитель: <b>'+esc(D.drv)+'</b>':'Сначала нажмите «Мои данные» внизу, впишите фамилию и добавьте свои автомобили.'}</div>
+ ${(!D.drv)?'<div class="warn">Впишите свои данные один раз, дальше они подставляются сами.</div>':''}
+ ${reminder()}
+ ${(()=>{const o=openShift();return o?`<div class="card" style="border:3px solid var(--ok)"><b style="font-size:21px">Смена идёт</b><div class="d" style="font-size:18px;margin:4px 0 8px">С ${esc(o.out||'?')}, ${dmy(o.date)}${o.car?', '+esc(o.car):''}</div><button class="big r" data-close="${o.id}" style="margin-top:4px">Закрыть смену</button></div>`:`<button class="big" data-go="start" style="font-size:24px;padding:22px">Начать смену</button>`})()}
+ <div class="tiles">${TILES.filter(t=>!isSimple()||['fuel','list','send'].includes(t[0])).map(t=>`<button class="tile ${t[4]}${t[0]==='send'?' wide':''}" data-go="${t[0]}"><i>${t[1]}</i><b>${t[2]}</b><small>${t[3]}${t[0]==='list'?': '+(n(D.rows)+n(D.idle)+n(D.fuel)+n(D.exp)):''}</small></button>`).join('')}</div>
+ <div class="tiles"><button class="tile" style="min-height:90px" data-go="me"><b>Мои данные</b></button><button class="tile" style="min-height:90px" data-go="help"><b>Как пользоваться</b></button></div>`}
+function reminder(){if(!D.rows.length&&!D.idle.length&&!D.fuel.length&&!D.exp.length)return '';
+ const dys=D.last?Math.floor((Date.now()-new Date(D.last).getTime())/864e5):null;
+ if(dys===null)return '<div class="warn">Записи пока не отправлены бухгалтеру. Нажмите «Отправить бухгалтеру».</div>';
+ if(dys>=7)return `<div class="warn">Вы отправляли файл ${dys} дн. назад. Отправьте свежий файл бухгалтеру.</div>`;return ''}
+function me(){return hd('Мои данные','Заполняется один раз.')+`<div class="card">${D.cfgDrv?`<b style="font-size:20px">${esc(D.drv)}</b><div class="h">Внесено бухгалтером. Менять не нужно.</div><input type="hidden" id="drv" value="${esc(D.drv)}">`:fld('drv','Фамилия, имя, отчество','Так, как написано в приказе о приёме на работу.',D.drv,'autocomplete="name"')}</div>
+ <div class="card"><b style="font-size:20px">Мои автомобили</b><div class="h">Все автомобили, на которых вы ездите. В каждой записи вы просто выбираете нужный.</div>
+ ${D.cars.length?D.cars.map((c,i)=>`<div class="rec"><b>${esc(carFull(c))}</b>${c.cfg?'<div class="h">Выдан бухгалтером</div>':`<div class="row"><button data-normcar="${i}">Норма</button><button class="del" data-delcar="${i}">Убрать</button></div>`}</div>`).join(''):'<div class="sub">Пока ни одного. Добавьте ниже.</div>'}
+ ${fld('newPlate','Государственный номер','Например 1234 AB-7.','','autocapitalize="characters"')}${fld('newName','Марка или название (необязательно)','Например MAN, Volvo, прицеп.','')}${fld('newNorm','Норма расхода, л на 100 км (необязательно)','Из путевого листа или приказа организации.','','inputmode="decimal"')}
+ <button class="big g" id="addCar">Добавить автомобиль</button></div><button class="big" id="saveMe">Сохранить</button>${D.cfgMode?'':`<div class="card"><b style="font-size:20px">Режим журнала</b><div class="h">Простой: только смена и заправки. Полный: ещё простои, расходы в пути, перерывы, напарник, расчёт топлива.</div><div class="chips"><button type="button" class="chip ${isSimple()?'on':''}" data-mode="simple">Простой</button><button type="button" class="chip ${isSimple()?'':'on'}" data-mode="full">Полный</button></div></div>`}<div class="card"><b style="font-size:20px">Настройки от бухгалтера</b><div class="h">Если бухгалтер прислал файл настроек, загрузите его здесь. Фамилия и автомобили встанут сами.</div><label class="big g" style="display:block;text-align:center"><input type="file" id="cfgFile" accept=".json,application/json" style="display:none">Загрузить настройки из файла</label></div>`}
+function shiftV(){window.__brkAsked=0;let r=EDIT?D.rows.find(x=>x.id===EDIT):{date:today(),car:D.car,kind:'rb'};const closing=!!(r&&r.open);if(closing){r=Object.assign({},r,{dateS:r.date,date:today(),in:nowT()})}KIND=r.kind||'rb';CHIP.brk=r.brk;AUTO=EDIT?{}:{fuelS:1,filled:1,norm:1,ext:1,odoS:1};CHIP.src=EDIT?(r.src||'own'):(prevShift(r.car,r.date,null)?'':'own');
+ const has={brk:EDIT&&(closing||r.brk||r.drive),fuel:EDIT&&(closing||r.odoS||r.odoE||r.fuelS||r.norm),route:EDIT&&(r.route||r.kind==='int'),hand:EDIT&&r.hand};
+ const tg=(k,ic,t)=>`<button type="button" class="tg ${has[k]?'on':''}" data-sec="${k}"><b>${ic} ${t}</b><small id="sum_${k}"></small></button>`;
+ const sec=(k,h)=>`<div class="sec" id="sec_${k}" style="display:${has[k]?'':'none'}">${h}</div>`;
+ if(closing&&isSimple())return simpleCloseV(r);
+ return hd(closing?'Закрыть смену':EDIT?'Изменить смену':'Смена целиком',closing?'Выехали в '+esc(r.out||'?')+'. Укажите, когда вернулись, спидометр и остаток топлива.':'Главное ниже. Остальное откройте кнопкой, если нужно.')+`<div class="card">
+ ${fld('date','Дата закрытия смены','',r.date,'type="date"')}
+ ${carFld(r.car)}
+ <label>С чего начинаете смену</label>
+ <div data-chips="src"><button type="button" class="opt ${CHIP.src==='own'?'on':''}" data-v="own"><b>Продолжаю свою работу</b><small>Последним на машине ездил я.</small></button>
+ <button type="button" class="opt m ${CHIP.src==='mate'?'on':''}" data-v="mate"><b>Забрал машину у напарника</b><small>После меня ездил другой водитель.</small></button></div>
+ <div id="mateBox" style="display:${CHIP.src==='mate'?'':'none'}">${fld('mate','Фамилия, имя, отчество напарника','Полностью. Попадёт в отчёт бухгалтеру.',r.mate,'autocomplete="name"')}</div>
+ <div id="srcNote"></div>
+ <div id="startBox" style="display:${CHIP.src?'':'none'}"><div class="h" style="margin-top:12px">Показания на момент выезда (при приёме машины):</div><div class="two s">${f2('odoS','Спидометр, км',r.odoS)}${f2('fuelS','Топливо в баке, л',r.fuelS)}</div></div>
+ <div class="two s">${f2('out','Выехал в',r.out,'type="time"')}${f2('in','Вернулся в',r.in,'type="time"')}</div>
+ <div class="h" style="margin:16px 0 6px">Дополнительно (нажмите, чтобы открыть):</div>
+ <div class="tgs">${tg('brk','⏱','Перерыв и руль')}${tg('fuel','⛽','Спидометр и топливо')}${tg('route','📍','Маршрут и рейс')}${tg('hand','➡','Передал машину')}</div>
+ ${sec('brk',`<label>Перерыв на отдых и еду, минут</label>${chips('brk',[0,20,30,45,60,90],r.brk)}<input id="brk" inputmode="numeric" value="${esc(r.brk||'')}" placeholder="свой вариант">
+ ${fld('drive','Часов за рулём','Если не знаете точно, впишите примерно. Например 7,5',r.drive,'inputmode="decimal"')}`)}
+ ${sec('fuel',`<div class="two s">${f2('odoE','Спидометр на возврате, км',r.odoE)}${f2('filled','Заправлено в рейсе, л',r.filled)}</div>
+ <div class="two s">${f2('norm','Норма, л/100 км',r.norm)}${f2('ext','Надбавка, %',r.ext)}</div>
+ <div class="h" style="margin-top:6px">Надбавку впишите, только если она установлена приказом организации. Иначе 0.</div>
+ <div id="fbox"></div>
+ ${fld('fuelE','Остаток по указателю, л','Необязательно. Если не впишете, возьмём расчётный.',r.fuelE,'inputmode="decimal"')}`)}
+ ${sec('route',`${fld('route','Откуда, куда, что возили','Например: Минск, Брест, продукты.',r.route)}
+ <label>Какой рейс</label><div class="chips" data-chips="kind"><button type="button" class="chip ${KIND==='rb'?'on':''}" data-v="rb">По Беларуси</button><button type="button" class="chip ${KIND==='int'?'on':''}" data-v="int">За границу</button></div>`)}
+ ${sec('hand',fld('hand','Фамилия, имя, отчество того, кому передали машину','Если после вас ехал напарник. Потом нажмите «Передать напарнику» в «Моих записях».',r.hand,'autocomplete="name"'))}
+ <div id="warn"></div></div><button class="big" id="saveShift">${closing?'Закрыть смену':'Закрыть смену'}</button><button class="big g" data-go="home">Отмена</button>`}
+
+const WHY=['Погрузка','Выгрузка','Граница','Таможня','Поломка','Пробка','Ожидание'];
+const whyList=v=>String(v||'').split(',').map(x=>x.trim()).filter(Boolean);
+function whyChips(v){const L=whyList(v);return `<div class="chips" data-chips="why">${WHY.map(a=>`<button type="button" class="chip ${L.includes(a)?'on':''}" data-v="${a}">${a}</button>`).join('')}</div>`}
+
+function startSimpleV(r){
+ return hd('Начать смену','Два поля. Время и дата уже стоят.')+`<div class="card">
+ ${carFld(r.car)}
+ ${f2('odoS','Спидометр на выезде, км','')}
+ <div class="two s">${fld('date','Дата выезда','',r.date,'type="date"')}${f2('out','Выехал в',r.out,'type="time"')}</div>
+ <input type="hidden" id="fuelS" value="">
+ <div id="srcNote"></div>
+ </div><button class="big" id="saveStart">Начать смену</button><button class="big g" data-go="home">Отмена</button>`}
+function simpleCloseV(r){
+ return hd('Закрыть смену','Выехали в '+esc(r.out||'?')+'. Осталось три поля.')+`<div class="card">
+ <input type="hidden" id="simpleClose" value="1"><input type="hidden" id="date" value="${esc(r.date||'')}"><input type="hidden" id="car" value="${esc(r.car||'')}"><input type="hidden" id="out" value="${esc(r.out||'')}"><input type="hidden" id="odoS" value="${esc(r.odoS==null?'':r.odoS)}"><input type="hidden" id="fuelS" value="${esc(r.fuelS==null?'':r.fuelS)}"><input type="hidden" id="norm" value="${esc(r.norm||carOf(r.car).norm||'')}"><input type="hidden" id="ext" value="${esc(r.ext||carOf(r.car).ext||'')}">
+ ${(r.odoS===''||r.odoS==null)?f2('odoS2','Спидометр при выезде, км (не был вписан)',''):''}
+ ${f2('odoE','Спидометр на возврате, км',r.odoE)}
+ ${fld('route','Откуда, куда, что возили','Например: Минск, Брест, продукты.',r.route)}
+ <label>Какой рейс</label><div class="chips" data-chips="kind"><button type="button" class="chip ${KIND==='rb'?'on':''}" data-v="rb">По Беларуси</button><button type="button" class="chip ${KIND==='int'?'on':''}" data-v="int">За границу</button></div>
+ ${fld('in','Вернулся в','',r.in,'type="time"')}
+ <div class="h" style="margin-top:10px">Заправки записывайте кнопкой «Заправка» на главной, они подставятся сами.</div>
+ </div><button class="big" id="saveShift">Закрыть смену</button><button class="big g" data-go="home">Отмена</button>`}
+function startV(){const r={date:today(),car:D.car,out:nowT()};CHIP.src=(isSimple()||!prevShift(r.car,r.date,null))?'own':'';AUTO={fuelS:1,odoS:1};
+ if(isSimple())return startSimpleV(r);
+ return hd('Начать смену','Заполните при выезде. В конце нажмите «Закрыть смену» на главной.')+`<div class="card">
+ ${fld('date','Дата выезда','',r.date,'type="date"')}
+ ${carFld(r.car)}
+ <label>С чего начинаете смену</label>
+ <div data-chips="src"><button type="button" class="opt ${CHIP.src==='own'?'on':''}" data-v="own"><b>Продолжаю свою работу</b><small>Последним на машине ездил я.</small></button>
+ <button type="button" class="opt m ${CHIP.src==='mate'?'on':''}" data-v="mate"><b>Забрал машину у напарника</b><small>После меня ездил другой водитель.</small></button></div>
+ <div id="mateBox" style="display:none">${fld('mate','Фамилия, имя, отчество напарника','Полностью. Попадёт в отчёт бухгалтеру.','','autocomplete="name"')}</div>
+ <div id="srcNote"></div>
+ <div id="startBox" style="display:${CHIP.src?'':'none'}"><div class="h" style="margin-top:12px">Показания при выезде:</div><div class="two s">${f2('odoS','Спидометр, км','')}${f2('fuelS','Топливо в баке, л','')}</div></div>
+ <div class="two s">${f2('out','Выехал в',r.out,'type="time"')}<div></div></div>
+ </div><button class="big" id="saveStart">Начать смену</button><button class="big g" data-go="home">Отмена</button>`}
+function idleV(){const r=EDIT?D.idle.find(x=>x.id===EDIT):{date:today(),car:D.car};
+ return hd(EDIT?'Изменить простой':'Простой','Запишите, когда стояли и не могли ехать или работать.')+`<div class="card">
+ ${fld('date','Дата','',r.date,'type="date"')}
+ <div class="two"><div>${fld('from','Стоять начал в','',r.from,'type="time"')}</div><div>${fld('to','Закончил в','',r.to,'type="time"')}</div></div>
+ ${fld('hours','Или впишите, сколько часов стояли','Если время не помните. Например 2,5',r.hours,'inputmode="decimal"')}
+ <label>Причина</label><div class="h">Можно выбрать несколько. Нажмите ещё раз, чтобы убрать.</div>${whyChips(r.why)}<input id="why" value="${esc(r.why||'')}" placeholder="или впишите свою причину и место">
+ ${carFld(r.car)}</div><button class="big" id="saveIdle">Записать простой</button><button class="big g" id="saveIdle2">Записать и добавить ещё простой</button><button class="big g" data-go="home">Отмена</button>`}
+function fuelV(){const r=EDIT?D.fuel.find(x=>x.id===EDIT):{date:today(),car:D.car,cur:'BYN'};CHIP.cur=r.cur||'BYN';
+ return hd(EDIT?'Изменить заправку':'Заправка','Записывайте каждую заправку. Чек сохраните и отдайте бухгалтеру.')+`<div class="card">
+ ${fld('date','Дата заправки','',r.date,'type="date"')}
+ <div class="two"><div>${fld('litres','Сколько литров','',r.litres,'inputmode="decimal"')}</div><div>${fld('sum','На какую сумму','Как в чеке.',r.sum,'inputmode="decimal"')}</div></div>
+ <label>Валюта</label>${chips('cur',['BYN','EUR','USD','PLN','RUB','CZK'],r.cur||'BYN')}
+ ${isSimple()?'':fld('doc','Номер чека','Если есть на чеке.',r.doc)+fld('place','Где заправились','Название АЗС, страна, город.',r.place)}
+ ${carFld(r.car)}</div><button class="big" id="saveFuel">Записать заправку</button><button class="big g" id="saveFuel2">Записать и добавить ещё заправку</button><button class="big g" data-go="home">Отмена</button>`}
+function expV(){const r=EDIT?D.exp.find(x=>x.id===EDIT):{date:today(),cur:'BYN'};CHIP.cur=r.cur||'BYN';CHIP.kind2=r.kind||'';
+ return hd(EDIT?'Изменить расход':'Расход в пути','Дорога, парковка, мойка, ремонт, проживание. К каждому расходу сохраняйте чек.')+`<div class="card">
+ ${fld('date','Дата','',r.date,'type="date"')}
+ <label>На что потратили</label>${chips('kind2',['Платная дорога','Парковка, стоянка','Мойка','Ремонт в пути','Проживание, питание','Штраф','Таможня, граница','Другое'],r.kind)}
+ ${fld('sum','Сумма','',r.sum,'inputmode="decimal"')}
+ <label>Валюта</label>${chips('cur',['BYN','EUR','USD','PLN','RUB','CZK'],r.cur||'BYN')}
+ ${fld('note','Номер чека или пояснение','',r.note)}</div><button class="big" id="saveExp">Записать расход</button><button class="big g" id="saveExp2">Записать и добавить ещё расход</button><button class="big g" data-go="home">Отмена</button>`}
+function listV(){const f=CHIP.f||'all',all=[];
+ D.rows.forEach(r=>all.push({t:'shift',id:r.id,date:r.date,open:r.open,h:r.open?`<b>🚚 Смена идёт с ${esc(r.out||'?')}, ${dmy(r.date)}</b><div class="d">${esc(r.car||'')}${r.src==='mate'?'<br>Принял машину у напарника'+(r.mate?' ('+esc(r.mate)+')':''):''}</div><div class="warn">Смена не закончена. Нажмите «Закрыть смену».</div>`:`<b>🚚 Смена ${dmy(r.date)}</b><div class="d">${r.out||'?'}–${r.in||'?'}, на работе ${shiftH(r)} ч, за рулём ${num(r.drive)} ч${r.kind==='int'?', за границу':''}${r.route?'<br>'+esc(r.route):''}${fuelNote(r)}</div>${check(r).map(x=>'<div class="warn">'+esc(x)+'</div>').join('')}`}));
+ D.idle.forEach(r=>all.push({t:'idle',id:r.id,date:r.date,h:`<b>⏳ Простой ${dmy(r.date)}</b><div class="d">${r.from&&r.to?r.from+'–'+r.to+', ':''}${r.hours?r.hours+' ч':''}${r.why?'<br>'+esc(r.why):''}</div>`}));
+ D.fuel.forEach(r=>all.push({t:'fuel',id:r.id,date:r.date,h:`<b>⛽ Заправка ${dmy(r.date)}</b><div class="d">${r.litres} л, ${r.sum} ${esc(r.cur)}${r.doc?', чек '+esc(r.doc):''}${r.place?'<br>'+esc(r.place):''}</div>`}));
+ D.exp.forEach(r=>all.push({t:'exp',id:r.id,date:r.date,h:`<b>🧾 ${esc(r.kind||'Расход')} ${dmy(r.date)}</b><div class="d">${r.sum} ${esc(r.cur)}${r.note?'<br>'+esc(r.note):''}</div>`}));
+ all.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+ const L=all.filter(x=>f==='all'||x.t===f),mo=today().slice(0,7),ms=D.rows.filter(r=>(r.date||'').slice(0,7)===mo);
+ const typ={shift:'shift',idle:'idle',fuel:'fuel',exp:'exp'};
+ return hd('Мои записи','Здесь всё, что вы записали. Можно исправить или удалить.')+
+ `<div class="sum"><div><b>${ms.length}</b>смен в этом месяце</div><div><b>${Math.round(ms.reduce((q,r)=>q+shiftH(r),0)*10)/10}</b>часов на работе</div><div><b>${D.idle.length}</b>простоев всего</div><div><b>${Math.round(D.fuel.reduce((q,r)=>q+num(r.litres),0)*10)/10}</b>литров заправлено</div></div>
+ <div class="chips" data-chips="filt">${[['all','Все'],['shift','Смены'],['idle','Простои'],['fuel','Заправки'],['exp','Расходы']].map(a=>`<button type="button" class="chip ${f===a[0]?'on':''}" data-v="${a[0]}">${a[1]}</button>`).join('')}</div>
+ <div class="card">${L.length?L.map(x=>`<div class="rec">${x.h}<div class="row">${x.t==='shift'&&x.open?`<button data-close="${x.id}" style="border-color:var(--ok)">Закрыть смену</button>`:''}${x.t==='shift'&&!x.open?`<button data-hand="${x.id}">Передать напарнику</button>`:''}<button data-edit="${x.t}:${x.id}">Исправить</button><button class="del" data-del="${x.t}:${x.id}">Удалить</button></div></div>`).join(''):'<div class="sub">Записей пока нет. Нажмите «На главную» и выберите, что записать.</div>'}</div>`}
+function sendV(){const c=D.rows.length+D.idle.length+D.fuel.length+D.exp.length;
+ return hd('Отправить бухгалтеру','Делайте это в конце месяца или после рейса.')+(openShift()?'<div class="warn">Есть незакрытая смена. Закройте её на главной: пока она открыта, бухгалтер её не увидит.</div>':'')+`<div class="card">
+ <div class="step"><span>1</span><div>Нажмите большую кнопку ниже. Файл сохранится на телефоне (обычно в «Загрузки»).</div></div>
+ <div class="step"><span>2</span><div>Откройте Телеграм или Вайбер и отправьте этот файл бухгалтеру.</div></div>
+ <div class="step"><span>3</span><div>Фотографии чеков с заправок и расходов отправьте отдельно.</div></div>
+ <div class="okb">Записей сейчас: ${c}.${D.last?' Последний раз отправляли: '+dmy(D.last)+'.':''}</div></div>
+ <button class="big r" id="dl">Скачать файл для бухгалтера</button><button class="big g" id="cp">Скопировать текстом</button><div id="msg"></div>
+ <div class="warn">Не удаляйте записи, пока бухгалтер не подтвердит получение. Не очищайте данные браузера: записи хранятся на этом телефоне.</div>`}
+function helpV(){if(isSimple())return hd('Как пользоваться')+`<div class="card">
+ <div class="step"><span>1</span><div>Один раз: «Мои данные», впишите фамилию и номер автомобиля, если их ещё нет.</div></div>
+ <div class="step"><span>2</span><div>Выезжаете: «Начать смену», выберите автомобиль, впишите спидометр.</div></div>
+ <div class="step"><span>3</span><div>Заправились: «Заправка», впишите литры и сумму. Чек сохраните.</div></div>
+ <div class="step"><span>4</span><div>Вернулись: «Закрыть смену», впишите спидометр, откуда и куда ехали и что возили.</div></div>
+ <div class="step"><span>5</span><div>В конце месяца: «Отправить бухгалтеру» и отправьте файл в Телеграм.</div></div></div>
+ <div class="okb">Работает без интернета. Если ошиблись, зайдите в «Мои записи» и нажмите «Исправить». Простои, расходы и другие функции включаются в «Мои данные», режим «Полный».</div>`;
+ return hd('Как пользоваться')+`<div class="card">
+ <div class="step"><span>1</span><div>Один раз нажмите «Мои данные» и впишите фамилию, номера автомобилей и норму расхода топлива.</div></div>
+ <div class="step"><span>2</span><div>Выезжаете: на главной нажмите «Начать смену», выберите автомобиль, впишите спидометр и остаток. Вернулись: нажмите «Закрыть смену» и впишите время, спидометр и остаток. «Смена целиком» нужна, если забыли начать и записываете задним числом.</div></div>
+ <div class="step"><span>3</span><div>Если стояли (погрузка, граница, поломка), нажмите «Простой».</div></div>
+ <div class="step"><span>4</span><div>Заправились: нажмите «Заправка». Потратились в пути: «Расход в пути». Чеки сохраняйте.</div></div>
+ <div class="step"><span>5</span><div>«Мои записи» показывает всё записанное. Там можно исправить или удалить.</div></div>
+ <div class="step"><span>6</span><div>Если на автомобиле работает напарник: в начале записи смены выберите «Забрал машину у напарника» и впишите остаток топлива и спидометр, какие были при приёме. Если ездили только вы, выберите «Продолжаю свою работу». Закрыв смену, нажмите в «Моих записях» «Передать напарнику» и отправьте текст ему.</div></div>
+ <div class="step"><span>7</span><div>Плитка «Топливо» показывает остаток в баке по каждому автомобилю и считает, сколько литров списать по норме.</div></div>
+ <div class="step"><span>8</span><div>В конце месяца нажмите «Отправить бухгалтеру».</div></div></div>
+ <div class="card"><b style="font-size:20px">Где что найти</b>
+ <div class="step"><span>•</span><div>Добавить автомобиль, норму расхода топлива, свою фамилию: «Мои данные».</div></div>
+ <div class="step"><span>•</span><div>Исправить или удалить запись: «Мои записи», кнопки под записью.</div></div>
+ <div class="step"><span>•</span><div>Остаток топлива в баке и сколько литров списать: плитка «Топливо».</div></div>
+ <div class="step"><span>•</span><div>Забрал машину у напарника или передал: в «Смена, рейс» первый выбор, передача: «Моих записях» кнопка «Передать напарнику».</div></div>
+ <div class="step"><span>•</span><div>Перерыв, спидометр, маршрут: в «Смена, рейс» нажмите нужную плитку.</div></div>
+ <div class="step"><span>•</span><div>Как считается топливо, сколько можно проехать за день, что писать в полях: синяя кнопка «?» справа внизу на любом экране.</div></div>
+ <div class="step"><span>•</span><div>Отправить файл бухгалтеру: красная плитка «Отправить бухгалтеру».</div></div></div>
+ <div class="okb">Работает без интернета. Если ошиблись, зайдите в «Мои записи» и нажмите «Исправить».</div>`}
+function fcalcV(){const cars=D.cars;const cp=CHIP.fcar||D.car||(cars[0]&&cars[0].plate)||'',c=carOf(cp);
+ const L=D.rows.filter(r=>r.car===cp).sort((a,b)=>(a.date||'').localeCompare(b.date||'')||(a.out||'').localeCompare(b.out||''));
+ const last=[...L].reverse().find(r=>r.fuelE!==''&&r.fuelE!=null);
+ return hd('Топливо','Остаток в баке и расчёт литров.')+`<div class="card"><b style="font-size:20px">Остаток по автомобилю</b>
+ ${cars.length?`<div class="chips" data-chips="fcar">${cars.map(x=>`<button type="button" class="chip ${x.plate===cp?'on':''}" data-v="${esc(x.plate)}">${esc(carLbl(x))}</button>`).join('')}</div>`:'<div class="sub">Добавьте автомобиль в «Мои данные».</div>'}
+ ${last?`<div class="okb">В баке по записям на ${dmy(last.date)}: <b>${num(last.fuelE)} л</b>${last.fuelAuto?' (расчёт)':''}</div>`:'<div class="sub">По этому автомобилю ещё нет смен с топливом.</div>'}
+ ${L.length?`<table class="led"><tr><th>Дата</th><th>Было</th><th>+Залито</th><th>−Списано</th><th>Остаток</th></tr>${L.map(r=>`<tr><td>${dmy(r.date).slice(0,5)}${r.src==='mate'?' 🔁':''}</td><td>${r.fuelS===''||r.fuelS==null?'':num(r.fuelS)}</td><td>${r.filled?num(r.filled):''}</td><td>${r.spent?num(r.spent):''}</td><td><b>${r.fuelE===''||r.fuelE==null?'':num(r.fuelE)}</b></td></tr>`).join('')}</table><div class="h" style="margin-top:6px">🔁 в этот день машину приняли от напарника.</div>`:''}</div>
+ <div class="card"><b style="font-size:20px">Сколько литров списать</b><div class="h">Расход по норме на пройденный путь.</div>
+ <div class="two">${f2('fc_km','Пробег, км','')}${f2('fc_norm','Норма, л на 100 км',c.norm||'')}</div>
+ ${fld('fc_ext','Надбавка к норме, %','Только если установлена приказом организации. Иначе 0.',c.ext||'','inputmode="decimal"')}
+ <div class="calc"><table><tr><td><b>Списать, л</b></td><td class="big2" id="fc_res">0</td></tr></table></div></div>
+ <div class="card"><b style="font-size:20px">Какой расход получился</b><div class="h">Сколько реально ушло топлива на пройденный путь.</div>
+ <div class="two">${f2('fr_l','Израсходовано, л','')}${f2('fr_km','Пробег, км','')}</div>
+ <div class="calc"><table><tr><td><b>Расход, л на 100 км</b></td><td class="big2" id="fr_res">0</td></tr><tr><td>Против нормы</td><td id="fr_cmp">норма не указана</td></tr></table></div></div>`}
+function fcBind(){const cp=CHIP.fcar||D.car||'',c=carOf(cp);
+ const cal=()=>{const km=num(g('fc_km')),n=num(g('fc_norm')),e=num(g('fc_ext'));$('#fc_res').textContent=r1(km*n/100*(1+e/100))+' л';
+  const l=num(g('fr_l')),k=num(g('fr_km')),v=k?Math.round(l/k*1000)/10:0;$('#fr_res').textContent=v+' л';const nn=num(g('fc_norm'))*(1+num(g('fc_ext'))/100);
+  $('#fr_cmp').textContent=(!v||!nn)?(nn?'':'норма не указана'):(v>nn?'больше на '+r1(v-nn)+' л/100 км':v<nn?'меньше на '+r1(nn-v)+' л/100 км':'равен норме')};
+ ['fc_km','fc_norm','fc_ext','fr_l','fr_km'].forEach(i=>{const e=document.getElementById(i);if(e)e.oninput=cal});cal()}
+function memoV(){const cp=D.car,c=carOf(cp)||{};
+ return hd('Памятка водителя','Нажмите на вопрос, чтобы открыть ответ.')+`<div class="card">
+ <details class="mm" open><summary>Как считается остаток топлива</summary><div class="x"><p><b>Остаток = было в баке + заправил − израсходовал.</b></p><p>Израсходовал = пробег, км × норма ÷ 100.</p><p>Пример: было 80 л, заправили 100 л, проехали 400 км при норме 25 л на 100 км. Израсходовано 400 × 25 ÷ 100 = 100 л. Остаток: 80 + 100 − 100 = 80 л.</p><p>Пробег = спидометр при возвращении минус спидометр при выезде. Всё это приложение считает само, вам нужно вписать только цифры.</p></div></details>
+ <details class="mm"><summary>Сколько можно ехать за день и когда отдыхать</summary><div class="x"><p><b>Эти нормы для международных перевозок</b> (Европейское соглашение ЕСТР). Для перевозок внутри Беларуси действует своё положение о рабочем времени и времени отдыха водителей, спросите бухгалтера или руководителя, какие нормы у вас.</p><p><b>За рулём в сутки:</b> не больше 9 часов. Два раза в неделю можно до 10 часов.</p><p><b>За рулём за неделю:</b> не больше 56 часов. За две недели подряд не больше 90 часов.</p><p><b>Перерыв:</b> после 4,5 часов за рулём нужен перерыв не меньше 45 минут. Его можно разделить: сначала не меньше 15 минут, потом не меньше 30. Перерыв не считается ежедневным отдыхом.</p><p><b>Ежедневный отдых:</b> нормальный не меньше 11 часов. Сокращённый от 9 до 11 часов, таких не больше трёх между двумя недельными отдыхами.</p><p><b>Недельный отдых:</b> нормальный не меньше 45 часов. Сокращённый (меньше 45 часов, но не меньше 24) нужно потом компенсировать. Недельный отдых должен начаться не позже, чем через шесть суток после предыдущего.</p><p>Приложение подскажет, если за смену указано больше 9 часов за рулём или нет нужного перерыва.</p><div class="h">Основание: ЕСТР, статьи 6, 7 и 8 (для Беларуси соглашение в силе с 02.10.1993).</div></div></details>
+ <details class="mm"><summary>Посчитать: сколько километров за день</summary><div class="x"><div class="two">${f2('mm_h','Часов за рулём','9')}${f2('mm_v','Средняя скорость, км/ч','60')}</div><div class="okb" id="mm_r"></div><div class="h">Скорость берите среднюю с учётом города и пробок, обычно 50 – 70.</div></div></details>
+ <details class="mm"><summary>Посчитать: хватит ли топлива</summary><div class="x"><div class="two">${f2('mm_l','Сейчас в баке, л','')}${f2('mm_n','Норма, л на 100 км',c.norm||'')}</div><div class="okb" id="mm_t">Впишите остаток и норму.</div><div class="h">Всегда оставляйте запас: проезжайте до АЗС, пока в баке ещё не меньше 10 – 15 % объёма.</div></div></details>
+ <details class="mm"><summary>Медосмотр перед рейсом: нужен ли мне</summary><div class="x"><p><b>Коротко:</b> нужен ли осмотр у медика, зависит от вида перевозки. Если не уверены, спросите бухгалтера или руководителя.</p><p><b>Пассажиры и багаж, а также перевозка опасных грузов внутри Беларуси</b> (не для собственных нужд организации): перед рейсом вас осматривает медицинский работник. Он опрашивает, измеряет пульс и давление, проверяет на алкоголь. Допуск он записывает в журнал и ставит подпись.</p><p><b>Международные перевозки грузов:</b> вместо осмотра у медика перед рейсом проводят контроль алкотестером и экспресс-тестом.</p><p><b>Перевозки грузов внутри Беларуси:</b> с собой нужны водительское удостоверение нужной категории и медицинская справка о том, что вы годны к управлению. Перед рейсом, а также по требованию перевозчика, вы обязаны пройти контроль на алкоголь и другие одурманивающие вещества.</p><p><b>Если отказались от осмотра или не выполняете указания медика,</b> вас отстранят от рейса.</p><p>Если вас отстранили, медик пишет рапорт руководителю. В журнал смен в этом случае запись не вносится, выезда не было.</p><div class="h">Основание: постановление Минздрава от 03.12.2002 № 84 (в ред. от 30.08.2024) и Правила перевозок, утверждённые постановлением Совмина от 31.03.2026 № 147 (п. 322 и 325). Порядок в вашей организации может быть строже.</div></div></details>
+ <details class="mm"><summary>Что писать в полях</summary><div class="x"><p><b>Спидометр</b> – цифры на приборе, километры. При выезде и при возвращении.</p><p><b>Топливо в баке</b> – литры по указателю, примерно, если точно не знаете.</p><p><b>Перерыв</b> – сколько минут отдыхали и обедали за смену.</p><p><b>За рулём</b> – сколько часов реально ехали, без стоянок.</p><p><b>Простой</b> – когда стояли без дела: погрузка, граница, поломка. Время начала и конца или сколько часов.</p><p><b>Заправка</b> – литры и сумма с чека, номер чека.</p><p><b>Расход в пути</b> – мойка, парковка, платная дорога, дорожный сбор: сумма и что оплатили.</p><p><b>Напарник</b> – если машину отдали или приняли: фамилия, имя, отчество, спидометр и остаток топлива на момент передачи.</p></div></details>
+ <details class="mm"><summary>Как закрыть смену</summary><div class="x"><p>На главной в зелёной карточке «Смена идёт» нажмите «Закрыть смену». Впишите, когда вернулись, спидометр и остаток топлива.</p></div></details>
+ <details class="mm"><summary>Если ошиблись</summary><div class="x"><p>«Мои записи» – нажмите «Исправить» под нужной записью.</p></div></details></div>`}
+function memoBind(){const cal=()=>{const h=num(g('mm_h')),v=num(g('mm_v'));$('#mm_r').textContent=h&&v?'За '+h+' ч при '+v+' км/ч выйдет около '+Math.round(h*v)+' км.':'Впишите часы и скорость.';
+ const l=num(g('mm_l')),n=num(g('mm_n'));$('#mm_t').textContent=l&&n?'Топлива хватит примерно на '+Math.round(l/n*100)+' км.':'Впишите остаток и норму.'};
+ ['mm_h','mm_v','mm_l','mm_n'].forEach(i=>{const e=document.getElementById(i);if(e)e.oninput=cal});cal()}
+const V={memo:memoV,start:startV,fcalc:fcalcV,home,me:me,shift:shiftV,idle:idleV,fuel:fuelV,exp:expV,list:listV,send:sendV,help:helpV};
+let AGAIN=false;
+function draw(){AGAIN=false;app.innerHTML=(V[VIEW]||home)()+(VIEW==='memo'?'':'<button class="fab" data-go="memo" aria-label="Памятка">?<small>памятка</small></button>');if(VIEW==='shift'||VIEW==='start')live();if(VIEW==='memo')memoBind();bindSave()}
+const g=id=>{const e=document.getElementById(id);return e?e.value.trim():''};
+function readShift(){return {dateS:(EDIT&&(D.rows.find(x=>x.id===EDIT)||{}).open)?(D.rows.find(x=>x.id===EDIT).date):undefined,date:g('date'),car:g('car'),out:g('out'),in:g('in'),brk:g('brk'),drive:g('drive'),odoS:g('odoS'),odoE:g('odoE'),fuelS:g('fuelS'),filled:g('filled'),norm:g('norm'),ext:g('ext'),fuelE:g('fuelE'),src:CHIP.src||'',mate:g('mate'),hand:g('hand'),route:g('route'),kind:KIND}}
+function setAuto(id,v){const e=document.getElementById(id);if(e&&AUTO[id]&&String(e.value)!==String(v)){e.value=v}}
+function live(){const q=readShift();
+ if(AUTO.norm||AUTO.ext){const c=carOf(q.car);if(AUTO.norm)setAuto('norm',c.norm||'');if(AUTO.ext)setAuto('ext',c.ext||'')}
+ const q1=readShift(),pv=q1.date?prevShift(q1.car,q1.date,EDIT):null;
+ const mt=(CHIP.src==='mate'),ow=(CHIP.src==='own');
+ if(ow){if(AUTO.fuelS)setAuto('fuelS',pv&&pv.fuelE!==''&&pv.fuelE!=null?pv.fuelE:'');if(AUTO.odoS)setAuto('odoS',pv&&pv.odoE!==''&&pv.odoE!=null?pv.odoE:'')}
+ {const n=$('#srcNote'),cq=readShift();if(n){let h='';
+  if(!CHIP.src&&pv)h='<div class="warn">Выберите, как вы начинаете смену: продолжаете свою работу или забрали машину у напарника.</div>';
+  else if(ow&&pv)h='<div class="okb">Ваша прошлая смена на этой машине: '+dmy(pv.date)+(pv.odoE?', спидометр '+num(pv.odoE):'')+(pv.fuelE!==''&&pv.fuelE!=null?', остаток '+num(pv.fuelE)+' л':'')+'. Эти значения подставлены ниже.</div>'+(String(cq.odoS)!==''&&String(pv.odoE)!==''&&pv.odoE!=null&&num(cq.odoS)>num(pv.odoE)?'<div class="warn">Спидометр вырос на '+r1(num(cq.odoS)-num(pv.odoE))+' км с вашей прошлой смены. Если ездил напарник, выберите «Забрал машину у напарника».</div>':'');
+  else if(mt)h='<div class="warn">Впишите ниже спидометр и остаток топлива в баке, какие были при приёме машины. Лучше сфотографируйте приборную панель.</div>';
+  n.innerHTML=h}}
+ const r=readShift(),f=fcalc(r,EDIT),b=$('#fbox');
+ if(b){let h='';
+  if(!f.norm)h='<div class="warn">Впишите норму расхода (л на 100 км). Она запомнится для этого автомобиля.</div>';
+  else if(!f.km)h='<div class="warn">Впишите показания спидометра, чтобы посчитать расход.</div>';
+  else h='<div class="calc"><table><tr><td>Пробег</td><td>'+f.km+' км</td></tr><tr><td>Списано по норме</td><td>'+f.spent+' л</td></tr><tr><td>Заправлено в рейсе</td><td>'+f.filled+' л</td></tr><tr><td><b>Остаток в баке (расчёт)</b></td><td class="big2">'+(f.end===null?'нужно «было в баке»':f.end+' л')+'</td></tr></table>'+(f.end!==null&&f.end<0?'<div class="warn">Расчётный остаток меньше нуля. Проверьте: возможно, не записана заправка или остаток на выезде указан неверно.</div>':'')+(f.end!==null&&r.fuelE!==''&&Math.abs(num(r.fuelE)-f.end)>=0.1?'<div class="warn">По указателю '+(num(r.fuelE)<f.end?'меньше':'больше')+' расчёта на '+r1(Math.abs(num(r.fuelE)-f.end))+' л.</div>':'')+'</div>';
+  b.innerHTML=h}
+ const w=check(r);const e=$('#warn');if(e)e.innerHTML=w.map(x=>'<div class="warn">'+esc(x)+'</div>').join('');
+ if(w.some(x=>/Перерыв|за рулём/.test(x))){const sb=$('#sec_brk'),tb=document.querySelector('[data-sec=brk]');if(sb&&sb.style.display==='none'&&!window.__brkAsked){window.__brkAsked=1;sb.style.display='';if(tb)tb.classList.add('on')}}
+ const sm=(k,t,d)=>{const el=$('#sum_'+k),tb=document.querySelector('[data-sec='+k+']');if(el)el.textContent=t;if(tb)tb.classList.toggle('done',!!d)};
+ sm('brk',(r.brk!==''?'Перерыв '+num(r.brk)+' мин':'Перерыв не указан')+(r.drive?', за рулём '+num(r.drive)+' ч':''),r.brk!==''||r.drive);
+ sm('fuel',f.km?('Пробег '+f.km+' км'+(f.end!==null?', остаток '+f.end+' л':'')):'Нажмите, если нужно',f.km>0);
+ sm('route',(r.route||'Маршрут не указан')+' · '+(KIND==='int'?'за границу':'по Беларуси'),!!r.route);
+ sm('hand',r.hand||'Не передавал',!!r.hand)}
+function bindSave(){
+ const on=(id,fn)=>{const e=document.getElementById(id);if(e)e.onclick=fn};
+ on('addCar',()=>{D.drv=g('drv')||D.drv;const p=g('newPlate').toUpperCase();if(!p){alert('Впишите государственный номер.');return}if(!D.cars.some(c=>c.plate===p))D.cars.push({plate:p,name:g('newName'),norm:num(g('newNorm'))||''});if(!D.car)D.car=p;save();draw()});
+ on('saveMe',()=>{D.drv=g('drv');save();go('home')});
+ on('saveStart',()=>{const r=readShift();if(!D.drv){alert('Сначала впишите фамилию в «Мои данные».');return go('me')}
+  if(openShift()){alert('Сначала закройте прошлую смену.');return go('home')}
+  if(!r.date||!r.out){alert('Укажите дату и время выезда.');return}
+  if(isSimple()&&!r.odoS){alert('Впишите показания спидометра на выезде.');return}
+  if(!r.car){alert('Выберите автомобиль.');return}
+  if(!r.src){alert('Выберите, как вы начинаете смену: продолжаете свою работу или забрали машину у напарника.');return}
+  if(r.src==='mate'&&r.mate.split(/\s+/).filter(Boolean).length<2){alert('Впишите фамилию, имя и отчество напарника полностью.');return}
+  const c=carOf(r.car),o={id:uid(),open:1,date:r.date,car:r.car,out:r.out,src:r.src,mate:r.src==='mate'?r.mate:'',odoS:r.odoS,fuelS:r.fuelS,norm:c.norm||'',ext:c.ext||'',kind:'rb'};
+  D.rows.push(o);rememberCar(r.car);save();done('Смена начата. Хорошей дороги. Когда вернётесь, нажмите «Закрыть смену».')});
+ on('saveShift',()=>{const r=readShift();if(!D.drv){alert('Сначала впишите фамилию в «Мои данные».');return go('me')}
+  if(document.getElementById('simpleClose')){if(!r.odoS&&g('odoS2'))r.odoS=g('odoS2');r.brkU=1;if(!r.odoE){alert('Впишите спидометр на возврате.');return}if(r.odoS!==''&&num(r.odoE)<num(r.odoS)){alert('Спидометр на возврате меньше, чем на выезде. Проверьте цифры.');return}if(!r.route){alert('Впишите, откуда и куда ехали и что возили.');return}}
+  if(!r.date||!r.out||!r.in){alert('Укажите дату, время выезда и время возвращения.');return}
+  if(r.src==='mate'&&r.mate.split(/\s+/).filter(Boolean).length<2){alert('Впишите фамилию, имя и отчество напарника полностью.');return}
+  if(!r.src){alert('Выберите, как вы начали смену: продолжили свою работу или забрали машину у напарника.');return}
+  const f=fcalc(r,EDIT);r.km=f.km;r.spent=f.spent;if(r.filled==='')r.filled=f.filled||'';if(r.fuelS===''&&f.start!==null)r.fuelS=String(f.start);if(r.fuelE===''&&f.end!==null){r.fuelE=String(f.end);r.fuelAuto=1}
+  if(num(r.norm)){const c=carOf(r.car);if(c.plate){c.norm=num(r.norm);c.ext=num(r.ext)||''}}
+  const same=D.rows.find(x=>x.date===r.date&&x.car===r.car&&x.out===r.out);r.id=EDIT||(same?same.id:uid());D.rows=D.rows.filter(x=>x.id!==r.id);D.rows.push(r);rememberCar(r.car);save();done('Смена записана.')});
+ on('saveIdle2',()=>{AGAIN='idle';$('#saveIdle').onclick();AGAIN=false});on('saveFuel2',()=>{AGAIN='fuel';$('#saveFuel').onclick();AGAIN=false});on('saveExp2',()=>{AGAIN='exp';$('#saveExp').onclick();AGAIN=false});
+ on('saveIdle',()=>{let h=num(g('hours'));const f=g('from'),t=g('to');if(!h&&f&&t){let d=pm(t)-pm(f);if(d<=0)d+=1440;h=Math.round(d/60*100)/100}
+  if(!g('date')||!h){alert('Укажите дату и время начала и окончания (или сколько часов стояли).');return}
+  const r={id:EDIT||uid(),date:g('date'),car:g('car'),from:f,to:t,hours:h,why:g('why')};D.idle=D.idle.filter(x=>x.id!==r.id);D.idle.push(r);rememberCar(r.car);save();done('Простой записан.')});
+ on('saveFuel',()=>{if(!g('date')||!num(g('litres'))){alert('Укажите дату и сколько литров.');return}
+  if(isSimple()&&!num(g('sum'))){alert('Укажите, на какую сумму заправились (как в чеке).');return}
+  const r={id:EDIT||uid(),date:g('date'),car:g('car'),litres:num(g('litres')),sum:num(g('sum')),cur:CHIP.cur||'BYN',doc:g('doc'),place:g('place')};D.fuel=D.fuel.filter(x=>x.id!==r.id);D.fuel.push(r);rememberCar(r.car);save();done('Заправка записана. Сохраните чек.')});
+ on('saveExp',()=>{if(!g('date')||!num(g('sum'))){alert('Укажите дату и сумму.');return}
+  const r={id:EDIT||uid(),date:g('date'),kind:CHIP.kind2||'Другое',sum:num(g('sum')),cur:CHIP.cur||'BYN',note:g('note')};D.exp=D.exp.filter(x=>x.id!==r.id);D.exp.push(r);save();done('Расход записан. Сохраните чек.')});
+ on('dl',()=>{const b=new Blob([JSON.stringify({bnv:'voditel',v:2,drv:D.drv,rows:D.rows,idle:D.idle,fuel:D.fuel,exp:D.exp},null,1)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='voditel-'+((D.drv||'').split(' ')[0]||'reis')+'-'+today()+'.json';document.body.appendChild(a);a.click();a.remove();D.last=today();save();$('#msg').innerHTML='<div class="okb">Файл сохранён на телефоне. Теперь отправьте его бухгалтеру в Телеграм или Вайбер.</div>'});
+ on('cp',()=>{const t='Водитель: '+D.drv+'\n'+D.rows.map(r=>dmy(r.date)+' '+r.car+' '+r.out+'-'+r.in+' перерыв '+num(r.brk)+' мин, за рулём '+num(r.drive)+' ч, спидометр '+r.odoS+'-'+r.odoE+' '+(r.route||'')+(r.src==='mate'?'. Принял машину от напарника: '+r.mate+', остаток '+(r.fuelS||'?')+' л, спидометр '+(r.odoS||'?'):'')+(r.hand?'. Передал машину: '+r.hand:'')).concat(D.idle.map(r=>'Простой '+dmy(r.date)+' '+(r.hours||'')+' ч '+(r.why||''))).concat(D.fuel.map(r=>'Заправка '+dmy(r.date)+' '+r.litres+' л '+r.sum+' '+r.cur+' '+(r.place||''))).concat(D.exp.map(r=>'Расход '+dmy(r.date)+' '+r.kind+' '+r.sum+' '+r.cur)).join('\n');try{navigator.clipboard.writeText(t).then(()=>{$('#msg').innerHTML='<div class="okb">Скопировано. Вставьте в сообщение бухгалтеру.</div>'})}catch(e){$('#msg').innerHTML='<div class="warn">Не получилось скопировать. Скачайте файл.</div>'}});
+ ['out','in','brk','drive','car','date','odoS','odoE','fuelS','filled','norm','ext','fuelE'].forEach(i=>{const e=document.getElementById(i);if(e&&(VIEW==='shift'||VIEW==='start'))e.oninput=()=>{if(['fuelS','filled','norm','ext','odoS'].includes(i))AUTO[i]=0;if(i==='car'||i==='date'){AUTO.fuelS=AUTO.filled=AUTO.norm=AUTO.ext=AUTO.odoS=1}live()}});
+ if(VIEW==='fcalc')fcBind()}
+function rememberCar(p){p=(p||'').trim();if(!p)return;if(!D.cars.some(c=>c.plate===p))D.cars.push({plate:p,name:''});D.car=p;save()}
+function done(msg){if(AGAIN){const v=AGAIN;go(v);app.insertAdjacentHTML('afterbegin','<div class="okb">'+esc(msg)+' Можно записать следующее.</div>');return}VIEW='home';EDIT=null;window.scrollTo(0,0);draw();app.insertAdjacentHTML('afterbegin','<div class="okb">'+esc(msg)+'</div>');setTimeout(()=>{const o=app.querySelector('.okb');if(o&&VIEW==='home')o.remove()},4000)}
+document.addEventListener('click',e=>{
+ const t=e.target.closest('button');if(!t)return;
+ if(t.dataset.mode){D.full=t.dataset.mode==='full'?1:0;save();draw();return}
+ if(t.dataset.sec){const sc=$('#sec_'+t.dataset.sec),o=sc.style.display==='none';sc.style.display=o?'':'none';t.classList.toggle('on',o);return}
+ if(t.dataset.close){go('shift',t.dataset.close);return}
+ if(t.dataset.go){go(t.dataset.go);return}
+ if(t.dataset.hand){const r=D.rows.find(x=>x.id===t.dataset.hand);if(r){const m='Передаю автомобиль '+r.car+' ('+dmy(r.date)+'). Спидометр: '+(r.odoE||'не указан')+' км. Остаток топлива в баке: '+(r.fuelE||'не указан')+' л'+(r.fuelAuto?' (расчётный, проверьте по указателю)':'')+'. Передал: '+(D.drv||'')+'.';try{navigator.clipboard.writeText(m).then(()=>alert('Текст скопирован. Вставьте его в Телеграм или Вайбер напарнику.'),()=>prompt('Скопируйте текст и отправьте напарнику:',m))}catch(e){prompt('Скопируйте текст и отправьте напарнику:',m)}}return}
+ if(t.dataset.normcar!==undefined){const c=D.cars[+t.dataset.normcar],v=prompt('Норма расхода для '+c.plate+', литров на 100 км:',c.norm||'');if(v!==null){c.norm=num(v)||'';save();draw()}return}
+ if(t.dataset.delcar!==undefined){const i=+t.dataset.delcar;if(confirm('Убрать этот автомобиль из списка? Записи останутся.')){D.cars.splice(i,1);if(D.car&&!D.cars.some(c=>c.plate===D.car))D.car=D.cars[0]?D.cars[0].plate:'';save();draw()}return}
+ if(t.dataset.edit){const [k,id]=t.dataset.edit.split(':');go(k==='shift'?'shift':k,id);return}
+ if(t.dataset.del){const [k,id]=t.dataset.del.split(':');if(confirm('Удалить эту запись?')){const m={shift:'rows',idle:'idle',fuel:'fuel',exp:'exp'}[k];D[m]=D[m].filter(x=>x.id!==id);save();draw()}return}
+ const box=t.closest('[data-chips]');if(box){const id=box.dataset.chips,v=t.dataset.v;
+  if(id==='filt'){CHIP.f=v;draw();return}
+  if(id==='src'){CHIP.src=v;$('#startBox').style.display='';box.querySelectorAll('.opt').forEach(c=>c.classList.toggle('on',c===t));$('#mateBox').style.display=v==='mate'?'':'none';if(v==='mate'){['fuelS','odoS'].forEach(i=>{const e=document.getElementById(i);if(e&&AUTO[i])e.value='';AUTO[i]=0})}else{['fuelS','odoS'].forEach(i=>{const e=document.getElementById(i);if(e&&!e.value)AUTO[i]=1})}live();return}
+  if(id==='fcar'){CHIP.fcar=v;draw();return}
+  if(id==='kind'){KIND=v;box.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===t));live();return}
+  if(id==='why'){const inp=$('#why');let L=whyList(inp.value);L=L.includes(v)?L.filter(x=>x!==v):L.concat(v);inp.value=L.join(', ');box.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',L.includes(c.dataset.v)));return}
+  CHIP[id]=v;box.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===t));
+  if(id==='car'&&v==='__other'){box.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===t));const o=$('#carOther');o.style.display='';const ci=$('#car');ci.value='';ci.focus();CHIP.car='';return}
+  const inp=document.getElementById(id);if(inp&&(id==='brk'||id==='why'||id==='car')){inp.value=v;if(id==='car'){const o=$('#carOther');if(o&&D.cars.length)o.style.display='none'}}if(id==='brk')live();if(id==='car'&&(VIEW==='shift'||VIEW==='start')){AUTO.fuelS=AUTO.filled=AUTO.norm=AUTO.ext=AUTO.odoS=1;live()}}});
+
+function applyCfg(c){if(!c||c.bnv!=='voditel-cfg')return false;
+ if(c.drv){D.drv=c.drv;D.cfgDrv=c.drv}
+ if(c.full!==undefined){D.full=c.full?1:0;D.cfgMode=1}
+ D.cfgCars=(c.cars||[]).map(x=>String(x.plate||'').toUpperCase());
+ (c.cars||[]).forEach(x=>{const p=String(x.plate||'').toUpperCase();if(!p)return;let o=D.cars.find(q=>q.plate===p);if(!o){o={plate:p};D.cars.push(o)}o.name=x.name||o.name||'';if(x.norm)o.norm=x.norm;o.cfg=1});
+ if(!D.car&&D.cars.length)D.car=D.cars[0].plate;save();return true}
+function cfgFromHash(){try{const m=location.hash.match(/#cfg=([\w\-]+)/);if(!m)return false;
+ const j=decodeURIComponent(escape(atob(m[1].replace(/-/g,'+').replace(/_/g,'/'))));const ok=applyCfg(JSON.parse(j));
+ try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
+ if(ok)setTimeout(()=>alert('Настройки от бухгалтера загружены: '+D.drv+'. Теперь можно начинать смену.'),300);return ok}catch(e){return false}}
+cfgFromHash();
+document.addEventListener('change',e=>{if(e.target.id!=='cfgFile')return;const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{if(applyCfg(JSON.parse(r.result))){alert('Настройки загружены: '+D.drv);draw()}else alert('Это не файл настроек от бухгалтера.')}catch(x){alert('Не удалось прочитать файл.')}};r.readAsText(f)});
+draw();
+</script></body></html>
