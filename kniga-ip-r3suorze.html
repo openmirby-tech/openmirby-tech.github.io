@@ -7532,7 +7532,7 @@ function g11OffDlg(C,c,m,mode){
 /* адрес входа в личный кабинет на сайте (кнопка на главной); пустая строка скрывает кнопку */
 const CABINET_URL='https://online-kurs.by/members/login';
 (function(){const a=document.getElementById('hbCab');if(a&&CABINET_URL){a.href=CABINET_URL;a.style.display=''}})();
-const APP_BUILD='20261122-4530';
+const APP_BUILD='20261122-4531';
 try{const _b=APP_BUILD;document.getElementById('ftVer').textContent='от '+_b.slice(6,8)+'.'+_b.slice(4,6)+'.'+_b.slice(0,4)+', сборка '+_b.slice(9,11)+':'+_b.slice(11)}catch(e){}
 (function(){
   if(location.protocol==='file:')return;
@@ -31169,8 +31169,8 @@ function rcCat(){
    ['Вкладки раздела «Зарплата»',PAY0.filter(x=>x[0]!=='staff').map(x=>['pay-'+x[0],x[1]])],
    ['Разделы целиком (нижнее меню и «Ещё»)',NAV_ALL.filter(x=>!['home','help'].includes(x.k)).map(x=>['route-'+x.k,x.t])]];
 }
-function rcParse(o){if(!o||typeof o!=='object'||!Array.isArray(o.hide))return null;return {hide:o.hide.filter(x=>typeof x==='string'),message:String(o.message||'').slice(0,400),banner:String(o.banner||'').slice(0,400),renew:/^https:\/\//.test(String(o.renew||''))?String(o.renew).slice(0,300):''}}
-function rcSet(o){RC.hide=o.hide;RC.message=o.message;RC.banner=o.banner;RC.renew=o.renew||''}
+function rcParse(o){if(!o||typeof o!=='object'||!Array.isArray(o.hide))return null;return {hide:o.hide.filter(x=>typeof x==='string'),message:String(o.message||'').slice(0,400),banner:String(o.banner||'').slice(0,400),renew:/^https:\/\//.test(String(o.renew||''))?String(o.renew).slice(0,300):'',gate:o.gate===true,gateFrom:/^\d{4}-\d{2}-\d{2}$/.test(String(o.gateFrom||''))?String(o.gateFrom):'',gateUrl:/^https:\/\//.test(String(o.gateUrl||''))?String(o.gateUrl).slice(0,300):''}}
+function rcSet(o){RC.hide=o.hide;RC.message=o.message;RC.banner=o.banner;RC.renew=o.renew||'';RC.gate=!!o.gate;RC.gateFrom=o.gateFrom||'';RC.gateUrl=o.gateUrl||''}
 function rcHid(c){return RC.hide.includes(c)||(Array.isArray(S.rcTest)&&S.rcTest.includes(c))}
 function rcApply(){
   try{PAY_TABS.length=0;PAY0.filter(x=>x[0]==='staff'||!rcHid('pay-'+x[0])).forEach(x=>PAY_TABS.push(x))}catch(e){console.error(e)}
@@ -34044,6 +34044,33 @@ try{(function(){
  window.demoBanner=function(ip){let h=_db.apply(this,arguments);try{if(isDemo(ip))h+='<div class="card noprint" style="border-left:4px solid #c9a227"><b>Образовательная деятельность</b><p style="margin:6px 0 8px">В учебном примере включён и этот модуль: вымышленный исполнитель, два курса с тарифами. Откройте карточку клиента в CRM и составьте договор, заявление или акт: реквизиты подставятся из настроек. Все реквизиты условные.</p><a href="#/crm" class="sysb">Открыть CRM</a></div>'}catch(e){}return h};
 })()}catch(e){console.warn('demoEdu',e)}
 try{Object.assign(HELP_ADD,{'Образовательная деятельность на примере':'В учебном профиле «Демо: …» включён и образовательный модуль: вымышленный исполнитель, два курса с тарифами. В CRM откройте клиента и составьте договор, заявление или акт, реквизиты подставятся из настроек обучения. Все реквизиты условные. При выходе из учебного профиля модуль выключается, если у вас нет ключа на него.'})}catch(e){}
+
+/* 3.736: ключ клуба. Доступ к своим данным в приложении по ключу (ключ без модулей, бессрочный или со сроком). Включается удалённо полем gate в nastroyki-dlya-vseh.json, с даты gateFrom. Без ключа открывается только учебный пример. */
+try{(function(){
+ window.__RC=RC;
+ const iso=()=>new Date().toISOString().slice(0,10),dd=s=>s.split('-').reverse().join('.');
+ const clubOK=()=>!!(S.ednKey&&!S.ednRev)||!!S.ednG;
+ const active=()=>!!RC.gate&&(!RC.gateFrom||RC.gateFrom<=iso());
+ window.__clubOK=clubOK;
+ const demoGo=()=>{const d=(S.ips||[]).find(i=>isDemo(i));if(d){S.active=d.id;save();location.hash='#/home';render(true)}else{demo()}};
+ const gate=()=>{try{let g=document.getElementById('clubGate');
+  const need=active()&&!clubOK()&&!isDemo(cur());
+  if(!need){if(g)g.remove();return}
+  if(g)return;
+  g=document.createElement('div');g.id='clubGate';
+  g.style.cssText='position:fixed;inset:0;z-index:45;background:rgba(20,18,12,.88);display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto';
+  const has=(S.ips||[]).some(ip=>{try{return !isDemo(ip)&&(opsOf(ip,true).length||(ip.staff||[]).length)}catch(e){return false}});
+  g.innerHTML='<div style="background:#fff;border-radius:16px;max-width:520px;width:100%;padding:22px;border-top:6px solid #cfa52c;box-shadow:0 10px 40px rgba(0,0,0,.4)"><div style="font-size:20px;font-weight:700;margin-bottom:8px">Приложение для участников клуба</div><div style="font-size:14.5px;line-height:1.5;color:#333">Чтобы работать со своими данными, вставьте личный ключ. Его выдаёт автор приложения при вступлении в клуб.'+(has?' Ваши данные в этом браузере сохранены и никуда не делись: после ввода ключа всё откроется.':'')+' Пока ключа нет, можно посмотреть приложение на учебном примере.</div><label style="display:block;font-weight:600;margin:12px 0 4px">Ваш ключ</label><textarea id="edKey" rows="3" autocomplete="off" placeholder="BNV1...." style="width:100%;box-sizing:border-box;font-size:12px"></textarea><div style="display:flex;flex-direction:column;gap:8px;margin-top:12px"><button class="red" data-hx="ed-on" style="padding:12px 22px;font-size:16px;min-height:0">Подключить ключ</button><button class="sm ghost" data-hx="cg-demo">Посмотреть на примере</button>'+(has?'<button class="sm ghost" data-act="backup">Сохранить копию моих данных</button>':'')+(RC.gateUrl?'<a class="sysb" href="'+esc(RC.gateUrl)+'" target="_blank" rel="noopener" style="text-align:center">Как получить ключ</a>':'')+'</div></div>';
+  document.body.appendChild(g)}catch(e){}};
+ document.addEventListener('click',e=>{const b=e.target&&e.target.closest&&e.target.closest('[data-hx="cg-demo"]');if(!b)return;e.preventDefault();demoGo()});
+ const r1=window.render;if(typeof r1==='function'){window.render=function(){const r=r1.apply(this,arguments);gate();return r}}
+ setInterval(gate,1200);setTimeout(gate,500);
+ const k0=window.kyCard;
+ window.kyCard=function(){let h=k0?k0.apply(this,arguments):'';try{if(RC.gate&&RC.gateFrom&&RC.gateFrom>iso()&&!clubOK())h+='<div class="card noprint" style="border-left:5px solid #b57900"><b style="font-size:16px">Ключ клуба</b><div class="hint" style="margin-top:6px;color:#333;font-size:13.5px">С '+dd(RC.gateFrom)+' для работы со своими данными понадобится личный ключ участника клуба. Получите его у автора приложения заранее. Ваши данные не пропадут.</div></div>'}catch(e){}return h};
+ const e0=window.edCard;
+ window.edCard=function(){try{if(S.ednKey&&!S.ednRev&&Array.isArray(S.ednM)&&S.ednM.length===0){return '<div class="card kref"><b>Ключ клуба подключён</b><div class="hint" style="margin:4px 0 8px">Ключ выдан на имя: '+esc(S.ednN||'')+'. '+(S.ednExp?'Действует до '+dd(S.ednExp)+'. ':'Срок не ограничен. ')+'Основа приложения (книги, налог, зарплата, документы, дела) доступна. Чтобы подключить дополнительные модули, вставьте ключ модулей ниже.</div><details><summary style="cursor:pointer;font-weight:600">У меня ключ модулей</summary><div style="padding-top:6px"><textarea id="edKey" rows="4" autocomplete="off" placeholder="BNV1...." style="width:100%;font-size:12px"></textarea><div class="row" style="margin-top:8px"><button type="button" class="red" data-hx="ed-on">Подключить</button></div></div></details></div>'}}catch(e){}return e0.apply(this,arguments)};
+})()}catch(e){console.warn('clubGate',e)}
+try{Object.assign(HELP_ADD,{'Ключ клуба: доступ к приложению':'Автор выдаёт участнику клуба личный ключ. Вставьте его: «Ещё» → «Модули приложения» → «У меня новый ключ» → «Подключить», или в окне «Приложение для участников клуба» при первом открытии. После этого приложение работает как обычно. Без ключа открывается только учебный пример. Данные в вашем браузере не удаляются в любом случае. Ключ можно передать только себе: автор видит выданные ключи и может отозвать ключ.'})}catch(e){}
 
 </script>
 <style id="club4Css">
