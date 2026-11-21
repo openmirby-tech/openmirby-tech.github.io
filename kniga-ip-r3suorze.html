@@ -7532,7 +7532,7 @@ function g11OffDlg(C,c,m,mode){
 /* адрес входа в личный кабинет на сайте (кнопка на главной); пустая строка скрывает кнопку */
 const CABINET_URL='https://online-kurs.by/members/login';
 (function(){const a=document.getElementById('hbCab');if(a&&CABINET_URL){a.href=CABINET_URL;a.style.display=''}})();
-const APP_BUILD='20261122-4531';
+const APP_BUILD='20261122-4532';
 try{const _b=APP_BUILD;document.getElementById('ftVer').textContent='от '+_b.slice(6,8)+'.'+_b.slice(4,6)+'.'+_b.slice(0,4)+', сборка '+_b.slice(9,11)+':'+_b.slice(11)}catch(e){}
 (function(){
   if(location.protocol==='file:')return;
@@ -33884,7 +33884,7 @@ document.addEventListener('click',async e=>{const b=e.target&&e.target.closest&&
  if(!o){toast('Ключ не подошёл. Скопируйте его целиком, без пробелов и переносов в начале и конце.',5000);return}
  if(o.exp&&o.exp<td()){toast('Срок этого ключа истёк. Нужен новый ключ.',5000);return}
  if(await edRevoked(o.id)){toast('Этот ключ отозван. Нужен новый ключ.',5000);return}
- S.edn='expert';S.ednM=edMods(o);S.ednKey=tok.replace(/\s+/g,'');S.ednN=o.n;S.ednExp=o.exp||'';S.ednId=o.id||'';S.ednRev=0;S.eduModule=Array.isArray(S.ednM)?(S.ednM.indexOf('edu')>=0?1:0):((S.eduWas!==undefined)?S.eduWas:1);save();edEnforce();render(true);toast('Ключ принят: '+o.n,4500)},true);
+ S.edn='expert';S.ednM=edMods(o);S.ednKey=tok.replace(/\s+/g,'');S.ednN=o.n;S.ednExp=o.exp||'';S.ednId=o.id||'';S.ednRev=0;S.eduModule=Array.isArray(S.ednM)?(S.ednM.indexOf('edu')>=0?1:0):((S.eduWas!==undefined)?S.eduWas:1);/* 3.737: подключённый ключом модуль сам включается на главной */try{S.mods=S.mods||{};(Array.isArray(S.ednM)?S.ednM:['crm','mg','pf']).forEach(k=>{if(k==='crm'||k==='mg'||k==='pf')S.mods[k]=true})}catch(e){}save();edEnforce();render(true);toast('Ключ принят: '+o.n,4500)},true);
 async function edRevoked(id){try{if(!id||location.protocol==='file:')return false;const r=await fetch('otozvannye-klyuchi.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)return false;const j=await r.json();return Array.isArray(j.revoked)&&j.revoked.includes(id)}catch(e){return false}}
 async function edRecheck(){try{if(S.edn!=='expert'||!S.ednKey)return;
  const o=await edVerify(S.ednKey);
