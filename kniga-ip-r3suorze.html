@@ -7532,7 +7532,7 @@ function g11OffDlg(C,c,m,mode){
 /* адрес входа в личный кабинет на сайте (кнопка на главной); пустая строка скрывает кнопку */
 const CABINET_URL='https://online-kurs.by/members/login';
 (function(){const a=document.getElementById('hbCab');if(a&&CABINET_URL){a.href=CABINET_URL;a.style.display=''}})();
-const APP_BUILD='20261122-4537';
+const APP_BUILD='20261122-4541';
 try{const _b=APP_BUILD;document.getElementById('ftVer').textContent='от '+_b.slice(6,8)+'.'+_b.slice(4,6)+'.'+_b.slice(0,4)+', сборка '+_b.slice(9,11)+':'+_b.slice(11)}catch(e){}
 (function(){
   if(location.protocol==='file:')return;
@@ -34369,6 +34369,175 @@ try{(function(){
  document.addEventListener('click',e=>{const b=e.target&&e.target.closest&&e.target.closest('[data-hx="demo-pick"],[data-hx="demo-clear"]');if(!b)return;e.preventDefault();if(b.dataset.hx==='demo-pick')window.demoChoose();else if(confirm('Удалить учебный пример? Ваши собственные данные не затрагиваются.'))window.demoClear()},true);
 })()}catch(e){console.warn('demoKinds',e)}
 try{Object.assign(HELP_ADD,{'Учебные примеры по видам деятельности':'На главной нажмите «Показать на примере» и выберите вид деятельности: торговля, общепит, производство, перевозки, бухгалтерские услуги, образовательные услуги или организация (опт и розница на УСН). Откроется учебный профиль «Демо: …» с вымышленными данными за год: книга, налог, зарплата, CRM, управленческий учёт. В образовательном примере показан весь цикл работы со слушателями. В списке всегда один учебный пример: при выборе другого прежний удаляется.','Как убрать учебные примеры':'Откройте учебный профиль и нажмите «Удалить учебный пример» в карточке «Учебный пример» на главной. Все профили «Демо: …» будут удалены вместе с их данными, ваши собственные профили не затрагиваются. Если учебный пример остался единственным профилем, приложение создаст пустой «Мой ИП», с него можно начинать свои данные. Перед удалением можно сохранить копию данных: «Ещё» → «Резервная копия».'})}catch(e){}
+
+/* ===== 3.742: загрузка входящих ЭСЧФ (XML портала) в документы поступления ===== */
+try{(function(){
+const UNITS={6:'м',3:'мм',4:'см',8:'км',55:'м2',113:'м3',112:'л',111:'мл',163:'г',166:'кг',168:'т',796:'шт.',778:'упак.',704:'набор',839:'компл.',715:'пара',625:'лист',736:'рулон',356:'час',359:'сутки',362:'мес.',876:'усл. ед.'};
+const DOCC={606:'Акт'};
+const kid=(el,n)=>el?[...el.children].find(c=>c.localName===n)||null:null;
+const tx=(el,n)=>{const x=kid(el,n);return x?x.textContent.trim():''};
+const nm=v=>{const x=parseFloat(String(v).replace(',','.'));return isFinite(x)?x:NaN};
+const r6=x=>Math.round(x*1e6)/1e6;
+const SKIPN=/(\.ticket|-status-)/i;
+/* разбор одного XML. Возвращает null (не ЭСЧФ), {err} или {d, kind, ...} */
+function eschParse(text,fname){
+  let X;try{X=new DOMParser().parseFromString(String(text).replace(/^﻿/,''),'application/xml')}catch(e){return null}
+  if(X.getElementsByTagName('parsererror').length)return null;
+  const iss=[...X.getElementsByTagName('*')].find(e=>e.localName==='issuance');if(!iss)return null;
+  const gen=kid(iss,'general'),pr=kid(iss,'provider'),rc=kid(iss,'recipient'),dc=kid(iss,'deliveryCondition'),ro=kid(iss,'roster');
+  const o={file:fname,number:tx(gen,'number'),type:tx(gen,'documentType')||'ORIGINAL',dateTr:tx(gen,'dateTransaction'),dateIs:tx(gen,'dateIssuance'),
+    pUnp:tx(pr,'unp'),pName:tx(pr,'name'),pAddr:tx(pr,'address'),rUnp:tx(rc,'unp'),rName:tx(rc,'name'),vendor:'',docs:[],contract:'',lines:[]};
+  const ct=kid(dc,'contract');if(ct){const n=tx(ct,'number'),dt=tx(ct,'date');if(n||dt)o.contract=(n?'№ '+n:'')+(dt?' от '+dt.split('-').reverse().join('.'):'');
+    const dl=kid(ct,'documents');if(dl)[...dl.children].forEach(x=>{const t=kid(x,'docType');o.docs.push({kind:t?(tx(t,'value')||(DOCC[tx(t,'code')]||('документ, код '+tx(t,'code')))):'',no:tx(x,'number'),date:tx(x,'date')})})}
+  o.descr=tx(dc,'description');
+  if(!ro)return {err:'нет раздела с товарами',o};
+  o.totalCostVat=nm(ro.getAttribute('totalCostVat'));o.totalVat=nm(ro.getAttribute('totalVat'));o.totalCost=nm(ro.getAttribute('totalCost'));
+  [...ro.children].filter(e=>e.localName==='rosterItem').forEach(it=>{
+    const name=tx(it,'name');if(!name)return;
+    const cnt=nm(tx(it,'count')),cost=nm(tx(it,'cost')),pr_=nm(tx(it,'price')),cv=nm(tx(it,'costVat'));
+    const v=kid(it,'vat'),rate=v?nm(tx(v,'rate')):NaN,rt=v?tx(v,'rateType'):'',sv=v?nm(tx(v,'summaVat')):NaN;
+    const uc=parseInt(tx(it,'units'),10);
+    o.lines.push({name,code:tx(it,'code'),oced:tx(it,'code_oced'),uc,unit:isFinite(uc)?(UNITS[uc]||'ед. (код '+uc+')'):'',
+      cnt:isFinite(cnt)&&cnt>0?cnt:NaN,price:pr_,cost,rate,rt,sv:isFinite(sv)?sv:0,cv});
+  });
+  return {o};
+}
+/* ЭСЧФ -> документ для docImportPreview */
+function eschToDoc(o){
+  const lines=[];
+  o.lines.forEach(L=>{
+    const q=isFinite(L.cnt)?L.cnt:1,net=isFinite(L.cost)?L.cost:(isFinite(L.price)?L.price*q:0);
+    const svc0=!L.code&&(!!L.oced||!(L.cnt>0)||/^(услуг|работ|ремонт|обслуживан|аренд|информационн|консультац)/i.test(L.name));
+    const ln={name:L.name,unit:L.unit||(svc0?'усл.':'шт.'),qty:q,price:r6(net/q)};
+    if(L.sv>0.004&&isFinite(L.cv)){ln.priceNet=r6(net/q);ln.priceGross=r6(L.cv/q);ln.vat=Math.round(L.sv*100)/100;ln.vr=isFinite(L.rate)&&L.rate>0?L.rate:Math.round(L.sv/net*100);ln.price=ln.priceGross}
+    else ln.vr=0;
+    ln._svc=!L.code&&(!!L.oced||!(L.cnt>0)||/^(услуг|работ|ремонт|обслуживан|аренд|информационн|консультац)/i.test(L.name));
+    lines.push(ln)});
+  const docsTxt=o.docs.map(x=>[x.kind,x.no?'№ '+x.no:'',x.date?'от '+x.date.split('-').reverse().join('.'):''].filter(Boolean).join(' ')).join('; ');
+  const d={date:o.dateTr||o.dateIs,no:o.number,supplier:o.pName,unp:o.pUnp,addr:o.pAddr,dk:(lines.length&&lines.every(l=>l._svc))?'act':'sf',ttn:true,lines,
+    tot:isFinite(o.totalCostVat)?o.totalCostVat:0,
+    note:['ЭСЧФ № '+o.number,o.contract?'Договор '+o.contract:'',docsTxt?'Основание: '+docsTxt:'',o.descr||''].filter(Boolean).join('. '),warn:[]};
+  return d;
+}
+/* список файлов -> результат разбора */
+async function eschRead(files,ip){
+  const res={docs:[],origNo:[],out:[],extra:[],bad:[],seenSkip:0,total:0,foreign:[]};
+  const byNo=new Map(),stat=new Map();
+  for(const f of files){
+    const n=f.name||'';if(!/\.xml$/i.test(n))continue;
+    const m=n.match(/^invoice-(\d{9}-\d{4}-\d{10})-status-[^-]*-([A-Z_]+)\.xml$/i);if(m){stat.set(m[1],m[2].toUpperCase());continue}
+    if(SKIPN.test(n))continue;
+    let t;try{t=await f.text()}catch(e){res.bad.push(n);continue}
+    const p=eschParse(t,n);if(!p)continue;
+    if(p.err){res.bad.push(n+': '+p.err);continue}
+    const old=byNo.get(p.o.number);
+    if(!old||(/\.sgn/i.test(old.file)&&!/\.sgn/i.test(n)))byNo.set(p.o.number,p.o);
+  }
+  const unp=String(ip.unp||'').trim(),seen=ip.eschSeen||{};
+  byNo.forEach(o=>{
+    res.total++;
+    const st=stat.get(o.number);
+    if(st==='CANCELLED'){res.extra.push(o.number+': аннулирован на портале');return}
+    if(o.type!=='ORIGINAL'){res.extra.push(o.number+': '+(o.type==='ADDITIONAL'||o.type==='ADD_NO_REFERENCE'?'дополнительный':'исправленный')+' ЭСЧФ, внесите изменения в исходное поступление вручную');return}
+    if(unp&&o.pUnp===unp){res.out.push(o.number);return}
+    const d=eschToDoc(o);
+    if(unp&&o.rUnp&&o.rUnp!==unp)d.warn.push('ЭСЧФ '+o.number+': получатель в файле УНП '+o.rUnp+', а у этого профиля УНП '+unp+'. Проверьте, что файл относится к вашему профилю.');
+    if(st&&st!=='COMPLETED'&&st!=='COMPLETED_SIGNED')d.warn.push('ЭСЧФ '+o.number+': статус на портале '+st+'.');
+    d._orig=o.number;res.docs.push(d)});
+  return res;
+}
+function eschSummary(res){
+  const p=[];
+  p.push('Найдено ЭСЧФ: '+res.total+', к загрузке: '+res.docs.length);
+  if(res.out.length)p.push('исходящих (вы поставщик), пропущено: '+res.out.length);
+  if(res.seenSkip)p.push('уже загружено ранее: '+res.seenSkip);
+  if(res.extra.length)p.push('требуют ручной обработки или пропущены: '+res.extra.length+' ('+res.extra.slice(0,5).join('; ')+(res.extra.length>5?'…':'')+')');
+  if(res.bad.length)p.push('не удалось разобрать: '+res.bad.length+' ('+res.bad.slice(0,3).join('; ')+')');
+  return p.join('; ')+'.';
+}
+function eschRun(res,ip){
+  if(!res.docs.length){eschMsg('Нечего загружать',eschSummary(res)+(res.total?'':' Выберите папку, куда программа портала сохраняет входящие ЭСЧФ (файлы invoice-….xml), либо сами эти файлы.'));return}
+  const nom=ip.nom=ip.nom||{},svcSet=new Set();
+  res.docs.forEach(d=>d.lines.forEach(l=>{if(l._svc)svcSet.add(l.name);delete l._svc}));
+  svcSet.forEach(n=>{try{const k=dtKey(n);if(!nom[k])nom[k]='svc'}catch(e){}});
+  const first=res.docs[0];first.warn=[eschSummary(res)+' Дата документа взята из «даты совершения операции» ЭСЧФ, номер документа равен номеру ЭСЧФ, основание и договор записаны в примечание. Подпись и статус ЭСЧФ приложение не проверяет.'].concat(first.warn||[]);
+  const nums=res.docs.map(d=>({no:d.no,date:d.date,orig:d._orig}));
+  docImportPreview(res.docs);
+  const root=document.getElementById('modalRoot');if(!root)return;
+  const nBefore=(ip.docs||[]).length,sumRes=eschSummary(res);
+  try{
+    root.style.visibility='hidden';
+    const f=document.getElementById('di');
+    if(f){const vp=!!(ip.settings&&ip.settings.vatPayer);if(f.elements.vatMode)f.elements.vatMode.value=vp?'net':'gross';
+      if(f.elements.dup)f.elements.dup.value='skip';
+      if(f.elements.payMode)f.elements.payMode.value='no';
+      f.requestSubmit()}
+  }catch(er){console.error(er)}
+  setTimeout(()=>{root.style.visibility='';
+    const ipn=cur(),made=(ipn.docs||[]).slice(nBefore);
+    if(made.length){
+      made.forEach(x=>{const m=nums.find(n=>String(n.no)===String(x.no)&&n.date===x.date);if(m)x.esch=m.orig});
+      const sm=made.reduce((a,x)=>a+(typeof docTotal==='function'?docTotal(x):0),0);
+      eschDone('Загружено ЭСЧФ: '+made.length,'Созданы документы поступления на сумму '+fmt(sm)+' руб., поставщики добавлены в контрагенты, записи попали в нужные книги и журнал. '+(res.docs.length>made.length?'Уже были в программе, пропущены: '+(res.docs.length-made.length)+'. ':'')+(res.extra.length?'Дополнительные, исправленные и аннулированные ЭСЧФ пропущены, их нужно учесть вручную: '+res.extra.slice(0,5).join('; ')+'. ':'')+(res.out.length?'Исходящих ЭСЧФ (вы поставщик) пропущено: '+res.out.length+'. ':''))
+    }else eschDone('Новых документов нет',sumRes+' Все эти ЭСЧФ уже были загружены.')
+  },700);
+
+  const mo=new MutationObserver(()=>{if(root.innerHTML.trim()!==''&&!document.querySelector('[data-esch-done]'))return;mo.disconnect();
+    try{const ipn=cur();ipn.eschSeen=ipn.eschSeen||{};let n=0;nums.forEach(x=>{if((ipn.docs||[]).some(y=>String(y.no)===String(x.no)&&y.date===x.date)){ipn.eschSeen[x.orig]=todayISO();n++}});if(n){ipn.eschLast=todayISO();save()}}catch(e){}});
+  mo.observe(root,{childList:true});
+}
+function eschDone(t,b){const root=document.getElementById('modalRoot');if(!root)return;root.innerHTML=`<div class="modal"><div class="sheet" data-esch-done="1"><h2>${esc(t)}</h2><p>${esc(b)}</p><div class="row"><button class="red" data-act="close">Понятно</button></div><div class="row"><button class="sm ghost" data-esch="folder">Выбрать другую папку</button></div></div></div>`}
+function eschMsg(t,b){const root=document.getElementById('modalRoot');if(!root)return;root.innerHTML=`<div class="modal"><div class="sheet"><h2>${esc(t)}</h2><p>${esc(b)}</p><div class="row"><button class="red" data-act="close">Понятно</button></div></div></div>`}
+/* запомненная папка (Chrome и Edge, не работает внутри iframe) */
+const idb=()=>new Promise((res,rej)=>{if(!window.indexedDB)return rej(0);const r=indexedDB.open('bnv_esch',1);r.onupgradeneeded=()=>r.result.createObjectStore('h');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
+const hGet=k=>idb().then(db=>new Promise(res=>{const q=db.transaction('h').objectStore('h').get(k);q.onsuccess=()=>res(q.result||null);q.onerror=()=>res(null)})).catch(()=>null);
+const hPut=(k,v)=>idb().then(db=>new Promise(res=>{const t=db.transaction('h','readwrite');t.objectStore('h').put(v,k);t.oncomplete=()=>res(1);t.onerror=()=>res(0)})).catch(()=>0);
+async function dirFiles(h,sub){const out=[];for await(const [n,e] of h.entries()){if(e.kind==='file'&&/\.xml$/i.test(n))out.push(await e.getFile())}return out}
+const hk=ip=>'dir-'+String(ip.id||ip.unp||ip.name);
+function pickInput(multi,dir){return new Promise(res=>{const i=document.createElement('input');i.type='file';i.multiple=true;if(dir)i.webkitdirectory=true;else i.accept='.xml,text/xml,application/xml';i.onchange=()=>res([...i.files]);i.click()})}
+const BAT='@echo off\r\nchcp 65001 >nul\r\ncd /d "%~dp0simpleapp\\vbs"\r\nif not exist recv mkdir recv\r\nset FROM=\r\nif exist recv\\last.update.time goto run\r\necho Первый запуск. Можно получить ЭСЧФ за все годы, которые разрешает портал.\r\nset Y=2016\r\nset /p Y=С какого года загружать? Enter - с 2016 года, максимум:\r\nset FROM=%Y%-01-01T00:00:00\r\n<nul set /p ="%FROM%">recv\\last.update.time\r\n:run\r\necho Получение входящих ЭСЧФ с портала...\r\ncall receive2Dir.bat\r\nif "%FROM%"=="" goto fin\r\nfindstr /b /c:"%FROM%" recv\\last.update.time >nul\r\nif errorlevel 1 goto fin\r\ndel recv\\last.update.time\r\necho.\r\necho Портал не принял такой период. Запустите файл ещё раз и укажите более поздний год.\r\n:fin\r\necho.\r\necho Файлы сохранены в папку recv рядом с env.bat.\r\necho Готово. В приложении: Документы - Загрузить из ЭСЧФ - выберите папку recv.\r\npause\r\n';
+function eschOpen(){
+  const ip=cur(),root=document.getElementById('modalRoot');if(!root)return;
+  hGet(hk(ip)).then(h=>{
+    const canDir=!!window.showDirectoryPicker&&window.top===window;
+    root.innerHTML=`<div class="modal"><div class="sheet"><h2>Загрузить из ЭСЧФ</h2>
+    <p style="font-size:14px">Приложение читает XML-файлы входящих электронных счетов-фактур, которые программа портала (Avest) сохранила на вашем компьютере, и готовит из них документы поступления: поставщик находится по УНП, строки берутся из ЭСЧФ. Файлы разбираются у вас в браузере и никуда не отправляются. Перед записью вы проверите документы и типы строк.</p>
+    <div style="display:grid;gap:8px;margin:10px 0">
+    ${h&&canDir?`<button class="red" data-esch="again">Обновить из папки «${esc(h.name)}»</button>`:''}
+    ${canDir?`<button class="${h?'ghost':'red'}" data-esch="dir">Выбрать папку с ЭСЧФ (запомнить)</button>`:`<button class="red" data-esch="dirin">Выбрать папку с ЭСЧФ</button>`}
+    <button class="ghost" data-esch="files">Выбрать файлы XML</button>
+    <button class="ghost" data-esch="bat">Скачать файл «Получить ЭСЧФ.bat»</button>
+    <button class="ghost" data-act="close">Закрыть</button></div>
+    <div class="hint">Как получить файлы с портала: установите компонент EInvVatService и запустите receive2Dir.bat (или скачайте «Получить ЭСЧФ.bat» и положите в папку eInvVat рядом с папкой simpleapp). Подробно: Справка, «Загрузка ЭСЧФ с портала». При первом запуске файл предложит загрузить ЭСЧФ за все годы, которые разрешает портал (по умолчанию с 2016 года), дальше только новые.</div>
+    </div></div>`});
+}
+document.addEventListener('click',async e=>{
+  const b=e.target.closest&&e.target.closest('[data-esch]');if(!b)return;e.preventDefault();e.stopPropagation();
+  const a=b.dataset.esch,ip=cur();
+  try{
+    let a2=a;
+    if(a==='open'){const h0=await hGet(hk(ip));if(h0&&window.showDirectoryPicker&&window.top===window)a2='again';else{eschOpen();return}}
+    if(a==='folder'){eschOpen();return}
+    if(a==='bat'){download('Получить ЭСЧФ.bat',new Blob([BAT],{type:'text/plain;charset=utf-8'}));toast('Файл скачан. Положите его в папку eInvVat рядом с папкой simpleapp',6000);return}
+    let files=[],fresh=false;
+    if(a2==='files')files=await pickInput(true,false);
+    else if(a2==='dirin')files=await pickInput(true,true);
+    else if(a2==='dir'){let h;try{h=await window.showDirectoryPicker({mode:'read'})}catch(er){if(er&&er.name==='AbortError')return;files=await pickInput(true,true);h=null}
+      if(h){await hPut(hk(ip),h);files=await dirFiles(h)}}
+    else if(a2==='again'){const h=await hGet(hk(ip));if(!h){toast('Папка не запомнена');return}
+      let ok=(await h.queryPermission({mode:'read'}))==='granted';if(!ok)ok=(await h.requestPermission({mode:'read'}))==='granted';
+      if(!ok){toast('Нет доступа к папке');return}files=await dirFiles(h);fresh=true}
+    if(!files.length){toast('Файлы XML не выбраны');return}
+    const res=await eschRead(files,ip);
+    if(fresh){const seen=ip.eschSeen||{};const keep=[];res.docs.forEach(d=>{if(seen[d._orig])res.seenSkip++;else keep.push(d)});res.docs=keep}
+    eschRun(res,ip);
+  }catch(err){console.error(err);toast('Не удалось прочитать ЭСЧФ: '+(err&&err.message||err),6000)}
+},true);
+/* кнопка в разделе «Документы» */
+try{const _dh=docHub;docHub=function(ip){let h=_dh.apply(this,arguments);if(typeof h==='string'&&h.indexOf('data-esch')<0)h=h.replace('<button data-act="doc-new-open">','<button data-esch="open" title="Файлы портала счетов-фактур"><svg viewBox="0 0 24 24">'+IC.docs+'</svg><b>Загрузить из ЭСЧФ</b><small>XML с портала, поставщик по УНП</small></button><button data-act="doc-new-open">');return h}}catch(e){}
+window.__eschI={parse:eschParse,toDoc:eschToDoc,read:eschRead};
+try{const T='Загрузка ЭСЧФ с портала';Object.assign(HELP_ADD,{[T]:'Раздел «Документы» → «Загрузить из ЭСЧФ». Шаги по порядку. 1) Один раз на компьютере с Windows установите компонент EInvVatService (архив eInvVat с сайта портала, папка install) и комплект абонента Avest с вашим ключом. В файле simpleapp\\vbs\\env.bat укажите УНП. Если на компьютере несколько организаций или ИП, для каждого заведите свою копию папки eInvVat. 2) Запустите receive2Dir.bat (или скачайте в приложении «Получить ЭСЧФ.bat» и положите его в папку eInvVat). Выберите сертификат и введите пароль к ключу: программа скачает входящие ЭСЧФ в папку recv. При первом запуске «Получить ЭСЧФ.bat» спросит, с какого года загружать: нажмите Enter, и программа запросит всё, что разрешает портал (с 2016 года). Если портал не примет такой период, запустите файл ещё раз и укажите более поздний год. Потом скачиваются только новые. 3) В приложении нажмите «Выбрать папку с ЭСЧФ» и укажите recv (Chrome и Edge запоминают папку, в следующий раз достаточно «Обновить из папки»). В других браузерах и внутри страницы сайта выберите папку или файлы вручную. 4) Приложение покажет найденные ЭСЧФ: дата берётся из даты совершения операции, номер документа равен номеру ЭСЧФ, поставщик создаётся или находится по УНП, в примечание записываются договор и документы-основания. Проверьте тип каждой строки (товары, сырьё, услуги и т. д.) и нажмите «Загрузить». Строки с кодом ОКЭД предлагаются как услуги. Исходящие ЭСЧФ (вы поставщик) пропускаются, дополнительные и исправленные ЭСЧФ нужно учесть вручную в исходном документе. Подпись и статус ЭСЧФ приложение не проверяет: это делает программа портала. ЭСЧФ не заменяет накладную или акт, оплату вносят отдельно (банковская выписка).'});HELP_ORDER.forEach(g=>{const i=g[1].indexOf('Как заполнить ЭСЧФ: порядок и типы');if(i>=0&&!g[1].includes(T))g[1].splice(i+1,0,T)})}catch(e){}
+})()}catch(e){console.error('esch',e)}
 
 </script>
 <style id="club4Css">
