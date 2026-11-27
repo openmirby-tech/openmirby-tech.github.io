@@ -598,6 +598,18 @@ body[data-r=more] .kref .hint{margin-top:2px}
 #kindSelM{display:none;flex:0 0 auto;width:auto!important;min-width:0;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:8px 8px;font:inherit;font-size:13px;font-weight:700;margin-right:6px;appearance:none;-webkit-appearance:none}#kindSelM option{color:#000}
 @media(max-width:520px){.hdT b select#kindSel,.hdT b .kd{display:none!important}#kindSelM.on{display:block}}
 /* заметный выбор ИП / предприятие */.hdT b select#kindSel:not(:disabled){background:linear-gradient(180deg,#f8e49a,#D4AF37) no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23111' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),linear-gradient(180deg,#f8e49a,#D4AF37);background-repeat:no-repeat;background-position:right 7px center,0 0;background-size:10px 6px,100% 100%;color:#111;border-radius:9px;padding:2px 24px 2px 9px;box-shadow:0 2px 8px rgba(212,175,55,.45);margin-left:2px;font-weight:800;cursor:pointer}.hdT b select#kindSel:not(:disabled):hover{filter:brightness(1.05)}.hdT b .kd{display:none!important}#kindSelM{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23111' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),linear-gradient(180deg,#f8e49a,#D4AF37)!important;background-repeat:no-repeat!important;background-position:right 8px center,0 0!important;background-size:10px 6px,100% 100%!important;color:#111!important;border:0!important;padding:8px 24px 8px 11px!important;box-shadow:0 2px 8px rgba(212,175,55,.45)}
+details.edublk{padding:0!important;border:0!important;border-radius:16px!important;background:#fffdf4!important;box-shadow:0 2px 10px rgba(122,90,0,.18)!important;overflow:hidden}
+details.edublk>summary{display:flex!important;align-items:center;gap:14px;padding:16px 18px!important;margin:0!important;min-height:0!important;cursor:pointer;list-style:none;background:linear-gradient(135deg,#f3d779 0%,#d4af37 55%,#b8860b 100%)!important;color:#2b2100!important}
+details.edublk>summary::-webkit-details-marker{display:none}
+details.edublk>summary:before,details.edublk>summary:after{content:none!important;display:none!important}
+details.edublk .edui{flex:0 0 44px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;font-size:24px}
+details.edublk .edut{flex:1;min-width:0;display:block}
+details.edublk .edut .cft{display:block!important;font-size:19px!important;font-weight:800!important;line-height:1.25;color:#2b2100!important}
+details.edublk .edut small{display:block!important;margin-top:3px;font-size:13px!important;line-height:1.35;color:#4a3a05!important;font-weight:500}
+details.edublk .edug{flex:0 0 auto;padding:7px 14px;border-radius:999px;background:#2b2100;color:#f3d779;font-weight:700;font-size:13px}
+details.edublk[open] .edug{font-size:0}details.edublk[open] .edug:after{content:'Свернуть';font-size:13px}
+details.edublk>*:not(summary){margin-left:18px;margin-right:18px}details.edublk>summary+*{margin-top:14px!important}
+details.edublk>*:last-child{margin-bottom:16px}
 </style>
 <style id="tdcss">.clc{display:block;background:#fff;border:1px solid rgba(20,16,4,.1);border-left:5px solid var(--cc,#b8860b);border-radius:14px;padding:10px 12px;margin:8px 0;box-shadow:0 2px 0 rgba(20,16,4,.06)}.clc.clrow{padding:10px 40px 10px 40px}.clc .clh{align-items:center;gap:10px;flex-wrap:nowrap}.clc .cav{flex:0 0 38px;width:38px;height:38px;border-radius:50%;color:#fff;font-weight:800;font-size:14px;display:inline-flex;align-items:center;justify-content:center}.clc .cnm{flex:1;min-width:0;display:block}.clc .cnm .link{font-weight:700;font-size:16px;text-align:left;display:block;max-width:100%;overflow-wrap:break-word;word-break:normal;hyphens:none}@media(max-width:520px){.clc .clh{flex-wrap:wrap}.clc .cnm{flex:1 1 150px}.clc .cst{max-width:none;margin-left:48px}.clc.clrow .cst{margin-left:48px}}.clc .cnm small{display:block;color:var(--mut);font-size:12.5px;overflow-wrap:anywhere}.clc .cst{flex:0 0 auto;max-width:none;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;text-align:center;line-height:1.25}.clc .cbd{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.clc .cb{background:#f4f0dc;color:#4a4325;border-radius:8px;padding:2px 8px;font-size:12px;line-height:1.5}.clc .cb.ok{background:#e4f2e8;color:#14401a}.clc .cb.bad{background:#fdeaea;color:#9a0f1f}.clc .cb.mut{background:#f1f1f1;color:#777}.clc.clrow .clck{top:14px}.clc .g11r{margin:6px 0 0}.vwg.vt .pfo.clc{display:inline-block;width:calc(50% - 5px);padding:10px}.vwg.vt .clc.clrow{padding:10px 30px 10px 34px}.vwg.vt .clc .cst{display:none}.vwg.vt .clc .cav{flex-basis:30px;width:30px;height:30px;font-size:12px}.clf{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin:0 0 8px}.clf input,.clf select{margin:0}@media(min-width:1700px){.vwg.vl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}}
 .lfd{border:1px solid var(--line);border-radius:12px;padding:4px 10px;margin:8px 0;background:#fff}.lfd>summary{cursor:pointer;padding:6px 0;list-style:none}.lfd>summary::-webkit-details-marker{display:none}.lfd>summary:before{content:'▸ ';color:#b8860b}.lfd[open]>summary:before{content:'▾ '}.lfd>summary small{color:var(--mut)}@media print{.lfd>summary{display:none}}.tdpg .tdq{display:flex;gap:8px;margin:8px 0}.tdpg .tdq input{flex:1;min-width:0;font-size:16px}.tdnav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0}.tdnav b{flex:1;text-align:center}.tdc{padding:12px;margin:8px 0}.tdtoday{border-color:#D4AF37}.tdr{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(20,16,4,.08)}.tdr:last-child{border-bottom:0}.tdr.dn .tdm b{text-decoration:line-through;color:#777}.tdck{flex:0 0 30px;width:30px;height:30px;border-radius:9px;border:2px solid #cfc7a6;background:#fff !important;color:#fff !important;padding:0 !important;min-height:0 !important;font-weight:800;font-size:17px;display:inline-flex;align-items:center;justify-content:center;box-shadow:none !important}.tdck.on{background:#2e7d32 !important;border-color:#2e7d32}.tdm{flex:1;min-width:0;cursor:pointer}.tdm b{display:block;font-weight:600;line-height:1.3}.tdm small{color:var(--mut);line-height:1.4}.tdb{display:flex;gap:6px;flex:0 0 auto}.tdb .sm{min-width:44px}.tdon{color:#b8860b !important;border-color:#D4AF37 !important}.tdt{display:inline-block;padding:0 7px;border-radius:9px;font-size:11.5px;background:#eef3ff;color:#2a4a8a}.tdt.p{background:#f3e9fb;color:#6a1b9a}.tdl{margin:8px 0}.tdbar{height:10px;background:#eee;border-radius:6px;overflow:hidden;flex:1}.tdbar i{display:block;height:100%;border-radius:6px}.tdmini{padding:5px 0;border-bottom:1px solid rgba(20,16,4,.06);cursor:pointer;line-height:1.35}.tdmini.dn{color:#777}.tdd{border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin:8px 0;background:#fff}.tdd summary{cursor:pointer;font-weight:600}.tdkp{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:8px 0}.tdkp div{border:1px solid var(--line);border-radius:12px;padding:8px 10px;background:#fff}.tdkp small{display:block;color:var(--mut);font-size:12px}.tdkp b{font-size:18px}.tdbr{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:13.5px}.tdbr>span{flex:0 0 38%;min-width:0}.tdbr>b{flex:0 0 auto;font-size:12.5px}.tdcols{display:flex;gap:3px;align-items:flex-end;height:80px;margin-top:8px}.tdcols div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-width:0}.tdcols i{display:block;width:100%;max-width:18px;background:#D4AF37;border-radius:3px 3px 0 0}.tdcols small{font-size:9.5px;color:var(--mut)}</style>
@@ -795,7 +807,7 @@ function fsCard(){
   :`<div class="row" style="gap:8px;flex-wrap:wrap"><button class="red" data-act="fsconn">Подключить файл на устройстве</button></div>`}</div>`}
 setTimeout(()=>{try{fsInit()}catch(e){}},600);
 function stGuide(){return `<div class="card noprint" style="margin-top:10px"><b>Как не потерять данные</b><ol class="hint" style="margin:6px 0 0 18px;color:#333"><li>Данные хранятся в браузере этого устройства. Очистка истории или данных сайтов, смена телефона или компьютера, режим инкогнито стирают их.</li><li>Раз в две недели и после больших изменений нажимайте «Сохранить копию данных». Файл положите на Диск или отправьте себе.</li><li>На компьютере подключите автосохранение в файл, тогда копия обновляется сама.</li><li>Сканы и фото не копите в приложении: храните на Диске, в карточке оставляйте ссылку.</li><li>Следите за счётчиком памяти: при 70% освободите место.</li></ol></div>`}
-function save(){try{const c=cur();if(c&&c.gb&&c.gb.sales)c.gb.sales=c.gb.sales.filter(e=>!e.opId||(c.ops||[]).some(o=>o.id===e.opId))}catch(e){}try{cptyScan(cur())}catch(e){}stSave()}
+function save(){LOSSC=null;try{const c=cur();if(c&&c.gb&&c.gb.sales)c.gb.sales=c.gb.sales.filter(e=>!e.opId||(c.ops||[]).some(o=>o.id===e.opId))}catch(e){}try{cptyScan(cur())}catch(e){}stSave()}
 const cur=()=>S.ips.find(i=>i.id===S.active)||S.ips[0];
 const ui={asId:'',fm:'',fk:'',q:'',per:12,pm:new Date().getMonth()+1,ps:'staff',pd:'ved',bk:'kudir',ae:''};
 
@@ -825,7 +837,8 @@ const normOf=(ip,s)=>{
   if(sw>=1&&sw<=12&&+st.normPct===30&&s.bm){let a=0,b=0;for(let m=1;m<=12;m++){if(m<sw)a+=s.bm[m];else b+=s.bm[m]}return r2(Math.max(0,a)*0.30+Math.max(0,b)*0.20)}
   return r2(Math.max(0,r2(s.g4-s.g5))*st.normPct/100);
 };
-const expUsed=(ip,s)=>ip.settings.method==='norm'?normOf(ip,s):r2(s.g8+s.g10);
+/* Инструкция № 5, п. 89: для налоговой базы берутся итоги граф 4-6, 8 и 9; графа 10 в налог не входит */
+const expUsed=(ip,s)=>ip.settings.method==='norm'?normOf(ip,s):r2(s.g8);
 const PPK=['rate','rateHigh','rateThr','d216','d216inc','d216q','d63','d120','d306','d860','baseValue','minWage'];
 function PPref(y){const d=REFY[+y];if(!d)return null;const o={};
   if(d.ded){const e=d.ded;o.d216=e.self;o.d216inc=e.selfLim;o.d216q=e.selfQ;o.d63=e.child;o.d120=e.high;o.d306=e.cat;if(e.young!=null)o.d860=e.young}
@@ -868,14 +881,32 @@ function deductions(ip,ops,upTo){
   }
   return res;
 }
+/* п. 11 ст. 205 НК: превышение расходов над доходами за год переносится на следующие годы только в части расходов на регистрацию, открытие счетов, аренду и коммунальные по аренде, лицензии */
+let LOSSC=null;
+const LOSS_CATS=['reg','rent'];
+function lossCarryIn(ip){
+  if(ip.settings.method==='norm')return 0;
+  const key=ip.id+'|'+ip.year;if(LOSSC&&LOSSC.k===key&&Date.now()-LOSSC.t<3000)return LOSSC.v;
+  let carry=0;
+  try{
+    const all=recog(allOps(ip),ip).filter(o=>o.date),ys=[...new Set(all.map(o=>+o.date.slice(0,4)))].filter(y=>y<+ip.year).sort();
+    ys.forEach(y=>{
+      const L=all.filter(o=>+o.date.slice(0,4)===y),s=sums(L,1,12),inc=r2(s.g4-s.g5),E=expUsed(ip,s);
+      if(E<=inc){carry=r2(Math.max(0,carry-(inc-E)));return}
+      const elig=r2(L.filter(o=>o.kind==='exp'&&LOSS_CATS.includes(expCat(o))).reduce((a,o)=>a+(+o.sum||0),0));
+      carry=r2(carry+Math.min(E-inc,elig));
+    });
+  }catch(e){carry=0}
+  LOSSC={k:key,t:Date.now(),v:carry};return carry;
+}
 function calc(ip,m){
   const p=PP(ip),ops=taxSysOf(ip)==='both'?opsOf(ip).filter(o=>regOf(ip,o)!=='single'):opsOf(ip),s=sums(ops,1,m);
   const incNet=r2(s.g4-s.g5),exp=expUsed(ip,s);
   const ded=deductions(ip,ops,m),dedSum=r2(ded.reduce((a,d)=>a+d.total,0));
   const dedSelf=r2(ded.reduce((a,d)=>a+d.self,0)),dedKids=r2(ded.reduce((a,d)=>a+d.kids,0)),dedDep=r2(ded.reduce((a,d)=>a+d.dep,0));
-  const raw=r2(incNet-exp-dedSum),base=Math.max(0,raw);
+  const carryIn=lossCarryIn(ip),carryUsed=r2(Math.min(carryIn,Math.max(0,incNet-exp))),raw=r2(incNet-exp-carryUsed-dedSum),base=Math.max(0,raw);
   const rate=s.g4>p.rateThr?p.rateHigh:p.rate;
-  return {m,s,incNet,exp,ded,dedSum,dedSelf,dedKids,dedDep,raw,base,rate,tax:r2(base*rate/100),norm:ip.settings.method==='norm'};
+  return {m,s,incNet,exp,carryIn,carryUsed,ded,dedSum,dedSelf,dedKids,dedDep,raw,base,rate,tax:r2(base*rate/100),norm:ip.settings.method==='norm'};
 }
 function offSet(){return new Set(String((S&&S.params&&S.params.offDays)||'').split(/[,;\s]+/).filter(Boolean).map(x=>{const q=x.split('.');return q.length===3?q[2]+'-'+q[1].padStart(2,'0')+'-'+q[0].padStart(2,'0'):''}).filter(Boolean))}
 function isWorkIso(iso){const [y,m,d]=iso.split('-').map(Number);return wdayIs(y,m,d)&&!offSet().has(iso)}
@@ -951,6 +982,17 @@ function checks(ip){
   const pendI=ops.filter(o=>o.pending&&o.kind==='inc_other').length,pendE=ops.filter(o=>o.pending&&o.kind==='exp_other').length;
   if(pendI)out.push(['','Оплат без закрывающего документа (не признаны доходом): '+pendI+'. Они стоят в графе 7. После получения акта или накладной укажите документ в операции.']);
   if(pendE)out.push(['','Расходов без закрывающего документа (стоят в графе 10): '+pendE+'. После получения документов перенесите их в расходы, указав документ в операции.']);
+  {const U=ops.filter(o=>o.unpaid),us=r2(U.reduce((a,o)=>a+(+o.sum||0),0));
+   if(U.length)out.push(['','Принято актов и услуг, по которым оплаты ещё нет: '+U.length+' на '+fmt(us)+' руб. Они записаны в графу 10 и в налог не входят (Инструкция № 5, п. 89). После оплаты эта сумма перейдёт в графу 8.']);
+   const g10=r2(ops.filter(o=>o.kind==='exp_other').reduce((a,o)=>a+(+o.sum||0),0));
+   if(g10>0&&ip.settings.method!=='norm')out.push(['','В налог входят графы 4-6 и 8. Графа 10 ('+fmt(g10)+' руб.) в налог не входит: там предоплаты, неоплаченные акты и расходы, которые ещё не признаны. Когда расход признаётся, сумма переносится в графу 8.'])}
+  try{
+    if(ip.settings.method!=='norm'){
+      const mb=(ip.mbp||[]).filter(m=>+m.term>0&&m.paid!=null&&m.paid!==''&&+m.paid<+m.cost);
+      if(mb.length)out.push(['','Отдельные предметы с погашением по месяцам: '+mb.length+' шт., оплачены не полностью. По графику погашения в графу 8 переносится только оплаченная часть (пп. 22.5 п. 22 ст. 205 НК). Остальное перейдёт в расходы после оплаты поставщику.']);
+      if(typeof gbActive==='function'&&gbActive(ip)){const c=gbCalc(ip,ip.year);if(c&&c.carryOut>0)out.push(['','Оплата поставщикам товаров превышает стоимость реализованных на '+fmt(c.carryOut)+' руб. Переплата не уменьшает налог в этом году: она переносится на I квартал следующего года (п. 60 Инструкции № 5).'])}
+    }
+  }catch(e){}
   const noDoc=ops.filter(o=>(o.kind==='exp'||o.kind==='exp_other')&&!o.docNo).length;
   if(ip.settings.method==='docs'&&noDoc)out.push(['','Расходов без номера документа: '+noDoc+'. Расход принимается при наличии подтверждающих документов (ст. 205 НК).']);
   if(ip.settings.method==='norm')out.push(['','Выбран норматив расходов '+ip.settings.normPct+'%. Решение оформляется письменно на весь налоговый год, документы по расходам в расчёт не идут.']);
@@ -6042,12 +6084,37 @@ function ffXlsx(aoa){
     f('xl/workbook.xml',X+'<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Лист1" sheetId="1" r:id="rId1"/></sheets></workbook>'),
     f('xl/_rels/workbook.xml.rels',X+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/></Relationships>'),
     f('xl/worksheets/sheet1.xml',X+'<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>'+rows+'</sheetData></worksheet>')])}
+/* Формат обмена с клиент-банком 1С (текстовый файл 1CClientBankExchange): преобразуется в таблицу для общего чтения выписки */
+function ff1CExchange(t){
+  const lines=t.split(/\r\n|\r|\n/),own=new Set(),docs=[];let cur=null,hdr={};
+  const rs=lines.findIndex(l=>/^СекцияРасчСчет/i.test(l.trim()));
+  for(const raw of lines){const l=raw.trim();if(!l)continue;
+    if(/^СекцияДокумент/i.test(l)){cur={};continue}
+    if(/^КонецДокумента/i.test(l)){if(cur)docs.push(cur);cur=null;continue}
+    const k=l.indexOf('=');if(k<0)continue;const key=l.slice(0,k).trim(),val=l.slice(k+1).trim();
+    if(cur)cur[key]=val;else{if(/^РасчСчет$/i.test(key)&&val)own.add(val.replace(/\s/g,'').toUpperCase());hdr[key]=val}}
+  if(!docs.length)return null;
+  const ac=s=>String(s||'').replace(/\s/g,'').toUpperCase(),g=(d,...ks)=>{for(const k of ks){const v=Object.keys(d).find(x=>x.toLowerCase()===k.toLowerCase());if(v&&d[v])return d[v]}return ''};
+  const unpK=(d,side)=>{const k=Object.keys(d).find(x=>new RegExp('^'+side+'(ИНН|УНН|УНП|ИдентификационныйНомер)$','i').test(x));return k?d[k]:''};
+  const acc=[...own][0]||'';
+  const out=[['Выписка по счёту '+acc],['За период с '+(hdr['ДатаНачала']||'')+' по '+(hdr['ДатаКонца']||'')],['Дата','Номер документа','Контрагент','УНП контрагента','IBAN контрагента','Назначение платежа','Дебет','Кредит']];
+  for(const d of docs){
+    const pa=ac(g(d,'ПлательщикСчет','ПлательщикРасчСчет')),ra=ac(g(d,'ПолучательСчет','ПолучательРасчСчет'));
+    let dir=0;if(own.size){if(own.has(pa))dir=-1;else if(own.has(ra))dir=1}
+    if(!dir){if(g(d,'ДатаСписано'))dir=-1;else if(g(d,'ДатаПоступило'))dir=1}
+    if(!dir)continue;
+    const dt=g(d,'ДатаСписано','ДатаПоступило','Дата'),sum=parseFloat(String(g(d,'Сумма')).replace(/\s/g,'').replace(',','.'));
+    if(!isFinite(sum))continue;
+    const side=dir<0?'Получатель':'Плательщик';
+    out.push([dt,g(d,'Номер'),g(d,side,side+'1'),unpK(d,side),dir<0?ra:pa,g(d,'НазначениеПлатежа'),dir<0?sum:'',dir>0?sum:''])}
+  return out.length>3?out:null}
 async function ffAoa(file){
   const buf=await file.arrayBuffer(),n=file.name.toLowerCase();
   if(/\.pdf$/.test(n)||(new Uint8Array(buf.slice(0,5)).join()==='37,80,68,70,45'))return ffPdfToAoa(buf);
   if(/\.docx$/.test(n))return ffDocxToAoa(buf);
   if(/\.rtf$/.test(n))return ffRtfToAoa(buf);
   const t=ffDecode(buf);
+  if(/^\s*1CClientBankExchange/i.test(t)){const a=ff1CExchange(t);if(a)return a}
   if(/\.html?$/.test(n)||/^\s*<(!doctype|html|table)/i.test(t))return ffHtmlToAoa(t);
   return ffTextToAoa(t)}
 async function ffConvert(file){
@@ -7532,7 +7599,7 @@ function g11OffDlg(C,c,m,mode){
 /* адрес входа в личный кабинет на сайте (кнопка на главной); пустая строка скрывает кнопку */
 const CABINET_URL='https://online-kurs.by/members/login';
 (function(){const a=document.getElementById('hbCab');if(a&&CABINET_URL){a.href=CABINET_URL;a.style.display=''}})();
-const APP_BUILD='20261122-4541';
+const APP_BUILD='20261127-4565';
 try{const _b=APP_BUILD;document.getElementById('ftVer').textContent='от '+_b.slice(6,8)+'.'+_b.slice(4,6)+'.'+_b.slice(0,4)+', сборка '+_b.slice(9,11)+':'+_b.slice(11)}catch(e){}
 (function(){
   if(location.protocol==='file:')return;
@@ -8556,7 +8623,7 @@ const DOCBAR_NOTE={raw:'Накладные на сырьё и материалы
 /* ===== Журнал по месяцам: сворачиваемые группы и печатный вид ===== */
 const jInc=o=>o.kind==='inc'||o.kind==='inc_exempt',jExp=o=>o.kind==='exp'||o.kind==='exp_other';
 function jMonths(ops){const M=[],ix={};ops.forEach(o=>{const k=String(o.date).slice(0,7);if(!(k in ix)){ix[k]=M.length;M.push({k,L:[]})}M[ix[k]].L.push(o)});return M}
-function jSum(L){let i=0,e=0,nd=0;L.forEach(o=>{if(jInc(o))i=r2(i+o.sum);else if(jExp(o))e=r2(e+o.sum);if(o.nc&&!o.cd)nd++});return {i,e,nd}}
+function jSum(L){let i=0,e=0,nd=0;L.forEach(o=>{if(jInc(o))i=r2(i+o.sum);else if(jExp(o)&&!o.unpaid)e=r2(e+o.sum);if(o.nc&&!o.cd)nd++});return {i,e,nd}}
 const jMName=k=>MN[+k.slice(5,7)-1].replace(/^./,c=>c.toUpperCase())+' '+k.slice(0,4);
 function jGroups(ops,rowH){
   if(!ops.length)return '';
@@ -8602,9 +8669,9 @@ function jTotals(ip){
   const isExp=o=>o.kind==='exp'||o.kind==='exp_other';
   const T=[];for(let m=0;m<=12;m++)T.push({inc:0,inc_exempt:0,inc_other:0,exp:0,exp_other:0,tax_rev:0,ni:0,ne:0,n:0,g4:0,g5:0,g6:0,g7:0,g8:0,g10:0});
   raw.forEach(o=>{if(o.kind==='inc'&&/^(sb|gb)~/.test(String(o.id)))return;/* перенос выручки из книги товаров дублирует операции Z-отчётов */
-    const m=+o.date.slice(5,7),t=T[m],v=+o.sum||0;t[o.kind]=r2(t[o.kind]+v);t.n++;
+    const m=+o.date.slice(5,7),t=T[m],v=+o.sum||0;if(!o.unpaid)t[o.kind]=r2(t[o.kind]+v);t.n++;
     const inBook=ids.has(String(o.id))&&!(nm&&isExp(o));
-    if(!inBook){if(KINDS[o.kind].side==='in')t.ni=r2(t.ni+v);else t.ne=r2(t.ne+v)}});
+    if(!inBook&&!o.unpaid){if(KINDS[o.kind].side==='in')t.ni=r2(t.ni+v);else t.ne=r2(t.ne+v)}});
   rec.forEach(o=>{if(nm&&isExp(o))return;const m=+o.date.slice(5,7),k='g'+KINDS[o.kind].g;T[m][k]=r2(T[m][k]+(+o.sum||0))});
   const tot=T.slice(1).reduce((a,t)=>{Object.keys(t).forEach(k=>a[k]=r2((a[k]||0)+t[k]));return a},{});
   T.forEach(t=>{t.in=r2(t.inc+t.inc_exempt+t.inc_other);t.out=r2(t.exp+t.exp_other+t.tax_rev)});
@@ -10207,7 +10274,7 @@ function stAvgM(ip,m,pred,ext,full){
   for(let d=1;d<=n;d++)s+=stDay(ip,y+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0'),pred,ext,full);
   return s/n}
 const stFzp=c=>r2((c.lines||[]).reduce((a,l)=>(l.type==='sick'||l.type==='bir')?a:a+(+l.amount||0),0));
-function stExp(ip,y){return r2(opsOf(ip).filter(o=>(o.kind==='exp'||o.kind==='exp_other')&&o.date&&+o.date.slice(0,4)===y).reduce((a,o)=>a+(+o.sum||0),0))}
+function stExp(ip,y){return r2(opsOf(ip).filter(o=>!o.unpaid&&(o.kind==='exp'||o.kind==='exp_other')&&o.date&&+o.date.slice(0,4)===y).reduce((a,o)=>a+(+o.sum||0),0))}
 function stOs(ip,y){
   const jan=y+'-01-01',dec=y+'-12-31',R={s100:0,s101:0,s103:0,s106:0,s107:0,n:0,free:[]};
   otD(ip).re.filter(r=>r.kind==='own').forEach(r=>{
@@ -13258,10 +13325,20 @@ function bkRoles(H,aoa,ds){
   const am=f(/^сумма|сумма (операции|платежа|в валюте|проводки|транзакции)|amount|^оборот/,/дебет|кредит|остаток|ндс|комисси|сальдо|налог/).filter(isNumCol);
   const amPref=am.filter(i=>/счет|счёт|account|byn|руб/.test(H[i]));
   R.amount=(R.debit>=0&&R.credit>=0)?-1:pick(amPref.length?amPref:am);
+  {const uf=f(/унп|унн|\bинн\b|unp|идентификационн\S* номер|учетн\S* номер плательщ/);
+   const side=(re)=>uf.find(i=>re.test(H[i])&&!used.has(i)),isP=/плательщ|отправит|payer|sender/,isR=/получат|бенефиц|recipient|beneficiary|payee/;
+   R.unpP=side(isP);if(R.unpP==null)R.unpP=-1;else used.add(R.unpP);
+   R.unpR=side(isR);if(R.unpR==null)R.unpR=-1;else used.add(R.unpR);
+   R.unp=-1;const one=uf.find(i=>!used.has(i));if(one!=null&&!(R.unpP>=0&&R.unpR>=0)){R.unp=one;used.add(one)}
+   uf.forEach(i=>used.add(i))}
   R.pur=pick(f(/назначен|содержан|описан|основани|детал|purpose|details|description|комментар|информац|примечан|наименование операц|вид операц/));
-  R.cp=pick(f(/контрагент|корреспондент|получател|плательщик|отправител|бенефициар|counterparty|наименование (клиента|получател|плательщик|контрагент|организации)|партн[её]р|место проведения|merchant/,/счет|счёт|унп|банк|bic|бик|iban|код|account/));
+  {const nc=/унп|унн|инн|unp|счет|счёт|банк|бик|iban|account|адрес/,pl=f(/плательщик|отправител|payer|sender/,nc).filter(i=>!used.has(i)),rc=f(/получател|бенефициар|recipient|beneficiary|payee/,nc).filter(i=>!used.has(i));
+   R.cpP=-1;R.cpR=-1;if(pl.length&&rc.length){R.cpP=pl[0];R.cpR=rc[0];used.add(pl[0]);used.add(rc[0])}}
+  if(R.cpP>=0)R.cp=-1;else R.cp=pick(f(/контрагент|корреспондент|получател|плательщик|отправител|бенефициар|counterparty|наименование (клиента|получател|плательщик|контрагент|организации)|партн[её]р|место проведения|merchant/,/счет|счёт|унп|банк|bic|бик|iban|код|account/));
   R.doc=pick(f(/номер (документа|платежа|операции|п\/п)|№ ?(док|п\/п|платеж)|док(умент)?\.? ?№|^№$|^номер$|номер/,/счет|счёт|телефон|карт/));
   R.bal=pick(f(/остаток|сальдо|баланс|balance/).filter(isNumCol));
+  if(R.dir<0&&R.amount>=0){const DV=/^(кр|к|c|cr|дб|д|d|dr|дт|кт|дебет|кредит|приход|расход|поступление|списание|зачисление|входящий|исходящий|credit|debit)$/i;
+    for(let i=0;i<H.length;i++){if(used.has(i)||i===R.amount||i===R.date)continue;const L=col(i);if(L.length>=3&&L.filter(v=>DV.test(bkTx(v))).length/L.length>=0.8){R.dir=i;used.add(i);break}}}
   return R}
 function bkFindHeader(aoa){
   const N=Math.min(aoa.length,80);
@@ -13273,7 +13350,7 @@ function bkFindHeader(aoa){
       const H=Array.from({length:W},(_,c)=>(bkTx(a[c])+' '+bkTx(b[c])).trim().toLowerCase());
       if(H.some(x=>/номенклатур|количеств|кол-во|ед\.? ?изм/.test(x)))return null;
       const R=bkRoles(H,aoa,i+(two?2:1));
-      if(R.date>=0&&((R.debit>=0&&R.credit>=0)||R.amount>=0)&&(R.pur>=0||R.cp>=0)){
+      if(R.date>=0&&((R.debit>=0&&R.credit>=0)||R.amount>=0)&&(R.pur>=0||R.cp>=0||R.cpP>=0)){
         if(R.amount>=0&&R.dir<0&&R.bal<0){const neg=aoa.slice(i+1,i+200).some(r=>r&&bkAmt(r[R.amount])<0);if(!neg)continue}
         return {hr:i,two,cols:R}}
     }
@@ -13296,7 +13373,7 @@ function bkGuessNoHeader(aoa){
     st.push({c,ne:L.length,nr:L.length?numeric.length/L.length:0,len:L.length?L.reduce((a,v)=>a+bkTx(v).length,0)/L.length:0,ints:ints.length===numeric.length&&numeric.length>0,mx:numeric.length?Math.max(...numeric.map(v=>Math.abs(bkAmt(v)))):0})}
   const txt=st.filter(x=>x.nr<0.3&&x.ne>=D.length*0.5).sort((a,b)=>b.len-a.len);
   const num=st.filter(x=>x.nr>=0.7&&x.ne>0);
-  const docc=num.find(x=>x.ints&&x.ne>=D.length*0.9&&x.mx<=D.length*3);
+  const docc=num.find(x=>x.ints&&x.ne>=D.length*0.9&&(x.mx<=D.length*3||num.length>=3));
   const nums=num.filter(x=>x!==docc).map(x=>x.c);
   const R={date:dc,debit:-1,credit:-1,amount:-1,dir:-1,pur:-1,cp:-1,doc:docc?docc.c:-1,bal:-1};
   if(txt[0])R.pur=txt[0].c;if(txt[1]&&txt[1].len>=6)R.cp=txt[1].c;
@@ -13326,8 +13403,9 @@ function bkRowsFrom(aoa,H){
     if(!amtMode){const x=C.debit>=0?bkAmt(r[C.debit]):NaN,y=C.credit>=0?bkAmt(r[C.credit]):NaN;d=isFinite(x)?Math.abs(x):0;k=isFinite(y)?Math.abs(y):0;if(d>0&&k>0){const n=k-d;d=n<0?-n:0;k=n>0?n:0}}
     else{a=bkAmt(r[C.amount]);if(!isFinite(a)||a===0)continue;if(a<0)anyNeg=true}
     if(!amtMode&&!(d>0||k>0))continue;
-    cur={ds,d,k,a,dir:0,ibs:r.map(c=>(bkTx(c).replace(/\s/g,'').toUpperCase().match(/BY\d{2}[A-Z0-9]{4}\d{4}[A-Z0-9]{16}/)||[''])[0]).filter(Boolean),bal:C.bal>=0?bkAmt(r[C.bal]):NaN,doc:T(r,C.doc),cp:T(r,C.cp),pur:T(r,C.pur),mcc:mccC>=0&&/^\d{4}$/.test(T(r,mccC))?T(r,mccC):'',pcode:bkPcodeRow(r.map(bkTx))};
-    if(amtMode&&C.dir>=0){const t=T(r,C.dir).toLowerCase();if(/^(кр|к|c|cr)$|кредит|приход|поступ|зачисл|\+/.test(t))cur.dir=1;else if(/^(дб|д|d|dr)$|дебет|расход|списан|-/.test(t))cur.dir=-1}
+    const unpOf=c=>{const m=c>=0?T(r,c).match(/\d{9}/):null;return m?m[0]:''};
+    cur={ds,d,k,a,dir:0,unp:unpOf(C.unp),cpP:C.cpP>=0?T(r,C.cpP):undefined,cpR:C.cpR>=0?T(r,C.cpR):undefined,unpP:unpOf(C.unpP),unpR:unpOf(C.unpR),ibs:r.map(c=>(bkTx(c).replace(/\s/g,'').toUpperCase().match(/BY\d{2}[A-Z0-9]{4}\d{4}[A-Z0-9]{16}/)||[''])[0]).filter(Boolean),bal:C.bal>=0?bkAmt(r[C.bal]):NaN,doc:T(r,C.doc),cp:T(r,C.cp),pur:T(r,C.pur),mcc:mccC>=0&&/^\d{4}$/.test(T(r,mccC))?T(r,mccC):'',pcode:bkPcodeRow(r.map(bkTx))};
+    if(amtMode&&C.dir>=0){const t=T(r,C.dir).toLowerCase();if(/^(кр|к|кт|c|cr)$|кредит|credit|приход|поступ|зачисл|входящ|\+/.test(t))cur.dir=1;else if(/^(дб|д|дт|d|dr)$|дебет|debit|расход|списан|исходящ|-/.test(t))cur.dir=-1}
     tmp.push(cur)}
   if(!tmp.length)return null;
   if(tmp.length>1&&tmp[0].ds>tmp[tmp.length-1].ds)tmp.reverse();
@@ -13341,6 +13419,7 @@ function bkRowsFrom(aoa,H){
         if(!x.dir){x.dir=-1;noDir=true}}
       if(x.dir>0)x.k=Math.abs(x.a);else x.d=Math.abs(x.a)});
     if(noDir&&!hasDir&&!anyNeg&&!(C.bal>=0))noDir=true}
+  tmp.forEach(x=>{if(x.cpP!==undefined||x.cpR!==undefined){const dbt=x.d>0;x.cp=(dbt?x.cpR:x.cpP)||x.cp||'';x.unp=(dbt?x.unpR:x.unpP)||x.unp||''}});
   return {tmp,noDir}}
 function bkInfoScan(aoa,tmp,C,hr){
   const info={cur:'BYN'},tx=r=>(r||[]).map(bkTx),top=aoa.slice(0,80);
@@ -13372,7 +13451,7 @@ function bkParseAny(aoa,forced){
     const tmp=res.tmp,info=bkInfoScan(aoa,tmp,H.cols,H.hr);
     const dts=tmp.map(x=>x.ds).sort();if(!info.from)info.from=dts[0];if(!info.to)info.to=dts[dts.length-1];
     info.map={hr:H.hr,two:H.two,cols:H.cols,guessed,saved:!!H.saved,noDir:res.noDir};
-    const ops=tmp.map((x,i)=>{const dt=x.ds.slice(8)+'/'+x.ds.slice(5,7)+'/'+x.ds.slice(0,4);return {n:i+1,doc:x.doc||('h'+bkHash(x.cp+'|'+x.pur)),d:x.d,k:x.k,dt,cp:x.cp,pur:x.pur,bal:x.bal,ibs:x.ibs||[],mcc:x.mcc||''}});
+    const ops=tmp.map((x,i)=>{const dt=x.ds.slice(8)+'/'+x.ds.slice(5,7)+'/'+x.ds.slice(0,4);return {n:i+1,doc:x.doc||('h'+bkHash(x.cp+'|'+x.pur)),d:x.d,k:x.k,dt,cp:x.cp,unp:x.unp||'',pur:x.pur,bal:x.bal,ibs:x.ibs||[],mcc:x.mcc||''}});
     {const seen={};ops.forEach(o=>{const q=o.doc+'|'+o.dt+'|'+o.d+'|'+o.k;seen[q]=(seen[q]||0)+1;if(seen[q]>1)o.doc=o.doc+'~'+seen[q]})}
     return {info,ops}}catch(e){return null}}
 /* Реестр банковских документов из 1С:Предприятие 8.3 (Банк и касса → Банковские выписки / Реестр банковских документов):
@@ -13401,16 +13480,74 @@ function bkParseAll(aoa,forced){
   if(!forced){try{const r1=bkParse1C(aoa);if(r1)return r1}catch(e){}}
   if(!forced){try{const r=bkParse(aoa);if(r&&r.ops&&r.ops.length)return r}catch(e){}}
   return bkParseAny(aoa,forced)}
+/* Обезличивание файла для отправки образца: УНП, счета, телефоны, почта, ФИО, названия организаций заменяются, суммы умножаются на случайный коэффициент */
+function bkMask(aoa,opt){
+  opt=opt||{};const K=opt.amounts===false?1:(0.43+Math.random()*0.9),maps={unp:{},org:{},fio:{},acc:{}};let nUnp=0,nOrg=0,nFio=0,nAcc=0;
+  const rd=n=>{let t='';for(let i=0;i<n;i++)t+=Math.floor(Math.random()*10);return t};
+  const mUnp=v=>maps.unp[v]||(maps.unp[v]='7'+String(100000000+(++nUnp)*7919).slice(1,9));
+  const mAcc=v=>maps.acc[v]||(maps.acc[v]=v.slice(0,8)+rd(Math.max(v.length-8,0)));
+  const ORG='ООО|ОАО|ЗАО|ЧУП|УП|ОДО|СООО|ЧТУП|РУП|КУП|ИП|ГУ|ГП|АО|ПК|ЧП|ОО';
+  const W0='[А-ЯЁA-Z][А-Яа-яёЁA-Za-z0-9.-]*';
+  const orgRe=new RegExp('(^|[^А-Яа-яЁёA-Za-z0-9])('+ORG+')\\s+(?:«[^»]{1,60}»|"[^"]{1,60}"|“[^”]{1,60}”|'+W0+'(?:\\s+'+W0+'){0,2})','g');
+  const fioRe=/(^|[^А-Яа-яЁёA-Za-z0-9])([А-ЯЁ][а-яё]{2,}\s+[А-ЯЁ][а-яё]{2,}\s+[А-ЯЁ][а-яё]{2,}(?:вич|вна|ична|оглы|кызы)|[А-ЯЁ][а-яё]{2,}\s+[А-ЯЁ]\.\s?[А-ЯЁ]\.?)/g;
+  const txt=t=>{
+    const tok=[];t=t.replace(/BY\d{2}[A-Z0-9]{4}\d{4}[A-Z0-9]{16}/gi,m=>{tok.push(mAcc(m.replace(/\s/g,'').toUpperCase()));return '@@A'+(tok.length-1)+'@@'});
+    t=t.replace(/(^|\D)(\d{9})(?!\d)/g,(m,p,d)=>p+mUnp(d));
+    t=t.replace(/\d{13,19}/g,m=>m.slice(0,4)+'*'.repeat(m.length-8)+m.slice(-4));
+    t=t.replace(/(?:\+?375|80)[\s(-]*\d{2}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}/g,'+375 00 000-00-00');
+    t=t.replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g,'mail@example.by');
+    t=t.replace(orgRe,(m,p,f)=>{const k=m.slice(p.length).toUpperCase();return p+(maps.org[k]||(maps.org[k]=f+(f==='ИП'?' Фамилия'+(++nFio):' «Организация '+(++nOrg)+'»')))});
+    t=t.replace(fioRe,(m,p,n)=>{const k=n.toUpperCase();return p+(maps.fio[k]||(maps.fio[k]='Фамилия'+(++nFio)+' И. О.'))});
+    return t.replace(/@@A(\d+)@@/g,(m,i)=>tok[+i])};
+  const decRe=/^[-−–(]?\s*\d[\d\s]*[.,]\d{1,2}\s*\)?$/;
+  const W=Math.max(...aoa.map(r=>(r||[]).length),0),dec=Array(W).fill(false);
+  aoa.forEach(r=>(r||[]).forEach((v,j)=>{if(typeof v==='number'?!Number.isInteger(v):decRe.test(String(v).trim()))dec[j]=true}));
+  try{const HH=bkFindHeader(aoa);if(HH)['debit','credit','amount','bal'].forEach(k=>{if(HH.cols[k]>=0)dec[HH.cols[k]]=true})}catch(e){}
+  const amt=(v,j)=>{
+    if(typeof v==='number'){if(v>36000&&v<80000&&Number.isInteger(v)&&!dec[j])return v;return (Number.isInteger(v)&&!dec[j])?v:Math.round(v*K*100)/100}
+    const sv=String(v);if(!decRe.test(sv.trim()))return null;
+    const dc=/,\d{1,2}\s*\)?$/.test(sv)?',':'.',sp=/\d\s\d/.test(sv),neg=/^[-−–(]/.test(sv.trim());
+    const n=Math.round(Math.abs(bkAmt(sv))*K*100)/100;let r=n.toFixed(2);
+    if(sp)r=r.replace(/\B(?=(\d{3})+(?!\d))/g,' ');if(dc===',')r=r.replace('.',',');
+    return (neg?'-':'')+r};
+  const out=aoa.map(row=>(row||[]).map((v,j)=>{
+    if(v==null||v==='')return v;
+    if(typeof v==='number')return opt.amounts===false?v:amt(v,j);
+    const sv=String(v);
+    if(bkDateAny(sv,true))return v;
+    const ds=sv.replace(/\s/g,'');
+    if(/^\d{9}$/.test(ds))return mUnp(ds);
+    if(opt.amounts!==false){const a=amt(sv,j);if(a!=null)return a}
+    return txt(sv)}));
+  return out}
+const SUPPORT_TG=''; /* ник техподдержки в Телеграм без @ (например, 'my_support'); пусто: ссылка не показывается */
+function bkSampleDlg(aoa2,back2,what){
+  const aoa=aoa2||BNK.aoa;if(!aoa||!aoa.length){toast('Сначала выберите файл выписки');return}
+  const root=$('#modalRoot');let masked=bkMask(aoa,{amounts:true});
+  const W=Math.min(Math.max(...masked.slice(0,40).map(r=>(r||[]).length),1),10);
+  const tbl=()=>`<div style="overflow:auto;max-height:260px;border:1px solid var(--line);border-radius:10px;margin:8px 0;background:#fff"><table style="font-size:11px;border-collapse:collapse;white-space:nowrap">${masked.slice(0,30).map(r=>`<tr>${Array.from({length:W},(_,i)=>`<td style="padding:2px 6px;border-top:1px solid #eee">${esc(bkTx((r||[])[i]).slice(0,34))}</td>`).join('')}</tr>`).join('')}</table></div>`;
+  const draw=()=>{root.innerHTML=`<div class="modal"><div class="sheet"><h2>Образец ${what||'выписки'} для технической поддержки</h2>
+   <div class="hint">Приложение не смогло прочитать ${what?'ваш отчёт':'вашу выписку'}, и вы можете отправить образец, чтобы чтение настроили. Файл ниже обезличен: УНП, счета, телефоны, почта, ФИО и названия организаций заменены, суммы умножены на случайное число. Структура и заголовки сохранены. Автоматическая замена может что-то пропустить, поэтому просмотрите таблицу и при необходимости закройте лишнее в файле сами перед отправкой.</div>
+   ${tbl()}
+   <label style="display:flex;gap:8px;align-items:center;margin-top:6px"><input type="checkbox" id="bkmA" ${masked.__am===false?'':'checked'} style="width:auto"> Скрыть суммы (умножить на случайный коэффициент)</label>
+   <div class="row" style="margin-top:12px"><button class="red" type="button" id="bkmD">Скачать обезличенный файл</button><button class="ghost" type="button" id="bkmB">Назад</button></div>
+   <div class="hint" style="margin-top:8px">Отправьте скачанный файл в техническую поддержку приложения${(window.SUP&&SUP.open&&SUP.url)?` (<a href="${SUP.url}" target="_blank" rel="noopener">написать в Телеграм</a>)`:' в личные сообщения в Телеграм'} и напишите название ${what?'платёжной системы или банка':'банка'} и формат файла (Excel, PDF, Word, TXT). Исходный файл остаётся только у вас.</div></div></div>`;
+   $('#bkmB').onclick=()=>{if(back2)back2();else BNK.rows?bkShow():bkRemap()};
+   $('#bkmA').onchange=e=>{masked=bkMask(aoa,{amounts:e.target.checked});masked.__am=e.target.checked;draw()};
+   $('#bkmD').onclick=()=>{try{const u=ffXlsx(masked);download(what?'obrazets-ekvayringa.xlsx':'obrazets-vypiski.xlsx',new Blob([u],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}));toast('Файл скачан. Отправьте его в техническую поддержку',6000)}catch(e){toast('Не удалось подготовить файл')}}};
+  draw()}
 function bkRemap(){
   const aoa=BNK.aoa;if(!aoa)return;const I=BNK.info,M=(I&&I.map)||{hr:0,cols:{}},C=M.cols||{},root=$('#modalRoot');
   const W=Math.max(...aoa.slice(0,60).map(r=>(r||[]).length),1),colL=i=>{let s='',n=i;do{s=String.fromCharCode(65+n%26)+s;n=Math.floor(n/26)-1}while(n>=0);return s};
-  const H=aoa[M.hr]||[],opts=v=>`<option value="">— нет —</option>`+Array.from({length:W},(_,i)=>`<option value="${i}" ${i===v?'selected':''}>${colL(i)}: ${esc(bkTx(H[i]).slice(0,28))}</option>`).join('');
-  const F=[['date','Дата операции'],['debit','Списание (дебет, расход)'],['credit','Поступление (кредит, приход)'],['amount','Сумма одним столбцом (если нет столбцов списания и поступления)'],['dir','Признак «дебет/кредит» (если есть)'],['pur','Назначение платежа'],['cp','Контрагент (получатель, плательщик)'],['doc','Номер документа'],['bal','Остаток после операции (если есть)']];
+  const H=aoa[M.hr]||[],smp=i=>{for(let r=M.hr+1;r<Math.min(aoa.length,M.hr+14);r++){const t=bkTx((aoa[r]||[])[i]);if(t)return t.slice(0,16)}return ''},opts=v=>`<option value="">— нет —</option>`+Array.from({length:W},(_,i)=>{const sm=smp(i);return `<option value="${i}" ${i===v?'selected':''}>${colL(i)}: ${esc(bkTx(H[i]).slice(0,26))}${sm?' | '+esc(sm):''}</option>`}).join('');
+  const F=[['date','Дата операции'],['debit','Списание (дебет, расход)'],['credit','Поступление (кредит, приход)'],['amount','Сумма одним столбцом (если нет столбцов списания и поступления)'],['dir','Признак «дебет/кредит» (если есть)'],['pur','Назначение платежа'],['cp','Контрагент (получатель, плательщик)'],['doc','Номер документа'],['bal','Остаток после операции (если есть)'],['unp','УНП контрагента (если есть отдельный столбец)'],['cpP','Плательщик (если плательщик и получатель в разных столбцах)'],['cpR','Получатель (то же)'],['unpP','УНП плательщика'],['unpR','УНП получателя']];
   root.innerHTML=`<div class="modal"><form class="sheet" id="bkm"><h2>Как читать выписку</h2><div class="hint">Укажите, в каких столбцах данные. Строка названий столбцов: номер строки в файле.</div>
+  <div class="hint" style="margin:8px 0 2px">Так выглядит начало вашего файла (буквы столбцов совпадают со списками ниже):</div><div style="overflow:auto;max-height:190px;border:1px solid var(--line);border-radius:10px;margin:4px 0 8px;background:#fff"><table style="font-size:11px;border-collapse:collapse;white-space:nowrap"><tr><td style="padding:2px 5px;color:#888">№</td>${Array.from({length:Math.min(W,12)},(_,i)=>`<td style="padding:2px 5px;font-weight:700;background:#f6f1de">${colL(i)}</td>`).join('')}</tr>${aoa.slice(0,12).map((r,ri)=>`<tr><td style="padding:2px 5px;color:#888">${ri+1}</td>${Array.from({length:Math.min(W,12)},(_,i)=>`<td style="padding:2px 5px;border-top:1px solid #eee">${esc(bkTx((r||[])[i]).slice(0,20))}</td>`).join('')}</tr>`).join('')}</table></div>
   <label>Строка с названиями столбцов</label><input name="hr" inputmode="numeric" value="${(M.hr||0)+1}">
   ${F.map(([k,l])=>`<label>${l}</label><select name="${k}">${opts(C[k]==null?-1:C[k])}</select>`).join('')}
   <label style="display:flex;gap:8px;align-items:center;margin-top:12px"><input type="checkbox" name="rem" checked style="width:auto"> Запомнить для выписок с такими же заголовками</label>
-  <div class="row" style="margin-top:12px"><button class="red" type="submit">Прочитать заново</button><button type="button" class="ghost" id="bkmC">Отмена</button></div></form></div>`;
+  <div class="row" style="margin-top:12px"><button class="red" type="submit">Прочитать заново</button><button type="button" class="ghost" id="bkmC">Отмена</button></div><div class="hint" style="margin-top:10px">Не получается указать столбцы? <a href="#" id="bkmS">Отправить образец выписки в техническую поддержку</a>: файл будет обезличен.</div></form></div>`;
+  $('#bkmS').onclick=e=>{e.preventDefault();bkSampleDlg()};
   $('#bkmC').onclick=()=>{bkShow()};
   $('#bkm').onsubmit=guardSubmit(e=>{e.preventDefault();const f=e.target.elements,g=k=>f.namedItem(k).value,ix=k=>g(k)===''?-1:+g(k);
     if(ix('date')<0||(ix('debit')<0&&ix('credit')<0&&ix('amount')<0)){toast('Укажите столбец даты и столбцы сумм');return}
@@ -13645,7 +13782,8 @@ function acqMapDialog(L,names,fname){
   const root=$('#modalRoot');
   root.innerHTML=`<div class="modal"><form class="sheet" id="amf"><h2>Отчёт эквайринга: столбцы</h2><div class="hint">Приложение не узнало формат отчёта. Укажите, в каких столбцах что лежит: достаточно даты, суммы и комиссии или суммы «к перечислению». Выбор запомнится для таких же отчётов. Заголовки найдены в строке ${h+1}.</div>
   ${F.map(([f,l])=>`<label>${l}</label><select name="${f}"><option value="">нет такого столбца</option>${H0.map((t,i)=>t?`<option value="${i}" ${pre[f]===i?'selected':''}>${esc(t.slice(0,60))}</option>`:'').join('')}</select>`).join('')}
-  <div class="row" style="margin-top:12px"><button class="red" type="submit">Загрузить</button><button class="ghost" type="button" data-act="close">Отмена</button></div></form></div>`;
+  <div class="row" style="margin-top:12px"><button class="red" type="submit">Загрузить</button><button class="ghost" type="button" data-act="close">Отмена</button></div><div class="hint" style="margin-top:10px">Не получается? <a href="#" id="amS">Отправить образец отчёта в техническую поддержку</a>: файл будет обезличен.</div></form></div>`;
+  $('#amS').onclick=ev=>{ev.preventDefault();bkSampleDlg(aoa,()=>acqMapDialog(L,names,fname),'отчёта эквайринга')};
   $('#amf').onsubmit=e=>{e.preventDefault();const c={},sv={};F.forEach(([f])=>{const v=e.target[f].value;if(v!==''){c[f]=+v;sv[f]=H[+v]}});
     if(c.fio!=null){c.first=null;delete c.first}
     if(!((c.net!=null||c.sum!=null)&&(c.tr!=null||c.paid!=null))){toast('Нужны дата и сумма: укажите хотя бы «Дату оплаты» и «Сумму платежа» или «Перечислено»',6000);return}
@@ -15366,12 +15504,37 @@ const QL=['I','II','III','IV'];
 /* Перенос стоимости отдельных предмета по сроку (организация): с месяца, следующего за списанием (вводом в эксплуатацию), равными долями */
 function mbpTermSched(m){const t=Math.round(+m.term||0);if(!(t>0)||!m.wdate)return [];const w=+m.wsum||0,e=r2(w/t),out=[];let acc=0,ym=ymAdd(ymOf(m.wdate),1);
   for(let i=0;i<t;i++){const s=i===t-1?r2(w-acc):e;acc=r2(acc+s);out.push({ym,sum:s});ym=ymAdd(ym,1)}return out}
+/* оплаты предмета с датами; у старых записей одна сумма без даты: считаем её внесённой в день поступления */
+function mbpPays(m){
+  if(Array.isArray(m.pays))return m.pays;
+  const v=m.paid!=null&&m.paid!==''?+m.paid:+m.cost||0;
+  return v>0?[{id:'legacy',date:m.date||m.wdate||'',sum:v,doc:'ранее внесённая оплата',legacy:1}]:[];
+}
+/* помесячные суммы к переносу в графу 8: не выше списанной стоимости и не выше оплаченной на конец месяца (пп. 22.5 п. 22 ст. 205 НК) */
+function mbpMonths(m){
+  if(!m.wdate)return [];
+  const w=+m.wsum||0,pays=mbpPays(m).filter(x=>x.date&&+x.sum>0),term=+m.term>0,sch=term?mbpTermSched(m):[];
+  const wy=ymOf(m.wdate);
+  const ends=[wy].concat(sch.map(r=>r.ym),pays.map(x=>ymOf(x.date))).sort();
+  const from=ends[0],to=ends[ends.length-1];
+  const out=[];let ym=from,cumA=0,guard=0;
+  while(ym<=to&&guard++<600){
+    let cs=term?r2(sch.filter(r=>r.ym<=ym).reduce((t,r)=>t+r.sum,0)):(wy<=ym?w:0);
+    let cp=r2(pays.filter(x=>ymOf(x.date)<=ym).reduce((t,x)=>t+(+x.sum||0),0));
+    const al=r2(Math.min(cs,cp)-cumA);
+    if(al>0.004){out.push({ym,sum:al});cumA=r2(cumA+al)}
+    ym=ymAdd(ym,1);
+  }
+  return out;
+}
 function mbpOps(ip){
   if(ip.settings.method==='norm')return [];
   const by={},res0=[];
-  (ip.mbp||[]).forEach(m=>{if(+m.term>0&&m.wdate){mbpTermSched(m).forEach(r=>{if(r.sum>0)res0.push({id:'mbp~'+m.id+'~'+r.ym,kind:'exp',date:lastDay(r.ym),cur:'BYN',sumCur:r.sum,rate:1,scale:1,sum:r.sum,text:'Перенос стоимости отдельных предметов: '+m.name+' (за '+MN[+r.ym.slice(5)-1]+' '+r.ym.slice(0,4)+')',party:'Книга отдельных предметов',docType:'Расчёт',docNo:'',docDate:lastDay(r.ym),derived:true,derivedLabel:'из книги отдельных предметов'})});return}
+  (ip.mbp||[]).forEach(m=>{
+    const L=mbpMonths(m);
+    if(+m.term>0){L.forEach(r=>res0.push({id:'mbp~'+m.id+'~'+r.ym,kind:'exp',date:lastDay(r.ym),cur:'BYN',sumCur:r.sum,rate:1,scale:1,sum:r.sum,text:'Перенос стоимости отдельных предметов: '+m.name+' (за '+MN[+r.ym.slice(5)-1]+' '+r.ym.slice(0,4)+')',party:'Книга отдельных предметов',docType:'Расчёт',docNo:'',docDate:lastDay(r.ym),derived:true,derivedLabel:'из книги отдельных предметов'}));return}
+    L.forEach(r=>{const y=+r.ym.slice(0,4),q=Math.ceil(+r.ym.slice(5)/3),k=y+'-'+q;by[k]=r2((by[k]||0)+r.sum)});
   });
-  (ip.mbp||[]).forEach(m=>{if(!m.wdate||+m.term>0)return;const k=m.wdate.slice(0,4)+'-'+qOf(m.wdate);const w=Math.min(+m.wsum||0,m.paid!=null&&m.paid!==''?+m.paid:+m.cost||0);by[k]=r2((by[k]||0)+w)});
   return res0.concat(Object.keys(by).filter(k=>by[k]>0).map(k=>{const [y,q]=k.split('-').map(Number),dt=lastDay(y+'-'+pm2(q*3));
     return {id:'mbp~'+k,kind:'exp',date:dt,cur:'BYN',sumCur:by[k],rate:1,scale:1,sum:by[k],text:'Стоимость отдельных предметов в составе оборотных средств, погашаемая за '+QL[q-1]+' квартал (перенос из книги, гр. 6)',party:'Книга отдельных предметов в составе оборотных средств',docType:'Расчёт',docNo:'',docDate:dt,derived:true,derivedLabel:'из книги МБП'}}));
 }
@@ -15387,7 +15550,7 @@ function mbpBookHtml(ip){
     return {c:[dmy(m.date),m.name,m.doc||'',fq(m.qty||1),c,w,res,(m.note||'')+(m.wdate?' Списано '+dmy(m.wdate)+'.':'')+(m.actNo?' Акт ввода в эксплуатацию № '+m.actNo+' от '+dmy(m.actDate||m.wdate)+'.':'')+(m.paid!=null&&m.paid!==''&&+m.paid<c?' Оплачено '+fmt(+m.paid)+' руб., расход переносится в пределах оплаты.':'')]}});
   rows.push({t:'quarter',c:['','ИТОГО за отчётный период','','',t5,t6,t7,'']});
   h+=tblx(['Дата записи','Наименование предметов','Документ, номер и дата','Количество','Первоначальная стоимость, руб.','Погашаемая в отчётном периоде, руб.','Остаточная стоимость (гр. 5 − гр. 6), руб.','Примечание'],rows);
-  h+=`<h3 class="noprint">Записи</h3><div class="noprint">${foldJ(L.map(m=>`<div class="op"><div class="l"><div class="t">${esc(m.name)}</div><small>${dmy(m.date)} · ${fmt(m.cost)} руб.${m.wdate?' · списано '+dmy(m.wdate):' · не списано'}</small></div><div class="s">${m.paid!=null&&m.paid!==''&&+m.paid<+m.cost?`<button class="link" data-act="mb-pay" data-id="${m.id}">Оплата</button>`:''}${+m.term>0&&m.wdate&&!m.endDate?`<button class="link" data-act="mb-end" data-id="${m.id}">Выбытие</button>`:''}${m.wdate?`<button class="link" data-act="mb-act" data-id="${m.id}">Акт</button>`:`<button class="link" data-act="mb-use" data-id="${m.id}">В эксплуатацию</button>`}<button class="link" data-act="mb-wr" data-id="${m.id}">${m.wdate?'Изм. списание':'Списать'}</button><button class="link" data-act="mb-del" data-id="${m.id}">Удалить</button></div></div>`).join(''))}</div>`;
+  h+=`<h3 class="noprint">Записи</h3><div class="noprint">${foldJ(L.map(m=>`<div class="op"><div class="l"><div class="t">${esc(m.name)}</div><small>${dmy(m.date)} · ${fmt(m.cost)} руб.${m.wdate?' · списано '+dmy(m.wdate):' · не списано'}${(()=>{const L=mbpPays(m);return L.length?' · оплаты: '+L.map(x=>(x.date?dmy(x.date):'без даты')+' '+fmt(x.sum)).join('; ')+(r2((+m.cost||0)-L.reduce((t,x)=>t+(+x.sum||0),0))>0.004?' · не оплачено '+fmt(r2((+m.cost||0)-L.reduce((t,x)=>t+(+x.sum||0),0))):' · оплачено полностью'):' · оплаты нет'})()}</small></div><div class="s">${m.paid!=null&&m.paid!==''&&+m.paid<+m.cost?`<button class="link" data-act="mb-pay" data-id="${m.id}">Оплата</button>`:''}${+m.term>0&&m.wdate&&!m.endDate?`<button class="link" data-act="mb-end" data-id="${m.id}">Выбытие</button>`:''}${m.wdate?`<button class="link" data-act="mb-act" data-id="${m.id}">Акт</button>`:`<button class="link" data-act="mb-use" data-id="${m.id}">В эксплуатацию</button>`}<button class="link" data-act="mb-wr" data-id="${m.id}">${m.wdate?'Изм. списание':'Списать'}</button><button class="link" data-act="mb-del" data-id="${m.id}">Удалить</button></div></div>`).join(''))}</div>`;
   return h;
 }
 function mbpForm(p){
@@ -17466,7 +17629,7 @@ function eduBlock(){
   const cp=(ip.cpty||[]).filter(x=>x.name&&!cl.some(c=>dtKey(c.name)===dtKey(x.name))).sort((a,b)=>String(a.name).localeCompare(String(b.name)));
   const B=(k,t)=>`<button class="sm" data-act="edu-d" data-k="${k}">${esc(t)}</button>`,sv=window.__eduSel||'';
   const H=t=>`<div style="font-weight:700;margin:12px 0 4px;color:#7a5a00">${t}</div>`;
-  return `<details class="card cfold" style="margin-bottom:8px;border-left:4px solid #D4AF37"><summary><span class="cft">Образовательная деятельность</span><small>слушатели: договоры, счета, акты, приказы</small></summary>
+  return `<details class="card cfold edublk" style="margin-bottom:12px"><summary><span class="edui">★</span><span class="edut"><span class="cft">Образовательная деятельность</span><small>Модуль для слушателей: договоры, счета, акты, приказы</small></span><span class="edug">Открыть</span></summary>
   ${H('1. Начало работы со слушателем: договоры и счета')}
   <div class="hint" style="font-size:13px;margin:4px 0">Выберите слушателя или плательщика из списка либо добавьте нового. Публичный договор слушателя не требует.</div>
   <label style="margin-top:6px">Слушатель или контрагент</label>
@@ -17836,7 +17999,7 @@ function payApply(ip,d,p){
   d.lines.forEach((l,i)=>{
     const sh=r2((+p.sum||0)*docLine(l)/tot);if(!(sh>0))return;
     if(l.type==='raw'){const it=rawItemFor(ip,l.name,l.unit);it.e.push({id:uid(),kind:'pay',date:p.date,doc:(p.doc||'')+(p.doc?' ':'')+'(по накладной № '+(d.no||'б/н')+')',sum:sh,docId:d.id})}
-    else if(l.type==='mbp'){const m=(ip.mbp||[]).find(x=>x.docId===d.id&&x.lineIdx===i);if(m)m.paid=r2((+m.paid||0)+sh)}
+    else if(l.type==='mbp'){const m=(ip.mbp||[]).find(x=>x.docId===d.id&&x.lineIdx===i);if(m){m.pays=mbpPays(m).slice();m.pays.push({id:uid(),date:p.date,sum:sh,doc:p.doc||''});m.paid=r2(m.pays.reduce((t,x)=>t+(+x.sum||0),0))}}
     else if(l.type==='svc'){if(p.noOp)return;const dt=(p.date&&p.date>d.date)?p.date:d.date;ip.ops.push({id:uid(),kind:'exp',date:dt,cur:'BYN',sumCur:sh,rate:1,scale:1,sum:sh,text:l.name+(l.qty>1?' ('+l.qty+' '+(l.unit||'')+')':''),party:d.supplier||'Контрагент',docType:'Акт',docNo:d.no||'б/н',docDate:d.date,docId:d.id,bankKey:p.bankKey||'',payType:p.payType||'',payNo:p.payNo||'',payDate:p.payDate||''})}
     else if(l.type==='goods'){if(sbActive(ip)){ip.sumBook=ip.sumBook||[];ip.sumBook.push({id:uid(),kind:'pay',date:p.date,instr:(p.doc||'оплата')+' (по накладной № '+(d.no||'б/н')+')',sum:sh,text:d.supplier||'',docId:d.id,bankKey:p.bankKey||''})}else gbData(ip).pays.push({id:uid(),date:p.date,supplier:d.supplier||'',doc:(p.doc||'оплата')+' (по накладной № '+(d.no||'б/н')+')',sum:sh,docId:d.id,bankKey:p.bankKey||''})}
   });
@@ -18451,7 +18614,7 @@ function docForm(d0,after){
 
 /* ===== Оплата конкретной накладной (акта, чека): привязка платёжного документа ===== */
 const payDocFields=(sum)=>[{n:'payType',l:'Чем оплачено',opts:PAYDOCS.map(x=>[x,x]),v:'Платёжное поручение'},{n:'payNo',l:'Номер платёжного документа (например, номер платёжного поручения)'},{n:'payDate',l:'Дата платёжного документа (она же дата оплаты)',t:'date',v:new Date().toISOString().slice(0,10)},{n:'sum',l:'Сумма оплаты, руб.',d:1,v:sum==null?'':String(sum).replace('.',',')}];
-const payDocText=o=>(o.payType||'Платёжный документ')+(o.payNo?' № '+o.payNo:'')+(o.payDate?' от '+dmy(o.payDate):'');
+const payDocText=o=>(o.payType||'Платёжный документ')+(o.payNo?' № '+o.payNo:'')+(o.payDate?' от '+dmy(o.payDate):'')+(/чек|ПКО|РКО/i.test(o.payType||'')&&!/эквайринг/i.test(o.payType||'')?', оплата наличными':'');
 function docPayStatus(d){const t=docTotal(d),pd=docPaid(d);return pd<=0.004?['не оплачена','#fde8e8','#a30400']:pd+0.004>=t?['оплачена полностью','#e6f4ea','#1b7a3a']:['оплачена частично','#fff3cd','#7a5b00']}
 function docPayTag(d){const [t,bg,c]=docPayStatus(d);return `<span class="tag" style="background:${bg};color:${c}">${t}${docPaid(d)>0.004&&docPaid(d)+0.004<docTotal(d)?': '+fmt(docPaid(d))+' из '+fmt(docTotal(d)):''}</span>`}
 const sameCp=(a,b)=>{const x=dtKey(cpClean(a||'')),y=dtKey(cpClean(b||''));return !!x&&!!y&&(x===y||x.includes(y)||y.includes(x))};
@@ -18800,7 +18963,7 @@ function bkMapCard(I){
   const M=I.map,C=M.cols,colL=i=>{let s='',n=i;do{s=String.fromCharCode(65+n%26)+s;n=Math.floor(n/26)-1}while(n>=0);return s};
   const nm={date:'дата',debit:'списание',credit:'поступление',amount:'сумма',dir:'Д/К',pur:'назначение',cp:'контрагент',doc:'номер',bal:'остаток'};
   const L=Object.keys(nm).filter(k=>C[k]>=0).map(k=>nm[k]+' — '+colL(C[k])).join(', ');
-  return `<div class="card" style="padding:8px 10px;margin:8px 0;border-left:4px solid ${M.guessed||M.noDir?'#D4AF37':'#2e7d32'}"><small>Столбцы определены ${M.saved?'по вашему сохранённому сопоставлению':'автоматически'}: ${esc(L)}</small>${M.guessed?'<br><small style="color:#8a5a00">Заголовков в файле не нашлось, столбцы угаданы по содержимому. Проверьте.</small>':''}${M.noDir?'<br><small style="color:#a30400">Направление операций (приход или расход) определить не удалось: все строки показаны как расход. Укажите столбцы вручную.</small>':''}<br><button type="button" class="sm ghost" data-act="bk-remap" style="margin-top:6px">Изменить столбцы</button></div>`}
+  return `<div class="card" style="padding:8px 10px;margin:8px 0;border-left:4px solid ${M.guessed||M.noDir?'#D4AF37':'#2e7d32'}"><small>Столбцы определены ${M.saved?'по вашему сохранённому сопоставлению':'автоматически'}: ${esc(L)}</small>${M.guessed?'<br><small style="color:#8a5a00">Заголовков в файле не нашлось, столбцы угаданы по содержимому. Проверьте.</small>':''}${M.noDir?'<br><small style="color:#a30400">Направление операций (приход или расход) определить не удалось: все строки показаны как расход. Укажите столбцы вручную.</small>':''}<br><button type="button" class="sm ghost" data-act="bk-remap" style="margin-top:6px">Изменить столбцы</button> <button type="button" class="sm ghost" data-act="bk-sample" style="margin-top:6px">Выписка прочиталась неверно: отправить образец</button></div>`}
 function docKindPick(){
   const f=ui.lastFile;if(!f||!f.aoa){toast('Файл уже закрыт: загрузите его заново');return}
   const root=$('#modalRoot');
@@ -25309,7 +25472,7 @@ document.addEventListener('click',e=>{
   else if(a==='as-outq'){const L=(ip.assets||[]).filter(x=>x.type===b.dataset.t&&!x.outDate);if(!L.length){toast('Нет объектов для выбытия');return}
     miniForm('Выбытие: выберите объект',[{n:'id',l:'Объект',opts:L.map(x=>[x.id,x.name+(x.inv?' (инв. № '+x.inv+')':'')])}],o=>{setTimeout(()=>{ui.asId=o.id;render(true);const x=document.querySelector('[data-act="as-out"]');if(x)x.click()},0)})}
   else if(a==='as-out'){const ob=ip.assets.find(x=>x.id===b.dataset.id);if(ob)asOutForm(ob)}
-  else if(a==='mb-pay'){const m=(ip.mbp||[]).find(x=>x.id===b.dataset.id);if(m)miniForm('Оплата: '+m.name,[{n:'sum',l:'Сумма оплаты, руб.',d:1,v:String(r2((+m.cost||0)-(+m.paid||0))).replace('.',',')}],o=>{const v=num(o.sum);if(!(v>0)){toast('Укажите сумму');return false}m.paid=r2((+m.paid||0)+v)});}
+  else if(a==='mb-pay'){const m=(ip.mbp||[]).find(x=>x.id===b.dataset.id);if(m)miniForm('Оплата: '+m.name,[{n:'sum',l:'Сумма оплаты, руб.',d:1,v:String(r2((+m.cost||0)-(+m.paid||0))).replace('.',',')}].concat(payDocFields()),o=>{const v=num(o.sum);if(!(v>0)){toast('Укажите сумму');return false}if(!o.payDate){toast('Укажите дату оплаты');return false}m.pays=mbpPays(m).slice();m.pays.push({id:uid(),date:o.payDate,sum:v,doc:payDocText(o)});m.paid=r2(m.pays.reduce((t,x)=>t+(+x.sum||0),0))});}
   else if(a==='cls-file'){osClsFile()}
   else if(a==='cls-paste'){osClsPaste()}
   else if(a==='as-prod'){const ob=ip.assets.find(x=>x.id===b.dataset.id);miniForm('Выпуск продукции (работ) за месяц',[{n:'date',l:'Любая дата в нужном месяце',t:'date',v:new Date().toISOString().slice(0,10)},{n:'qty',l:'Объём за месяц в единицах ресурса',d:1}],o=>{const q=num(o.qty),ym=ymOf(o.date);if(!ym||!(q>0)){toast('Укажите месяц и объём');return false}ob.prodEntries=(ob.prodEntries||[]).filter(e=>e.ym!==ym);ob.prodEntries.push({ym,qty:q})})}
@@ -25326,6 +25489,7 @@ document.addEventListener('click',e=>{
   else if(a==='skko-open'){let fi=$('#skkoIn');if(!fi){fi=document.createElement('input');fi.type='file';fi.id='skkoIn';fi.accept='.xls,.xlsx';fi.style.display='none';document.body.appendChild(fi)}fi.click()}
   else if(a==='doc-other'){docKindPick()}
   else if(a==='bk-remap'){bkRemap()}
+  else if(a==='bk-sample'){bkSampleDlg()}
   else if(a==='bk-go'){bkGo()}
   else if(a==='nav-back'){navBack()}
   else if(a==='goto'){location.hash='#/'+b.dataset.r}
@@ -29856,7 +30020,7 @@ const _gs=g11Sync;g11Sync=function(C){try{window.applyTN(C)}catch(e){}return _gs
 try{window.applyTN(crmOf(cur()))}catch(e){}
 document.addEventListener('DOMContentLoaded',()=>{try{window.applyTN(crmOf(cur()))}catch(e){}});
 const _cs=crmSet;crmSet=function(C){let h=_cs.apply(this,arguments);try{window.applyTN(C);const n=C.tnn||{};
-  if(window.eduBlock())h+=mgSec('Тарифы курсов: названия',`<div class="hint" style="margin-bottom:8px">Названия трёх тарифов можно заменить на свои. Они меняются везде: в формах, плитках, списках и готовых текстах сообщений. Хранится в этом браузере, интернет не нужен. Цены, сроки и отдельные курсы с собственными тарифами: кнопка ниже.</div>
+  if(window.eduModOn())h+=mgSec('Тарифы курсов: названия',`<div class="hint" style="margin-bottom:8px">Названия трёх тарифов можно заменить на свои. Они меняются везде: в формах, плитках, списках и готовых текстах сообщений. Хранится в этом браузере, интернет не нужен. Цены, сроки и отдельные курсы с собственными тарифами: кнопка ниже.</div>
   ${['min','opt','max'].map(k=>`<label>${{min:'Самостоятельный тариф',opt:'Тариф с группой',max:'Индивидуальный тариф'}[k]}</label><input data-tnn="${k}" value="${E(n[k]||DEF[k])}" placeholder="${DEF[k]}">`).join('')}
   <div class="row" style="margin-top:10px;flex-wrap:wrap;gap:6px"><button class="sm" data-tnsave="1">Сохранить названия</button><button class="sm ghost" data-tnreset="1">Вернуть стандартные</button><button class="sm ghost" data-tncat="1">Курсы и тарифы: цены и сроки</button></div>`)}catch(e){console.error(e)}return h};
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-tnsave],[data-tnreset],[data-tncat]');if(!b)return;e.preventDefault();e.stopPropagation();const C=crmOf(cur());
@@ -30054,7 +30218,7 @@ const _cf3=window.crsForm;window.crsForm=function(C,c,m){const r=_cf3.apply(this
 {const st2=document.createElement('style');st2.textContent='.sgr{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;padding:10px 4px;border-bottom:1px solid rgba(124,77,255,.15)}.sgr:last-child{border-bottom:0}.sgr .d{font-weight:800;font-size:17px;line-height:1.1;text-align:center}.sgr .d small{display:block;font-weight:600;font-size:12px;opacity:.7;margin-top:2px}.sgr .t b{display:block;font-size:15px;line-height:1.25}.sgr .t small{display:block;font-size:12.5px;opacity:.7;margin-top:2px}.sgr.ok .t small{color:#3d8a5a;opacity:1}.sgr.late .t small{color:#b00020;opacity:1}.sgr button{min-width:84px}';document.head.appendChild(st2)}
 
 /* Мои ссылки: настройки */
-const _cs2=crmSet;crmSet=function(C){let h=_cs2.apply(this,arguments);try{const L=window.lkList(C).filter(l=>window.eduBlock()||!['page','reg','wchat','zoom'].includes(l.id));h+=mgSec('Мои ссылки',`<div class="hint" style="margin-bottom:8px">Все ссылки в одном месте. Приложение подставляет их в готовые тексты, если в самом вебинаре или группе своя ссылка не указана. Можно добавить свои виды ссылок. В образце сообщения ссылку можно вставить выбором «Вставить ссылку» под текстом или меткой, например {сайт}.</div>${L.map(l=>`<div style="margin:6px 0"><label>${E(l.name)} <span class="hint" style="font-size:11px">{${E(l.tag)}}</span></label><div class="row" style="gap:6px"><input data-lku="${l.id}" value="${E(l.url||'')}" placeholder="https://" style="flex:1">${String(l.id).startsWith('c_')?`<button type="button" class="sm ghost" data-lkdel="${l.id}">Удалить</button>`:''}</div></div>`).join('')}<div class="row" style="margin-top:8px"><button class="sm" data-lkadd="1">+ Добавить вид ссылки</button></div>`)}catch(e){console.error(e)}return h};
+const _cs2=crmSet;crmSet=function(C){let h=_cs2.apply(this,arguments);try{const L=window.lkList(C).filter(l=>window.eduModOn()||!['page','reg','wchat','zoom'].includes(l.id));h+=mgSec('Мои ссылки',`<div class="hint" style="margin-bottom:8px">Все ссылки в одном месте. Приложение подставляет их в готовые тексты, если в самом вебинаре или группе своя ссылка не указана. Можно добавить свои виды ссылок. В образце сообщения ссылку можно вставить выбором «Вставить ссылку» под текстом или меткой, например {сайт}.</div>${L.map(l=>`<div style="margin:6px 0"><label>${E(l.name)} <span class="hint" style="font-size:11px">{${E(l.tag)}}</span></label><div class="row" style="gap:6px"><input data-lku="${l.id}" value="${E(l.url||'')}" placeholder="https://" style="flex:1">${String(l.id).startsWith('c_')?`<button type="button" class="sm ghost" data-lkdel="${l.id}">Удалить</button>`:''}</div></div>`).join('')}<div class="row" style="margin-top:8px"><button class="sm" data-lkadd="1">+ Добавить вид ссылки</button></div>`)}catch(e){console.error(e)}return h};
 document.addEventListener('change',e=>{const i=e.target;if(!i||!i.dataset||i.dataset.lku==null)return;const C=crmOf(cur()),l=window.lkList(C).find(z=>z.id===i.dataset.lku);if(l){l.url=i.value.trim();save();toast('Ссылка сохранена',1800)}},true);
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-lkadd],[data-lkdel]');if(!b)return;e.preventDefault();e.stopPropagation();const C=crmOf(cur()),L=window.lkList(C);
   if(b.dataset.lkdel){const l=L.find(z=>z.id===b.dataset.lkdel);if(l&&window.confirm('Удалить ссылку «'+l.name+'»?')){C.links=L.filter(z=>z.id!==l.id);save();render(true)}return}
@@ -30147,14 +30311,14 @@ Object.assign(HELP_ADD,{'Группы из меток (архив) и анали
 try{HELP_ORDER.forEach(g=>{const i=g[1].indexOf('CRM: клиенты, сделки, задачи');if(i>=0&&!g[1].includes('Группы из меток (архив) и анализ базы'))g[1].splice(i+1,0,'Группы из меток (архив) и анализ базы')})}catch(e){}
 
 /* Образовательный блок: отдельный переключатель (для автора, не для общей продажи) */
-window.eduBlock=function(){try{return !!S.eduModule}catch(e){return false}};
+window.eduModOn=function(){try{return !!S.eduModule}catch(e){return false}};
 try{if(S.eduModule==null){let on=false;(S.ips||[]).forEach(ip=>{const st=ip.settings||{},C=ip.crm||{};if(st.svcEdu||S.eduBlock||(C.edu&&Object.keys(C.edu).length)||(C.cgr&&C.cgr.length)||(C.prg&&C.prg.length)||(C.web&&C.web.length))on=true});if(on){S.eduModule=1;save()}}}catch(e){}
 document.addEventListener('change',e=>{const t=e.target;if(!t||!t.dataset||!t.dataset.edumod)return;e.stopPropagation();if(!hasMod('edu')){t.checked=false;return}S.eduModule=t.checked?1:0;save();render(true);toast(t.checked?'Образовательная деятельность включена':'Образовательная деятельность выключена',3000)},true);
 try{const q=new URLSearchParams(location.search).get('module');if(q==='off'){S.eduModule=0;save()}}catch(e){}
-{const _k=window.k8Tabs;window.k8Tabs=function(t){let h=_k.apply(this,arguments);try{if(!window.eduBlock())['crs','web','sub'].forEach(k=>{h=h.replace(new RegExp('<button class="cxn[^>]*data-k="'+k+'"[\\s\\S]*?</button>'),'')})}catch(e){}return h}}
-{const _p=crmPage;crmPage=function(ip){try{if(!window.eduBlock()&&['crs','web','sub'].includes(ui.crmt)){ui.crmt='today';ui.crmc=null}}catch(e){}return _p.apply(this,arguments)}}
-{const _t=window.g11TodayBlock;if(typeof _t==='function')window.g11TodayBlock=function(){if(!window.eduBlock())return '';return _t.apply(this,arguments)}}
-{const _cs=window.crmSet;if(typeof _cs==='function')window.crmSet=function(C){let h=_cs.apply(this,arguments);try{const on=window.eduBlock();if(!on)return h;h=`<div class="mgc" style="margin-bottom:10px"><h3>Образовательный блок</h3><div class="hint">Курсы, клуб и подписки, вебинары и практикумы, учебные группы и тарифы. Это отдельный блок для образовательной деятельности: когда он выключен, этих разделов в приложении нет.</div><button class="btn ${on?'':'pri'}" data-eduswitch="${on?0:1}">${on?'Выключить образовательный блок':'Включить образовательный блок'}</button>${on?'<h3 style="margin:16px 0 4px;font-size:15px">Разбор базы и архив</h3><div class="hint">Прошлые ученики уже стоят в воронках (этап «Закончил»). Здесь можно собрать архивные группы из меток клиентов и посмотреть сводный отчёт по базе.</div><div class="row" style="gap:8px;flex-wrap:wrap"><button class="sm" data-arch="wiz">Группы из меток (архив)</button><button class="sm ghost" data-arch="rep">Анализ базы</button></div><h3 style="margin:16px 0 4px;font-size:15px">Ссылки на оплату</h3><div class="hint">Ссылки подставляются в сообщение «Ссылка на оплату» по тарифу ученика. Сохранены: '+(['min','opt','max','all'].filter(k=>(C.payLinks||{})[k]).length)+' из 4.</div><button class="sm" data-paylinks="1">Указать ссылки на оплату</button>':''}</div>`+h}catch(e){}return h}}
+{const _k=window.k8Tabs;window.k8Tabs=function(t){let h=_k.apply(this,arguments);try{if(!window.eduModOn())['crs','web','sub'].forEach(k=>{h=h.replace(new RegExp('<button class="cxn[^>]*data-k="'+k+'"[\\s\\S]*?</button>'),'')})}catch(e){}return h}}
+{const _p=crmPage;crmPage=function(ip){try{if(!window.eduModOn()&&['crs','web','sub'].includes(ui.crmt)){ui.crmt='today';ui.crmc=null}}catch(e){}return _p.apply(this,arguments)}}
+{const _t=window.g11TodayBlock;if(typeof _t==='function')window.g11TodayBlock=function(){if(!window.eduModOn())return '';return _t.apply(this,arguments)}}
+{const _cs=window.crmSet;if(typeof _cs==='function')window.crmSet=function(C){let h=_cs.apply(this,arguments);try{const on=window.eduModOn();if(!on)return h;h=`<div class="mgc" style="margin-bottom:10px"><h3>Образовательный блок</h3><div class="hint">Курсы, клуб и подписки, вебинары и практикумы, учебные группы и тарифы. Это отдельный блок для образовательной деятельности: когда он выключен, этих разделов в приложении нет.</div><button class="btn ${on?'':'pri'}" data-eduswitch="${on?0:1}">${on?'Выключить образовательный блок':'Включить образовательный блок'}</button>${on?'<h3 style="margin:16px 0 4px;font-size:15px">Разбор базы и архив</h3><div class="hint">Прошлые ученики уже стоят в воронках (этап «Закончил»). Здесь можно собрать архивные группы из меток клиентов и посмотреть сводный отчёт по базе.</div><div class="row" style="gap:8px;flex-wrap:wrap"><button class="sm" data-arch="wiz">Группы из меток (архив)</button><button class="sm ghost" data-arch="rep">Анализ базы</button></div><h3 style="margin:16px 0 4px;font-size:15px">Ссылки на оплату</h3><div class="hint">Ссылки подставляются в сообщение «Ссылка на оплату» по тарифу ученика. Сохранены: '+(['min','opt','max','all'].filter(k=>(C.payLinks||{})[k]).length)+' из 4.</div><button class="sm" data-paylinks="1">Указать ссылки на оплату</button>':''}</div>`+h}catch(e){}return h}}
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-eduswitch]');if(!b)return;e.preventDefault();e.stopPropagation();{const ip=cur();(ip.settings=ip.settings||{}).svcEdu=b.dataset.eduswitch==='1';S.eduBlock=ip.settings.svcEdu}save();render(true);toast(S.eduBlock?'Образовательный блок включён':'Образовательный блок выключен',3000)},true);
 Object.assign(HELP_ADD,{'Образовательный блок: включить или выключить':'Курсы, клуб и подписки, вебинары и практикумы убираются из CRM одним переключателем: «CRM» - «Ещё» - «Настройки» - «Образовательный блок». Данные при выключении не удаляются. Если блок ещё не трогали, он включён сам, когда в базе уже есть курсы, группы или вебинары.'});
 try{HELP_ORDER.forEach(g=>{const i=g[1].indexOf('CRM: клиенты, сделки, задачи');if(i>=0&&!g[1].includes('Образовательный блок: включить или выключить'))g[1].splice(i+1,0,'Образовательный блок: включить или выключить')})}catch(e){}
@@ -30254,7 +30418,7 @@ const card=(C,c,f,why,old)=>{const ld=lastD(c),ov=(c.fs||{})[f.k];const nm=c.nam
   return `<div class="fzc" data-nm="${E(nm.toLowerCase())}" data-old="${old?1:0}"><div class="fzav" style="background:${hue(nm)}">${E(ini(nm))}</div><div class="fzb2"><button class="fzn" data-act="crm" data-do="open" data-id="${c.id}">${E(nm)}</button><div class="fzm">${ov!=null?'<span class="fzt">вручную</span>':''}${why&&ov==null&&!/^данные карточки/.test(why)?`<span class="fzw" title="${E(why)}">${E(why)}</span>`:''}${ld?`<span class="fzd${old?' o':''}">${old?'нет контакта с ':''}${dmy(ld)}</span>`:''}</div></div><label class="fzmn" title="Перенести на другой этап">&#8942;<select data-fnset="${f.k}|${c.id}" aria-label="Этап"><option value="">авто</option>${f.st.map((z,j)=>`<option value="${j}" ${ov===j?'selected':''}>${E(z[0])}</option>`).join('')}<option value="-1" ${ov===-1?'selected':''}>не в воронке</option></select></label></div>`};
 const grid=(L,mk,key)=>{ui.fnmore=ui.fnmore||{};const lim=LIM+(ui.fnmore[key]||0);return `<div class="fzg">${L.slice(0,300).map((x,i)=>x.replace('class="fzc"',i>=lim?'class="fzc fzh"':'class="fzc"')).join('')}</div>${L.length>lim?`<button class="sm ghost fzmore" data-fzm="${key}">Показать ещё ${Math.min(LIM,L.length-lim)} из ${L.length-lim}</button>`:''}`};
 window.fnPage=function(C){
-  const edu=window.eduBlock?window.eduBlock():true,L=FUN.filter(f=>edu||!f.edu);
+  const edu=window.eduModOn?window.eduModOn():true,L=FUN.filter(f=>edu||!f.edu);
   ui.fnopen=ui.fnopen||{};ui.fnst=ui.fnst||{};
   const seen=new Set(),td0=td(),isOld=c=>{const d=lastD(c);return !!d&&g11Day(td0,d)>60};
   let h=`<div class="fzwrap${ui.fnCold?' fzcold':''}"><div class="fzbar"><input class="fzsr" data-fzq placeholder="Найти человека по имени" autocomplete="off"><button class="fzchip${ui.fnCold?' on':''}" data-fzcold="1">Давно не общались</button></div><div class="hint" style="margin:0 0 10px">Каждый клиент встаёт на свой этап по данным карточки и истории. Нажмите на этап, чтобы увидеть людей. Значок &#8942; на карточке переносит человека вручную.</div>`;
@@ -30272,7 +30436,7 @@ window.fnPage=function(C){
   h+=`<details class="fzv" data-fk="cold" ${ui.fnopen.cold?'open':''}><summary><span class="fzh1">Давно не общались (больше 60 дней)</span><span class="fzcnt">${cold.length}</span></summary><div class="fzhint">Люди на этапах воронок без записанных контактов. Напишите им первыми.</div>${cold.length?grid(cold.map(c=>plain(c,x=>`<span class="fzd o">с ${dmy(lastD(x))}</span>`)),0,'cold'):'<div class="fzem">Таких нет</div>'}</details>`;
   h+=`<div class="row noprint" style="margin-top:10px;gap:8px"><button class="sm" data-fzr="">Правила распознавания</button><button class="sm ghost" data-fncopy="1">Скопировать таблицу: клиент и этапы</button></div></div>`;
   return h};
-window.fnTsv=function(C){const edu=window.eduBlock?window.eduBlock():true,L=FUN.filter(f=>edu||!f.edu);const r=[['Имя','Telegram','Телефон'].concat(L.map(f=>f.t)).join('\t')];C.cl.forEach(c=>{const v=L.map(f=>{const i=window.fnOf(C,c,f);return i>=0&&i<f.st.length?f.st[i][0]:''});r.push([c.name,c.tg||'',c.phone||''].concat(v).join('\t'))});return r.join('\n')};
+window.fnTsv=function(C){const edu=window.eduModOn?window.eduModOn():true,L=FUN.filter(f=>edu||!f.edu);const r=[['Имя','Telegram','Телефон'].concat(L.map(f=>f.t)).join('\t')];C.cl.forEach(c=>{const v=L.map(f=>{const i=window.fnOf(C,c,f);return i>=0&&i<f.st.length?f.st[i][0]:''});r.push([c.name,c.tg||'',c.phone||''].concat(v).join('\t'))});return r.join('\n')};
 document.addEventListener('change',e=>{const t=e.target;if(!t||!t.dataset||!t.dataset.fnset)return;const [fk,id]=t.dataset.fnset.split('|'),C=crmOf(cur()),c=C.cl.find(x=>x.id===id);if(!c)return;c.fs=c.fs||{};if(t.value==='')delete c.fs[fk];else c.fs[fk]=+t.value;save();render(true)},true);
 document.addEventListener('toggle',e=>{const d=e.target;if(d&&d.dataset&&d.dataset.fk){ui.fnopen=ui.fnopen||{};ui.fnopen[d.dataset.fk]=d.open}},true);
 document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('[data-fzst],[data-fzm],[data-fzcold]');if(!t)return;e.preventDefault();e.stopPropagation();
@@ -30308,7 +30472,7 @@ window.helpBuild=function(){let out=_hb.apply(this,arguments);try{
   const first=out[0],nw=[];
   if(first){const keep=[];first.q.forEach(x=>{if(KEEP.test(x[0])){keep.push(x);return}if(/^Новинки от/.test(x[0])){nw.push(x);return}let hit=false;for(const [h,re] of RULES){if(re.test(x[0])){const g=by(h);if(g){g.q.push(x);hit=true;break}}}if(!hit)keep.push(x)});first.q=keep}
   if(nw.length)out.push({h:'Что нового',q:nw});
-  if(window.eduBlock&&window.eduBlock()&&edu.length){const i=out.findIndex(g=>g.h==='Дополнительно');const sec={h:'Образовательная деятельность (отдельный модуль)',q:edu};if(i>=0)out.splice(i,0,sec);else out.push(sec)}
+  if(window.eduModOn&&window.eduModOn()&&edu.length){const i=out.findIndex(g=>g.h==='Дополнительно');const sec={h:'Образовательная деятельность (отдельный модуль)',q:edu};if(i>=0)out.splice(i,0,sec);else out.push(sec)}
  }catch(e){console.error(e)}return out}}
 
 /* ===== Аудит 17.11: суммы в плитках в одну строку, короткая карточка условий, пример ведёт на итоги ===== */
@@ -30394,7 +30558,7 @@ try{HELP_ORDER.forEach(g=>{const i=g[1].indexOf('Образовательный 
 ['Где найти кнопки «Группы из меток (архив)» и «Анализ базы»?',['На странице «Курсы»','«CRM» → «Настройки» → «Образовательный блок» → «Разбор базы и архив»','В «Журнале»'],1,'Это разовые инструменты: они собирают архивные группы из меток клиентов и показывают сводный отчёт по базе. Прошлые ученики после этого видны в воронках на этапе «Закончил».'],
 ['Клиент записался на курс, но ещё не оплатил. Какая задача нужна дальше?',['Позвонить и уточнить запрос, затем действовать по способу оплаты','Сразу открыть доступ к программе','Закрыть заявку'],0,'Сначала созвон и уточнение запроса. Дальше по способу оплаты: оплата на сайте (ссылка), оплата по счёту (договор и счёт, затем проверка поступления в выписке). Доступ открывается после оплаты.']
 ];
-const edu=()=>{try{return window.eduBlock?window.eduBlock():true}catch(e){return true}};
+const edu=()=>{try{return window.eduModOn?window.eduModOn():true}catch(e){return true}};
 Q.forEach(q=>TRAIN.push({t:'crm',q:q[0],o:q[1],a:q[2],w:q[3],edu:1}));
 const _tp=window.trPool;if(typeof _tp==='function')window.trPool=function(k){return _tp.apply(this,arguments).filter(i=>!TRAIN[i].edu||edu())}}
 /* ===== Тренажёр: уточнение формулировок ===== */
@@ -33949,7 +34113,7 @@ try{(function(){
   g=document.createElement('div');g.id='bkGate';
   g.style.cssText='position:fixed;inset:0;z-index:40;background:rgba(20,18,12,.82);display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto';
   const a=bkAge();
-  g.innerHTML='<div style="background:#fff;border-radius:16px;max-width:520px;width:100%;padding:22px;border-top:6px solid #b00020;box-shadow:0 10px 40px rgba(0,0,0,.4)"><div style="font-size:20px;font-weight:700;margin-bottom:8px">Сначала сохраните копию данных</div><div style="font-size:14.5px;line-height:1.5;color:#333">'+(a===null?'Резервная копия ещё ни разу не создавалась.':'Последняя копия сделана '+dmy(S.lastBackup)+', это больше двух недель назад.')+' Все данные хранятся только в этом браузере. Если очистить браузер, сменить телефон или компьютер, они пропадут без возврата.<br><br>Пока копия не сохранена, работа в приложении закрыта. Это займёт полминуты: нажмите кнопку, файл сохранится на устройство. Положите его в облако или отправьте себе в мессенджер.</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:16px"><button class="red" data-act="backup" style="padding:12px 22px;font-size:16px;min-height:0">Сохранить копию сейчас</button><button class="sm ghost" data-act="restore">У меня уже есть копия, загрузить её из файла</button></div></div>';
+  g.innerHTML='<div style="background:#fff;border-radius:16px;max-width:520px;width:100%;padding:22px;border-top:6px solid #b00020;box-shadow:0 10px 40px rgba(0,0,0,.4)"><div style="font-size:20px;font-weight:700;margin-bottom:8px">Сначала сохраните копию данных</div><div style="font-size:14.5px;line-height:1.5;color:#333">'+(a===null?'Резервная копия ещё ни разу не создавалась.':'Последняя копия сделана '+dmy(S.lastBackup)+(a>14?', это больше двух недель назад.':'. Пора сохранить копию данных по расписанию напоминаний.'))+' Все данные хранятся только в этом браузере. Если очистить браузер, сменить телефон или компьютер, они пропадут без возврата.<br><br>Пока копия не сохранена, работа в приложении закрыта. Это займёт полминуты: нажмите кнопку, файл сохранится на устройство. Положите его в облако или отправьте себе в мессенджер.</div><div style="display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:18px;text-align:center"><button class="red" data-act="backup" style="padding:12px 28px;font-size:16px;min-height:0">Сохранить копию сейчас</button><button class="sm ghost" data-act="restore">У меня уже есть копия, загрузить её из файла</button></div></div>';
   document.body.appendChild(g)}catch(e){}};
  const r0=window.render;
  if(typeof r0==='function'){window.render=function(k){const r=r0.apply(this,arguments);gate();return r}}
@@ -34414,9 +34578,12 @@ function eschToDoc(o){
     ln._svc=!L.code&&(!!L.oced||!(L.cnt>0)||/^(услуг|работ|ремонт|обслуживан|аренд|информационн|консультац)/i.test(L.name));
     lines.push(ln)});
   const docsTxt=o.docs.map(x=>[x.kind,x.no?'№ '+x.no:'',x.date?'от '+x.date.split('-').reverse().join('.'):''].filter(Boolean).join(' ')).join('; ');
-  const d={date:o.dateTr||o.dateIs,no:o.number,supplier:o.pName,unp:o.pUnp,addr:o.pAddr,dk:(lines.length&&lines.every(l=>l._svc))?'act':'sf',ttn:true,lines,
+  const bas=(o.docs||[]).find(x=>x.no&&!/договор|контракт|соглашен|счет|счёт/i.test(x.kind||''))||null;
+  let dk0=(lines.length&&lines.every(l=>l._svc))?'act':'sf';
+  if(bas){if(/накладн|ттн|товарно/i.test(bas.kind||''))dk0='nakl';else if(/акт/i.test(bas.kind||''))dk0='act'}
+  const d={date:(bas&&bas.date)||o.dateTr||o.dateIs,no:bas?bas.no:o.number,supplier:o.pName,unp:o.pUnp,addr:o.pAddr,dk:dk0,ttn:true,lines,
     tot:isFinite(o.totalCostVat)?o.totalCostVat:0,
-    note:['ЭСЧФ № '+o.number,o.contract?'Договор '+o.contract:'',docsTxt?'Основание: '+docsTxt:'',o.descr||''].filter(Boolean).join('. '),warn:[]};
+    note:['ЭСЧФ № '+o.number+(o.dateIs?' от '+o.dateIs.split('-').reverse().join('.'):''),o.contract?'Договор '+o.contract:'',docsTxt?'Основание: '+docsTxt:'',o.descr||''].filter(Boolean).join('. '),warn:[]};
   return d;
 }
 /* список файлов -> результат разбора */
@@ -34443,7 +34610,7 @@ async function eschRead(files,ip){
     const d=eschToDoc(o);
     if(unp&&o.rUnp&&o.rUnp!==unp)d.warn.push('ЭСЧФ '+o.number+': получатель в файле УНП '+o.rUnp+', а у этого профиля УНП '+unp+'. Проверьте, что файл относится к вашему профилю.');
     if(st&&st!=='COMPLETED'&&st!=='COMPLETED_SIGNED')d.warn.push('ЭСЧФ '+o.number+': статус на портале '+st+'.');
-    d._orig=o.number;res.docs.push(d)});
+    d._orig=o.number;d._ct=o.contract||'';res.docs.push(d)});
   return res;
 }
 function eschSummary(res){
@@ -34460,8 +34627,8 @@ function eschRun(res,ip){
   const nom=ip.nom=ip.nom||{},svcSet=new Set();
   res.docs.forEach(d=>d.lines.forEach(l=>{if(l._svc)svcSet.add(l.name);delete l._svc}));
   svcSet.forEach(n=>{try{const k=dtKey(n);if(!nom[k])nom[k]='svc'}catch(e){}});
-  const first=res.docs[0];first.warn=[eschSummary(res)+' Дата документа взята из «даты совершения операции» ЭСЧФ, номер документа равен номеру ЭСЧФ, основание и договор записаны в примечание. Подпись и статус ЭСЧФ приложение не проверяет.'].concat(first.warn||[]);
-  const nums=res.docs.map(d=>({no:d.no,date:d.date,orig:d._orig}));
+  const first=res.docs[0];first.warn=[eschSummary(res)+' Номер и дата документа взяты из акта или накладной ЭСЧФ, основание записано в примечание, договор из ЭСЧФ записывается в документ и в карточку поставщика. Подпись и статус ЭСЧФ приложение не проверяет.'].concat(first.warn||[]);
+  const nums=res.docs.map(d=>({no:d.no,date:d.date,orig:d._orig,ct:d._ct||''}));
   docImportPreview(res.docs);
   const root=document.getElementById('modalRoot');if(!root)return;
   const nBefore=(ip.docs||[]).length,sumRes=eschSummary(res);
@@ -34476,9 +34643,14 @@ function eschRun(res,ip){
   setTimeout(()=>{root.style.visibility='';
     const ipn=cur(),made=(ipn.docs||[]).slice(nBefore);
     if(made.length){
-      made.forEach(x=>{const m=nums.find(n=>String(n.no)===String(x.no)&&n.date===x.date);if(m)x.esch=m.orig});
+      made.forEach(x=>{const m=nums.find(n=>String(n.no)===String(x.no)&&n.date===x.date);if(m){x.esch=m.orig;if(m.ct){if(!x.ct)x.ct=m.ct;try{ctLearn(ipn,x.supplier,m.ct,'supplier')}catch(e){}}}});save();
       const sm=made.reduce((a,x)=>a+(typeof docTotal==='function'?docTotal(x):0),0);
-      eschDone('Загружено ЭСЧФ: '+made.length,'Созданы документы поступления на сумму '+fmt(sm)+' руб., поставщики добавлены в контрагенты, записи попали в нужные книги и журнал. '+(res.docs.length>made.length?'Уже были в программе, пропущены: '+(res.docs.length-made.length)+'. ':'')+(res.extra.length?'Дополнительные, исправленные и аннулированные ЭСЧФ пропущены, их нужно учесть вручную: '+res.extra.slice(0,5).join('; ')+'. ':'')+(res.out.length?'Исходящих ЭСЧФ (вы поставщик) пропущено: '+res.out.length+'. ':''))
+      const agg={};made.forEach(x=>(x.lines||[]).forEach(l=>{const t=l.type||'svc';const q=agg[t]=agg[t]||{n:0,s:0};q.n++;q.s+=(typeof docLine==='function'?docLine(l):0)}));
+      const NM={svc:'услуги',goods:'товары',raw:'сырьё и материалы',mbp:'малоценные предметы',os:'основные средства'},BK={svc:['kudir','Открыть книгу доходов и расходов'],goods:['goods','Открыть книгу учёта товаров'],raw:['raw','Открыть книгу сырья и материалов'],mbp:['mbp','Открыть книгу малоценных предметов'],os:['os','Открыть основные средства']};
+      const W=[];if(agg.svc)W.push('<b>Услуги</b> ('+agg.svc.n+' стр., '+fmt(agg.svc.s)+' руб.): пока оплаты нет, акт стоит в графе 10 книги доходов и расходов и в налог не входит. В день оплаты сумма перейдёт в графу 8. Оплату возьмём из банковской выписки или отметьте её в документе кнопкой «Оплата».');
+      if(agg.goods)W.push('<b>Товары</b> ('+agg.goods.n+' стр.): приход записан в книгу учёта товаров.');if(agg.raw)W.push('<b>Сырьё и материалы</b> ('+agg.raw.n+' стр.): приход записан в книгу сырья.');if(agg.mbp)W.push('<b>Малоценные предметы</b>: записаны во вкладку малоценных.');if(agg.os)W.push('<b>Основные средства</b>: созданы карточки, укажите дату ввода и срок службы.');
+      const btn=[['docs','Открыть журнал документов поступления']];Object.keys(agg).forEach(t=>{if(BK[t])btn.push(BK[t])});
+      eschDone('Загружено ЭСЧФ: '+made.length,'Созданы документы поступления на сумму '+fmt(sm)+' руб., поставщики и договоры добавлены в карточки контрагентов. Номер и дата документа взяты из акта или накладной, номер ЭСЧФ записан в примечание. '+(res.renum?'Переоформлено ранее загруженных документов: '+res.renum+'. ':'')+(res.docs.length>made.length?'Уже были в программе, пропущены: '+(res.docs.length-made.length)+'. ':'')+(res.extra.length?'Дополнительные, исправленные и аннулированные ЭСЧФ пропущены, их нужно учесть вручную: '+res.extra.slice(0,5).join('; ')+'. ':'')+(res.out.length?'Исходящих ЭСЧФ (вы поставщик) пропущено: '+res.out.length+'. ':''),{where:W.join('<br>'),btn})
     }else eschDone('Новых документов нет',sumRes+' Все эти ЭСЧФ уже были загружены.')
   },700);
 
@@ -34486,7 +34658,9 @@ function eschRun(res,ip){
     try{const ipn=cur();ipn.eschSeen=ipn.eschSeen||{};let n=0;nums.forEach(x=>{if((ipn.docs||[]).some(y=>String(y.no)===String(x.no)&&y.date===x.date)){ipn.eschSeen[x.orig]=todayISO();n++}});if(n){ipn.eschLast=todayISO();save()}}catch(e){}});
   mo.observe(root,{childList:true});
 }
-function eschDone(t,b){const root=document.getElementById('modalRoot');if(!root)return;root.innerHTML=`<div class="modal"><div class="sheet" data-esch-done="1"><h2>${esc(t)}</h2><p>${esc(b)}</p><div class="row"><button class="red" data-act="close">Понятно</button></div><div class="row"><button class="sm ghost" data-esch="folder">Выбрать другую папку</button></div></div></div>`}
+function eschDone(t,b,x){const root=document.getElementById('modalRoot');if(!root)return;x=x||{};
+  const B=(k,tt)=>`<button class="${k==='docs'?'red':'ghost'}" data-esch="go-${k}">${esc(tt)}</button>`;
+  root.innerHTML=`<div class="modal"><div class="sheet" data-esch-done="1"><h2>${esc(t)}</h2><p>${esc(b)}</p>${x.where?`<div class="hint" style="margin:8px 0">${x.where}</div>`:''}<div style="display:grid;gap:8px;margin:10px 0">${x.btn?x.btn.map(([k,tt])=>B(k,tt)).join(''):''}<button class="ghost" data-act="close">Закрыть</button></div><div class="row"><button class="sm ghost" data-esch="folder">Выбрать другую папку</button></div></div></div>`}
 function eschMsg(t,b){const root=document.getElementById('modalRoot');if(!root)return;root.innerHTML=`<div class="modal"><div class="sheet"><h2>${esc(t)}</h2><p>${esc(b)}</p><div class="row"><button class="red" data-act="close">Понятно</button></div></div></div>`}
 /* запомненная папка (Chrome и Edge, не работает внутри iframe) */
 const idb=()=>new Promise((res,rej)=>{if(!window.indexedDB)return rej(0);const r=indexedDB.open('bnv_esch',1);r.onupgradeneeded=()=>r.result.createObjectStore('h');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
@@ -34495,7 +34669,7 @@ const hPut=(k,v)=>idb().then(db=>new Promise(res=>{const t=db.transaction('h','r
 async function dirFiles(h,sub){const out=[];for await(const [n,e] of h.entries()){if(e.kind==='file'&&/\.xml$/i.test(n))out.push(await e.getFile())}return out}
 const hk=ip=>'dir-'+String(ip.id||ip.unp||ip.name);
 function pickInput(multi,dir){return new Promise(res=>{const i=document.createElement('input');i.type='file';i.multiple=true;if(dir)i.webkitdirectory=true;else i.accept='.xml,text/xml,application/xml';i.onchange=()=>res([...i.files]);i.click()})}
-const BAT='@echo off\r\nchcp 65001 >nul\r\ncd /d "%~dp0simpleapp\\vbs"\r\nif not exist recv mkdir recv\r\nset FROM=\r\nif exist recv\\last.update.time goto run\r\necho Первый запуск. Можно получить ЭСЧФ за все годы, которые разрешает портал.\r\nset Y=2016\r\nset /p Y=С какого года загружать? Enter - с 2016 года, максимум:\r\nset FROM=%Y%-01-01T00:00:00\r\n<nul set /p ="%FROM%">recv\\last.update.time\r\n:run\r\necho Получение входящих ЭСЧФ с портала...\r\ncall receive2Dir.bat\r\nif "%FROM%"=="" goto fin\r\nfindstr /b /c:"%FROM%" recv\\last.update.time >nul\r\nif errorlevel 1 goto fin\r\ndel recv\\last.update.time\r\necho.\r\necho Портал не принял такой период. Запустите файл ещё раз и укажите более поздний год.\r\n:fin\r\necho.\r\necho Файлы сохранены в папку recv рядом с env.bat.\r\necho Готово. В приложении: Документы - Загрузить из ЭСЧФ - выберите папку recv.\r\npause\r\n';
+const BAT='@echo off\r\nchcp 65001 >nul\r\nsetlocal enabledelayedexpansion\r\nset "LIST=%APPDATA%\\esch-paths.txt"\r\nfor %%I in ("%~dp0.") do set "BASE=%%~fI"\r\nif exist "!BASE!\\simpleapp\\vbs\\receive2Dir.bat" goto found\r\nset N=0\r\nif exist "%LIST%" for /f "usebackq delims=" %%L in ("%LIST%") do if exist "%%L\\simpleapp\\vbs\\receive2Dir.bat" call :add "%%L"\r\ngoto pick\r\n:search\r\necho.\r\necho Ищу программы портала (папки simpleapp). Это может занять до минуты, подождите...\r\nset N=0\r\nfor %%D in ("%USERPROFILE%" "D:\\" "E:\\" "F:\\" "G:\\") do if exist %%D for /f "delims=" %%F in (\'where /r %%D receive2Dir.bat 2^>nul\') do call :addf "%%F"\r\nif %N%==0 if exist "C:\\" for /f "delims=" %%F in (\'where /r "C:\\" receive2Dir.bat 2^>nul\') do call :addf "%%F"\r\nif %N%==0 goto ask\r\ndel "%LIST%" 2>nul\r\nfor /l %%i in (1,1,%N%) do >>"%LIST%" echo !L%%i!\r\n:pick\r\nif %N%==0 goto search\r\nif %N% GTR 1 goto menu\r\nset "BASE=!L1!"\r\necho.\r\necho Программа портала: !BASE!\r\nchoice /c 12 /t 4 /d 1 /n /m "Идёт загрузка. Нажмите 2, если нужно найти другие организации: "\r\nif errorlevel 2 goto search\r\ngoto found\r\n:menu\r\necho.\r\necho Найдено несколько программ портала (по одной на организацию):\r\nfor /l %%i in (1,1,%N%) do call :show %%i\r\necho.\r\necho   0. Искать заново (если добавили новую организацию)\r\n:choose\r\nset CH=\r\nset /p CH=Введите номер организации и нажмите Enter: \r\nif "!CH!"=="0" goto search\r\nif "!CH!"=="" goto choose\r\nif not defined L%CH% goto choose\r\nset "BASE=!L%CH%!"\r\ngoto found\r\n:ask\r\necho.\r\necho Программа портала не найдена автоматически.\r\necho Перетащите мышью в это окно папку eInvVat (куда вы её установили) и нажмите Enter:\r\nset /p BASE=\r\nset "BASE=!BASE:"=!"\r\nif not exist "!BASE!\\simpleapp\\vbs\\receive2Dir.bat" goto badfolder\r\n>>"%LIST%" echo !BASE!\r\ngoto found\r\n:badfolder\r\necho Это не та папка: в ней нет simpleapp\\vbs\\receive2Dir.bat. Запустите файл ещё раз.\r\npause\r\nexit /b\r\n:found\r\ncd /d "!BASE!\\simpleapp\\vbs"\r\nif not exist recv mkdir recv\r\nset FROM=\r\nif exist recv\\last.update.time goto run\r\necho Первый запуск. Можно получить ЭСЧФ за все годы, которые разрешает портал.\r\nset Y=2016\r\nset /p Y=С какого года загружать? Enter - с 2016 года, максимум:\r\nset FROM=%Y%-01-01T00:00:00\r\n<nul set /p ="%FROM%">recv\\last.update.time\r\n:run\r\necho Получение входящих ЭСЧФ с портала...\r\ncall receive2Dir.bat\r\nif "%FROM%"=="" goto fin\r\nfindstr /b /c:"%FROM%" recv\\last.update.time >nul\r\nif errorlevel 1 goto fin\r\ndel recv\\last.update.time\r\necho.\r\necho Портал не принял такой период. Запустите файл ещё раз и укажите более поздний год.\r\n:fin\r\nset "UNP="\r\nfor /f "usebackq delims=" %%U in (`powershell -nop -c "$m=Select-String -Path \'%BASE%\\simpleapp\\vbs\\env.bat\' -Pattern \'(?i)unp\\D*(\\d{9})\' | Select-Object -First 1; if($m){$m.Matches[0].Groups[1].Value}" 2^>nul`) do set "UNP=%%U"\r\nset "OUT=%BASE%\\ESCHF"\r\nif defined UNP set "OUT=%BASE%\\ESCHF_%UNP%"\r\nif not exist "%OUT%" mkdir "%OUT%"\r\nrobocopy "%BASE%\\simpleapp\\vbs\\recv" "%OUT%" *.xml /S /XO /NFL /NDL /NJH /NJS /NP >nul\r\necho.\r\necho ==================================================\r\necho Файлы ЭСЧФ сохранены в папку:\r\necho %OUT%\r\necho ==================================================\r\n<nul set /p ="%OUT%"|clip\r\necho Путь скопирован в буфер обмена.\r\necho В приложении: Документы - Загрузить из ЭСЧФ - Выбрать папку с ЭСЧФ - укажите эту папку.\r\nstart "" explorer "%OUT%"\r\npause\r\ngoto :eof\r\n:addf\r\nfor %%I in ("%~1\\..\\..\\..") do call :add "%%~fI"\r\ngoto :eof\r\n:add\r\nset "B=%~1"\r\nif not exist "!B!\\simpleapp\\vbs\\receive2Dir.bat" goto :eof\r\nset "dup="\r\nfor /l %%i in (1,1,%N%) do if /i "!L%%i!"=="!B!" set dup=1\r\nif defined dup goto :eof\r\nset /a N+=1\r\nset "L!N!=!B!"\r\ngoto :eof\r\n:show\r\necho.\r\necho   %1. !L%1!\r\nfindstr /i "unp" "!L%1!\\simpleapp\\vbs\\env.bat" 2>nul\r\ngoto :eof\r\n';
 function eschOpen(){
   const ip=cur(),root=document.getElementById('modalRoot');if(!root)return;
   hGet(hk(ip)).then(h=>{
@@ -34506,9 +34680,13 @@ function eschOpen(){
     ${h&&canDir?`<button class="red" data-esch="again">Обновить из папки «${esc(h.name)}»</button>`:''}
     ${canDir?`<button class="${h?'ghost':'red'}" data-esch="dir">Выбрать папку с ЭСЧФ (запомнить)</button>`:`<button class="red" data-esch="dirin">Выбрать папку с ЭСЧФ</button>`}
     <button class="ghost" data-esch="files">Выбрать файлы XML</button>
+    <button class="ghost" data-escrep="1">Отчёт архива ЭСЧФ (Excel): входящие и исходящие</button>
     <button class="ghost" data-esch="bat">Скачать файл «Получить ЭСЧФ.bat»</button>
     <button class="ghost" data-act="close">Закрыть</button></div>
-    <div class="hint">Как получить файлы с портала: установите компонент EInvVatService и запустите receive2Dir.bat (или скачайте «Получить ЭСЧФ.bat» и положите в папку eInvVat рядом с папкой simpleapp). Подробно: Справка, «Загрузка ЭСЧФ с портала». При первом запуске файл предложит загрузить ЭСЧФ за все годы, которые разрешает портал (по умолчанию с 2016 года), дальше только новые.</div>
+    <div class="hint">За прошлые годы портал не отдаёт файлы автоматически. Откройте на портале «Архив» → отчёт по полученным (2.1) или выставленным счетам-фактурам «в разрезе товарных строк», сохраните его в Excel и загрузите кнопкой «Отчёт архива ЭСЧФ». Входящие превратятся в документы прихода, исходящие в акты и накладные реализации.</div>
+    <div class="hint"><b>Где лежат скачанные файлы.</b> Файл «Получить ЭСЧФ.bat» по окончании сам открывает папку <b>ESCHF_УНП</b> (например, ESCHF_123456789, число это УНП вашей организации из env.bat): она создаётся рядом с этим файлом (внутри папки eInvVat), путь показывается в чёрном окне и копируется в буфер обмена. Именно эту папку выберите кнопкой «Выбрать папку с ЭСЧФ». Если вы скачивали «Получить ЭСЧФ.bat» раньше, скачайте его здесь заново. Сообщение «Нет поступивших документов» значит, что новых файлов с даты прошлого запуска нет. Чтобы получить все файлы заново, удалите файл last.update.time в папке simpleapp\\vbs\\recv и запустите bat ещё раз.</div>
+    <div class="hint">Как получить файлы с портала: установите компонент EInvVatService и запустите receive2Dir.bat (или скачайте «Получить ЭСЧФ.bat» и просто запустите его из «Загрузок» двойным щелчком: он сам найдёт папку программы портала). Подробно: Справка, «Загрузка ЭСЧФ с портала». При первом запуске файл предложит загрузить ЭСЧФ за все годы, которые разрешает портал (по умолчанию с 2016 года), дальше только новые.</div>
+    <details style="margin:8px 0"><summary><b>Как работать с файлом «Получить ЭСЧФ.bat», в том числе с несколькими организациями</b></summary><ol style="margin:6px 0 6px 18px;padding:0"><li>Один раз установите компонент EInvVatService и укажите УНП в файле simpleapp\\vbs\\env.bat (подробно: Справка, «Загрузка ЭСЧФ с портала»).</li><li>Скачайте файл кнопкой выше и откройте его двойным щелчком в списке загрузок браузера. Переносить его никуда не нужно.</li><li>Файл сам найдёт папку программы портала. Выберите сертификат и введите пароль к ключу.</li><li>По окончании откроется папка ESCHF_УНП. В приложении нажмите «Выбрать папку с ЭСЧФ» и укажите эту папку.</li></ol><div class="hint"><b>Если организаций или ИП несколько.</b> Скачивать несколько bat-файлов не нужно: один файл работает для всех. Но для каждой организации нужна своя копия папки eInvVat со своим УНП в env.bat и своим ключом. Файл найдёт все копии и покажет список с номерами и строками УНП: введите номер нужной организации и нажмите Enter. У каждой организации своя папка ESCHF_УНП и своя дата последней загрузки, файлы разных организаций не смешиваются. В приложении сначала переключитесь на нужный профиль, потом выберите его папку: приложение запоминает папку отдельно для каждого профиля. Добавили новую организацию: запустите файл и нажмите 0 («Искать заново»). Если файл ничего не нашёл, он попросит перетащить папку eInvVat в чёрное окно.</div></details>
     </div></div>`});
 }
 document.addEventListener('click',async e=>{
@@ -34517,8 +34695,11 @@ document.addEventListener('click',async e=>{
   try{
     let a2=a;
     if(a==='open'){const h0=await hGet(hk(ip));if(h0&&window.showDirectoryPicker&&window.top===window)a2='again';else{eschOpen();return}}
+    if(/^go-/.test(a)){const k=a.slice(3);const root=document.getElementById('modalRoot');if(root)root.innerHTML='';
+      if(k==='docs'){ui.dh=Object.assign(ui.dh||{},{g:'all',m:'',y:'all',q:'',k:'',n:40})}
+      ui.bk=k;location.hash='#/book';try{render(true)}catch(er){}window.scrollTo(0,0);return}
     if(a==='folder'){eschOpen();return}
-    if(a==='bat'){download('Получить ЭСЧФ.bat',new Blob([BAT],{type:'text/plain;charset=utf-8'}));toast('Файл скачан. Положите его в папку eInvVat рядом с папкой simpleapp',6000);return}
+    if(a==='bat'){download('Получить ЭСЧФ.bat',new Blob([BAT],{type:'text/plain;charset=utf-8'}));toast('Файл скачан. Откройте его двойным щелчком в списке загрузок браузера: он сам найдёт программу портала',6000);return}
     let files=[],fresh=false;
     if(a2==='files')files=await pickInput(true,false);
     else if(a2==='dirin')files=await pickInput(true,true);
@@ -34529,15 +34710,363 @@ document.addEventListener('click',async e=>{
       if(!ok){toast('Нет доступа к папке');return}files=await dirFiles(h);fresh=true}
     if(!files.length){toast('Файлы XML не выбраны');return}
     const res=await eschRead(files,ip);
+    {let rn=0;res.docs.forEach(d=>{const old=(ip.docs||[]).find(x=>x.esch===d._orig&&String(x.no)===String(d._orig)&&String(d.no)!==String(d._orig));
+      if(old&&!(old.pays||[]).length){try{docRemove(ip,old.id)}catch(er){}ip.docs=ip.docs.filter(x=>x!==old);if(ip.eschSeen)delete ip.eschSeen[d._orig];rn++}});
+      if(rn){res.renum=rn;save()}}
     if(fresh){const seen=ip.eschSeen||{};const keep=[];res.docs.forEach(d=>{if(seen[d._orig])res.seenSkip++;else keep.push(d)});res.docs=keep}
     eschRun(res,ip);
   }catch(err){console.error(err);toast('Не удалось прочитать ЭСЧФ: '+(err&&err.message||err),6000)}
 },true);
 /* кнопка в разделе «Документы» */
 try{const _dh=docHub;docHub=function(ip){let h=_dh.apply(this,arguments);if(typeof h==='string'&&h.indexOf('data-esch')<0)h=h.replace('<button data-act="doc-new-open">','<button data-esch="open" title="Файлы портала счетов-фактур"><svg viewBox="0 0 24 24">'+IC.docs+'</svg><b>Загрузить из ЭСЧФ</b><small>XML с портала, поставщик по УНП</small></button><button data-act="doc-new-open">');return h}}catch(e){}
-window.__eschI={parse:eschParse,toDoc:eschToDoc,read:eschRead};
-try{const T='Загрузка ЭСЧФ с портала';Object.assign(HELP_ADD,{[T]:'Раздел «Документы» → «Загрузить из ЭСЧФ». Шаги по порядку. 1) Один раз на компьютере с Windows установите компонент EInvVatService (архив eInvVat с сайта портала, папка install) и комплект абонента Avest с вашим ключом. В файле simpleapp\\vbs\\env.bat укажите УНП. Если на компьютере несколько организаций или ИП, для каждого заведите свою копию папки eInvVat. 2) Запустите receive2Dir.bat (или скачайте в приложении «Получить ЭСЧФ.bat» и положите его в папку eInvVat). Выберите сертификат и введите пароль к ключу: программа скачает входящие ЭСЧФ в папку recv. При первом запуске «Получить ЭСЧФ.bat» спросит, с какого года загружать: нажмите Enter, и программа запросит всё, что разрешает портал (с 2016 года). Если портал не примет такой период, запустите файл ещё раз и укажите более поздний год. Потом скачиваются только новые. 3) В приложении нажмите «Выбрать папку с ЭСЧФ» и укажите recv (Chrome и Edge запоминают папку, в следующий раз достаточно «Обновить из папки»). В других браузерах и внутри страницы сайта выберите папку или файлы вручную. 4) Приложение покажет найденные ЭСЧФ: дата берётся из даты совершения операции, номер документа равен номеру ЭСЧФ, поставщик создаётся или находится по УНП, в примечание записываются договор и документы-основания. Проверьте тип каждой строки (товары, сырьё, услуги и т. д.) и нажмите «Загрузить». Строки с кодом ОКЭД предлагаются как услуги. Исходящие ЭСЧФ (вы поставщик) пропускаются, дополнительные и исправленные ЭСЧФ нужно учесть вручную в исходном документе. Подпись и статус ЭСЧФ приложение не проверяет: это делает программа портала. ЭСЧФ не заменяет накладную или акт, оплату вносят отдельно (банковская выписка).'});HELP_ORDER.forEach(g=>{const i=g[1].indexOf('Как заполнить ЭСЧФ: порядок и типы');if(i>=0&&!g[1].includes(T))g[1].splice(i+1,0,T)})}catch(e){}
+/* неоплаченные акты услуг: запись в графу 10 (Инструкция № 5, п. 89), после оплаты переходит в графу 8 */
+function unpaidSync(ip){
+  if(!ip||!Array.isArray(ip.ops))return false;
+  const want=new Map();
+  (ip.docs||[]).forEach(d=>{
+    if(!d||!d.date||!Array.isArray(d.lines))return;
+    const tot=typeof docTotal==='function'?docTotal(d):0;if(!(tot>0))return;
+    d.lines.forEach((l,i)=>{
+      if(l.type!=='svc')return;
+      const sm=docLine(l);if(!(sm>0))return;
+      let paid=0;(d.pays||[]).forEach(p=>{paid+=(+p.sum||0)*sm/tot});
+      (d.manual||[]).forEach(m=>{if(m.i===i)paid+=+m.sum||0});
+      const res=Math.round((sm-paid)*100)/100;if(!(res>0.004))return;
+      want.set(d.id+'~u'+i,{kind:'exp_other',date:d.date,cur:'BYN',sumCur:res,rate:1,scale:1,sum:res,text:l.name+(l.qty>1?' ('+l.qty+' '+(l.unit||'')+')':'')+' (акт принят, оплаты нет)',party:d.supplier||'Контрагент',docType:'Акт',docNo:d.no||'б/н',docDate:d.date,docId:d.id,unpaid:true,unpKey:d.id+'~u'+i})});
+  });
+  let ch=false;const keep=[];
+  ip.ops.forEach(o=>{
+    if(!o.unpaid){keep.push(o);return}
+    const w=want.get(o.unpKey);
+    if(!w){ch=true;return}
+    want.delete(o.unpKey);
+    if(o.sum!==w.sum||o.date!==w.date||o.text!==w.text||o.party!==w.party||o.docNo!==w.docNo){Object.assign(o,w);ch=true}
+    keep.push(o)});
+  want.forEach(w=>{keep.push(Object.assign({id:uid()},w));ch=true});
+  if(ch)ip.ops=keep;
+  return ch}
+try{const _sv=save;save=function(){try{(S.ips||[]).forEach(unpaidSync)}catch(e){console.error('unpaid',e)}return _sv.apply(this,arguments)}}catch(e){}
+try{setTimeout(()=>{try{let c=false;(S.ips||[]).forEach(ip=>{if(unpaidSync(ip))c=true});if(c){save();render(true)}}catch(e){}},900)}catch(e){}
+try{const T2='Графа 8 и графа 10 книги доходов и расходов';Object.assign(HELP_ADD,{[T2]:'Порядок по Инструкции № 5 (пункты 87 и 89). Каждая хозяйственная операция записывается в книгу. В графу 8 попадают расходы, подтверждённые документами и оплаченные: акт или накладная есть, деньги уплачены. В графу 10 попадают: предоплата, когда акта или накладной ещё нет; принятые акты, по которым оплаты ещё нет; расходы в пределах лимитов; расходы, распределяемые между периодами. Когда приходит документ или проходит оплата, сумма переносится из графы 10 в графу 8. В налог входят графы 4-6 и 8, графа 10 в налог не входит. Приложение само показывает подсказку, если в графе 10 есть суммы, и само переносит неоплаченный акт в графу 8 после оплаты.'});HELP_ORDER.forEach(g=>{const i=g[1].indexOf('Предоплата и закрывающий документ: как это работает');if(i>=0&&!g[1].includes(T2))g[1].splice(i+1,0,T2)})}catch(e){}
+window.__eschI={parse:eschParse,toDoc:eschToDoc,read:eschRead,run:eschRun,summary:eschSummary,done:eschDone,msg:eschMsg};
+try{const T='Загрузка ЭСЧФ с портала';Object.assign(HELP_ADD,{[T]:'Раздел «Документы» → «Загрузить из ЭСЧФ». Шаги по порядку. 1) Один раз на компьютере с Windows установите компонент EInvVatService (архив eInvVat с сайта портала, папка install) и комплект абонента Avest с вашим ключом. В файле simpleapp\\vbs\\env.bat укажите УНП. Если на компьютере несколько организаций или ИП, для каждого заведите свою копию папки eInvVat. 2) Запустите receive2Dir.bat (или скачайте в приложении «Получить ЭСЧФ.bat» и запустите его двойным щелчком прямо из «Загрузок»: файл сам найдёт папку eInvVat, искать и переносить его не нужно; если ничего не найдёт, попросит перетащить папку eInvVat в чёрное окно). Если у вас несколько организаций и несколько копий eInvVat, положите bat в нужную папку eInvVat: из неё он работает всегда. Выберите сертификат и введите пароль к ключу: программа скачает входящие ЭСЧФ, скопирует их в папку ESCHF_УНП рядом с bat-файлом, покажет путь, скопирует его в буфер обмена и сама откроет эту папку (служебная папка simpleapp\\vbs\\recv остаётся внутри). При первом запуске «Получить ЭСЧФ.bat» спросит, с какого года загружать: нажмите Enter, и программа запросит всё, что разрешает портал (с 2016 года). Если портал не примет такой период, запустите файл ещё раз и укажите более поздний год. Потом скачиваются только новые. Файл «Получить ЭСЧФ.bat» и несколько организаций: один bat работает для всех. Для каждой организации нужна своя копия папки eInvVat со своим УНП в simpleapp\\vbs\\env.bat и своим ключом. Файл находит все копии, показывает список с номерами и УНП, вы вводите номер нужной организации. У каждой организации своя папка ESCHF_УНП и своя дата последней загрузки. В приложении выберите профиль организации и укажите её папку: она запоминается отдельно для каждого профиля. Новая организация: запустите файл и нажмите 0, чтобы искать заново. 3) В приложении нажмите «Выбрать папку с ЭСЧФ» и укажите папку ESCHF_УНП, которую откроет bat (Chrome и Edge запоминают папку, в следующий раз достаточно «Обновить из папки»). В других браузерах и внутри страницы сайта выберите папку или файлы вручную. 4) Приложение покажет найденные ЭСЧФ: номер и дата документа берутся из акта или накладной, указанных в ЭСЧФ (если их там нет, из самого ЭСЧФ), номер ЭСЧФ записывается в примечание, поставщик создаётся или находится по УНП, договор из ЭСЧФ записывается в документ и в карточку поставщика (если у поставщика уже есть другой договор, он остаётся в списке договоров), в примечание записываются документы-основания. Строки с кодом ОКЭД предлагаются как услуги. Исходящие ЭСЧФ (вы поставщик) пропускаются, дополнительные и исправленные ЭСЧФ нужно учесть вручную в исходном документе. Подпись и статус ЭСЧФ приложение не проверяет: это делает программа портала. ЭСЧФ не заменяет накладную или акт. После загрузки откроется окно с кнопками: журнал документов и нужная книга. Неоплаченный акт стоит в графе 10 книги доходов и расходов, после оплаты (банковская выписка или кнопка «Оплата» в документе) сумма переходит в графу 8. Ранее загруженные документы с номером ЭСЧФ переоформятся при повторной загрузке, если по ним нет оплат.'});HELP_ORDER.forEach(g=>{const i=g[1].indexOf('Как заполнить ЭСЧФ: порядок и типы');if(i>=0&&!g[1].includes(T))g[1].splice(i+1,0,T)})}catch(e){}
 })()}catch(e){console.error('esch',e)}
+/* ===== Окно «Перенос итогов в книгу доходов и расходов» (п. 87, 89 Инструкции № 5; ст. 205 НК) ===== */
+try{(function(){
+const BK=[['am','Основные средства и НМА (амортизация, ремонт)',/^(am|rp|amv)~/],['mbp','Отдельные предметы в составе оборотных средств',/^mbp~/],['rw','Сырьё и материалы',/^rw~/],['gb','Товары (книга учёта товаров)',/^gb~/],['sb','Суммовой учёт товаров',/^sb~/]];
+const GN={4:'4 (доходы)',5:'5',6:'6',7:'7 (прочие поступления)',8:'8 (расходы)',10:'10 (прочие расходы)'};
+function trfData(ip,q){
+  const rows=[],hold=[];
+  const ops=opsOf(ip).filter(o=>o.derived&&Math.ceil(+o.date.slice(5,7)/3)===q);
+  BK.forEach(([k,name,re])=>{
+    const by={};ops.filter(o=>re.test(String(o.id))).forEach(o=>{const g=KINDS[o.kind].g;by[g]=r2((by[g]||0)+(+o.sum||0))});
+    Object.keys(by).forEach(g=>rows.push({k,name,g,sum:by[g]}));
+  });
+  const y=+ip.year;
+  try{ /* что удержано из-за отсутствия оплаты */
+    let h=0;(ip.raw||[]).forEach(it=>{const c=rawCalc(it,ip);const used=r2((c.cost.g8||0)+(c.cost.gift||0)+(c.cost.goods||0));let tr=0;Object.keys(c.tr).forEach(kk=>{const t=c.tr[kk];if(t.y<y||(t.y===y&&t.q<=q))tr=r2(tr+t.g8+t.gift+t.goods)});h=r2(h+Math.max(0,used-tr))});
+    if(h>0.004)hold.push(['Сырьё и материалы','Израсходовано, но не оплачено поставщику: '+fmt(h)+' руб. Перейдёт в графу 8 после оплаты.']);
+  }catch(e){}
+  try{const c=gbActive(ip)?gbCalc(ip,y):null;if(c){let a=0,b=0;c.q.forEach(x=>{if(x.q<=q){a=r2(a+(x.T.g16||0));b=r2(b+(x.trans||0))}});if(a-b>0.004)hold.push(['Товары','Стоимость реализованных товаров '+fmt(a)+' руб., в графу 8 перенесено '+fmt(b)+' руб. Разница ждёт оплаты поставщику (п. 60 Инструкции, пп. 22.1 ст. 205 НК).']);
+    if(c.carryOut>0.004)hold.push(['Товары','Оплата поставщикам больше стоимости реализованных на '+fmt(c.carryOut)+' руб.: сумма уменьшит расходы следующего года.'])}}catch(e){}
+  try{const c=sbActive(ip)?sbCalc(ip,y):null;if(c){let a=0,b=0;c.q.forEach(x=>{if(x.q<=q){a=r2(a+(x.g14||0));b=r2(b+(x.trans||0))}});if(a-b>0.004)hold.push(['Суммовой учёт','Стоимость реализованных товаров '+fmt(a)+' руб., в графу 8 перенесено '+fmt(b)+' руб. Разница ждёт оплаты поставщику.'])}}catch(e){}
+  try{let h=0;(ip.mbp||[]).forEach(m=>{if(!m.wdate)return;const paid=m.paid!=null&&m.paid!==''?+m.paid:+m.cost||0,w=+m.wsum||0;h=r2(h+Math.max(0,w-Math.min(w,paid)))});if(h>0.004)hold.push(['Отдельные предметы','Списано, но не оплачено: '+fmt(h)+' руб. Расход признаётся по мере оплаты (пп. 22.5 ст. 205 НК).'])}catch(e){}
+  try{const un=(ip.mbp||[]).filter(m=>!m.wdate).length;if(un)hold.push(['Отдельные предметы','Предметов без даты списания: '+un+'. Пока списание не оформлено, в расходы они не попадают.'])}catch(e){}
+  try{const na=(ip.assets||[]).filter(a=>!a.noExp&&!(a.start||a.date||a.dd)).length;if(na)hold.push(['Основные средства','Объектов без даты ввода в эксплуатацию: '+na+'. Амортизация по ним не начисляется.'])}catch(e){}
+  return {rows,hold};
+}
+function trfOpen(q){
+  const ip=cur(),root=document.getElementById('modalRoot');if(!root)return;
+  const now=new Date(),cy=now.getFullYear();
+  q=q||ui.trq||(+ip.year===cy?Math.ceil((now.getMonth()+1)/3):4);ui.trq=q;
+  const D=trfData(ip,q),tot={};D.rows.forEach(r=>tot[r.g]=r2((tot[r.g]||0)+r.sum));
+  const open=(+ip.year===cy&&q===Math.ceil((now.getMonth()+1)/3));
+  const tb=D.rows.length?`<table class="tbl" style="width:100%;font-size:13px"><tr><th style="text-align:left">Книга</th><th>Графа КУДиР</th><th style="text-align:right">Сумма, руб.</th></tr>${D.rows.map(r=>`<tr><td>${esc(r.name)}</td><td style="text-align:center">${GN[r.g]||r.g}</td><td style="text-align:right">${fmt(r.sum)}</td></tr>`).join('')}</table>`:'<div class="hint">За этот квартал из книг ничего не переносится: в книгах нет записей за квартал или расходы ещё не оплачены.</div>';
+  root.innerHTML=`<div class="modal"><div class="sheet"><h2>Перенос итогов в книгу доходов и расходов</h2>
+  <div class="hint" style="margin:4px 0 8px">${esc(ip.year)} год. Итоги книг переносятся автоматически на последнее число квартала, отдельной операции закрытия не нужно. Достаточно вести книги с настоящими датами операций и оплат.</div>
+  <div class="row" style="gap:6px;margin-bottom:8px">${[1,2,3,4].map(i=>`<button class="sm ${i===q?'':'ghost'}" data-trf="q${i}">${QL[i-1]} квартал</button>`).join('')}</div>
+  ${open?'<div class="warn amber" style="margin-bottom:8px">Квартал ещё не закончен: итоги предварительные и изменятся после новых записей и оплат.</div>':''}
+  ${tb}
+  ${D.hold.length?`<h3 style="margin-top:12px">Что не перенесено и почему</h3>${D.hold.map(h=>`<div class="hint" style="margin:4px 0"><b>${esc(h[0])}.</b> ${esc(h[1])}</div>`).join('')}`:''}
+  <h3 style="margin-top:12px">Правила переноса</h3>
+  <div class="hint">Амортизация ОС и НМА: за период начисления, оплата не нужна (пп. 22.11 ст. 205 НК), в графу 8.<br>Отдельные предметы: из графы 6 книги в графу 8, в размере фактической оплаты (п. 48 Инструкции, пп. 22.5).<br>Сырьё и материалы: стоимость израсходованных, нарастающим итогом с начала года и в пределах оплаченного (п. 54). Безвозмездная передача идёт в графы 7 и 10.<br>Товары и суммовой учёт: доход в графу 4, расход по реализованным товарам в графу 8 в пределах оплаты нарастающим итогом (п. 60, 80); переплата переходит на следующий год.</div>
+  <div class="hint" style="margin-top:8px"><b>Если вы восстанавливаете прошлые годы.</b> Переключите год в приложении и вносите записи в книги с настоящими датами: поступления, расходы, а главное даты оплат поставщикам. Итоги по кварталам лягут сами, а оплата, внесённая позже, перенесёт расходы в тот квартал, в котором она поставлена. Переплата и неоплаченные остатки переходят из года в год сами.</div>
+  <div class="row" style="margin-top:10px;gap:6px"><button class="red" data-trf="kudir">Открыть книгу доходов и расходов</button><button class="ghost" data-act="close">Закрыть</button></div></div></div>`;
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest&&e.target.closest('[data-trf]');if(!b)return;e.preventDefault();e.stopPropagation();
+  const a=b.dataset.trf;
+  if(a==='open')trfOpen();
+  else if(/^q[1-4]$/.test(a))trfOpen(+a[1]);
+  else if(a==='kudir'){const r=document.getElementById('modalRoot');if(r)r.innerHTML='';ui.bk='kudir';location.hash='#/book';try{render(true)}catch(er){}window.scrollTo(0,0)}
+},true);
+const _bt=bookTabs;
+bookTabs=function(){let h=_bt.apply(this,arguments);try{if(['kudir','raw','goods','sum','mbp','os','nma'].includes(ui.bk||'kudir'))h+='<div class="row noprint" style="margin:0 0 10px"><button class="sm" data-trf="open">Перенос итогов в книгу доходов и расходов</button></div>'}catch(e){}return h};
+/* подсказки о переносе убытка (п. 11 ст. 205 НК) */
+const _ck=checks;
+checks=function(ip){const out=_ck.apply(this,arguments);try{
+  if(ip.settings.method==='norm')return out;
+  const c=calc(ip,12);
+  if(c.carryUsed>0)out.push(['','Из прошлых лет учтено превышение расходов над доходами: '+fmt(c.carryUsed)+' руб. (п. 11 ст. 205 НК: регистрация, аренда, лицензии).']);
+  if(c.carryIn-c.carryUsed>0.004)out.push(['','Неиспользованное превышение расходов прошлых лет: '+fmt(r2(c.carryIn-c.carryUsed))+' руб. Оно уменьшит налоговую базу, когда доходы превысят расходы.']);
+  const ex=r2(c.exp-c.incNet);
+  if(ex>0){const el=r2(opsOf(ip).filter(o=>o.kind==='exp'&&['reg','rent'].includes(expCat(o))).reduce((a,o)=>a+(+o.sum||0),0)),tr=Math.min(ex,el);
+    out.push(['','Расходы за год превышают доходы на '+fmt(ex)+' руб. На следующий год переносится не более '+fmt(tr)+' руб.: только расходы на регистрацию, открытие счетов, аренду и коммунальные по аренде, лицензии (п. 11 ст. 205 НК). Остальное не переносится. Чтобы расходы попали в эти группы, укажите «Вид расхода» у операции.'])}
+}catch(e){}return out};
+})()}catch(e){console.error('trf',e)}
+try{const T3='Перенос итогов книг в книгу доходов и расходов';Object.assign(HELP_ADD,{[T3]:'Закрывать период отдельной операцией не нужно: итоги книг ОС и НМА, отдельных предметов, сырья, товаров и суммового учёта переносятся в книгу доходов и расходов сами, записью на последнее число квартала. Что и куда переносится, видно в окне «Перенос итогов в книгу доходов и расходов» (кнопка под вкладками книг). В нём выберите квартал: приложение покажет суммы по графам 4, 7, 8, 10 и то, что не перенесено из-за отсутствия оплаты. Расходы признаются по мере оплаты (п. 9 ст. 205 НК), поэтому сырьё, товары и отдельные предметы переходят в графу 8 только в оплаченной части. Амортизация оплаты не требует. Если вы восстанавливаете прошлые годы, выберите нужный год, вносите записи с настоящими датами и датами оплат поставщикам: итоги лягут по кварталам сами, переплата и неоплаченные остатки переходят из года в год. Превышение расходов над доходами за год переносится на следующий год только в части регистрации, открытия счетов, аренды и коммунальных по аренде, лицензий (п. 11 ст. 205 НК); для этого у расхода укажите «Вид расхода».'});HELP_ORDER.forEach(g=>{const i=g[1].indexOf('Графа 8 и графа 10 книги доходов и расходов');if(i>=0&&!g[1].includes(T3))g[1].splice(i+1,0,T3)})}catch(e){}
+try{const T4='Оплата за наличные: накладная плюс чек, товарный чек плюс чек';Object.assign(HELP_ADD,{[T4]:'Приход оформляется документом: накладная (для товаров), товарный чек или накладная (для материалов), акт (для услуг), либо загрузкой электронного счёта-фактуры. Оплата наличными вносится в этом же документе: «Документы» → документ → «Оплаты» → «Чем оплачено: Кассовый чек» → номер чека и дата оплаты. Приложение само запишет оплату в книгу сырья, товаров, суммового учёта или отдельных предметов, а в записи будет указано «Кассовый чек № … от …, оплата наличными». Дата оплаты важна: расход попадает в графу 8 в том квартале, в котором оплата проведена, а не только в квартале поступления (п. 9 и 12 ст. 205 НК). Оплаты по отдельным предметам в составе оборотных средств теперь хранятся с датами, и в книге видно, когда и сколько оплачено. Если оплат несколько (частями), вносите каждую со своей датой.'});HELP_ORDER.forEach(g=>{const i=g[1].indexOf('Перенос итогов книг в книгу доходов и расходов');if(i>=0&&!g[1].includes(T4))g[1].splice(i+1,0,T4)})}catch(e){}
+/* кнопки «Загрузить из Excel» и «Загрузить из ЭСЧФ» рядом везде, где грузятся документы */
+try{(function(){
+  let busy=0;
+  function fix(){
+    if(busy)return;busy=1;
+    try{
+      document.querySelectorAll('button[data-act="doc-file"]').forEach(b=>{
+        const t=(b.textContent||'').trim();
+        if(!/^Загрузить (документ|из Excel)/i.test(t)&&!b.querySelector('b'))return;
+        if(b.querySelector('b')){ if(/^Загрузить документ/i.test(b.querySelector('b').textContent))b.querySelector('b').textContent='Загрузить из Excel' }
+        else if(/^Загрузить документ/i.test(t))b.textContent='Загрузить из Excel';
+        if(b.dataset.escx)return;b.dataset.escx='1';
+        const nx=b.nextElementSibling;if(nx&&nx.dataset&&nx.dataset.esch)return;
+        const e=document.createElement('button');e.className=b.classList.contains('pr')?'':'sm ghost';e.dataset.esch='open';e.dataset.escx='1';e.type='button';
+        e.title='Электронные счета-фактуры с портала (файлы XML)';e.textContent='Загрузить из ЭСЧФ';
+        b.insertAdjacentElement('afterend',e);
+      });
+    }catch(er){}
+    busy=0;
+  }
+  let t=0;new MutationObserver(()=>{clearTimeout(t);t=setTimeout(fix,150)}).observe(document.body,{childList:true,subtree:true});
+  setTimeout(fix,1500);
+})()}catch(e){console.error('escbtn',e)}
+
+/* ===== 3.751: отчёты архива ЭСЧФ (Excel): входящие -> приход, исходящие -> реализация ===== */
+try{(function(){
+const esc_=x=>typeof esc==='function'?esc(x):String(x==null?'':x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const T=x=>String(x==null?'':x).replace(/ /g,' ').replace(/\s+/g,' ').trim();
+const NUM=x=>{if(typeof x==='number')return x;const v=parseFloat(T(x).replace(/\s/g,'').replace(',','.'));return isFinite(v)?v:NaN};
+const R2=x=>Math.round(x*100)/100;
+function isoD(v){if(v==null||v==='')return '';
+  if(v instanceof Date&&isFinite(v))return v.toISOString().slice(0,10);
+  if(typeof v==='number'&&v>20000&&v<80000)return new Date(Math.round((v-25569)*86400000)).toISOString().slice(0,10);
+  const s=T(v);let m=s.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})/);if(m)return m[3]+'-'+m[2].padStart(2,'0')+'-'+m[1].padStart(2,'0');
+  m=s.match(/^(\d{4})-(\d{2})-(\d{2})/);if(m)return m[1]+'-'+m[2]+'-'+m[3];return ''}
+const dmy_=iso=>iso?iso.split('-').reverse().join('.'):'';
+const ESCH_RX=/^\d{9}-\d{4}-\d{10}$/;
+const COLS=[['unp',/^УНП (поставщика|получателя)/i],['name',/^Наименование (поставщика|получателя)/i],['esch',/^Номер ЭСЧФ/i],['dOp',/^Дата совершения операции/i],['dIs',/^Дата выставления/i],
+ ['item',/^Наименование товаров/i],['tnved',/ТН ВЭД/i],['oked',/ОКЭД/i],['rate',/^Ставка НДС/i],['vat',/^Сумма НДС/i],['cost',/^Стоимость товаров/i],['extra',/^Дополнительные данные/i],['annul',/аннулирован/i],
+ ['ctNo',/^Номер договора/i],['ctDate',/^Дата договора/i],['dkind',/^Вид документа/i],['dname',/^Наименование документа/i],['dser',/^Серия документа/i],['dno',/^Номер документа/i],['ddate',/^Дата документа/i]];
+/* распознавание отчёта: возвращает {dir,h,c} или null */
+function repHead(aoa){
+  if(!Array.isArray(aoa))return null;
+  let h=-1;for(let i=0;i<Math.min(aoa.length,30);i++){if((aoa[i]||[]).some(x=>/^Номер ЭСЧФ/i.test(T(x)))){h=i;break}}
+  if(h<0)return null;
+  const top=aoa.slice(0,h).map(r=>(r||[]).map(T).join(' ')).join(' ');
+  const hdr=(aoa[h]||[]).map(T);
+  const c={};COLS.forEach(([k,rx])=>{const i=hdr.findIndex(x=>rx.test(x));if(i>=0)c[k]=i});
+  if(c.esch==null||c.cost==null)return null;
+  let dir='';
+  if(/Полученные счета-фактуры/i.test(top))dir='in';else if(/Выставленные счета-фактуры/i.test(top))dir='out';
+  else if(/^УНП поставщика/i.test(hdr[c.unp]||''))dir='in';else if(/^УНП получателя/i.test(hdr[c.unp]||''))dir='out';
+  if(!dir)return null;
+  return {dir,h,c};
+}
+const repIs=aoa=>!!repHead(aoa);
+function repRows(aoa){
+  const H=repHead(aoa);if(!H)return null;const c=H.c,out={dir:H.dir,rows:[],annul:[],bad:0};
+  const g=(r,k)=>c[k]==null?'':r[c[k]];
+  for(let i=H.h+1;i<aoa.length;i++){const r=aoa[i]||[];const esch=T(g(r,'esch'));
+    if(!ESCH_RX.test(esch))continue;
+    const cv=NUM(g(r,'cost'));if(!isFinite(cv)){out.bad++;continue}
+    const rt=g(r,'rate'),rate=NUM(rt),vat=NUM(g(r,'vat'));
+    const x={esch,unp:T(g(r,'unp')),name:T(g(r,'name')),dOp:isoD(g(r,'dOp')),dIs:isoD(g(r,'dIs')),item:T(g(r,'item')),tnved:T(g(r,'tnved')),oked:T(g(r,'oked')),
+      rate:isFinite(rate)?rate:NaN,vat:isFinite(vat)?vat:0,cv,extra:T(g(r,'extra')),
+      ctNo:T(g(r,'ctNo')),ctDate:isoD(g(r,'ctDate')),dkind:T(g(r,'dkind')),dname:T(g(r,'dname')),dser:T(g(r,'dser')),dno:T(g(r,'dno')),ddate:isoD(g(r,'ddate'))};
+    if(T(g(r,'annul'))){out.annul.push(esch);continue}
+    out.rows.push(x)}
+  return out;
+}
+function byEsch(rows){const m=new Map();rows.forEach(r=>{if(!m.has(r.esch))m.set(r.esch,[]);m.get(r.esch).push(r)});return m}
+const ctTxt=r=>(r.ctNo||r.ctDate)?((r.ctNo?'№ '+r.ctNo:'№ б/н')+(r.ctDate?' от '+dmy_(r.ctDate):'')).trim():'';
+const BADNO=/^(без номера|б\/н|бн|нет|-)?$/i;
+function docNo(r){let n=r.dno;if(BADNO.test(n))return '';if(r.dser&&n.indexOf(r.dser)<0)n=r.dser+' '+n;return n}
+const kindOf=r=>(r.dkind||r.dname||'');
+/* входящие: строки отчёта -> документы поступления (как из XML) */
+function inDocs(rep,ip,res){
+  const seen=ip.eschSeen||{},have=new Set((ip.docs||[]).map(x=>x.esch).filter(Boolean));
+  let noNo=0;
+  byEsch(rep.rows).forEach((L,esch)=>{
+    res.total++;
+    if(seen[esch]||have.has(esch)){res.seenSkip++;return}
+    const r0=L[0],lines=L.map(x=>{const sv=x.vat>0?x.vat:0,net=R2(x.cv-sv);
+      return {name:x.item||'Товары (работы, услуги) по ЭСЧФ',code:x.tnved,oced:x.oked,uc:NaN,unit:'',cnt:NaN,price:NaN,cost:net,rate:x.rate,rt:'',sv,cv:x.cv}});
+    const bas=L.find(x=>docNo(x));
+    const o={file:'',number:esch,type:'ORIGINAL',dateTr:r0.dOp,dateIs:r0.dIs,pUnp:r0.unp,pName:r0.name,pAddr:'',rUnp:'',rName:'',vendor:'',docs:[],
+      contract:ctTxt(L.find(x=>x.ctNo||x.ctDate)||r0),descr:'',lines,totalCostVat:R2(L.reduce((a,x)=>a+x.cv,0)),totalVat:R2(L.reduce((a,x)=>a+x.vat,0))};
+    const d=__eschI.toDoc(o);
+    const pb=bas||r0,dn=docNo(pb),kd=kindOf(pb);
+    d.no=dn||'б/н';d.date=pb.ddate||r0.dOp||r0.dIs;if(!dn)noNo++;
+    if(/накладн|ттн|тн-?\s?2|товарно/i.test(kd))d.dk='nakl';else if(/счет|счёт/i.test(kd))d.dk='sf';else if(/(^|[^а-я])акт/i.test(kd))d.dk='act';
+    d.note=['ЭСЧФ № '+esch+(r0.dIs?' от '+dmy_(r0.dIs):''),o.contract?'Договор '+o.contract:'',kd?'Основание: '+kd+(dn?' № '+dn:' без номера')+(pb.ddate?' от '+dmy_(pb.ddate):''):'',pb.extra||''].filter(Boolean).join('. ');
+    d.warn=d.warn||[];
+    d._orig=esch;d._ct=o.contract||'';res.docs.push(d)});
+  if(noNo)res.extra.push('у '+noNo+' документов в отчёте нет номера, записано «б/н», номер ЭСЧФ указан в примечании');
+}
+/* исходящие: строки отчёта -> акты и накладные реализации */
+function outPlan(rep,ip){
+  const have=new Set((ip.prn||[]).map(x=>x.eschNo).filter(Boolean)),plan=[];let skip=0;
+  byEsch(rep.rows).forEach((L,esch)=>{
+    if(have.has(esch)||(ip.eschSeen||{})['out|'+esch]){skip++;return}
+    const r0=L[0],goods=L.some(x=>x.tnved),vatSum=R2(L.reduce((a,x)=>a+(x.vat>0?x.vat:0),0)),pb=L.find(x=>docNo(x))||r0,dn=docNo(pb),date=pb.ddate||r0.dOp||r0.dIs;
+    const rate=(L.find(x=>x.vat>0)||{}).rate,ct=ctTxt(L.find(x=>x.ctNo||x.ctDate)||r0),party=r0.name+(r0.unp?', УНП '+r0.unp:'');
+    const rows=L.map(x=>{const net=R2(x.cv-(x.vat>0?x.vat:0)),vr=x.vat>0&&isFinite(x.rate)?String(x.rate):'0';
+      return goods?{name:x.item,unit:'шт.',qty:'1',price:String(net).replace('.',','),vat:vr,note:''}:{name:x.item,unit:'усл.',qty:'1',price:String(net).replace('.',',')}});
+    plan.push({esch,date,dn,type:goods?'tn2':'act_serv',party,name:r0.name,unp:r0.unp,ct,rows,total:R2(L.reduce((a,x)=>a+x.cv,0)),vatSum,rate,dkind:kindOf(pb),dIs:r0.dIs});
+  });
+  return {plan,skip};
+}
+function outCreate(plan,ip){
+  ip.prn=ip.prn||[];let n=0;ip.eschSeen=ip.eschSeen||{};
+  plan.forEach(p=>{
+    const no=p.dn||(typeof prnNo==='function'?prnNo(ip,p.type,p.date):'');
+    const v=p.type==='tn2'?{cons:p.party,basisDoc:p.ct,vatMode:p.vatSum>0?'по ставке в строках':'без НДС',series:'',attorney:'',who:'',rcv:''}
+      :{role:'исполнитель (выполнили работы для заказчика)',cp:p.party,contract:p.ct,req:'',period:'',vatNote:p.vatSum>0?'в том числе НДС '+(p.rate||'')+' %: '+String(p.vatSum).replace('.',',')+' руб.':'без НДС',claim:'',kind:'односторонний'};
+    ip.prn.push({id:uid(),type:p.type,date:p.date,no,v,rows:p.rows,eschNo:p.esch,note:'ЭСЧФ № '+p.esch+(p.dIs?' от '+dmy_(p.dIs):'')});
+    ip.eschSeen['out|'+p.esch]=todayISO();
+    try{if(p.name)cpUpsert(ip,p.name,p.unp||'','buyer');if(p.ct)ctLearn(ip,p.name,p.ct,'buyer')}catch(e){}
+    n++});
+  save();return n;
+}
+function outOpen(rep,ip,fname){
+  const root=document.getElementById('modalRoot');if(!root)return;
+  const {plan,skip}=outPlan(rep,ip);
+  if(!plan.length){__eschI.msg('Нечего создавать',(rep.rows.length?'Все исходящие ЭСЧФ из файла уже есть в программе ('+skip+').':'В отчёте нет строк с ЭСЧФ. Для выбранного периода выставленных счетов-фактур не найдено.')+(rep.annul.length?' Аннулированных пропущено: '+rep.annul.length+'.':''));return}
+  const sum=R2(plan.reduce((a,p)=>a+p.total,0)),nA=plan.filter(p=>p.type==='act_serv').length,nT=plan.length-nA;
+  root.innerHTML=`<div class="modal"><div class="sheet"><h2>Исходящие ЭСЧФ: реализация</h2>
+  <p style="font-size:14px">В отчёте «${esc_(fname||'')}» найдено выставленных счетов-фактур: <b>${plan.length}</b> на сумму <b>${fmt(sum)}</b> руб.${skip?' Уже были в программе: '+skip+'.':''}${rep.annul.length?' Аннулированных пропущено: '+rep.annul.length+'.':''} Будут созданы документы: акты выполненных работ (услуг) — ${nA}, товарные накладные ТН-2 — ${nT}. Номер и дата документа берутся из колонок «Номер и дата документа, подтверждающего поставку», договор из колонок договора, номер ЭСЧФ записывается в документ.</p>
+  <div style="max-height:30vh;overflow:auto;font-size:13px;margin:8px 0">${plan.slice(0,40).map(p=>`<div style="margin:4px 0">${esc_(dmy_(p.date))} · ${p.type==='tn2'?'ТН-2':'акт'} № ${esc_(p.dn||'(номер присвоит программа)')} · ${esc_(p.name)} · ${fmt(p.total)} руб.</div>`).join('')}${plan.length>40?'<div class="hint">…и ещё '+(plan.length-40)+'</div>':''}</div>
+  <div class="hint">В отчёте нет количества и единиц измерения, поэтому в каждой строке количество 1, цена равна стоимости. При необходимости поправьте документ. Выручка в книгу доходов и расходов сама не вносится: после создания откройте вкладку «Реализация» и нажмите «Доход» у нужных документов (так вы сами решаете, на какую дату признавать доход, по Инструкции № 5).</div>
+  <div class="row"><button class="red" id="repOk">Создать документы реализации</button><button class="ghost" data-act="close">Отмена</button></div></div></div>`;
+  document.getElementById('repOk').onclick=()=>{const n=outCreate(plan,cur());root.innerHTML='';
+    __eschI.done('Создано документов реализации: '+n,'Акты и накладные добавлены во вкладку «Реализация». Номер ЭСЧФ записан в документ, покупатели добавлены в карточки контрагентов.',{btn:[['sale','Открыть реализацию'],['docs','Открыть журнал документов']]});
+    try{render(true)}catch(e){}}
+}
+function inOpen(rep,ip,fname){
+  const res={docs:[],origNo:[],out:[],extra:[],bad:[],seenSkip:0,total:0,foreign:[]};
+  if(rep.annul.length)res.extra.push('аннулировано на портале: '+rep.annul.length);
+  inDocs(rep,ip,res);
+  if(!res.docs.length){__eschI.msg('Нечего загружать',(res.total?'Все ЭСЧФ из отчёта уже загружены ранее ('+res.seenSkip+').':'В отчёте нет строк с ЭСЧФ. Проверьте, что выбран отчёт 2.1 «Полученные счета-фактуры за период в разрезе товарных строк».'));return}
+  const w='Отчёт архива «'+(fname||'')+'»: в нём нет количества и единиц измерения, поэтому в каждой строке количество 1, цена равна стоимости. Проверьте типы строк (товар, материал, услуга) и при необходимости поправьте количество по накладной.';
+  res.docs[0].warn=[w].concat(res.docs[0].warn||[]);
+  __eschI.run(res,ip);
+}
+async function repHandle(items){
+  const ip=cur();
+  for(const it of items){const rep=repRows(it.aoa);if(!rep){toast('Не удалось прочитать отчёт '+(it.fname||''),5000);continue}
+    if(rep.dir==='in')inOpen(rep,ip,it.fname);else outOpen(rep,ip,it.fname);
+    if(items.length>1){toast('Отчётов в очереди: '+items.length+'. Остальные загрузите следом отдельно.',5000);break}}
+}
+function pickReports(){
+  const inp=document.createElement('input');inp.type='file';inp.multiple=false;inp.accept='.xls,.xlsx,.xlsm,.csv';
+  inp.onchange=async()=>{const f=inp.files[0];if(!f)return;
+    if(typeof XLSX==='undefined'){toast('Библиотека Excel не загрузилась. Проверьте интернет.',5000);return}
+    try{const wb=XLSX.read(new Uint8Array(await f.arrayBuffer()),{type:'array'});
+      const A=wb.SheetNames.map(n=>XLSX.utils.sheet_to_json(wb.Sheets[n],{header:1,defval:''})),a=A.find(repIs);
+      if(!a){__eschI.msg('Это не отчёт архива ЭСЧФ','В файле нет колонок «Номер ЭСЧФ» и «Стоимость товаров (работ, услуг) с НДС». На портале откройте «Архив» и сформируйте отчёт по полученным (2.1) или выставленным счетам-фактурам «в разрезе товарных строк», сохраните в Excel.');return}
+      repHandle([{aoa:a,fname:f.name}])}catch(e){console.error(e);toast('Не удалось прочитать файл: '+(e&&e.message||e),5000)}};
+  inp.click();
+}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-escrep]');if(!b)return;e.preventDefault();e.stopPropagation();pickReports()},true);
+/* общая загрузка файлов: «Загрузить из Excel» тоже узнаёт отчёт ЭСЧФ */
+try{const _dc=docClassify;docClassify=function(aoaList,fname,names){try{const a=(aoaList||[]).find(repIs);if(a)return {k:'esr',aoa:a,fname}}catch(e){}return _dc.apply(this,arguments)}}catch(e){}
+try{const _rq=docRunQueue;docRunQueue=function(items){const E=(items||[]).filter(x=>x&&x.k==='esr'),rest=(items||[]).filter(x=>!x||x.k!=='esr');
+  if(rest.length)_rq(rest);
+  if(E.length){if(rest.length)toast('Отчёт архива ЭСЧФ загрузите отдельно, после остальных файлов',5000);else repHandle(E.map(x=>({aoa:x.aoa,fname:x.fname})))}}}catch(e){}
+window.__eschRep={is:repIs,rows:repRows,inDocs,outPlan,outCreate,handle:repHandle};
+try{const T5='Отчёты архива ЭСЧФ: входящие и исходящие';Object.assign(HELP_ADD,{[T5]:'Портал не отдаёт файлы ЭСЧФ за прошлые годы автоматически, но в разделе «Архив» можно сформировать отчёт «Полученные счета-фактуры за период в разрезе товарных строк» (входящие, 2.1) и «Выставленные счета-фактуры за период в разрезе товарных строк» (исходящие) и сохранить его в Excel. Как загрузить: «Документы» → «Загрузить из ЭСЧФ» → «Отчёт архива ЭСЧФ (Excel)», либо обычной кнопкой «Загрузить из Excel»: приложение само узнаёт отчёт по заголовкам. Входящие: строки одного ЭСЧФ собираются в один документ поступления. Номер и дата документа берутся из колонок «Номер документа, подтверждающего поставку» и «Дата документа» (акт, накладная, счёт-фактура), а не номер ЭСЧФ. Договор берётся из колонок договора и записывается в документ и в карточку поставщика. Номер ЭСЧФ записывается в примечание. Если у документа нет номера («без номера»), записывается «б/н». Тип строки (услуга, товар, материал) уточните в окне загрузки: услуги определяются по отсутствию кода ТН ВЭД. Исходящие: по каждому выставленному ЭСЧФ создаётся акт выполненных работ или накладная ТН-2 во вкладке «Реализация»; выручка в книгу сама не вносится, нажмите «Доход» у документа. В отчётах нет количества и единиц измерения: в строках количество 1, а цена равна стоимости, поправьте по накладной. Повторная загрузка того же отчёта дублей не создаёт. Аннулированные ЭСЧФ пропускаются. Дополнительные и исправленные ЭСЧФ в отчёте не различаются: проверьте суммы по порталу.'});
+HELP_ORDER.forEach(g=>{const i=g[1].indexOf('Загрузка ЭСЧФ с портала');if(i>=0&&!g[1].includes(T5))g[1].splice(i+1,0,T5)})}catch(e){}
+})()}catch(e){console.error('eschRep',e)}
+
+/* 3.758: выписки любых банков: формат, столбцы, образец */
+try{const TB='Выписка не читается: форматы, столбцы и образец для технической поддержки';Object.assign(HELP_ADD,{[TB]:'Какие файлы читаются: Excel (.xlsx, .xls), CSV, TXT (с разделителями или формат обмена с клиент-банком 1С), HTML, Word (.docx), RTF и PDF с текстом (для PDF нужен интернет). Сканы и фотографии выписки не читаются: скачайте выписку в электронном виде из интернет-банка. Что приложение находит само: дату операции, суммы (дебет и кредит отдельно, одним столбцом со знаком или с признаком «Д/К», «приход/расход»), контрагента, УНП контрагента (если он в отдельном столбце, иначе берётся из текста), номер документа, назначение платежа, остаток. Столбцы «Плательщик» и «Получатель» тоже понимаются: контрагентом берётся другая сторона. Если столбцы определены неверно или не найдены: в окне результата нажмите «Изменить столбцы». Вы увидите начало файла и списки столбцов с примерами значений, укажите нужные, оставьте галочку «Запомнить», и выписки этого банка дальше будут читаться сами. Если не получается: нажмите «Отправить образец выписки в техническую поддержку». Приложение обезличит файл (заменит УНП, счета, телефоны, почту, ФИО и названия организаций, умножит суммы на случайное число) и покажет таблицу. Просмотрите её, скачайте файл и отправьте его в техническую поддержку приложения, указав банк и формат. Автоматическая замена может что-то пропустить, поэтому проверьте таблицу перед отправкой.'});
+HELP_ORDER.forEach(g=>{const i=g[1].indexOf('Как загрузить банковскую выписку');if(i>=0&&!g[1].includes(TB))g[1].splice(i+1,0,TB)})}catch(e){}
+
+/* 3.760: помощь и поддержка (контакт и тексты правятся файлом support.json без пересборки); еженедельная обязательная копия с отключением в настройках */
+try{(function(){
+ var D={open:true,url:'https://t.me/openmirai_bot',wa:'',viber:'',email:'info@online-kurs.by',term:'в течение 2 рабочих дней',
+  incl:['ошибки в работе приложения: что-то не считается, не открывается, пропали данные','файл (выписка, ЭСЧФ, отчёт эквайринга) не читается или читается неверно','вопросы по ключу доступа и подключению модулей','помощь с восстановлением данных из резервной копии'],
+  excl:['консультации по бухгалтерскому учёту, налогам, зарплате и оформлению документов вашей организации или ИП','ведение учёта вместо вас и проверка ваших расчётов','доработки приложения под конкретного пользователя'],
+  note:'Такие вопросы решаются на платной консультации по договорённости.',closedNote:'Приём обращений временно приостановлен. Воспользуйтесь инструкцией: в ней разобраны основные ситуации.'};
+ window.SUP=JSON.parse(JSON.stringify(D));
+ const okPh=v=>/^\d{9,15}$/.test(String(v||'').replace(/\D/g,''))&&String(v).replace(/\D/g,'')===String(v);
+ const okMail=v=>typeof v==='string'&&/^[^\s@<>"]+@[^\s@<>"]+\.[A-Za-z]{2,}$/.test(v);
+ const okUrl=u=>typeof u==='string'&&/^https:\/\/(t\.me|telegram\.me)\//i.test(u);
+ const arr=a=>Array.isArray(a)&&a.length&&a.every(x=>typeof x==='string')?a.slice(0,12):null;
+ window.loadSupport=function(){try{return fetch('support.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(!j||typeof j!=='object')return;
+  if(typeof j.open==='boolean')SUP.open=j.open;if(j.url===''||okUrl(j.url))SUP.url=j.url;if(j.wa===''||okPh(j.wa))SUP.wa=String(j.wa);if(j.viber===''||okPh(j.viber))SUP.viber=String(j.viber);if(j.email===''||okMail(j.email))SUP.email=j.email;
+  ['term','note','closedNote'].forEach(k=>{if(typeof j[k]==='string')SUP[k]=j[k].slice(0,400)});
+  if(arr(j.incl))SUP.incl=arr(j.incl);if(arr(j.excl))SUP.excl=arr(j.excl)}).catch(()=>{})}catch(e){return Promise.resolve()}};
+ setTimeout(()=>{try{loadSupport()}catch(e){}},900);
+ const E=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+ const chans=()=>{const c=[];if(okUrl(SUP.url))c.push(['tg','Написать в Телеграм']);if(SUP.wa&&okPh(SUP.wa))c.push(['wa','Написать в WhatsApp']);if(SUP.viber&&okPh(SUP.viber))c.push(['vb','Написать в Viber']);if(SUP.email&&okMail(SUP.email))c.push(['mail','Написать на почту']);return c};
+ const info=()=>'Версия приложения: '+APP_BUILD+'\nРаздел: '+(location.hash||'главная')+'\nЧто случилось: ';
+ window.supportOpen=function(){const root=document.getElementById('modalRoot');if(!root)return;
+  const li=a=>a.map(x=>'<li>'+E(x)+'</li>').join('');
+  root.innerHTML='<div class="modal"><div class="sheet"><h2>Помощь и поддержка</h2>'
+  +'<div class="hint">Приложение находится в стадии тестирования и постоянно развивается. Поддержка работает в режиме обращений: сообщения читаются в рабочие дни, ответ приходит '+E(SUP.term)+'. Мгновенного ответа нет, поэтому сначала загляните в инструкцию.</div>'
+  +'<div class="row" style="gap:8px;flex-wrap:wrap;margin:10px 0"><button class="sm" data-sup="help">Инструкция</button><button class="sm ghost" data-sup="bk">Сохранить копию данных</button></div>'
+  +'<b>Что входит в поддержку</b><ul style="margin:4px 0 10px 18px;padding:0;font-size:14px;line-height:1.45">'+li(SUP.incl)+'</ul>'
+  +'<b>Что не входит</b><ul style="margin:4px 0 6px 18px;padding:0;font-size:14px;line-height:1.45">'+li(SUP.excl)+'</ul><div class="hint">'+E(SUP.note)+'</div>'
+  +(SUP.open&&chans().length?'<div class="hint" style="margin-top:10px">Выберите удобный способ связи. В WhatsApp и почте текст с версией приложения подставится сам, а в Телеграм и Viber он скопируется: вставьте его в сообщение и опишите, что случилось. Не отправляйте пароли и коды.</div><div class="col" style="display:flex;flex-direction:column;gap:8px;margin-top:10px">'+chans().map(c=>'<button class="red" data-sup="'+c[0]+'">'+c[1]+'</button>').join('')+'<button class="ghost" data-sup="x">Закрыть</button></div>'
+   :'<div class="card" style="margin-top:10px;border-left:5px solid #b57900">'+E(SUP.open?'Контакты поддержки ещё не заполнены.':SUP.closedNote)+'</div><div class="col" style="display:flex;flex-direction:column;gap:8px;margin-top:10px"><button class="ghost" data-sup="x">Закрыть</button></div>')
+  +'</div></div>'};
+ document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-sup]');if(!b)return;e.preventDefault();const a=b.dataset.sup,root=document.getElementById('modalRoot');
+  if(a==='open')supportOpen();
+  else if(a==='x'){if(root)root.innerHTML=''}
+  else if(a==='help'){if(root)root.innerHTML='';location.hash='#/help'}
+  else if(a==='bk'){if(root)root.innerHTML='';try{backupAsk()}catch(x){}}
+  else if(a==='tg'||a==='vb'){try{navigator.clipboard.writeText(info()).then(()=>toast('Данные скопированы, вставьте их в сообщение'),()=>{})}catch(x){}
+   if(a==='tg'&&okUrl(SUP.url))window.open(SUP.url,'_blank','noopener');
+   if(a==='vb'&&okPh(SUP.viber)){try{navigator.clipboard.writeText('+'+SUP.viber)}catch(x){}toast('Номер Viber: +'+SUP.viber+'. Если чат не открылся, найдите номер в Viber вручную',5000);location.href='viber://chat?number=%2B'+SUP.viber}}
+  else if(a==='wa'&&okPh(SUP.wa))window.open('https://wa.me/'+SUP.wa+'?text='+encodeURIComponent(info()),'_blank','noopener')
+  else if(a==='mail'&&okMail(SUP.email))location.href='mailto:'+SUP.email+'?subject='+encodeURIComponent('Поддержка: Мой учёт — ИП')+'&body='+encodeURIComponent(info())
+ });
+ const btn='<div class="card kref noprint"><b>Помощь и поддержка</b><div class="hint" style="margin:4px 0 8px">Что входит в поддержку, как быстро отвечают и как написать в Телеграм.</div><button class="sm" data-sup="open">Помощь и поддержка</button></div>';
+ const evOf=()=>S.bkEvery===7||S.bkEvery===14||S.bkEvery===0?S.bkEvery:(S.bkWeeklyOff?0:14);
+ const wk=()=>'<div class="card kref noprint"><b>Напоминание о копии данных</b><div class="hint" style="margin:4px 0 8px">Все данные хранятся только в этом браузере, копия защищает от потери. Когда пора, при запуске приложения открывается окно с кнопкой «Сохранить копию сейчас», оно не закрывается, пока копия не сохранена. Если отключить напоминание, ответственность за сохранность данных лежит на вас.</div><label>Как часто напоминать</label><select id="bkEv"><option value="7"'+(evOf()===7?' selected':'')+'>Каждую неделю (в понедельник)</option><option value="14"'+(evOf()===14?' selected':'')+'>Раз в 2 недели (рекомендуется)</option><option value="0"'+(evOf()===0?' selected':'')+'>Не напоминать</option></select></div>';
+ const edt=()=>'<details class="card kref noprint"><summary><b>Настройки поддержки (для администратора приложения)</b></summary><div class="hint" style="margin:6px 0">Контакты и срок ответа одинаковы для всех пользователей, поэтому хранятся в файле support.json на GitHub. Заполните нужные поля (пустые каналы не показываются), нажмите кнопку и вставьте готовый текст в файл support.json: GitHub, Add file, Create new file; для существующего файла значок карандаша. Телефон указывайте с кодом страны, например 375291234567. Номер увидят все пользователи, лучше использовать рабочий номер.</div>'
+  +'<label>Телеграм (ссылка или @ник)</label><input id="spUrl" value="'+E(SUP.url)+'" placeholder="https://t.me/ник или @ник">'
+  +'<label>WhatsApp (номер)</label><input id="spWa" inputmode="tel" value="'+E(SUP.wa)+'" placeholder="375291234567">'
+  +'<label>Viber (номер)</label><input id="spVb" inputmode="tel" value="'+E(SUP.viber)+'" placeholder="375291234567">'
+  +'<label>Электронная почта</label><input id="spMail" value="'+E(SUP.email)+'" placeholder="info@example.by">'
+  +'<label>Срок ответа</label><input id="spTerm" value="'+E(SUP.term)+'">'
+  +'<label style="display:flex;gap:8px;align-items:center;margin-top:8px"><input type="checkbox" id="spOpen" style="width:auto"'+(SUP.open?' checked':'')+'><span>Приём обращений открыт</span></label>'
+  +'<div class="row" style="gap:8px;flex-wrap:wrap;margin-top:10px"><button class="sm" data-sup="edgen">Показать текст для файла</button></div><div id="spOut"></div></details>';
+ const phN=v=>{let d=String(v||'').replace(/\D/g,'');if(d.length===11&&d.startsWith('80'))d='375'+d.slice(2);else if(d.length===9)d='375'+d;return d};
+ const edText=()=>{const g=id=>(document.getElementById(id).value||'').trim();let u=g('spUrl');if(/^@/.test(u))u='https://t.me/'+u.slice(1);else if(/^t\.me\//i.test(u))u='https://'+u;
+  const wa=g('spWa')?phN(g('spWa')):'',vb=g('spVb')?phN(g('spVb')):'',ml=g('spMail');
+  if(u&&!okUrl(u)){toast('Телеграм: ссылка вида https://t.me/ник или @ник');return null}
+  if(wa&&!okPh(wa)){toast('WhatsApp: номер с кодом страны, только цифры');return null}
+  if(vb&&!okPh(vb)){toast('Viber: номер с кодом страны, только цифры');return null}
+  if(ml&&!okMail(ml)){toast('Почта: проверьте адрес');return null}
+  if(!u&&!wa&&!vb&&!ml){toast('Заполните хотя бы один способ связи');return null}
+  const o={open:document.getElementById('spOpen').checked};if(u)o.url=u;if(wa)o.wa=wa;if(vb)o.viber=vb;if(ml)o.email=ml;o.term=g('spTerm').slice(0,200)||D.term;
+  if(!u)o.url='';if(!wa)o.wa='';if(!vb)o.viber='';if(!ml)o.email='';
+  return JSON.stringify(o,null,2)};
+ document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-sup^="ed"]');if(!b)return;e.preventDefault();const a=b.dataset.sup;
+  if(a==='edgen'){const t=edText();if(t===null)return;document.getElementById('spOut').innerHTML='<textarea id="spTxt" readonly rows="6" style="width:100%;margin-top:8px;font-family:monospace">'+E(t)+'</textarea><div class="row" style="gap:8px;flex-wrap:wrap;margin-top:6px"><button class="sm" data-sup="edcopy">Скопировать</button><button class="sm ghost" data-sup="eddl">Скачать support.json</button></div><div class="hint">Файл должен называться support.json и лежать рядом с приложением. Изменение появится у всех через минуту-две после «Commit changes».</div>'}
+  else if(a==='edcopy'){const t=document.getElementById('spTxt');if(!t)return;try{navigator.clipboard.writeText(t.value).then(()=>toast('Скопировано'),()=>{t.select();toast('Выделено: нажмите Ctrl+C')})}catch(x){t.select()}}
+  else if(a==='eddl'){const t=document.getElementById('spTxt');if(!t)return;const bl=new Blob([t.value],{type:'application/json'}),a2=document.createElement('a');a2.href=URL.createObjectURL(bl);a2.download='support.json';document.body.appendChild(a2);a2.click();setTimeout(()=>{URL.revokeObjectURL(a2.href);a2.remove()},500)}});
+ const m0=window.more;if(typeof m0==='function')window.more=function(ip){let h=m0.apply(this,arguments);const k='<h3 class="setg">Меню и разделы</h3>';return typeof h==='string'?h+'<h3 class="setg">Помощь и копии данных</h3>'+btn+wk()+edt():h};
+ const h0=window.helpPage;if(typeof h0==='function')window.helpPage=function(){let h=h0.apply(this,arguments);const k='<div class="hguide noprint">';return typeof h==='string'&&h.includes(k)?h.replace(k,'<div class="row noprint" style="margin-bottom:8px"><button class="sm" data-sup="open">Помощь и поддержка</button></div>'+k):h};
+ document.addEventListener('change',e=>{const c=e.target;if(!c||c.id!=='bkEv')return;const v=+c.value;
+  if(v===0&&!confirm('Отключить напоминание о копии данных? Данные хранятся только в этом браузере, и ответственность за их сохранность будет на вас.')){c.value=String(evOf());return}
+  S.bkEvery=v;delete S.bkWeeklyOff;save();toast(v===0?'Напоминание отключено':v===7?'Напоминание: каждую неделю':'Напоминание: раз в 2 недели')});
+ const mon=()=>{const d=new Date(todayISO()+'T00:00:00'),w=(d.getDay()+6)%7;d.setDate(d.getDate()-w);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+ window.bkNeeded=function(ip){const ev=evOf();if(ev===0||isDemo(ip)||fsFresh())return false;const has=(ip.staff||[]).length||opsOf(ip,true).length;if(!has)return false;const a=bkAge();if(a===null)return true;return ev===7?S.lastBackup<mon():a>14};
+})()}catch(e){console.warn('3.760',e)}
+try{const T1='Помощь и поддержка',T2='Напоминание о копии данных';Object.assign(HELP_ADD,{[T1]:'Кнопка «Помощь и поддержка» есть в «Ещё» (раздел «Помощь и копии данных») и вверху инструкции. В окне указано, что входит в поддержку, а что нет, и срок ответа. Приложение в стадии тестирования, поддержка работает в режиме обращений. Сначала откройте инструкцию: большинство вопросов разобрано там. Если не нашли ответ, выберите удобный способ связи: Телеграм, WhatsApp, Viber или почта (показываются те, что заполнены администратором). В WhatsApp и почте текст с версией приложения и разделом подставляется сам, в Телеграм и Viber он копируется: вставьте его в сообщение и опишите, что случилось. Не отправляйте пароли, коды и персональные данные. Вопросы по учёту, налогам и оформлению документов в поддержку не входят. Администратор приложения меняет контакты и срок ответа в «Ещё», в самом конце, блок «Настройки поддержки»: приложение готовит текст файла support.json, его нужно загрузить на GitHub рядом с приложением.',[T2]:'Раз в 2 недели (если выбрать в настройках, то каждую неделю в понедельник) при запуске приложение открывает окно «Сначала сохраните копию данных». Оно не закрывается, пока вы не нажмёте «Сохранить копию сейчас» и файл не сохранится. Положите файл в облако или отправьте себе в мессенджер: данные хранятся только в этом браузере. Частоту можно изменить или отключить напоминание в «Ещё», в самом конце, блок «Помощь и копии данных». Если отключить, ответственность за сохранность данных лежит на вас.'});
+HELP_ORDER.forEach(g=>{const i=g[1].indexOf('Обязательная резервная копия');if(i>=0&&!g[1].includes(T1)){g[1].splice(i+1,0,T2);g[1].splice(i+1,0,T1)}})}catch(e){}
 
 </script>
 <style id="club4Css">
