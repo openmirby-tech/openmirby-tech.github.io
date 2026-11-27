@@ -489,7 +489,7 @@ header.top .wrap{position:relative;z-index:1}
 .cchips{display:flex;flex-wrap:wrap;gap:6px}.cchips button{border:1.5px solid #cfcfcf;background:#fff;border-radius:18px;padding:6px 12px;font-size:13px;font-weight:600;color:#333;cursor:pointer}.cchips button.on{background:#b71c1c;border-color:#b71c1c;color:#fff}
 .chd{margin:16px 0 6px;font-size:16px}
 .ctiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
-.ctile{display:flex;border:2px solid #ccc;border-radius:14px;background:#fff;overflow:hidden}
+.ctile{display:flex;border:2px solid #ccc;border-radius:14px;background:#fff;overflow:visible}
 .cdt{flex:0 0 58px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 2px}.cdt b{font-size:24px;line-height:1}.cdt span{font-size:12px;text-transform:uppercase;margin-top:2px}
 .cbd{padding:8px 10px;min-width:0;flex:1}.ck{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}.ct{font-size:14px;font-weight:600;margin:2px 0;color:#111}.cu{font-size:13px;font-weight:700}.cb{display:flex;flex-wrap:wrap;gap:2px 12px;margin-top:4px}
 .cmon{border:1px solid #e0e0e0;border-radius:14px;padding:10px;background:#fff}.cnav{display:flex;align-items:center;gap:8px;justify-content:space-between;margin-bottom:8px}.cnav b{text-transform:capitalize}
@@ -7602,7 +7602,7 @@ function g11OffDlg(C,c,m,mode){
 /* адрес входа в личный кабинет на сайте (кнопка на главной); пустая строка скрывает кнопку */
 const CABINET_URL='https://online-kurs.by/members/login';
 (function(){const a=document.getElementById('hbCab');if(a&&CABINET_URL){a.href=CABINET_URL;a.style.display=''}})();
-const APP_BUILD='20261127-4641';
+const APP_BUILD='20261128-4663';
 try{const _b=APP_BUILD;document.getElementById('ftVer').textContent='от '+_b.slice(6,8)+'.'+_b.slice(4,6)+'.'+_b.slice(0,4)+', сборка '+_b.slice(9,11)+':'+_b.slice(11)}catch(e){}
 (function(){
   if(location.protocol==='file:')return;
@@ -8628,14 +8628,20 @@ const jInc=o=>o.kind==='inc'||o.kind==='inc_exempt',jExp=o=>o.kind==='exp'||o.ki
 function jMonths(ops){const M=[],ix={};ops.forEach(o=>{const k=String(o.date).slice(0,7);if(!(k in ix)){ix[k]=M.length;M.push({k,L:[]})}M[ix[k]].L.push(o)});return M}
 function jSum(L){let i=0,e=0,nd=0;L.forEach(o=>{if(jInc(o))i=r2(i+o.sum);else if(jExp(o)&&!o.unpaid)e=r2(e+o.sum);if(o.nc&&!o.cd)nd++});return {i,e,nd}}
 const jMName=k=>MN[+k.slice(5,7)-1].replace(/^./,c=>c.toUpperCase())+' '+k.slice(0,4);
+function jvTog(){const v=vwJ();return `<span class="vwt"><button type="button" class="cpch${v==='t'?' on':''}" data-jv="t">Плитки</button><button type="button" class="cpch${v==='l'?' on':''}" data-jv="l">Список</button><button type="button" class="cpch${v==='r'?' on':''}" data-jv="r">Таблица</button></span>`}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-jv]');if(!b)return;e.preventDefault();e.stopPropagation();vwSet(b.dataset.jv);render(true)},true);
+function jTbl(L){
+  return vwTable([['Дата',''],['Содержание',''],['Контрагент',''],['Источник',''],['Документ',''],['Сумма, руб.','n'],['','']],L.map(o=>{const k=KINDS[o.kind];
+    const act=o.derived?`<span class="tag">${esc(o.derivedLabel||'из зарплаты')}</span>`:`<div class="cps">${o.nc&&!o.cd?`<button class="link" data-act="close-doc" data-id="${o.id}">Внести документ</button>`:''}<button class="link" data-act="edit" data-id="${o.id}">Изменить</button><button class="link dng" data-act="del" data-id="${o.id}">Удалить</button></div>`;
+    return {s:k.side==='in'?'#2e7d32':'#b3261e',c:[dmy(o.date),`<b>${esc(o.text||k.t)}</b><br><small style="color:#6b6650">${esc(k.t)}</small>`,esc(o.party||''),esc(JSRC[opSrc(o)]),esc([o.docType,o.docNo].filter(Boolean).join(' №'))+(o.nc&&!o.cd?'<br><small style="color:#8a5a00">нет закрывающего документа</small>':''),`<b style="color:${k.side==='in'?'#1d7a3a':'#b3261e'}">${fmt(o.sum)}</b>`,act]}}))}
 function jGroups(ops,rowH){
   if(!ops.length)return '';
   const M=jMonths(ops),all=!!(ui.fm||ui.q||ui.fk),jo=ui.jopen||(ui.jopen={});
-  const ord=`<div class="row noprint" style="margin:0 0 6px;gap:6px"><button class="sm ${S.jAsc?'':'ghost'}" data-act="j-ord" data-v="1">С 1-го числа (сверху вниз)</button><button class="sm ${S.jAsc?'ghost':''}" data-act="j-ord" data-v="0">Сначала последние</button></div>`;
+  const ord=`<div class="row noprint" style="margin:0 0 6px;gap:6px"><button class="sm ${S.jAsc?'jon':'ghost'}" data-act="j-ord" data-v="1">С 1-го числа (сверху вниз)</button><button class="sm ${S.jAsc?'ghost':'jon'}" data-act="j-ord" data-v="0">Сначала последние</button>${jvTog()}</div>`;
   const bar=ord+(M.length>1?`<div class="row noprint" style="margin:0 0 8px;gap:6px"><button class="sm ghost" data-act="jm-all" data-v="1">Раскрыть все месяцы и записи</button><button class="sm ghost" data-act="jm-all" data-v="0">Свернуть все</button></div>`:'');
-  return bar+M.map((m,ix)=>{
+  return `<div class="jvw jv-${vwJ()}">`+bar+M.map((m,ix)=>{
     const t=jSum(m.L),open=m.k in jo?jo[m.k]:(all&&M.length<=3);
-    return `<details class="jm" data-jm="${m.k}" ${open?'open':''}><summary><span class="jmn">${jMName(m.k)}</span><span class="jms"><b>${m.L.length}</b> ${plural(m.L.length,'запись','записи','записей')}${t.i?' · доходы '+fmt(t.i):''}${t.e?' · расходы '+fmt(t.e):''}${t.nd?` · <span style="color:#8a5a00">без документа: ${t.nd}</span>`:''}</span></summary>${m.L.map(rowH).join('')}</details>`}).join('');
+    return `<details class="jm" data-jm="${m.k}" ${open?'open':''}><summary><span class="jmn">${jMName(m.k)}</span><span class="jms"><b>${m.L.length}</b> ${plural(m.L.length,'запись','записи','записей')}${t.i?' · доходы '+fmt(t.i):''}${t.e?' · расходы '+fmt(t.e):''}${t.nd?` · <span style="color:#8a5a00">без документа: ${t.nd}</span>`:''}</span></summary>${vwGet()==='r'?jTbl(m.L):`<div class="jrows">${m.L.map(rowH).join('')}</div>`}</details>`}).join('')+'</div>';
 }
 function jOpsFiltered(ip){
   let ops=opsOf(ip,true).slice();if(expOff(ip))ops=ops.filter(o=>o.kind!=='exp'&&o.kind!=='exp_other');
@@ -8714,7 +8720,7 @@ const jNeedDoc=o=>!!(o.nc&&!o.cd);
 function jSrcFilter(ops){const f=ui.fs;if(!f)return ops;if(f==='dm')return ops.filter(o=>dmKind(o)&&o.dm);if(/^dm:/.test(f))return ops.filter(o=>dmKind(o)&&o.dm===f.slice(3));return f==='need'?ops.filter(jNeedDoc):ops.filter(o=>opSrc(o)===f)}
 function jSrcChips(all){
   const c={};all.forEach(o=>{const k=opSrc(o);c[k]=(c[k]||0)+1});const need=all.filter(jNeedDoc).length,dmn=all.filter(o=>dmKind(o)&&o.dm).length;
-  const chip=(k,t,n,warn)=>`<button class="sm ${(ui.fs||'')===k?'':'ghost'}" ${warn&&(ui.fs||'')!==k?'style="border-color:#D4AF37;color:#8a5a00"':''} data-act="jsrc" data-k="${k}">${t} · ${n}</button>`;
+  const chip=(k,t,n,warn)=>`<button class="sm ${(ui.fs||'')===k?'jon':'ghost'}" ${warn&&(ui.fs||'')!==k?'style="border-color:#D4AF37;color:#8a5a00"':''} data-act="jsrc" data-k="${k}">${t} · ${n}</button>`;
   const L=Object.keys(JSRC).filter(k=>c[k]).map(k=>chip(k,JSRC[k],c[k]));
   if(!L.length&&!need&&!dmn)return '';
   return `<div class="row noprint" style="flex-wrap:wrap;gap:6px;margin:0 0 8px">${chip('','Все',all.length)}${L.join('')}${need?chip('need','Нужен документ',need,1):''}${dmn?chip('dm','Нет первичного документа',dmn,1):''}</div>${ui.fs&&JSRC_HINT[ui.fs]?`<div class="hint noprint" style="font-size:12.5px;margin:-2px 0 8px">${JSRC_HINT[ui.fs]}</div>`:''}${ui.fs==='need'?'<div class="hint noprint" style="font-size:12.5px;margin:-2px 0 8px">Оплаты, по которым ещё нет закрывающего документа (акта, накладной). Нажмите «Внести документ» у операции.</div>':''}`}
@@ -8729,7 +8735,7 @@ function journal(ip){
   const srcAll=ops.slice();ops=jSrcFilter(ops);
   dmRun(ip);let h=`<h2>Список операций</h2>${bkMissBanner(ip)}${dmCard(ip)}<div class="jfs noprint"><input id="fq" placeholder="Поиск по тексту, контрагенту, номеру" value="${esc(ui.q)}"></div><details class="jfd noprint"><summary><span class="jft">Фильтры</span><small>${jFltTxt(ip)}</small></summary><div class="jfb"><div class="two noprint"><select id="fm"><option value="">Все месяцы</option>${MN.map((m,i)=>`<option value="${i+1}" ${+ui.fm===i+1?'selected':''}>${m}</option>`).join('')}</select>
   <select id="fk"><option value="">Все виды</option>${Object.entries(KINDS).filter(([k])=>!(expOff(ip)&&/^exp/.test(k))).map(([k,v])=>`<option value="${k}" ${ui.fk===k?'selected':''}>${v.t}</option>`).join('')}</select></div>
-  ${jSrcChips(srcAll)}${AM?`<div class="row noprint" style="flex-wrap:wrap;gap:6px;margin:0 0 8px"><small style="width:100%;color:#555">Банковский счёт:</small><button class="sm ${ui.fa?'ghost':''}" data-act="jacc" data-k="">Все счета</button>${BAJ.map(a=>`<button class="sm ${ui.fa===a.id?'':'ghost'}" data-act="jacc" data-k="${a.id}">${esc(finAccLabel(a))}</button>`).join('')}</div>`:''}<div class="row noprint" style="margin-bottom:8px"><button class="sm ghost" style="color:#b00020;border-color:#b00020" data-act="bulk-del" data-k="ops">Удалить записи списком</button></div></div></details>${jTotCard(ip)}${pendCardHtml(ip)}<div class="noprint" style="margin:6px 0 10px"><input type="file" id="bankIn" accept=".xls,.xlsx,.csv" style="display:none">${impNote('other')}<div class="row" style="flex-wrap:wrap;align-items:center"><button class="sm" data-act="doc-file" title="Любой файл Excel: банковская выписка, накладная, акт, отчёт СККО, выгрузка данных приложения">Загрузить документ</button><button class="sm ghost" data-act="doc-add">Документ вручную</button><button class="sm ghost" data-act="acq-open" title="Отчёт эквайринга и банковская выписка: кто платил и чего не хватает">Сверка эквайринга</button></div><details class="card cfold noprint" style="margin-top:8px"><summary><span class="cft">Ещё действия</span><small>печать, Excel, контрагенты, удаление данных</small></summary><div class="row" style="flex-wrap:wrap;margin-top:6px"><button class="sm ghost" data-act="jprint">Печать журнала</button><button class="sm ghost" data-act="xlsx">Скачать в Excel</button><button class="sm ghost" data-act="doc-paste">Вставить таблицу</button><button class="sm ghost" data-act="bk" data-k="docs">Все документы</button><button class="sm ghost" data-act="cpty">Контрагенты</button><button class="sm ghost" data-act="svc">Номенклатура</button><button class="sm ghost" data-act="jt">${ui.jt?'Показать списком':'Показать таблицей'}</button></div><div class="hint" style="font-size:12.5px;margin:10px 0 4px;color:#8a1020">Удаление данных. Сначала скачайте журнал в Excel: это нельзя отменить после закрытия страницы.</div><div class="row" style="flex-wrap:wrap"><button class="sm ghost" style="color:#b00020;border-color:#b00020" data-act="clear-bank">Удалить загруженное из выписки</button><button class="sm ghost" style="color:#b00020;border-color:#b00020" data-act="clear-journal">Очистить журнал за год</button></div></details></div>${docsPanel(ip,'kudir')}`;
+  ${jSrcChips(srcAll)}${AM?`<div class="row noprint" style="flex-wrap:wrap;gap:6px;margin:0 0 8px"><small style="width:100%;color:#555">Банковский счёт:</small><button class="sm ${ui.fa?'ghost':'jon'}" data-act="jacc" data-k="">Все счета</button>${BAJ.map(a=>`<button class="sm ${ui.fa===a.id?'jon':'ghost'}" data-act="jacc" data-k="${a.id}">${esc(finAccLabel(a))}</button>`).join('')}</div>`:''}<div class="row noprint" style="margin-bottom:8px"><button class="sm ghost" style="color:#b00020;border-color:#b00020" data-act="bulk-del" data-k="ops">Удалить записи списком</button></div></div></details>${jTotCard(ip)}${pendCardHtml(ip)}<div class="noprint" style="margin:6px 0 10px"><input type="file" id="bankIn" accept=".xls,.xlsx,.csv" style="display:none">${impNote('other')}<div class="row" style="flex-wrap:wrap;align-items:center"><button class="sm" data-act="doc-file" title="Любой файл Excel: банковская выписка, накладная, акт, отчёт СККО, выгрузка данных приложения">Загрузить документ</button><button class="sm ghost" data-act="doc-add">Документ вручную</button><button class="sm ghost" data-act="acq-open" title="Отчёт эквайринга и банковская выписка: кто платил и чего не хватает">Сверка эквайринга</button></div><details class="card cfold noprint" style="margin-top:8px"><summary><span class="cft">Ещё действия</span><small>печать, Excel, контрагенты, удаление данных</small></summary><div class="row" style="flex-wrap:wrap;margin-top:6px"><button class="sm ghost" data-act="jprint">Печать журнала</button><button class="sm ghost" data-act="xlsx">Скачать в Excel</button><button class="sm ghost" data-act="doc-paste">Вставить таблицу</button><button class="sm ghost" data-act="bk" data-k="docs">Все документы</button><button class="sm ghost" data-act="cpty">Контрагенты</button><button class="sm ghost" data-act="svc">Номенклатура</button><button class="sm ghost" data-act="jt">${ui.jt?'Показать списком':'Показать таблицей'}</button></div><div class="hint" style="font-size:12.5px;margin:10px 0 4px;color:#8a1020">Удаление данных. Сначала скачайте журнал в Excel: это нельзя отменить после закрытия страницы.</div><div class="row" style="flex-wrap:wrap"><button class="sm ghost" style="color:#b00020;border-color:#b00020" data-act="clear-bank">Удалить загруженное из выписки</button><button class="sm ghost" style="color:#b00020;border-color:#b00020" data-act="clear-journal">Очистить журнал за год</button></div></details></div>${docsPanel(ip,'kudir')}`;
   if(ui.jt){h+=tblx(['Дата','Вид','Содержание','Контрагент','Документ','Сумма, руб.'],ops.slice().reverse().map(o=>({c:[dmy(o.date),KINDS[o.kind].t,o.text||'',o.party||'',[o.docType,o.docNo].filter(Boolean).join(' '),o.sum]})));return h}
   if(!ops.length)h+='<div class="card">Пока нет записей. Нажмите кнопку «+ Операция» внизу справа: впишите, сколько получили или потратили. Или загрузите банковскую выписку кнопкой выше, и записи появятся сами.</div>';
   const rowH=o=>{const k=KINDS[o.kind],fx=o.cur!=='BYN'?` · ${o.cur} ${fmt(o.sumCur)}`:'';
@@ -9284,8 +9290,8 @@ const CP_SKIP=/физическ|эквайр|терминал|разные|бе�
 function cpUnp(t){const m=String(t||'').match(/(?:УНП|UNP)\s*[:№]?\s*([0-9A-Z]{9})(?![0-9A-Z])/i);return m?m[1].toUpperCase():''}
 function cpClean(n){return String(n||'').replace(/[,;]?\s*(?:УНП|UNP)\s*[:№]?\s*[0-9A-Z]{9}(?![0-9A-Z])/ig,'').replace(/\s+/g,' ').replace(/^[,;\s]+|[,;\s]+$/g,'')}
 function cpType(n){
-  if(/^(ип\b|индивидуальн)/i.test(n))return 'ip';
-  if(/^(ооо|зао|оао|одо|уп\b|чуп|чтуп|чпуп|пк\b|гу\b|ку\b|общество|унитарн|частное|республиканск|филиал)/i.test(n)||/["«»]/.test(n))return 'ul';
+  if(/^(ип(?![а-яё])|индивидуальн)/i.test(n))return 'ip';
+  if(/^(ооо|зао|оао|одо|уп(?![а-яё])|чуп|чтуп|чпуп|пк(?![а-яё])|гу(?![а-яё])|ку(?![а-яё])|общество|унитарн|частное|республиканск|филиал)/i.test(n)||/["«»]/.test(n))return 'ul';
   if(/^[А-ЯЁ][а-яё\-]+\s+[А-ЯЁ][а-яё\-]+(\s+[А-ЯЁ][а-яё\-]+)?$/.test(n))return 'fl';
   if(/^[А-ЯЁ][а-яё\-]+\s+[А-ЯЁ]\.\s?(?:[А-ЯЁ]\.?)?$/.test(n)||/^[А-ЯЁ]\.\s?(?:[А-ЯЁ]\.\s?)?[А-ЯЁ][а-яё\-]+$/.test(n))return 'fl';
   return 'ul';
@@ -9380,18 +9386,74 @@ function cptyScan(ip){
 }
 const cpLine=c=>c.type==='fl'?c.name:c.name+(c.unp?', УНП '+c.unp:'')+(c.addr?', '+c.addr:'');
 function cpFind(ip,name){const k=dtKey(cpClean(name));return k?(ip.cpty||[]).find(c=>dtKey(c.name)===k||(cpUnp(name)&&c.unp===cpUnp(name))):null}
+
+function vwGet(){try{const v=localStorage.getItem('vwMode');return v==='l'||v==='r'||v==='f'?v:'t'}catch(e){return 't'}}
+function vwJ(){const v=vwGet();return v==='f'?'t':v}
+window._fdO=window._fdO||{};document.addEventListener('toggle',e=>{const d=e.target;if(d&&d.classList&&d.classList.contains('fdg')){window._fdO[d.dataset.g]=d.open?1:0;if(d.open&&!d.querySelector('.fdb').children.length){const b=document.querySelector('#modalRoot .cpsheet [data-vmode="f"]');if(b&&b.closest('.cpsheet')){const q=(document.getElementById('cq')||{}).value||'';const s=document.querySelector('#modalRoot .cplist'),y=s?s.scrollTop:0;(document.querySelector('#modalRoot h2').textContent==='Контрагенты'?cptyOpen:svcOpen)(q);const s2=document.querySelector('#modalRoot .cplist');if(s2)s2.scrollTop=y}}}},true);
+function vwFold(groups,colors,card,open,N,more){N=N||40;return `<div class="fdl">`+groups.map(([g,A])=>{const k=colors(g),o=window._fdO[g],isO=o===1||(o===undefined&&(open||groups.length===1));return `<details class="fdg" data-g="${esc(g)}" ${isO?'open':''} style="--a:${k[0]};--f:${k[1]};--e:${k[2]}"><summary><span class="fdn">Папка «${esc(g)}»</span><span class="fdc">${A.length}</span></summary><div class="fdb">${isO?(A.length?A.slice(0,N).map(card).join('')+(A.length>N?`<div class="row whact" style="justify-content:center;margin:6px 0 2px"><button type="button" class="sm" data-cm="1" data-sm="1">Показать ещё (осталось ${A.length-N})</button></div>`:''):'<div class="hint">В папке пока пусто.</div>'):''}</div></details>`}).join('')+`</div>`}
+function vwTable(head,rows){return `<div class="vwtb"><table><thead><tr>${head.map(h=>`<th${h[1]?` class="${h[1]}"`:''}>${h[0]}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr style="--s:${r.s}${r.a?';cursor:pointer':''}" ${r.a||''}>${r.c.map((x,i)=>`<td${head[i][1]?` class="${head[i][1]}"`:''}>${x}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`}
+function vwSet(v){try{localStorage.setItem('vwMode',v)}catch(e){}}
+function vwTog(nf){const v=vwGet();return `<span class="vwt">${nf?'':`<button type="button" class="cpch${v==='f'?' on':''}" data-vmode="f">Папки</button>`}<button type="button" class="cpch${v==='t'?' on':''}" data-vmode="t">Плитки</button><button type="button" class="cpch${v==='l'?' on':''}" data-vmode="l">Список</button><button type="button" class="cpch${v==='r'?' on':''}" data-vmode="r">Таблица</button></span>`}
+const CPC={'Поставщики':['#e6f1fb','#0c447c','#b5d4f4'],'Покупатели':['#eaf3de','#27500a','#c0dd97'],'Физические лица':['#faeeda','#633806','#fac775'],'Сотрудники':['#eeedfe','#3c3489','#cecbf6'],'Прочие':['#f1efe8','#444441','#d3d1c7']};
+const CPT={ul:'Юрлицо',ip:'ИП',fl:'Физлицо'};
+function cpIni(n){const w=String(n||'').replace(/[«»"'“”]/g,'').replace(/^(ООО|ЧУП|ОАО|ЗАО|УП|ИП|ЧП|ОДО|СООО|ИООО|ЧТУП|РУП|КУП)\s+/i,'').trim().split(/\s+/).filter(Boolean);return ((w[0]||'?')[0]+(w[1]?w[1][0]:'')).toUpperCase()}
+function cpListHtml(ip,L,q){const V=vwGet();
+  const cnt={};CPF_ALL.forEach(g=>cnt[g]=0);L.forEach(c=>{const g=cpFolder(ip,c);cnt[g]=(cnt[g]||0)+1});
+  let F=window._cpF||'Все';if(F!=='Все'&&!CPF_ALL.includes(F))F='Все';
+  const chips=['Все'].concat(CPF_ALL.filter(g=>CP_F.includes(g)||cnt[g])).map(g=>`<button type="button" class="cpch${g===F?' on':''}" data-cpf="${esc(g)}">${g==='Физические лица'?'Физлица':esc(g)}<i>${g==='Все'?L.length:cnt[g]||0}</i></button>`).join('');
+  const A=L.filter(c=>F==='Все'||cpFolder(ip,c)===F),N=window._cpN||40,S=A.slice(0,N);
+  const card=(c,fx)=>{const g=cpFolder(ip,c),k=CPC[g]||CPC['Прочие'],n=cpOpsCount(ip,c),fl=c.type==='fl';
+    const meta=[fl?'':(c.unp?'УНП '+esc(c.unp):'без УНП'),c.iban?'р/с есть':'',c.contract?esc(c.contract):'',n?'операций: '+n:''].filter(Boolean).join(' · ');
+    const bt=`<div class="cps"><button class="link" data-cpv="${c.id}">Карточка</button></div>`;
+    const av=`<div class="cpa" style="--a:${k[0]};--f:${k[1]};--e:${k[2]}">${esc(cpIni(c.name))}</div>`;
+    return V==='l'||fx?`<div class="cpr" data-cpv="${c.id}" style="--a:${k[0]};--f:${k[1]};--e:${k[2]}">${av}<div class="cpm" data-cpv="${c.id}" style="cursor:pointer"><b>${c.code?'<span class="cpn">№'+c.code+'</span> ':''}${esc(c.name)}</b><small>${[meta,g].filter(Boolean).join(' · ')||'физическое лицо'}</small></div>${bt}</div>`
+     :`<div class="cpc" data-cpv="${c.id}" style="--a:${k[0]};--f:${k[1]};--e:${k[2]}">${av}<div class="cpm" data-cpv="${c.id}" style="cursor:pointer"><b>${c.code?'<span class="cpn">№'+c.code+'</span> ':''}${esc(c.name)}</b><small>${meta}</small><span class="cpb" style="--a:${k[0]};--f:${k[1]};--e:${k[2]}">${esc(g)}${c.type&&CPT[c.type]?' · '+CPT[c.type]:''}</span></div>${bt}</div>`};
+  if(V==='f'){const G=CPF_ALL.map(g=>[g,L.filter(c=>cpFolder(ip,c)===g)]).filter(([g,A])=>A.length||CP_F.includes(g));return `<div class="cpchs">${vwTog()}</div><div class="cplist">`+vwFold(G,g=>CPC[g]||CPC['Прочие'],c=>card(c,1),!!q)+`</div>`}
+  if(V==='r'&&S.length)return `<div class="cpchs">${chips}${vwTog()}</div><div class="cplist">`+vwTable([['№','n'],['Название',''],['УНП',''],['Вид',''],['Папка',''],['Операций','n'],['','']],S.map(c=>{const g=cpFolder(ip,c),k=CPC[g]||CPC['Прочие'];return {s:k[1],a:'data-cpv="'+c.id+'"',c:[c.code||'',`<b>${esc(c.name)}</b>`,c.unp?esc(c.unp):'—',CPT[c.type]||'',esc(g),cpOpsCount(ip,c)||'',`<div class="cps"><button class="link" data-cpv="${c.id}">Карточка</button></div>`]}}))+(A.length>N?`<div class="row whact" style="justify-content:center;margin:10px 0 2px"><button type="button" class="sm" data-cm="1">Показать ещё (осталось ${A.length-N})</button></div>`:'')+`</div>`;
+  const org=V==='l'?[]:S,fl=V==='l'?S:[];
+  return `<div class="cpchs">${chips}${vwTog()}</div><div class="cplist">`+(org.length?`<div class="cpg">${org.map(x=>card(x)).join('')}</div>`:'')+(fl.length?`<div class="cpfl">${F==='Все'&&org.length?'<div class="cph">Физические лица</div>':''}${fl.map(x=>card(x)).join('')}</div>`:'')+(S.length?'':`<div class="hint">${q?'Ничего не найдено.':'В этой папке пока пусто.'}</div>`)+(A.length>N?`<div class="row whact" style="justify-content:center;margin:10px 0 2px"><button type="button" class="sm" data-cm="1">Показать ещё (осталось ${A.length-N})</button></div>`:'')+`</div>`}
+/* поиск по многим реквизитам: все слова запроса должны найтись (в любом порядке), цифры сравниваются без пробелов и знаков */
+function srNorm(s){return String(s==null?'':s).toLowerCase().replace(/ё/g,'е')}
+function srTest(hay,q){q=srNorm(q).trim();if(!q)return true;const h=srNorm(hay),hd=h.replace(/\D/g,'');return q.split(/\s+/).every(w=>{if(h.includes(w))return true;const d=w.replace(/\D/g,'');return d.length>=3&&/^[\d\s+()\-.]+$/.test(w)&&hd.includes(d)})}
+function cpSrch(c,q,ip){if(!q)return true;let h=[c.name,c.code,c.unp,c.iban,c.bic,c.bank,c.phone,c.email,c.addr,c.country,c.contract,c.note,c.disp,c.show,c.folder,CPT[c.type],c.type==='ip'?'индивидуальный предприниматель':''].concat(c.aliases||[],(c.links||[]).map(l=>l.t)).join(' ');try{h+=' '+cpFolder(ip||cur(),c)}catch(e){}return srTest(h,q)}
+function svMatch(x,q){if(!q)return true;let h=[x.name,x.code,x.grp,x.unit,x.note,x.price,x.folder].join(' ');try{h+=' '+svcFoldOf(x)}catch(e){}return srTest(h,q)}
 function cptyOpen(q){
   const ip=cur();cptyScan(ip);const root=$('#modalRoot');q=q||'';
-  const L=(ip.cpty||[]).filter(c=>!q||(c.name+' '+(c.unp||'')+' '+(c.iban||'')+' '+(c.code||'')).toLowerCase().includes(q.toLowerCase())).sort((a,b)=>a.name.localeCompare(b.name,'ru'));
-  root.innerHTML=`<div class="modal"><div class="sheet" style="max-width:640px"><h2>Контрагенты</h2><div class="hint">Список строится сам из журнала операций, накладных и выписки: по УНП, если он есть в названии или назначении платежа, иначе по наименованию. Данные подставляются в акты и накладные. Тип и УНП можно поправить.</div>
-   <input id="cq" placeholder="Поиск по названию, УНП, расчётному счёту или коду" value="${esc(q)}" style="margin:8px 0"><div class="row"><button class="sm" id="cAdd">+ Контрагент</button><button class="sm" id="cFile">Реквизиты из файла</button><button class="sm ghost" id="cCrm">Подтянуть из CRM</button><button class="sm ghost" id="cDup">Объединить дубли</button><button class="sm ghost" id="cX">Закрыть</button><span class="hint">Всего: ${(ip.cpty||[]).length}</span></div>
-   <div style="max-height:52vh;overflow:auto">${CPF_ALL.map(g=>{const A=L.filter(c=>cpFolder(ip,c)===g);return (A.length||CP_F.includes(g))?`<details ${q||A.length&&CPF_ALL.filter(k=>L.some(c=>cpFolder(ip,c)===k)).length<=2?'open':''} class="card" style="padding:6px 10px;margin:6px 0"><summary style="cursor:pointer"><b>Папка «${esc(g)}»</b> <span style="color:#777">(${A.length})</span></summary>${A.map(c=>`<div class="op"><div class="l"><div class="t">${c.code?'<span style="color:#777">№'+c.code+'</span> ':''}${esc(c.name)}</div><small>${CP_TY[c.type]||''}${c.unp?' · УНП '+esc(c.unp):' · без УНП'}${c.iban?' · р/с есть':''}${c.contract?' · '+esc(c.contract):''}${c.svc?' · '+esc(c.svc):''}${c.roles&&c.roles.buyer?' · покупатель':''}${c.roles&&c.roles.supplier?' · поставщик':''}</small></div><div class="s"><button class="link" data-v="${c.id}">Карточка</button><button class="link" data-e="${c.id}">Изменить</button><button class="link" data-d="${c.id}">Удалить</button></div></div>`).join('')||'<div class="hint">В папке пока пусто.</div>'}</details>`:''}).join('')||'<div class="hint">Контрагентов пока нет.</div>'}</div></div></div>`;
-  setTimeout(()=>{try{const b=$('#cDup');if(!b)return;const n=cpDupGroups(ip).length;if(n)b.textContent='Объединить дубли ('+n+')'}catch(e){}},30);$('#cX').onclick=()=>{root.innerHTML=''};$('#cAdd').onclick=()=>cptyForm();$('#cDup').onclick=()=>cpDupOpen();$('#cFile').onclick=()=>cpReqFile();$('#cCrm').onclick=()=>{const C=crmOf(ip),k=(C.cl||[]).filter(c=>!cpFind(ip,c.name)).length;if(!k){toast('Все клиенты CRM уже есть в контрагентах');return}askP('Добавить в контрагенты клиентов CRM, которых там ещё нет: '+k+'. Люди попадут в папку «Физические лица», организации и ИП в «Покупатели». Дубли не создаются.',{yes:'Добавить',no:'Отмена'}).then(y=>{if(!y)return;const n=cpFromCrm(ip,true);save();toast('Добавлено контрагентов: '+n);cptyOpen(q)})};
+  const L=(ip.cpty||[]).filter(c=>cpSrch(c,q,ip)).sort((a,b)=>a.name.localeCompare(b.name,'ru'));
+  root.innerHTML=`<div class="modal"><div class="sheet cpsheet" style="max-width:760px"><h2>Контрагенты</h2><div class="hint">Список строится сам из журнала операций, накладных и выписки: по УНП, если он есть в названии или назначении платежа, иначе по наименованию. Данные подставляются в акты и накладные. Тип и УНП можно поправить.</div>
+   <input id="cq" placeholder="Поиск по названию, УНП, счёту, телефону, почте, адресу, договору, папке" value="${esc(q)}" style="margin:8px 0"><div class="row whact"><button class="sm" id="cAdd">+ Контрагент</button><button class="sm" id="cFile">Реквизиты из файла</button><button class="sm ghost" id="cCrm">Подтянуть из CRM</button><button class="sm ghost" id="cDup">Объединить дубли</button><button class="sm ghost" id="cX">Закрыть</button><span class="hint">Всего: ${(ip.cpty||[]).length}</span></div>
+   ${cpListHtml(ip,L,q)}</div></div>`;
+  {const L0=ip.cpty||[];let h=L0.length;for(let i=0;i<L0.length;i++){const s=L0[i].name||'';h=(h*31+s.length+(s.charCodeAt(0)||0)+(s.charCodeAt(s.length-1)||0)*7)|0}const key=h+'|'+L0.length,cb=$('#cDup');window._dupC=window._dupC||{};
+  if(window._dupC.k===key){if(window._dupC.n&&cb)cb.textContent='Объединить дубли ('+window._dupC.n+')'}
+  else{clearTimeout(window._dupT);window._dupT=setTimeout(()=>{try{if(!document.getElementById('cDup'))return;const n=cpDupGroups(ip).length;window._dupC={k:key,n};const b=$('#cDup');if(b&&n)b.textContent='Объединить дубли ('+n+')'}catch(e){}},1500)}}$('#cX').onclick=()=>{root.innerHTML=''};$('#cAdd').onclick=()=>cptyForm();$('#cDup').onclick=()=>cpDupOpen();$('#cFile').onclick=()=>cpReqFile();$('#cCrm').onclick=()=>{const C=crmOf(ip),k=(C.cl||[]).filter(c=>!cpFind(ip,c.name)).length;if(!k){toast('Все клиенты CRM уже есть в контрагентах');return}askP('Добавить в контрагенты клиентов CRM, которых там ещё нет: '+k+'. Люди попадут в папку «Физические лица», организации и ИП в «Покупатели». Дубли не создаются.',{yes:'Добавить',no:'Отмена'}).then(y=>{if(!y)return;const n=cpFromCrm(ip,true);save();toast('Добавлено контрагентов: '+n);cptyOpen(q)})};
   $('#cq').oninput=e=>{const v=e.target.value;clearTimeout(window._cqT);window._cqT=setTimeout(()=>{cptyOpen(v);const i=$('#cq');i.focus();i.setSelectionRange(v.length,v.length)},250)};
-  root.onclick=e=>{const t=e.target;if(t.dataset&&t.dataset.v)cptyCard(t.dataset.v);else if(t.dataset&&t.dataset.e)cptyForm((ip.cpty||[]).find(x=>x.id===t.dataset.e));else if(t.dataset&&t.dataset.d){const c=(ip.cpty||[]).find(x=>x.id===t.dataset.d);if(c&&confirm('Удалить контрагента «'+c.name+'»? В журнале и документах он останется, в списке больше не появится.')){ip.cptyIgnore=(ip.cptyIgnore||[]).concat(dtKey(c.name));ip.cpty=ip.cpty.filter(x=>x.id!==c.id);save();cptyOpen(q)}}};
+  root.onclick=e=>{try{const t=e.target,C=s=>t.closest&&t.closest(s),cf=C('[data-cpf]'),cm=C('[data-cm]'),vw=C('[data-vmode]'),bv=C('[data-cpv]'),be=C('[data-cpe]'),bd=C('[data-cpd]');if(vw){vwSet(vw.dataset.vmode);window._cpN=40;cptyOpen(q);return}if(cf){window._cpF=cf.dataset.cpf;window._cpN=40;cptyOpen(q);return}if(cm){const s=root.querySelector('.cplist'),y=s?s.scrollTop:0;window._cpN=(window._cpN||40)+40;cptyOpen(q);const s2=root.querySelector('.cplist');if(s2)s2.scrollTop=y;return}
+    if(bv){cptyCard(bv.dataset.cpv);return}
+    if(be){const c=(ip.cpty||[]).find(x=>x.id===be.dataset.cpe);if(c)cptyForm(c);else toast('Контрагент не найден, обновите список');return}
+    if(bd){const c=(ip.cpty||[]).find(x=>x.id===bd.dataset.cpd);if(!c){toast('Контрагент не найден, обновите список');return}if(confirm('Удалить контрагента «'+c.name+'»? В журнале и документах он останется, в списке больше не появится.')){ip.cptyIgnore=(ip.cptyIgnore||[]).concat(dtKey(c.name));ip.cpty=ip.cpty.filter(x=>x.id!==c.id);save();cptyOpen(q)}}}catch(er){console.error(er);toast('Не получилось: '+String(er&&er.message||er).slice(0,120),6000)}};
 }
+/* исправление: «ИП …» не должен быть юрлицом (в JS \b не работает с кириллицей) */
+const _cptyScanFix=cptyScan;cptyScan=function(ip){try{(ip.cpty||[]).forEach(c=>{if(c.type==='ul'&&/^(ип(?![а-яё])|индивидуальн)/i.test(String(c.name||'').trim()))c.type='ip'})}catch(e){}return _cptyScanFix.apply(this,arguments)};
 
-/* ===== Дубли: контрагенты и клиенты CRM ===== */
+/* ускорение: на больших базах (1000+ контрагентов, тысячи операций) пересканирование при каждом открытии списка занимало 10-15 секунд и «вешало» страницу */
+const _ownMemo=new Map();function _ownOf(n){n=String(n);let r=_ownMemo.get(n);if(!r){r=[dtKey(cpClean(n)),cpUnp(n)];if(_ownMemo.size>60000)_ownMemo.clear();_ownMemo.set(n,r)}return r}
+cpOwns=function(c,n){if(!n)return false;const k=_ownOf(c.name)[0],o=_ownOf(n);return o[0]===k||!!(c.unp&&o[1]===c.unp)||(!!o[0]&&(c.aliases||[]).some(x=>dtKey(x)===o[0]))};
+const _scanFast=cptyScan;cptyScan=function(ip){
+  if(!ip)return;let h=0;const ops=ip.ops||[];for(let i=0;i<ops.length;i++){const o=ops[i],s=String(o.party||'');h=(h*31+s.length+(s.charCodeAt(0)||0)*3+(s.charCodeAt(s.length-1)||0)*5+String(o.text||'').length+(o.derived?1:0))|0}
+  const sig=[ip.id,ops.length,(ip.docs||[]).length,(ip.settle||[]).length,(ip.cptyIgnore||[]).length,(ip.cpty||[]).length,h].join('|');
+  if(window._scanSig===sig)return;
+  const orig=cpUpsert,memo=new Map();cpUpsert=function(ip2,raw,hint,role){const k=raw+'\u0001'+hint+'\u0001'+role;if(memo.has(k))return memo.get(k);const r=orig.apply(this,arguments);if(r)memo.set(k,r);return r};
+  try{const r=_scanFast.apply(this,arguments);window._scanSig=[ip.id,ops.length,(ip.docs||[]).length,(ip.settle||[]).length,(ip.cptyIgnore||[]).length,(ip.cpty||[]).length,h].join('|');return r}finally{cpUpsert=orig}};
+
+/* страховка: если окно контрагентов или карточка упали с ошибкой, показываем понятное сообщение с текстом ошибки и кнопкой, а не «мёртвый» список */
+function cpFail(name,e){try{console.error(e);const r=$('#modalRoot');r.onclick=null;const msg=String(e&&e.message||e).slice(0,300),st=String(e&&e.stack||'').split('\n').slice(1,4).join(' | ').slice(0,400);
+  r.innerHTML='<div class="modal"><div class="sheet cpsheet" style="max-width:560px"><h2>'+name+': ошибка</h2><div class="warn amber">Окно не смогло открыться. Сфотографируйте этот текст и пришлите автору приложения.</div><div class="card" style="padding:8px 10px;word-break:break-word;font-size:12.5px"><b>'+esc(msg)+'</b><br><span style="color:#777">'+esc(st)+'</span></div><div class="row" style="margin-top:10px"><button class="sm" id="cfX">Закрыть</button><button class="sm ghost" id="cfL">К списку контрагентов</button></div></div></div>';
+  $('#cfX').onclick=()=>{r.innerHTML=''};$('#cfL').onclick=()=>{try{cptyOpen()}catch(x){r.innerHTML=''}}}catch(x){}}
+const _scanT=cptyScan;cptyScan=function(){const t0=performance.now();try{return _scanT.apply(this,arguments)}finally{window._lastScanMs=Math.round(performance.now()-t0)}};
+const _coSafe=cptyOpen;cptyOpen=function(){const r=$('#modalRoot');if(r)r.onclick=null;const t0=performance.now();window._lastScanMs=0;try{const v=_coSafe.apply(this,arguments);const ms=Math.round(performance.now()-t0);window._lastOpenMs=ms;
+  if(ms>350){const h=document.querySelector('#modalRoot .row.whact .hint');if(h)h.insertAdjacentHTML('afterend','<span class="hint" style="color:#a15c00">Открытие списка: '+(ms/1000).toFixed(1).replace('.',',')+' с (из них проверка журнала: '+((window._lastScanMs||0)/1000).toFixed(1).replace('.',',')+' с)</span>')}
+  return v}catch(e){cpFail('Контрагенты',e)}};
+const _ccSafe=cptyCard;cptyCard=function(){const r=$('#modalRoot');if(r)r.onclick=null;try{return _ccSafe.apply(this,arguments)}catch(e){cpFail('Карточка контрагента',e)}};/* ===== Дубли: контрагенты и клиенты CRM ===== */
 const _nwc=new Map();function nmWords(n){n=String(n||'');let r=_nwc.get(n);if(!r){r=stNorm(cpClean(n)).replace(/Ё/g,'Е').split(' ').filter(w=>w.length>=2);if(_nwc.size>20000)_nwc.clear();_nwc.set(n,r)}return r}
 function nmKey(n){return nmWords(n).sort().join(' ')}
 function cpToks(n){return stNorm(cpClean(n)).replace(/Ё/g,'Е').split(' ').filter(Boolean)}
@@ -9569,7 +9631,7 @@ function cptyCard(id){
   const ip=cur(),c=(ip.cpty||[]).find(x=>x.id===id);if(!c){cptyOpen();return}
   const root=$('#modalRoot'),H=cpHistory(ip,c),row=(l,v)=>v?`<div class="pfn"><span>${l}</span><b style="text-align:right;max-width:62%;word-break:break-word">${esc(v)}</b></div>`:'';
   const inn=H.filter(x=>/Получено|Реализация|Доход/.test(x.t)).reduce((a,x)=>a+(+x.s||0),0),out=H.filter(x=>/Оплачено|Расход|Накладная/.test(x.t)).reduce((a,x)=>a+(+x.s||0),0);
-  root.innerHTML=`<div class="modal"><div class="sheet" style="max-width:640px"><h2>${c.code?'№'+c.code+' · ':''}${esc(c.name)}</h2>
+  root.innerHTML=`<div class="modal"><div class="sheet ccsheet" style="max-width:640px"><h2>${c.code?'№'+c.code+' · ':''}${esc(c.name)}</h2>
    <div class="card" style="padding:8px 10px;margin:6px 0">${row('Вид',CP_TY[c.type]||'')}${row('Телефон',c.phone)}${row('Почта',c.email)}${c.hide?row('В документах','Физическое лицо (ФИО скрыто)'):''}${c.crm?'<div class="pfn"><span>CRM</span><button class="link" data-cc="crm">Открыть клиента</button></div>':''}${row('УНП',c.unp)}${row('Адрес',c.addr)}${row('Расчётный счёт',c.iban)}${row('Банк',[c.bank,c.bic].filter(Boolean).join(', БИК '))}${row('Договор (основной)',c.contract)}${(c.cts&&c.cts.length>1)||(c.cts&&c.cts.length&&c.cts[0].txt!==c.contract)?'<div class="hint" style="margin:4px 0">Договоры, встречавшиеся в выписках и документах (подставляются при составлении актов):<br>'+c.cts.slice().sort((a,b)=>String(b.last).localeCompare(String(a.last))).map(x=>esc(x.txt)+' <span style="color:#777">(последний раз '+dmy(x.last)+')</span>').join('<br>')+'</div>':''}${row('Действует от контрагента',[c.spos,c.sfio].filter(Boolean).join(' ')||c.signer)+row('Основание',[c.sbasis,c.sbasisNo].filter(Boolean).join(' '))}${row('Услуги, товары',c.svc)}${row('Примечание',c.note)}${row('Иные сведения',c.extra)}${c.contractUrl?`<div class="pfn"><span>Договор (файл, ссылка)</span><a href="${esc(c.contractUrl)}" target="_blank" rel="noopener" style="max-width:62%;word-break:break-all">Открыть договор</a></div>`:''}
    ${!(c.unp||c.iban||c.contract||c.addr)?'<div class="hint">Реквизиты не заполнены. Нажмите «Изменить», чтобы внести УНП, расчётный счёт, договор и другое: данные подставятся в акты и накладные.</div>':''}</div>
    <div class="row" style="gap:8px;flex-wrap:wrap"><button class="sm" data-cc="edit">Изменить</button><button class="sm ghost" data-cc="merge">Объединить с дублем</button><button class="sm ghost" style="color:#b00020;border-color:#b00020" data-cc="del">Удалить</button>${window.__cpReturn?'<button class="sm" data-cc="ret">Вернуться к документу</button>':'<button class="sm ghost" data-cc="back">К списку</button>'}</div>
@@ -9763,17 +9825,34 @@ function svcScan(ip){
   const have=new Set(ip.svc.map(x=>dtKey(x.name)));
   [P,Sd].forEach(M=>M.forEach((v,k)=>{if(have.has(k))return;have.add(k);ip.svc.push({id:uid(),name:v.name,fold:v.fold,unit:v.unit||nomUnit(v.fold),price:v.price,auto:true})}));
   svcCodes(ip)}
+
+const NC={'Реализация':CPC['Покупатели'],'Услуги поставщиков':CPC['Поставщики'],'Товары':CPC['Физические лица'],'Материалы':CPC['Прочие'],'Основные средства':CPC['Сотрудники'],'Нематериальные активы':['#fbeaf0','#72243e','#f4c0d1'],'Готовая продукция':['#e1f5ee','#085041','#9fe1cb']};
+function svcListHtml(ip,L,q){
+  const V=vwGet(),cnt={};NOM_F.forEach(k=>cnt[k]=0);L.forEach(x=>{cnt[svcFoldOf(x)]++});
+  let F=window._svF||'Все';if(F!=='Все'&&!NOM_F.includes(F))F='Все';
+  const chips=['Все'].concat(NOM_F.filter(g=>cnt[g]||g===F)).map(g=>`<button type="button" class="cpch${g===F?' on':''}" data-svf="${esc(g)}">${esc(g)}<i>${g==='Все'?L.length:cnt[g]}</i></button>`).join('');
+  const A=L.filter(x=>F==='Все'||svcFoldOf(x)===F),N=window._svN||40,S=A.slice(0,N);
+  const card=(x,fl)=>{const g=svcFoldOf(x),k=NC[g]||CPC['Прочие'],pr=x.price!==''&&x.price!=null?fmt(num(x.price)||0)+' руб.':'';
+    const meta=[x.grp,x.unit||'усл.',x.note].filter(Boolean).map(esc).join(' · ');
+    const bt=`<div class="cps"><button class="link" data-sve="${x.id}">Открыть</button></div>`;
+    const av=`<div class="cpa" style="--a:${k[0]};--f:${k[1]};--e:${k[2]}">${esc(cpIni(x.name))}</div>`;
+    const nm=`<b><span class="cpn">№${x.code}</span> ${esc(x.name)}</b>`;
+    return V==='l'||fl?`<div class="cpr" data-sve="${x.id}" style="--a:${k[0]};--f:${k[1]};--e:${k[2]}">${av}<div class="cpm" data-sve="${x.id}" style="cursor:pointer">${nm}<small>${[meta,esc(g)].filter(Boolean).join(' · ')}</small></div>${pr?`<span class="cpp">${pr}</span>`:''}${bt}</div>`
+     :`<div class="cpc" data-sve="${x.id}" style="--a:${k[0]};--f:${k[1]};--e:${k[2]}">${av}<div class="cpm" data-sve="${x.id}" style="cursor:pointer">${nm}<small>${meta}</small><span><span class="cpb" style="--a:${k[0]};--f:${k[1]};--e:${k[2]}">${esc(g)}</span>${pr?` <span class="cpp">${pr}</span>`:''}</span></div>${bt}</div>`};
+  if(V==='f'){const G=NOM_F.map(g=>[g,L.filter(x=>svcFoldOf(x)===g)]).filter(([g,A])=>A.length||F==='Все'||g===F);return `<div class="cpchs">${vwTog()}</div><div class="cplist">`+vwFold(G,g=>NC[g]||CPC['Прочие'],x=>card(x,1),!!q)+`</div>`}
+  if(V==='r'&&S.length)return `<div class="cpchs">${chips}${vwTog()}</div><div class="cplist">`+vwTable([['№','n'],['Название',''],['Папка',''],['Группа',''],['Ед.',''],['Цена, руб.','n'],['','']],S.map(x=>{const g=svcFoldOf(x),k=NC[g]||CPC['Прочие'];return {s:k[1],a:'data-sve="'+x.id+'"',c:[x.code||'',`<b>${esc(x.name)}</b>`,esc(g),esc(x.grp||''),esc(x.unit||'усл.'),x.price!==''&&x.price!=null?fmt(num(x.price)||0):'',`<div class="cps"><button class="link" data-sve="${x.id}">Открыть</button></div>`]}}))+(A.length>N?`<div class="row whact" style="justify-content:center;margin:10px 0 2px"><button type="button" class="sm" data-sm="1">Показать ещё (осталось ${A.length-N})</button></div>`:'')+`</div>`;
+  return `<div class="cpchs">${chips}${vwTog()}</div><div class="cplist">`+(S.length?(V==='l'?`<div class="cpfl">${S.map(x=>card(x)).join('')}</div>`:`<div class="cpg">${S.map(x=>card(x)).join('')}</div>`):`<div class="hint">${q?'Ничего не найдено.':'Здесь пока пусто.'}</div>`)+(A.length>N?`<div class="row whact" style="justify-content:center;margin:10px 0 2px"><button type="button" class="sm" data-sm="1">Показать ещё (осталось ${A.length-N})</button></div>`:'')+`</div>`}
 function svcOpen(q){
   const ip=cur();svcScan(ip);const root=$('#modalRoot');q=q||'';const ql=q.toLowerCase();
-  const L=(ip.svc||[]).filter(x=>!q||(x.name+' '+(x.code||'')+' '+(x.grp||'')).toLowerCase().includes(ql)).sort((a,b)=>(+a.code||0)-(+b.code||0));
+  const L=(ip.svc||[]).filter(x=>svMatch(x,q)).sort((a,b)=>(+a.code||0)-(+b.code||0));
   const G={};NOM_F.forEach(k=>G[k]=[]);L.forEach(x=>{G[svcFoldOf(x)].push(x)});
   const row=x=>`<div class="op"><div class="l"><div class="t"><span style="color:#777">№${x.code}</span> ${esc(x.name)}</div><small>${x.grp?esc(x.grp)+' · ':''}${esc(x.unit||'усл.')}${x.price!==''&&x.price!=null?' · '+fmt(num(x.price)||0)+' руб.':''}${x.note?' · '+esc(x.note):''}</small></div><div class="s"><button class="link" data-e="${x.id}">Изменить</button><button class="link" data-d="${x.id}">Удалить</button></div></div>`;
-  root.innerHTML=`<div class="modal"><div class="sheet" style="max-width:640px"><h2>Номенклатура</h2><div class="hint">Справочник того, что вы оказываете и покупаете. У каждой позиции свой номер и группа. Пополняется сам из составленных актов; дубли с одинаковым названием не создаются. Текст из справочника подставляется в акты.</div>
-   <input id="sq" placeholder="Поиск по названию, номеру или группе" value="${esc(q)}" style="margin:8px 0"><div class="row"><button class="sm" id="sAdd">+ Позиция</button><button class="sm ghost" id="sX">Закрыть</button><span class="hint">Всего: ${(ip.svc||[]).length}</span></div>
-   <div style="max-height:56vh;overflow:auto">${NOM_F.map(g=>`<details ${q||G[g].length&&NOM_F.filter(k=>G[k].length).length<=2?'open':''} class="card" style="padding:6px 10px;margin:6px 0"><summary style="cursor:pointer"><b>Папка «${esc(g)}»</b> <span style="color:#777">(${G[g].length})</span></summary>${G[g].map(row).join('')||'<div class="hint">В папке пока пусто.</div>'}<div style="margin:6px 0"><button class="sm ghost" data-nf="${esc(g)}">+ Создать в папке «${esc(g)}»</button></div></details>`).join('')}</div></div></div>`;
-  $('#sX').onclick=()=>{root.innerHTML=''};$('#sAdd').onclick=()=>svcForm();
+  root.innerHTML=`<div class="modal"><div class="sheet cpsheet" style="max-width:760px"><h2>Номенклатура</h2><div class="hint">Справочник того, что вы оказываете и покупаете. У каждой позиции свой номер и группа. Пополняется сам из составленных актов; дубли с одинаковым названием не создаются. Текст из справочника подставляется в акты.</div>
+   <input id="sq" placeholder="Поиск по названию, номеру, группе, единице, цене, примечанию" value="${esc(q)}" style="margin:8px 0"><div class="row whact"><button class="sm" id="sAdd">+ Позиция</button><button class="sm ghost" id="sX">Закрыть</button><span class="hint">Всего: ${(ip.svc||[]).length}</span></div>
+   ${svcListHtml(ip,L,q)}</div></div>`;
+  $('#sX').onclick=()=>{root.innerHTML=''};$('#sAdd').onclick=()=>svcForm(null,window._svF&&window._svF!=='Все'?window._svF:undefined);
   $('#sq').oninput=e=>{const v=e.target.value;clearTimeout(window._sqT);window._sqT=setTimeout(()=>{svcOpen(v);const i=$('#sq');i.focus();i.setSelectionRange(v.length,v.length)},250)};
-  root.onclick=e=>{const t=e.target;if(t.dataset&&t.dataset.nf)svcForm(null,t.dataset.nf);else if(t.dataset&&t.dataset.e)svcForm((ip.svc||[]).find(x=>x.id===t.dataset.e));else if(t.dataset&&t.dataset.d){const x=(ip.svc||[]).find(y=>y.id===t.dataset.d);if(x&&confirm('Удалить «'+x.name+'» из справочника? В составленных документах она останется.')){ip.svcIgnore=(ip.svcIgnore||[]).concat(dtKey(x.name));ip.svc=ip.svc.filter(y=>y.id!==x.id);save();svcOpen(q)}}};
+  root.onclick=e=>{try{const t=e.target,sf=t.closest&&t.closest('[data-svf]'),sm=t.closest&&t.closest('[data-sm]'),vw=t.closest&&t.closest('[data-vmode]');if(vw){vwSet(vw.dataset.vmode);window._svN=40;svcOpen(q);return}if(sf){window._svF=sf.dataset.svf;window._svN=40;svcOpen(q);return}if(sm){const s=root.querySelector('.cplist'),y=s?s.scrollTop:0;window._svN=(window._svN||40)+40;svcOpen(q);const s2=root.querySelector('.cplist');if(s2)s2.scrollTop=y;return}const be=t.closest&&t.closest('[data-sve]'),bd=t.closest&&t.closest('[data-svd]');if(t.dataset&&t.dataset.nf)svcForm(null,t.dataset.nf);else if(be){const x=(ip.svc||[]).find(y=>y.id===be.dataset.sve);if(x)svcForm(x);else toast('Позиция не найдена, обновите список')}else if(bd){const x=(ip.svc||[]).find(y=>y.id===bd.dataset.svd);if(!x){toast('Позиция не найдена, обновите список');return}if(confirm('Удалить «'+x.name+'» из справочника? В составленных документах она останется.')){ip.svcIgnore=(ip.svcIgnore||[]).concat(dtKey(x.name));ip.svc=ip.svc.filter(y=>y.id!==x.id);save();svcOpen(q)}}}catch(er){console.error(er);toast('Не получилось: '+String(er&&er.message||er).slice(0,120),6000)}};
 }
 function svcForm(x,fold0,after){
   const ip=cur(),root=$('#modalRoot'),isNew=!x;x=x||{unit:nomUnit(fold0||'Реализация'),fold:fold0||'Реализация'};const fo=svcFoldOf(x);
@@ -9785,9 +9864,10 @@ function svcForm(x,fold0,after){
    <label>Код товара по СК 33.004-2020 (если пусто, определится по названию)</label><input name="scode" list="skDL" value="${esc(x.scode||'')}" placeholder="например, 47.24.11.100"><datalist id="skDL">${Object.keys(SK_BY).filter(c=>c.length>=6).sort().map(c=>`<option value="${c}">${esc(SK_BY[c])}</option>`).join('')}</datalist><div class="hint" id="skH"></div>
    <div class="two"><div><label>Единица измерения</label><input name="unit" list="unitsDL" value="${esc(x.unit||'усл.')}"></div><div><label>Цена за единицу, руб.</label><input name="price" inputmode="decimal" placeholder="0,00 руб." value="${x.price!==''&&x.price!=null?esc(String(x.price).replace('.',',')):''}"></div></div>
    <label>Примечание</label><input name="note" value="${esc(x.note||'')}">
-   <div class="row" style="margin-top:12px"><button class="red" type="submit">Сохранить</button><button type="button" class="ghost" id="sc">Отмена</button></div></form></div>`;
+   <div class="row" style="margin-top:12px"><button class="red" type="submit">Сохранить</button><button type="button" class="ghost" id="sc">Отмена</button>${x.id?'<button type="button" class="ghost dng" id="sDel" style="margin-left:auto">Удалить</button>':''}</div></form></div>`;
   {const F=$('#sf'),H=()=>{const e=skFind(F.name.value);$('#skH').textContent=F.scode.value.trim()?(SK_BY[F.scode.value.trim()]?'Код: '+SK_BY[F.scode.value.trim()]:'Такого кода нет в списке приложения: проверьте по классификатору'):(e?'Определён по названию: '+e.code+' '+(SK_BY[e.code]||e.name):(skSuggest(F.name.value)?'Код не определился. Возможно: '+skSuggest(F.name.value)+' '+SK_BY[skSuggest(F.name.value)]:'По названию код не определился: выберите из списка'))};F.name.addEventListener('input',H);F.scode.addEventListener('input',H);H()}
   $('#sc').onclick=()=>after?after(null):svcOpen();
+  if($('#sDel'))$('#sDel').onclick=()=>{if(confirm('Удалить «'+x.name+'» из справочника? В составленных документах она останется.')){ip.svcIgnore=(ip.svcIgnore||[]).concat(dtKey(x.name));ip.svc=ip.svc.filter(y=>y.id!==x.id);save();after?after(null):svcOpen()}};
   $('#sf').onsubmit=e=>{e.preventDefault();const f=e.target,n=f.name.value.trim();if(!n)return;
     const dup=(ip.svc||[]).find(y=>y.id!==x.id&&dtKey(y.name)===dtKey(n));if(dup){toast('Такая позиция уже есть: №'+dup.code+' «'+dup.name+'»',5000);return}
     const rec=Object.assign(x,{name:n,fold:f.fold.value,grp:f.grp.value.trim(),unit:f.unit.value.trim()||'усл.',price:f.price.value.trim(),tg:f.tg.value,scode:f.scode.value.trim(),note:f.note.value.trim(),auto:false});
@@ -14508,15 +14588,15 @@ function skuOpen(){
   const root=$('#modalRoot'),q=(ui.skq||'').toLowerCase(),L=skuList(ip).slice().sort((a,b)=>a.name.localeCompare(b.name,'ru')).filter(x=>!q||(x.name+' '+x.art+' '+(x.barcode||'')+' '+(x.posCode||'')).toLowerCase().includes(q));
   const bal={};bwRows(ip,'goods',todayISO()).forEach(r=>{const k=dtKey(r.name);bal[k]=r6((bal[k]||0)+r.bal)});
   const n=ui.skn||30;
-  root.innerHTML=`<div class="modal"><div class="sheet" style="max-width:640px"><h2>Номенклатура и артикулы</h2><div class="hint">Штрихкод берётся из накладной поставщика (столбец «Штрихкод»), если он там есть. Если нет, программа создаёт внутренний штрихкод (формат EAN-13, начинается с 200) и артикул. Заведите товар в кассовой программе с этим штрихкодом, и тогда отчёты кассы будут сопоставляться с учётом без вопросов. Если в кассе у товара другой код, впишите его в поле «Код в кассе».</div>
+  root.innerHTML=`<div class="modal"><div class="sheet cpsheet" style="max-width:760px"><h2>Номенклатура и артикулы</h2><div class="hint">Штрихкод берётся из накладной поставщика (столбец «Штрихкод»), если он там есть. Если нет, программа создаёт внутренний штрихкод (формат EAN-13, начинается с 200) и артикул. Заведите товар в кассовой программе с этим штрихкодом, и тогда отчёты кассы будут сопоставляться с учётом без вопросов. Если в кассе у товара другой код, впишите его в поле «Код в кассе».</div>
   <input id="skq" placeholder="Поиск по названию, артикулу, штрихкоду" value="${esc(ui.skq||'')}" style="margin:8px 0">
-  ${L.slice(0,n).map(x=>`<div class="op"><div class="l"><div class="t">${esc(x.name)}</div><small>Артикул ${esc(x.art)}${x.barcode?' · штрихкод '+esc(x.barcode)+(x.bcAuto?' (создан программой)':''):''}${x.posCode?' · код в кассе '+esc(x.posCode):''} · остаток ${fq(bal[dtKey(x.name)]||0)}${x.kind==='fp'?' · своя продукция':''}</small></div><div class="s"><button class="link" data-sk="${x.id}">Изменить</button></div></div>`).join('')||'<div class="hint">Товаров пока нет.</div>'}
-  ${L.length>n?`<div class="row"><button class="sm ghost" id="skM">Показать ещё (${L.length-n})</button></div>`:''}
-  <div class="row" style="margin-top:12px"><button class="ghost" id="skX">Закрыть</button></div></div></div>`;
+  <div class="cpchs">${vwTog(1)}</div><div class="cplist">${(()=>{const V=vwJ(),k=CPC['Физические лица'];const c=x=>{const meta=['Артикул '+esc(x.art),x.barcode?'штрихкод '+esc(x.barcode)+(x.bcAuto?' (создан программой)':''):'',x.posCode?'код в кассе '+esc(x.posCode):'','остаток '+fq(bal[dtKey(x.name)]||0),x.kind==='fp'?'своя продукция':''].filter(Boolean).join(' · ');const av=`<div class="cpa" style="--a:${k[0]};--f:${k[1]};--e:${k[2]}">${esc(cpIni(x.name))}</div>`,bt=`<div class="cps"><button class="link" data-sk="${x.id}">Изменить</button></div>`;return V==='l'?`<div class="cpr">${av}<div class="cpm"><b>${esc(x.name)}</b><small>${meta}</small></div>${bt}</div>`:`<div class="cpc">${av}<div class="cpm"><b>${esc(x.name)}</b><small>${meta}</small></div>${bt}</div>`};const S=L.slice(0,n);if(V==='r'&&S.length)return vwTable([['Название',''],['Артикул',''],['Штрихкод',''],['Код в кассе',''],['Остаток','n'],['','']],S.map(x=>({s:k[1],c:[`<b>${esc(x.name)}</b>`,esc(x.art),esc(x.barcode||''),esc(x.posCode||''),fq(bal[dtKey(x.name)]||0),`<div class="cps"><button class="link" data-sk="${x.id}">Изменить</button></div>`]})));return S.length?(V==='l'?`<div class="cpfl">${S.map(c).join('')}</div>`:`<div class="cpg">${S.map(c).join('')}</div>`):'<div class="hint">Товаров пока нет.</div>'})()}</div>
+  ${L.length>n?`<div class="row whact"><button class="sm" id="skM">Показать ещё (${L.length-n})</button></div>`:''}
+  <div class="row whact" style="margin-top:12px"><button class="sm" id="skX">Закрыть</button></div></div></div>`;
   $('#skX').onclick=()=>{root.innerHTML=''};
   const m=$('#skM');if(m)m.onclick=()=>{ui.skn=n+30;skuOpen()};
   $('#skq').onchange=e=>{ui.skq=e.target.value.trim();ui.skn=30;skuOpen();const i=$('#skq');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length)}};
-  root.onclick=e=>{const id=e.target.dataset&&e.target.dataset.sk;if(!id)return;root.onclick=null;const x=skuList(ip).find(y=>y.id===id);if(!x)return;
+  root.onclick=e=>{const vb=e.target.closest&&e.target.closest('[data-vmode]');if(vb){vwSet(vb.dataset.vmode);skuOpen();return}const id=e.target.dataset&&e.target.dataset.sk;if(!id)return;root.onclick=null;const x=skuList(ip).find(y=>y.id===id);if(!x)return;
     miniForm('Товар: '+x.name,[{n:'art',l:'Артикул',v:x.art},{n:'barcode',l:'Штрихкод (изменение отключит пометку «создан программой»)',v:x.barcode||''},{n:'posCode',l:'Код (артикул) в кассовой программе',v:x.posCode||''}],o=>{
       if(!o.art){toast('Артикул не может быть пустым');return false}
       if(skuList(ip).some(y=>y.id!==x.id&&String(y.art).toLowerCase()===o.art.toLowerCase())){toast('Такой артикул уже есть у другого товара',5000);return false}
@@ -17652,15 +17732,15 @@ function docNewOpen(){
   const q=$('#dnq');q.oninput=()=>{const v=q.value.trim().toLowerCase();root.querySelectorAll('.dng').forEach(c=>{let any=false;c.querySelectorAll('button[data-n]').forEach(b=>{const m=!v||b.dataset.n.includes(v);b.style.display=m?'':'none';if(m)any=true});c.style.display=any?'':'none'})}}
 function eduBlock(){
   const ip=cur();if(!eduOn(ip))return '';
-  const C=crmOf(ip),cl=(C.cl||[]).slice().sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));
-  const cp=(ip.cpty||[]).filter(x=>x.name&&!cl.some(c=>dtKey(c.name)===dtKey(x.name))).sort((a,b)=>String(a.name).localeCompare(String(b.name)));
+  const C=crmOf(ip);
   const B=(k,t)=>`<button class="sm" data-act="edu-d" data-k="${k}">${esc(t)}</button>`,sv=window.__eduSel||'';
   const H=t=>`<div style="font-weight:700;margin:12px 0 4px;color:#7a5a00">${t}</div>`;
   return `<details class="card cfold edublk" style="margin-bottom:12px"><summary><span class="edui">★</span><span class="edut"><span class="cft">Образовательная деятельность</span><small>Модуль для слушателей: договоры, счета, акты, приказы</small></span><span class="edug">Открыть</span></summary>
   ${H('1. Начало работы со слушателем: договоры и счета')}
   <div class="hint" style="font-size:13px;margin:4px 0">Выберите слушателя или плательщика из списка либо добавьте нового. Публичный договор слушателя не требует.</div>
   <label style="margin-top:6px">Слушатель или контрагент</label>
-  <select id="eduCl" onchange="window.__eduSel=this.value"><option value="">— выберите слушателя или контрагента —</option>${cl.length?`<optgroup label="Клиенты CRM">${cl.map(c=>`<option value="c:${c.id}" ${sv==='c:'+c.id?'selected':''}>${esc(c.name||'Клиент')}</option>`).join('')}</optgroup>`:''}${cp.length?`<optgroup label="Контрагенты">${cp.map(x=>`<option value="p:${x.id}" ${sv==='p:'+x.id?'selected':''}>${esc(x.name)}</option>`).join('')}</optgroup>`:''}</select>
+  ${(()=>{const sv=window.__eduSel||'';let nm='';if(sv){const id=sv.slice(2),o=sv[0]==='c'?(C.cl||[]).find(x=>x.id===id):(ip.cpty||[]).find(x=>x.id===id);nm=o?(o.name||''):''}
+  return `<div class="edupk"><input id="eduQ" autocomplete="off" placeholder="Начните вводить ФИО или название" value="${esc(nm)}"><div id="eduR" class="edur" hidden></div><select id="eduCl" style="display:none"><option value="">—</option>${sv&&nm?`<option value="${esc(sv)}" selected>${esc(nm)}</option>`:''}</select></div>`})()}
   <div class="row" style="flex-wrap:wrap;gap:6px;margin:6px 0"><button class="sm ghost" data-act="edu-newcl">+ Новый слушатель</button><button class="sm ghost" data-act="edu-cpcl">Выбрать из контрагентов</button>${B('pack','Пакет документов слушателя по порядку')}</div>
   <div class="hint" style="font-weight:600;margin-top:6px">Договор</div><div class="row" style="flex-wrap:wrap;gap:6px">${B('ip','Письменный договор (физлицо, организация или ИП, трёхсторонний)')}<button class="sm" data-act="ctr-pub" data-g="">Публичный договор (оферта): курс и тариф</button>${B('sch','Счёт на оплату')}</div>
   <div class="hint" style="font-weight:600;margin-top:8px">Зачисление</div><div class="row" style="flex-wrap:wrap;gap:6px"><button class="sm" data-act="ctr-pub" data-g="zay">Заявление о вступлении (зачислении): ссылка для слушателя</button>${B('ozn','Лист ознакомления')}${B('ord_in','Приказ о зачислении')}</div>
@@ -17670,6 +17750,20 @@ function eduBlock(){
   <div class="row" style="flex-wrap:wrap;gap:6px"><button class="sm" data-act="edu-act-new" data-m="edu">Акт об оказании образовательных услуг (одному или группе)</button>${B('akt_of','Акт к публичному договору (покупка на сайте)')}<button class="sm" data-act="edu-act-new" data-m="fiz">Акт об оказании услуг: список физических лиц</button></div>
   ${H('3. Документы школы (не по конкретному слушателю)')}
   <div class="row" style="flex-wrap:wrap;gap:6px">${B('gen','Общие приказы и акты (стоимость, контрольные цифры)')}${B('j','Книга учёта выдачи документов об обучении')}${B('loc','Локальные акты')}${B('cat','Курсы и тарифы (конструктор)')}${B('set','Реквизиты исполнителя')}</div></details>`}
+
+/* выбор слушателя или контрагента: поиск вместо огромного выпадающего списка (работает и на 10 000+ клиентов) */
+function eduSearch(q){const ip=cur(),C=crmOf(ip),cl=C.cl||[],cp=ip.cpty||[];const ws=srNorm(q).trim().split(/\s+/).filter(Boolean);if(!ws.length)return {n:-1,out:[]};
+  const ok=s=>{const h=srNorm(s);return ws.every(w=>h.includes(w))},out=[];let more=false;
+  for(const c of cl){if(ok(c.name||'')){if(out.length>=30){more=true;break}out.push(['c:'+c.id,c.name||'Клиент','клиент CRM'])}}
+  if(out.length<30){let keys=window._eduKeys;if(!keys||keys.n!==cl.length){keys={n:cl.length,s:new Set(cl.map(c=>dtKey(c.name)))};window._eduKeys=keys}
+    for(const x of cp){if(!x.name||keys.s.has(dtKey(x.name)))continue;if(ok(x.name)){if(out.length>=30){more=true;break}out.push(['p:'+x.id,x.name,'контрагент'])}}}
+  return {n:out.length,out,more}}
+document.addEventListener('input',e=>{const i=e.target;if(!i||i.id!=='eduQ')return;const R=document.getElementById('eduR');if(!R)return;const r=eduSearch(i.value);
+  R.innerHTML=r.n<0?'<div class="edun">Введите несколько букв ФИО или названия</div>':(r.n?r.out.map(o=>'<div data-edupick="'+esc(o[0])+'" data-nm="'+esc(o[1])+'">'+esc(o[1])+' <small>'+o[2]+'</small></div>').join('')+(r.more?'<div class="edun">Показаны первые 30. Уточните запрос.</div>':''):'<div class="edun">Ничего не найдено</div>');R.hidden=false});
+document.addEventListener('focusin',e=>{if(e.target&&e.target.id==='eduQ'){e.target.select&&e.target.select();const R=document.getElementById('eduR');if(R&&!R.innerHTML){R.innerHTML='<div class="edun">Введите несколько букв ФИО или названия</div>'}if(R)R.hidden=false}});
+document.addEventListener('click',e=>{const R=document.getElementById('eduR');if(!R)return;const p=e.target.closest&&e.target.closest('[data-edupick]');
+  if(p){const v=p.dataset.edupick,nm=p.dataset.nm,s=document.getElementById('eduCl'),q=document.getElementById('eduQ');if(s){s.innerHTML='<option value="">—</option><option value="'+esc(v)+'" selected>'+esc(nm)+'</option>';s.value=v}window.__eduSel=v;if(q)q.value=nm;R.hidden=true;R.innerHTML='';e.stopPropagation();return}
+  if(!(e.target.closest&&e.target.closest('.edupk')))R.hidden=true},true);
 function eduFromCp(ip,C,p){let c=C.cl.find(x=>dtKey(x.name)===dtKey(p.name));if(c)return c;
   c=Object.assign({id:uid(),created:todayISO(),log:[],deals:[],hist:[],st:'',type:p.type==='fl'?'person':'company',cons:{basis:'consent',date:'',form:'',mk:0,rev:'',notice:'',ev:''}},{name:p.name,phone:p.phone||'',email:p.email||'',tg:'',ig:'',src:'Из контрагентов',city:'',bd:'',unp:p.unp||'',resp:'',tags:[],note:''});
   C.cl.push(c);try{crmSetSt(C,c,C.cst[0],true)}catch(e){}return c}
@@ -36846,8 +36940,117 @@ body.th-t3 .qa a,body.th-t3 .mgc,body.th-t3 .card{border-color:rgba(124,58,237,.
 .whact{display:flex!important;flex-wrap:wrap;align-items:center;gap:8px!important}
 body #view .row.whact.whact.whact.whact.whact.whact>button:not(#_):not(#_),body #view .row.whact.whact.whact.whact.whact.whact>a:not(#_):not(#_),body #modalRoot .row.whact.whact.whact.whact.whact.whact>button:not(#_):not(#_){width:auto!important;height:auto!important;min-height:38px!important;max-height:none!important;flex:0 0 auto;padding:8px 18px!important;display:inline-flex!important;align-items:center;justify-content:center;gap:8px;text-align:center;white-space:normal;font-size:13.5px!important;line-height:1.2!important;font-weight:700!important;border-radius:12px!important;background:linear-gradient(180deg,#fffef8,#f6eed6)!important;color:#1b1503!important;border:1px solid #e6d9a8!important;box-shadow:0 2px 0 #e3d49a,0 4px 8px rgba(120,90,10,.12)!important;transition:transform .15s,box-shadow .15s}
 body #view .cx>button.red:not(.sm):not(#_),body #view .cx>button.sm:not(#_),body #view .cx>button.ghost:not(#_){justify-self:start!important;align-self:start!important;width:auto!important;min-width:0!important;padding-left:22px!important;padding-right:22px!important}
+body #modalRoot .cpsheet .cpchs{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 12px}
+body #modalRoot .cpsheet .cpch:not(#_):not(#_){display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 8px 6px 15px;border-radius:999px;font-size:13px;font-weight:700;background:linear-gradient(180deg,#fffef8,#f6eed6);color:#1b1503;border:1px solid #e6d9a8;box-shadow:0 2px 0 #e3d49a,0 4px 8px rgba(120,90,10,.12);cursor:pointer}
+body #modalRoot .cpsheet .cpch:not(#_):not(#_) i{font-style:normal;min-width:26px;padding:2px 8px;border-radius:999px;background:#fff;color:#6b5a1a;font-size:12px;text-align:center;box-shadow:inset 0 0 0 1px #e6d9a8}
+body #modalRoot .cpsheet .cpch.on:not(#_):not(#_){background:linear-gradient(180deg,#2a210a,#141004);color:#f5de8f;border-color:#141004;box-shadow:0 2px 0 #000,0 5px 10px rgba(20,16,4,.3)}
+body #modalRoot .cpsheet .cpch.on:not(#_):not(#_) i{background:#f5de8f;color:#1b1503;box-shadow:none}
+body.th-t2 #modalRoot .cpsheet .cpch.on:not(#_):not(#_){background:linear-gradient(180deg,#f6e08a,#d4af37);color:#1b1503;border-color:#b8921f}
+body.th-t3 #modalRoot .cpsheet .cpch.on:not(#_):not(#_){background:linear-gradient(180deg,#7c3fd0,#4a1d96);color:#fff;border-color:#3b1678}
+.cpsheet .vwt{margin-left:auto;display:inline-flex;gap:6px}
+.cpsheet .cpp{font-weight:800;color:#8a6d12;white-space:nowrap;font-size:13px}
+.cpsheet .cpr>.cpp{margin-left:auto}
+body #view .jvw .vwt{margin-left:auto}
+body #view .jvw .cpch:not(#_):not(#_){display:inline-flex;align-items:center;min-height:34px;padding:6px 16px;border-radius:999px;font-size:13px;font-weight:700;background:linear-gradient(180deg,#fffef8,#f6eed6);color:#1b1503;border:1px solid #e6d9a8;box-shadow:0 2px 0 #e3d49a,0 4px 8px rgba(120,90,10,.12);cursor:pointer}
+body #view .jvw .cpch.on:not(#_):not(#_){background:linear-gradient(180deg,#2a210a,#141004);color:#f5de8f;border-color:#141004;box-shadow:0 2px 0 #000,0 5px 10px rgba(20,16,4,.3)}
+body.th-t2 #view .jvw .cpch.on:not(#_):not(#_){background:linear-gradient(180deg,#f6e08a,#d4af37);color:#1b1503;border-color:#b8921f}
+body.th-t3 #view .jvw .cpch.on:not(#_):not(#_){background:linear-gradient(180deg,#7c3fd0,#4a1d96);color:#fff;border-color:#3b1678}
+body #view button.jon:not(#_):not(#_):not(#_):not(#_){background:linear-gradient(180deg,#2a210a,#141004)!important;color:#f5de8f!important;border:1px solid #141004!important;box-shadow:0 2px 0 #000,0 5px 10px rgba(20,16,4,.3)!important;width:auto!important;min-height:36px!important;padding:7px 16px!important;border-radius:12px!important;font-size:13.5px!important;font-weight:700!important}
+body.th-t2 #view button.jon:not(#_):not(#_):not(#_):not(#_){background:linear-gradient(180deg,#f6e08a,#d4af37)!important;color:#1b1503!important;border-color:#b8921f!important}
+body.th-t3 #view button.jon:not(#_):not(#_):not(#_):not(#_){background:linear-gradient(180deg,#7c3fd0,#4a1d96)!important;color:#fff!important;border-color:#3b1678!important}
+.jvw .jrows{display:flex;flex-direction:column;gap:8px;padding:6px 0 4px}
+.jvw .jrows .op{margin:0!important;border-radius:16px;box-shadow:0 3px 0 #eadfb4,0 8px 16px rgba(120,90,10,.08)}
+.jvw .op .s b{font-size:16px}
+.jvw .op .s button.link{padding:4px 12px!important;min-height:28px!important;border-radius:9px!important;font-size:12px!important;font-weight:700!important;text-decoration:none!important;background:linear-gradient(180deg,#fffef8,#f6eed6)!important;color:#1b1503!important;border:1px solid #e6d9a8!important;box-shadow:0 2px 0 #e3d49a!important}
+.jvw .op .s button.link[data-act=del]{background:#fff5f4!important;color:#a3150f!important;border-color:#e3a8a3!important;box-shadow:0 2px 0 #efc9c5!important}
+.jvw .op .s>.noprint{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;margin-top:6px}
+.jvw.jv-t .jrows{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:10px}
+.jvw.jv-t .jrows .op{flex-direction:column;justify-content:flex-start}
+.jvw.jv-t .jrows .op .s{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;border-top:1px dashed #eadfb4;padding-top:8px;text-align:left}
+.jvw.jv-t .jrows .op .s b{font-size:19px}
+.jvw.jv-l .jrows .op{align-items:center;padding:7px 12px}
+.jvw.jv-l .jrows .op small{font-size:11.5px}
+:is(.cpsheet,.jvw) .vwtb{overflow:auto;border:1px solid #e6d9a8;border-radius:14px;box-shadow:0 3px 0 #eadfb4;background:#fff}
+:is(.cpsheet,.jvw) .vwtb table{width:100%;border-collapse:collapse;min-width:560px}
+:is(.cpsheet,.jvw) .vwtb th{background:#1b1503;color:#f5de8f;font-weight:700;font-size:12px;text-align:left;padding:9px 10px;white-space:nowrap}
+:is(.cpsheet,.jvw) .vwtb td{padding:7px 10px;font-size:12.5px;color:#1b1503;vertical-align:middle;border-top:1px solid #f0e6bf}
+:is(.cpsheet,.jvw) .vwtb tr:nth-child(even) td{background:#fbf6e4}
+:is(.cpsheet,.jvw) .vwtb td:first-child{border-left:5px solid var(--s,#d4af37);color:#6b6650;font-weight:600}
+:is(.cpsheet,.jvw) .vwtb .n{text-align:right;white-space:nowrap}
+:is(.cpsheet,.jvw) .vwtb .cps{flex:none;border:0;padding:0;margin:0;justify-content:flex-end}
+body.th-t2 :is(.cpsheet,.jvw) .vwtb th{background:linear-gradient(180deg,#f6e08a,#d4af37);color:#1b1503}
+body.th-t3 :is(.cpsheet,.jvw) .vwtb th{background:#4a1d96;color:#fff}
+.jvw .vwtb table{min-width:760px}
+.jvw .vwtb .cps{flex-wrap:wrap;gap:4px}
+.cpsheet .cplist{max-height:54vh;overflow:auto;padding:0 2px 6px}
+.cpsheet .cpg{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.cpsheet .cpc{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start;padding:12px;border-radius:16px;background:#fff;border:1px solid #e6d9a8;box-shadow:0 3px 0 #eadfb4,0 8px 16px rgba(120,90,10,.1)}
+.cpsheet .cpa{width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;background:linear-gradient(180deg,#fff,var(--a));color:var(--f);border:1px solid var(--e);box-shadow:0 2px 0 var(--e),inset 0 1px 0 #fff}
+.cpsheet .cpm{flex:1 1 150px;min-width:0;display:flex;flex-direction:column;gap:3px}
+.cpsheet .cpm b{font-size:14.5px;line-height:1.25;color:#1b1503;word-break:break-word}
+.cpsheet .cpm small{font-size:12px;color:#6b6650}
+.cpsheet .cpn{color:#8a8266;font-weight:600}
+.cpsheet .cpb{align-self:flex-start;margin-top:3px;padding:2px 10px;border-radius:999px;font-size:11.5px;font-weight:700;background:var(--a);color:var(--f);border:1px solid var(--e)}
+.cpsheet .cps{flex:1 0 100%;display:flex;gap:6px;border-top:1px dashed #eadfb4;padding-top:8px;margin-top:2px}
+.cpsheet .cpr .cps{flex:none;border:0;padding:0;margin:0;align-items:center}
+:is(.cpsheet,.jvw) .cps button.link{padding:4px 12px!important;min-height:28px!important;border-radius:9px!important;font-size:12px!important;font-weight:700!important;text-decoration:none!important;background:linear-gradient(180deg,#fffef8,#f6eed6)!important;color:#1b1503!important;border:1px solid #e6d9a8!important;box-shadow:0 2px 0 #e3d49a!important}
+:is(.cpsheet,.jvw) .cps button.link.dng{background:#fff5f4!important;color:#a3150f!important;border-color:#e3a8a3!important;box-shadow:0 2px 0 #efc9c5!important}
+.cpsheet .cpfl{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.cpsheet .cph{font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8a6d12;margin:10px 2px 2px}
+.cpsheet .cpr{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:12px;background:#fffdf4;border:1px solid #eadfb4;box-shadow:0 2px 0 #f0e6bf}
+.cpsheet .cpr .cpa{width:32px;height:32px;font-size:12px}
+.cpsheet #cq{border-radius:14px;border:1.5px solid #e6d9a8;padding:10px 14px;background:#fff;box-shadow:inset 0 2px 4px rgba(120,90,10,.08)}
+
+.edupk{position:relative;max-width:460px}
+.edupk input{width:100%}
+.edur{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:60;max-height:260px;overflow:auto;background:#fff;border:1.5px solid #d4af37;border-radius:12px;box-shadow:0 10px 24px rgba(20,16,4,.22)}
+.edur[hidden]{display:none}
+.edur>div{padding:9px 12px;cursor:pointer;font-size:14px;color:#1b1503;border-bottom:1px solid #f0e6bf}
+.edur>div:hover{background:#fff3c4}
+.edur small{color:#8a6d12;margin-left:6px}
+.edur .edun{cursor:default;color:#6b6650;font-size:12.5px}
+.edur .edun:hover{background:#fff}
+body #modalRoot .cpsheet .cpc[data-cpv],body #modalRoot .cpsheet .cpr[data-cpv],body #modalRoot .cpsheet .cpc[data-sve],body #modalRoot .cpsheet .cpr[data-sve],body #modalRoot .cpsheet tr[data-cpv],body #modalRoot .cpsheet tr[data-sve]{cursor:pointer}
+body #modalRoot .cpsheet .cpc[data-cpv]:hover,body #modalRoot .cpsheet .cpr[data-cpv]:hover,body #modalRoot .cpsheet .cpc[data-sve]:hover,body #modalRoot .cpsheet .cpr[data-sve]:hover{box-shadow:0 0 0 2px #d4af37,0 8px 18px rgba(60,45,5,.16)}
+body #modalRoot .cpsheet tr[data-cpv]:hover td,body #modalRoot .cpsheet tr[data-sve]:hover td{background:#fff3c4}
+body #modalRoot .cpsheet .vwtb:not(#_){overflow:visible;border-radius:14px}
+body #modalRoot .cpsheet .vwtb table:not(#_){min-width:0;border-collapse:separate;border-spacing:0}
+body #modalRoot .cpsheet .vwtb th:not(#_){position:sticky;top:0;z-index:4;box-shadow:0 3px 6px -3px rgba(0,0,0,.4)}
+body #modalRoot .cpsheet .vwtb th:first-child:not(#_){border-top-left-radius:13px}
+body #modalRoot .cpsheet .vwtb th:last-child:not(#_){border-top-right-radius:13px}
+body #modalRoot .cpsheet .vwtb td:last-child:not(#_){width:1%;white-space:nowrap}
+body #modalRoot .cpsheet .vwtb .cps:not(#_){flex-direction:column;align-items:stretch;gap:4px}
+body #modalRoot .cpsheet .vwtb .cps button:not(#_){width:100%}
+
+body #modalRoot .cpsheet .fdg:not(#_){margin:0 0 8px;border:1.5px solid var(--e);border-left:6px solid var(--f);border-radius:14px;background:#fff;overflow:visible}
+body #modalRoot .cpsheet .fdg>summary:not(#_){display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;list-style:none;background:linear-gradient(90deg,var(--a),#fff 70%);font-weight:800;font-size:15px;color:#14110a}
+body #modalRoot .cpsheet .fdg>summary::-webkit-details-marker{display:none}
+body #modalRoot .cpsheet .fdg>summary:not(#_){position:sticky;top:0;z-index:3;border-radius:8px 12px 0 0;box-shadow:0 3px 6px -3px rgba(60,45,5,.35);background:linear-gradient(90deg,var(--a),#fff 70%),#fff}
+body #modalRoot .cpsheet .fdg:not([open])>summary:not(#_){border-radius:8px 12px 12px 8px;box-shadow:none}
+body #modalRoot .cpsheet .fdg>summary::after{content:'▾';margin-left:auto;color:var(--f);transition:transform .15s}
+body #modalRoot .cpsheet .fdg[open]>summary::after{transform:rotate(180deg)}
+body #modalRoot .cpsheet .fdc{min-width:28px;text-align:center;padding:2px 9px;border-radius:999px;background:var(--f);color:#fff;font-size:12px;font-weight:800}
+body #modalRoot .cpsheet .fdb{display:flex;flex-direction:column;gap:6px;padding:8px 10px 10px;border-top:1px solid var(--e)}
+
+/* ===== Оформление окон: насыщенные цвета, золотой ободок, плоские кнопки ===== */
+body #modalRoot .cpsheet .cpc:not(#_){background:linear-gradient(180deg,#fff 0%,var(--a) 260%);border:1.5px solid var(--e);border-left:6px solid var(--f);box-shadow:0 6px 16px rgba(60,45,5,.10)}
+body #modalRoot .cpsheet .cpr:not(#_){background:linear-gradient(90deg,var(--a),#fff 55%);border:1.5px solid var(--e);border-left:6px solid var(--f);box-shadow:0 3px 8px rgba(60,45,5,.08)}
+body #modalRoot .cpsheet .cpa:not(#_){background:var(--f);color:#fff;border:2px solid #fff;box-shadow:0 0 0 2px var(--e),0 3px 6px rgba(0,0,0,.18);text-shadow:0 1px 1px rgba(0,0,0,.25)}
+body #modalRoot .cpsheet .cpb:not(#_){background:var(--f);color:#fff;border-color:var(--f);letter-spacing:.02em}
+body #modalRoot .cpsheet .cpm b:not(#_){color:#14110a}
+body #modalRoot .cpsheet .cpm small:not(#_){color:#4f4a38}
+body #modalRoot .cpsheet .cps:not(#_){border-top:1px solid var(--e)}
+:is(.cpsheet,.jvw,.ccsheet) button.link:not(#_):not(#_),:is(.cpsheet,.ccsheet) .sm:not(#_):not(#_):not(.dkb),body #modalRoot .ccsheet button.ghost:not(#_):not(#_){background:#fff!important;color:#1b1503!important;border:1.5px solid #d4af37!important;border-radius:10px!important;box-shadow:none!important;font-weight:700!important;transform:none!important}
+:is(.cpsheet,.jvw,.ccsheet) button.link:not(#_):not(#_):hover,:is(.cpsheet,.ccsheet) .sm:not(#_):not(#_):hover{background:#fff8dc!important;border-color:#b8921f!important}
+:is(.cpsheet,.jvw,.ccsheet) button.link.dng:not(#_):not(#_),body #modalRoot .ccsheet .sm.dng:not(#_):not(#_){background:#fff!important;color:#a3150f!important;border:1.5px solid #d9534f!important;box-shadow:none!important}
+body #modalRoot .cpsheet .cpch:not(#_):not(#_){background:#fff;border:1.5px solid #d4af37;box-shadow:none}
+body #modalRoot .cpsheet .cpch.on:not(#_):not(#_){border-color:#141004}
+body #modalRoot .ccsheet{animation:ccFade .18s ease-out!important;border:1.5px solid #d4af37;border-radius:20px;box-shadow:0 18px 50px rgba(20,16,4,.3)}
+@keyframes ccFade{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:none}}
+body #modalRoot .ccsheet h2{border-bottom:2px solid #d4af37;padding-bottom:8px}
+@media(max-width:560px){.cpsheet .cpr{flex-wrap:wrap}.cpsheet .cpr .cps{flex:1 0 100%}}
 body #view button.dng.dng.dng:not(#_){width:auto!important;min-height:36px!important;padding:7px 16px!important;border-radius:12px!important;font-size:13.5px!important;font-weight:700!important;background:#fff5f4!important;color:#a3150f!important;border:1px solid #e3a8a3!important;box-shadow:0 2px 0 #efc9c5!important}body #view button.dng.dng.dng:not(#_):hover{background:#ffe9e7!important}
-body #view :is(button.ghost,button.sm,a.sm,button.cbtn):not(.link):not(.fab):not(.cc):not(.qm):not(.tkt):not(.red):not(.on):not(.add):not(.ok):not(.regopt):not(.sheetx):not(.c11a):not(.dng):not(#_):not(#_):not(.smx *):not(.ln *):not(.ct *):not(td *):not(th *):not(.sectabs *):not(.mgpills *):not(.whact *):not(.dhact *):not(.cxnav *):not(.thsw *):not(.cdk *):not(.pgb *){width:auto!important;max-width:100%;min-height:36px!important;padding:7px 16px!important;border-radius:12px!important;font-size:13.5px!important;font-weight:700!important;line-height:1.2!important;background:linear-gradient(180deg,#fffef8,#f6eed6)!important;color:#1b1503!important;border:1px solid #e6d9a8!important;box-shadow:0 2px 0 #e3d49a,0 4px 8px rgba(120,90,10,.12)!important;transition:transform .15s,box-shadow .15s}
+body #view :is(button.ghost,button.sm,a.sm,button.cbtn):not(.link):not(.fab):not(.cc):not(.qm):not(.tkt):not(.red):not(.on):not(.add):not(.ok):not(.regopt):not(.sheetx):not(.c11a):not(.dng):not(.jon):not(#_):not(#_):not(.smx *):not(.ln *):not(.ct *):not(td *):not(th *):not(.sectabs *):not(.mgpills *):not(.whact *):not(.dhact *):not(.cxnav *):not(.thsw *):not(.cdk *):not(.pgb *){width:auto!important;max-width:100%;min-height:36px!important;padding:7px 16px!important;border-radius:12px!important;font-size:13.5px!important;font-weight:700!important;line-height:1.2!important;background:linear-gradient(180deg,#fffef8,#f6eed6)!important;color:#1b1503!important;border:1px solid #e6d9a8!important;box-shadow:0 2px 0 #e3d49a,0 4px 8px rgba(120,90,10,.12)!important;transition:transform .15s,box-shadow .15s}
 body #view :is(button.ghost,button.sm,a.sm,button.cbtn):not(.link):not(.fab):not(.cc):not(.qm):not(.tkt):not(.red):not(.on):not(.add):not(.ok):not(.regopt):not(.sheetx):not(.c11a):not(.dng):not(#_):not(#_):not(.smx *):not(.ln *):not(.ct *):not(td *):not(th *):not(.sectabs *):not(.mgpills *):not(.whact *):not(.dhact *):not(.cxnav *):not(.thsw *):not(.cdk *):not(.pgb *):hover{transform:translateY(-1px);box-shadow:0 3px 0 #e3d49a,0 6px 12px rgba(120,90,10,.16)!important}
 body #view .row.whact.whact.whact.whact.whact.whact>button:not(#_):not(#_):first-child,body #view .row.whact.whact.whact.whact.whact.whact>a:not(#_):not(#_):first-child,body #modalRoot .row.whact.whact.whact.whact.whact.whact>button:not(#_):not(#_):first-child{background:linear-gradient(180deg,#2a210a,#141004)!important;color:#f5de8f!important;border:1px solid #141004!important;box-shadow:0 2px 0 #000,0 4px 10px rgba(20,16,4,.3)!important}
 body.th-t2 #view .row.whact.whact.whact.whact.whact.whact>button:not(#_):not(#_):first-child,body.th-t2 #view .row.whact.whact.whact.whact.whact.whact>a:not(#_):not(#_):first-child{background:linear-gradient(180deg,#f8e594,#d4af37)!important;color:#141004!important;border-color:#c9a02c!important;box-shadow:0 2px 0 #b8901f,0 4px 10px rgba(150,110,10,.3)!important}
@@ -36877,5 +37080,24 @@ html body.th-t3 #view .c11a.g:not(#_):not(#__){background:linear-gradient(135deg
 #view .op[data-links]:hover{transform:translateY(-2px);box-shadow:var(--ds-sh2)}
 #view .op[data-links] .t{font-weight:700;font-size:14.5px}
 </style>
+<script>
+/* страховка списков Контрагенты/Номенклатура: клики работают независимо от root.onclick */
+document.addEventListener('click',function(e){try{
+ const r=document.getElementById('modalRoot');if(!r||!e.target||!r.contains(e.target)||r.querySelector('.ccsheet'))return;
+ const t=e.target,C=function(q){return t.closest&&t.closest(q)};
+ const cq=r.querySelector('#cq'),sq=r.querySelector('#sq');
+ if(cq&&r.querySelector('.cpsheet')){const q=cq.value||'';
+  const vw=C('[data-vmode]'),cf=C('[data-cpf]'),bv=C('[data-cpv]');
+  if(vw){e.stopPropagation();vwSet(vw.dataset.vmode);window._cpN=40;cptyOpen(q);return}
+  if(cf){e.stopPropagation();window._cpF=cf.dataset.cpf;window._cpN=40;cptyOpen(q);return}
+  if(bv){e.stopPropagation();cptyCard(bv.dataset.cpv);return}
+ }else if(sq&&r.querySelector('.cpsheet')){const q=sq.value||'';
+  const vw=C('[data-vmode]'),sf=C('[data-svf]'),be=C('[data-sve]');
+  if(vw){e.stopPropagation();vwSet(vw.dataset.vmode);window._svN=40;svcOpen(q);return}
+  if(sf){e.stopPropagation();window._svF=sf.dataset.svf;window._svN=40;svcOpen(q);return}
+  if(be&&!C('[data-svd]')){const x=(cur().svc||[]).find(function(y){return y.id===be.dataset.sve});if(x){e.stopPropagation();svcForm(x)}}
+ }
+}catch(er){console.error(er)}},true);
+</script>
 </body>
 </html>
